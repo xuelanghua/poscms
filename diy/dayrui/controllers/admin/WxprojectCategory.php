@@ -106,22 +106,22 @@ class WxprojectCategory extends M_Controller {
         //     'data' => $data,
         //     'field' => $field,
         // ));
-        $this->template->display('wxproject/wxcategory_list.html');
+        $this->template->display('wxproject/category_list.html');
     }
 
     //产品分类添加
     public function category_add() {
-        $this->template->display('wxproject/wxcategory_add.html');
+        $this->template->display('wxproject/category_add.html');
     }
 
     //产品分类编辑
     public function category_edit() {
-        $this->template->display('wxcategory_add.html');
+        $this->template->display('wxproject/category_add.html');
     }
 
     //产品分类删除
     public function category_del() {
-        $this->template->display('wxcategory_add.html');
+        $this->template->display('wxproject/category_add.html');
     }
 
     
