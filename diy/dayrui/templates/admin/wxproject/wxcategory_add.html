@@ -187,7 +187,7 @@ function delete_draft(did){
                     <div class="form-body">
                         <div class="form-group">
                             <label class="col-md-2 control-label">{fc_lang('栏目分类')}：</label>
-                            <input type="text" class="form-control" name="" id="">
+                            <input type="text" class="form-control" name="title" id="">
                             <div class="col-md-9">
                                 <label>{$select}</label>
                                 {if $ci->get_cache('module-'.SITE_ID.'-'.APP_DIR, 'setting', 'syncat')}
