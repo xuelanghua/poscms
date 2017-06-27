@@ -203,6 +203,24 @@ function delete_draft(did){
                                 {/if}
                             </div>
                         </div>
+						 <div class="form-group">
+                            <label class="col-md-2 control-label">{fc_lang('栏目分类')}：</label>
+                            <input type="text" class="form-control" name="title" id="">
+                            <div class="col-md-9">
+                                <label>{$select}</label>
+                                {if $ci->get_cache('module-'.SITE_ID.'-'.APP_DIR, 'setting', 'syncat')}
+                                {if !$data.id}
+                                <label><a href="javascript:;" onclick="dr_syncat()">[{fc_lang('同步发布到其他栏目')}]</a></label>
+                                <label>
+                                    <input name="syncatid" id="dr_syncatid" type="hidden" value="{$data.syncatid}" />
+                                    <span id="dr_syncat_text" style="display: none;color: blue;">{fc_lang('已选择：')}<b id="dr_syncat_num">0</b></span>
+                                </label>
+                                {else if $data.link_id != 0}
+                                <label>{fc_lang('修改内容时会同步更新其他外联文档')}</label>
+                                {/if}
+                                {/if}
+                            </div>
+                        </div>
                         {str_replace('col-md-9', 'col-md-10', $myfield)}
                     </div>
                 </div>
