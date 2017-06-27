@@ -1,0 +1,79 @@
+{template "nheader.html"}
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <!-- BEGIN FORM-->
+        <form action="" method="post" class="form-horizontal" novalidate="novalidate">
+            <div class="form-body">
+                {if strlen($result_error) > 3}
+                <div class="alert alert-danger display-hide" style="display: block;">
+                    <button class="close" data-close="alert"></button> {$result_error}</div>
+                {/if}
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">城市：</label>
+                    <div class="col-md-10">
+                        {dr_field_input('city', 'Linkage', array('option' => array('linkage' => 'address'),'validate' => array('required' => 1 )), $data['city'])}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">姓名：</label>
+                    <div class="col-md-4">
+                        <div class="input-icon ">
+                            <i class="fa fa-user"></i>
+                            <input type="text" class="form-control" name="data[name]" value="{$data.name}" placeholder="姓名"> </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">电话：</label>
+                    <div class="col-md-4">
+                        <div class="input-icon ">
+                            <i class="fa fa-phone-square"></i>
+                            <input type="text" class="form-control" name="data[phone]" value="{$data.phone}" placeholder="电话"> </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">邮编：</label>
+                    <div class="col-md-4">
+                        <div class="input-icon ">
+                            <i class="fa fa-barcode"></i>
+                            <input type="text" class="form-control" name="data[zipcode]" value="{$data.zipcode}" placeholder="邮编"> </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">地址：</label>
+                    <div class="col-md-10">
+                        <div class="input-icon ">
+                            <i class="fa fa-home"></i>
+                            <input type="text" class="form-control" name="data[address]" value="{$data.address}" placeholder="地址"> </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">设为默认：</label>
+                    <div class="col-md-10">
+                        <div class="radio-list">
+                            <label class="radio-inline">
+                                <input name="data[default]" type="radio" {if !$data.default}checked{/if} value="0"> 否 </label>
+                            <label class="radio-inline">
+                                <input name="data[default]" type="radio" {if $data.default}checked{/if} value="1"> 是 </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-3">
+                        <button type="submit" class="mysubmit btn green"><i class="fa fa-save"></i> 保存</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <!-- END FORM-->
+        <!-- END VALIDATION STATES-->
+    </div>
+</div>
+
+{template "nfooter.html"}

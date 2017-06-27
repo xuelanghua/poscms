@@ -1,0 +1,194 @@
+<style>
+    a { color: #3366cc; text-decoration: none; }
+    body, button, select, textarea, input { font: 12px/1.125 Arial,Helvetica,sans-serif; }
+    dd { margin:0;}
+    .layer-follow{ padding:15px;overflow:hidden;*zoom:1;*width:402px;}
+    .layer-follow .right { float: right; }
+    .layer-follow .mr10 {  margin-right: 10px; }
+    .layer-follow .actionBtn{ height:50px}
+    .layer-follow .tit{ padding:0 0 10px;line-height:18px;}
+    .layer-follow .tit strong{ padding:0 5px}
+    .layer-follow .group-name{ color:#535353}
+    .layer-follow .group-name ul{ overflow:hidden;*zoom:1;padding: 0;}
+    .layer-follow .group-name li{ padding:5px;margin:0 0 5px;line-height:18px;display:block;vertical-align:top;border:#ccc dotted 1px;cursor:pointer;}
+    .layer-follow .group-name li:hover{ background:#f1f1f1;}
+    .layer-follow .group-name .cursor{ cursor:pointer}
+    .layer-follow .group-name li .hover{ visibility: hidden;_visibility: visible}
+    .layer-follow .group-name li:hover .hover{ visibility: visible;}
+    .layer-follow .group-name .s-txt, .layer-follow .group-name .s-txt-focus{ padding:3px}
+
+    .layer-follow .group-name .btn-green, .layer-follow .group-name .btn-gray{ height:22px;padding:0}
+    .layer-follow .group-name .btn-green span, .layer-follow .group-name .btn-gray span{ padding:3px 10px;_padding:5px 10px 1px;}
+    .layer-follow .actionBtn{ height:30px}
+    .wrap-layer .content-layer .layer-follow .tit .s-txt{ width:340px;}
+    .wrap-layer .content-layer .layer-follow .tit .s-txt-focus{ width:380px;margin:0 0 0 5px}
+    #createFollowGroup .s-txt, #createFollowGroup .s-txt-focus{ width:250px;}
+    .layer-follow .new-add{ background:#fafafa;padding:10px;color:#535353}
+
+    .btn-grey{ background-position:0 -260px;width:80px;height:30px;line-height:30px;text-align:center;font-size:14px;color:#666;}
+    .btn-green-big,.btn-green-big:hover{ background:#414448;color:#fff;width:80px;height:30px;line-height:30px;text-align:center;border:none;font-size:12px;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;}
+    .s-login .login-bd .btn-login{ font-family:"微软雅黑";font-size:20px;color:#fff;width:140px;height:46px;line-height:46px;margin:-2px 0 0 0;text-align:center;background:#414448;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;*margin:2px 0 0 0;}
+    .btn-grey-small{ background-position:0 -164px;width:80px;height:24px;color:#666;line-height:24px;text-align:center;cursor:pointer;}
+    .btn-register{ background:#414448;width:80px;height:30px;font-size:14px;color:#fff;display:block;text-align:center;line-height:30px;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;}
+    .btn-green-small,.btn-green-small:hover{ background:#414448;width:50px;height:24px;line-height:24px;font-size:12px;color:#fff;text-align:center;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;}
+    .btn-att-green,.btn-att-green:hover{ background:#414448;width:80px;height:14px;line-height:14px;padding:5px 0;font-size:12px;color:#fff;text-align:center;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;}
+    .btn-copy{ background-position:0 -316px;width:140px;height:46px;line-height:46px;}
+    .btn-copy span{ font-size:16px;color:#fff;text-align:center;display:block;}
+    .btn-cancel:hover,.btn-cancel:hover span,.channel-layer .btn-cancel.current,.channel-layer .btn-cancel.current span,.channel-tab-menu .btn-cancel.current,.channel-tab-menu .btn-cancel.current span,.profession-type .btn-cancel.current,.profession-type .btn-cancel.current span{ background:#414448;font-size:12px;color:#fff;text-align:center;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;}
+    .btn-cancel:hover .ico-add-black{ background-position:0 -73px}
+    .btn-cancel:hover span a.tag{ color:#fff;margin:0 5px 0 0;}
+</style>
+<div class="layer-follow pop">
+    <div class="group-name">
+        <ul id="followGroupSelector">
+            {loop $list $t}
+            <li class="dr_row_{$t.id}">
+                <a href="javascript:;" class="right hover" onclick="delGroup({$t.id})">删除</a>
+                <a href="javascript:void(0)" class="right hover mr10" onclick="editGroup({$t.id})">编辑分组</a>
+                <label onclick="editGroup({$t.id});">
+                <span id="title_{$t.id}" class="cursor">{$t.title}</span></label>
+                <span id="edit_{$t.id}" style="display:none">
+                <input type="text" value="{$t.title}" class="s-txt" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'">
+                <a href="javascript:;" onclick="saveGroup({$t.id});" class="btn-green-small"><span>保存</span></a>
+                <a href="javascript:;" onclick="cenSaveGroup({$t.id});" class="btn-cancel"><span>取消</span></a>
+                </span>
+            </li>
+            {/loop}
+        </ul>
+    </div>
+    <div>
+        <div id="open_tab" class="new-add" style="display: inline-block;"><a href="javascript:void(0);" onclick="createFollowGroupTab('')" class="openTab">+创建分组</a></div>
+        <dl class="mt10">
+            <dd id="createFollowGroup">
+                <input type="text" name="followGroupTitle" value="" class="s-txt" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" style="display: none;height:25px">
+                <a onclick="createFollowGroup()" class="btn-green-small mr5" style="display: none;"><span>创建</span></a>
+                <a href="javascript:void(0);" onclick="createFollowGroupTab('close')" class="btn-cancel" style="display: none;"><span>取消</span></a>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<script type="text/javascript" src="{THEME_PATH}js/jquery.min.js"></script>
+<script type="text/javascript" src="{THEME_PATH}js/jquery.artDialog.js?skin=default"></script>
+<script type="text/javascript" src="{THEME_PATH}js/dayrui.js"></script>
+<script type="text/javascript">
+
+    /**
+     * 编辑分组显示
+     * @param integer gid 分组ID
+     * @return void
+     */
+    var editGroup = function(gid) {
+        $('#title_'+gid).hide();
+        $('#edit_'+gid).show();
+    };
+    /**
+     * 保存分组信息
+     * @param integer gid 分组ID
+     * @return void
+     */
+    var saveGroup = function(gid) {
+        var title = $('#edit_'+gid).find('input').val();
+        if(title == '') {
+            dr_tips('分组名称不能为空');
+            return false;
+        }
+        if(title != $('#title_'+gid).html()) {
+            $.post('{dr_member_url("space/sns/group_save")}', {gid:gid,title:title},function(msg){
+                if(msg.status == 0){
+                    dr_tips(msg.code);
+                    $('#edit_'+gid).find('input').val($('#title_'+gid).html());
+                }else{
+                    $('.group_title').each(function(){
+                        if($(this).attr('gid') == gid){
+                            $(this).html(title);
+                        }
+                    });
+                    $('#title_'+gid).html(title);
+                }
+            },'json');
+        }
+        cenSaveGroup(gid);
+    }
+    /**
+     * 保存后页面显示
+     * @param integer gid 分组ID
+     * @return void
+     */
+    var cenSaveGroup = function(gid) {
+        $('#title_'+gid).show();
+        $('#edit_'+gid).hide();
+    }
+    /**
+     * 创建分组框显示
+     * @param string action 创建动作，是创建还是关闭
+     * @return void
+     */
+    var createFollowGroupTab = function(action) {
+        if(action == 'close') {
+            $("input[name='followGroupTitle']").val(' ');
+            $('#createFollowGroup input').css('display','none');
+            $('#createFollowGroup .btn-green-small').css('display','none');
+            $('#createFollowGroup .btn-cancel').css('display','none');
+            // 隐藏弹窗
+            var len = $('#followGroupSelector').find("li").length;
+            if(len > 9) {
+                $('#open_tab').css('display','none');
+            } else {
+                $('#open_tab').css('display','inline-block');
+            }
+        } else {
+            $('#createFollowGroup input').css('display','inline');
+            $('#createFollowGroup .btn-green-small').css('display','inline-block');
+            $('#createFollowGroup .btn-cancel').css('display','inline-block');
+            $('#open_tab').css('display','none');
+        }
+    }
+    /**
+     * 创建分组操作
+     * @return void
+     */
+    var createFollowGroup = function() {
+        var title = $("input[name='followGroupTitle']").val();
+        if(title == '') {
+            dr_tips('分组名称不能为空');
+            return false;
+        }
+        // 创建分组操作
+        $.post('{dr_member_url("space/sns/group_add")}', {title: title}, function(res) {
+            if(res.status != 0) {
+                var html = '<li class="dr_row_'+res.id+'"><a href="javascript:;" class="right hover" onclick="delGroup('+res.id+')">删除</a>\
+                        <a href="javascript:void(0)" class="right hover mr10" onclick="editGroup('+res.id+')">编辑分组</a>\
+                        <label onclick="editGroup('+res.id+');">\
+                        <span id="title_'+res.id+'">'+title+'</span></label>\
+                        <span id="edit_'+res.id+'" style="display:none">\
+                        <input class="s-txt" type="text" onblur="this.className=\'s-txt\'" onfocus="this.className=\'s-txt-focus\'" value='+title+'>\
+                        <a class="btn-green-small" href="javascript:;" onclick="saveGroup('+res.id+');">保存</a>\
+                        <a class="btn-cancel" href="javascript:;" onclick="cenSaveGroup('+res.id+');">取消</a></span></li>';
+                $('#followGroupSelector').append(html);
+                createFollowGroupTab('close');
+            } else {
+                dr_tips(res.code);
+            }
+        }, 'json');
+    }
+    /**
+     * 删除分组操作
+     * @param integer gid 分组ID
+     * @return void
+     */
+    var delGroup = function(gid) {
+        var title = $('#title_' + gid).text();
+        art.dialog.confirm('<font color="red">确定要删除" ' + title + ' "分组吗？<br />此分组下的人不会被取消关注。</font>', function() {
+            $.post('{dr_member_url("space/sns/group_del")}', {gid:gid}, function(msg) {
+                if(msg.status == 1) {
+                    dr_tips("删除成功",3,1);
+                    $('.dr_row_'+gid).remove();
+                } else {
+                    dr_tips("删除失败");
+                }
+                return false;
+            }, 'json');
+        });
+    }
+</script>

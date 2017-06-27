@@ -1,0 +1,14 @@
+{if $is_buy}
+<!--这里表示已经购买了，这里写购买以后显示的字段数据-->
+<a style="color: #0a6aa1">我已经购买了这篇文章</a>
+{else}
+<!--else内写未购买时的提示信息-->
+{if $member}
+<!--已经登陆时提示购买文档-->
+这部分内容需要购买之后才能看到，此次购买需要<strong>{SITE_SCORE}{$score}</strong>，
+<a href="javascript:;" onclick="dr_confirm_url('此操作需要{SITE_SCORE}{$score}，您确定购买吗？', '/index.php?s={MOD_DIR}&c=api&m=buy&action=confirm&id={$id}')">单击这购买</a>
+{else}
+<!--未登陆时提示登陆-->
+<a href="javascript:dr_login();">您需要登录购买之后才能查看</a>
+{/if}
+{/if}

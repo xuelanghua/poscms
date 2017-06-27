@@ -1,0 +1,131 @@
+{template nheader.html}
+
+<form class="form-horizontal" action="" method="post" id="myform" name="myform">
+    <div class="page-bar">
+        <ul class="page-breadcrumb mylink">
+            {$menu.link}
+        </ul>
+        <ul class="page-breadcrumb myname">
+            {$menu.name}
+        </ul>
+
+    </div>
+
+    <h3 class="page-title">
+        <small></small>
+    </h3>
+    <div class="portlet light bordered myfbody">
+
+        <div class="portlet-title">
+            <div class="caption">
+                <span class="caption-subject font-green sbold uppercase">文本素材</span>
+            </div>
+        </div>
+        <div class="portlet-body">
+
+            <div class="row">
+                <div class="portlet-body ">
+
+
+                    <div class="clearfix ng-cloak" id="js-reply-form" ng-controller="replyForm">
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <ul class="list-group">
+                                    <li class="row list-group-item" style="border: none;margin:0" ng-repeat="item in context.items">
+                                        <div class="block">
+                                            <div class="col-xs-12 col-sm-12">
+                                                <textarea name="data[content]" class="form-control content" ng-hide="item.saved" placeholder="" ng-model="item.content" rows="4" onkeyup="if (this.value.split('\n').length>4) this.rows=this.value.split('\n').length;">{$data.content}</textarea>
+                                                <p class="form-control-static" ng-show="item.saved" ng-bind-html="item.content | nl2br"></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="myfooter">
+        <div class="row">
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn green"> <i class="fa fa-save"></i> {fc_lang('保存')}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script>
+    window.initReplyController = function($scope) {
+        $scope.context = {};
+        $scope.context.items = null;
+        if(!$.isArray($scope.context.items)) {
+            $scope.context.items = [];
+        }
+        if($scope.context.items.length == 0) {
+            $scope.context.items.push({content: '{str_replace('\'', '', $data.content)}'});
+        }
+        $scope.context.addItem = function(){
+            $scope.context.items.push({
+                content: ''
+            });
+        };
+        $scope.context.saveItem = function(item){
+            item.saved = !item.saved;
+        };
+        $scope.context.removeItem = function(item) {
+            require(['underscore'], function(_){
+                $scope.context.items = _.without($scope.context.items, item);
+                $scope.$digest();
+            });
+        };
+        $scope.initEmotion = function(obj) {
+            require(['util'], function(util){
+                var elm = $('.emotion-triggers').eq(obj.$index);
+                util.emotion(elm[0], elm.parent().parent().find('.content')[0], function(txt, elm, target){
+                    obj.item.content = $(target).val();
+                    $scope.$digest();
+                });
+            });
+        };
+        /*选择Emoji表情*/
+        $scope.selectEmoji = function(obj) {
+            require(['util'], function(util){
+                var elm = $('.emoji-triggers').eq(obj.$index);
+                var textbox = elm.parent().parent().find('.content')[0];
+                util.emojiBrowser(function(emoji){
+                    var unshift = '[U+' + emoji.find("span").text() + ']';
+                    var newstart = textbox.selectionStart + unshift.length;
+                    var insertval = textbox.value.substr(0,textbox.selectionStart) + unshift + textbox.value.substring(textbox.selectionEnd);
+                    obj.item.content = insertval;
+                    $scope.$digest();
+                });
+            });
+        };
+    };
+</script>
+
+<script type="text/javascript">
+    //require(['bootstrap']);
+    $('.js-clip').each(function(){
+        util.clip(this, $(this).attr('data-url'));
+    });
+</script>
+{template nfooter.html}

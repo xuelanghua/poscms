@@ -1,0 +1,46 @@
+<div id="video_{name}" style="position:relative;z-index:998;width:{width};height:{height}px;">
+    <div id="{name}"></div>
+</div>
+{js_code}
+<script type="text/javascript">
+    //
+    var flashvars={
+        c:0,
+        {params}
+        x:'ckstyle_finecms',
+        loaded: 'loadedHandler_{name}',
+        my_pic: '{thumb}',
+        my_url:encodeURIComponent(window.location.href),
+        my_title:encodeURIComponent(document.title)
+    };
+    var video=['{file}->video/mp4'];
+    var param={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+    CKobject.embed('{server_url}ckplayer.swf', '{name}', 'ckplayer_{name}', '{width}', '{height}', false, flashvars, video, param);
+    //开关灯
+    var box = new LightBox();
+    function closelights(){//关灯
+        box.Show();
+        CKobject._K_('video_{name}').style.width='{width}px';
+        CKobject._K_('video_{name}').style.height='{height}px';
+        CKobject.getObjectById('ckplayer_{name}').width='{width}';
+        CKobject.getObjectById('ckplayer_{name}').height='{height}';
+    }
+    function openlights(){//开灯
+        box.Close();
+        CKobject._K_('video_{name}').style.width='{width}px';
+        CKobject._K_('video_{name}').style.height='{height}px';
+        CKobject.getObjectById('ckplayer_{name}').width='{width}';
+        CKobject.getObjectById('ckplayer_{name}').height='{height}';
+    }
+    // 下一视频
+    function playerstop(){
+        var u = "{next_url}";
+        if (u) {
+            location.href=u;
+        }
+    }
+    //跳过广告
+    function ckadjump(){
+       alert('这里开发者可以定跳过广告的条件');
+    }
+</script>

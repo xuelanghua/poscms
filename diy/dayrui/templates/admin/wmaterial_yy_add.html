@@ -1,0 +1,84 @@
+{template nheader.html}
+<link href="{THEME_PATH}admin/weixin/home/css/base.css" rel="stylesheet">
+<link href="{THEME_PATH}admin/weixin/home/css/module.css" rel="stylesheet">
+<link href="{THEME_PATH}admin/weixin/home/css/wei.css" rel="stylesheet">
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/static/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/static/zclip/ZeroClipboard.min.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/home/js/dialog.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/home/js/admin_common.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/home/js/admin_image.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/static/masonry/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/static/jquery.dragsort-0.5.2.min.js"></script>
+<script type="text/javascript">
+    var  IMG_PATH = "{THEME_PATH}admin/weixin/Home/images";
+    var  STATIC = "{THEME_PATH}admin/weixin/static";
+    var  ROOT = "{SITE_URL}";
+    var  UPLOAD_FILE = "{dr_url('weixin/ajaxload')}";
+</script>
+
+
+<form class="form-horizontal" action="" method="post" id="myform" name="myform">
+<div class="page-bar">
+    <ul class="page-breadcrumb mylink">
+        {$menu.link}
+    </ul>
+    <ul class="page-breadcrumb myname">
+        {$menu.name}
+    </ul>
+
+</div>
+
+<h3 class="page-title">
+    <small></small>
+</h3>
+<div class="portlet light bordered myfbody">
+
+    <div class="portlet-title">
+        <div class="caption">
+            <span class="caption-subject font-green sbold uppercase">语音素材</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+
+        <div class="row">
+            <div class="portlet-body form">
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">{fc_lang('名称')}：</label>
+                    <div class="col-md-9">
+                        {dr_field_input('title', 'Text', $field['title']['setting'], $data['title'])}
+                    </div>
+                </div>
+                <div class="form-group dvalue" id="dr_html_3">
+                    <label class="col-md-2 control-label">{fc_lang('文件')}：</label>
+                    <div class="col-md-9" style="padding-top:3px;">
+                        {dr_field_input('file', 'File', $field['file']['setting'], $data['file'])}
+                        <span class="help-block">格式支持mp3、wma、wav、amr，文件大小不超过30M，语音时长不超过30分钟</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="myfooter">
+    <div class="row">
+        <div class="portlet-body form">
+            <div class="form-body">
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn green"> <i class="fa fa-save"></i> {fc_lang('保存')}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+{template nfooter.html}

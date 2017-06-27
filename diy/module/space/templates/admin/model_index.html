@@ -1,0 +1,71 @@
+{template nheader.html}
+<div class="page-bar">
+	<ul class="page-breadcrumb mylink">
+		{$menu.link}
+		<li><a href="{SYS_HELP_URL}97.html" target="_blank"><i class="fa fa-book"></i> {fc_lang('在线帮助')}</a></li>
+	</ul>
+	<ul class="page-breadcrumb myname">
+		{$menu.name}
+	</ul>
+	<div class="page-toolbar">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+				<i class="fa fa-angle-down"></i>
+			</button>
+			<ul class="dropdown-menu pull-right" role="menu">
+				{loop $menu.quick $t}
+				<li>
+					<a href="{$t.url}">{$t.icon} {$t.name}</a>
+				</li>
+				{/loop}
+				<li class="divider"> </li>
+				<li>
+					<a href="javascript:window.location.reload();">
+						<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<h3 class="page-title">
+	<small>{fc_lang('空间模型是空间的内容发布功能，例如空间新闻、日志、产品、下载、简介等等')}</small>
+</h3>
+
+<div class="portlet light bordered">
+	<div class="portlet-body">
+		<div class="table-scrollable v3table">
+		<form action="" method="post" name="myform" id="myform">
+        <input name="action" id="action" type="hidden" value="" />
+		<table class="table">
+		<thead>
+		<tr>
+			<th width="20" align="left">Id</th>
+			<th width="100" align="left">{fc_lang('名称')}</th>
+			<th width="100" align="left">{fc_lang('表名称')}</th>
+			<th width="120" align="left">{fc_lang('列表页模板')}</th>
+			<th width="120" align="left">{fc_lang('内容页模板')}</th>
+			<th align="left" class="dr_option">{fc_lang('操作')}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{loop $list $t}
+		<tr>
+			<td align="left">{$t.id}</td>
+			<td align="left">{$t.name}</td>
+			<td align="left">{$t.table}</td>
+			<td align="left">list_{$t.table}.html</td>
+			<td align="left">show_{$t.table}.html</td>
+			<td align="left" class="dr_option">
+			{if $this->ci->is_auth('admin/field/index')}<a class="alist" href="{dr_url('admin/field/index', array('rname' => 'space', 'rid' => $t.id))}"> <i class="fa fa-plus-square"></i> {fc_lang('字段')}</a>{/if}
+			{if $this->ci->is_auth('space/admin/model/edit')}<a class="aedit" href="{dr_url('space/model/edit', array('id' => $t.id))}"> <i class="fa fa-edit"></i> {fc_lang('修改')}</a>{/if}
+			{if $this->ci->is_auth('space/admin/model/del')}<a class="adel" href="javascript:;" onClick="return dr_confirm_url('{fc_lang('您确定要这样操作吗？')}','{dr_url('space/model/del', array('id' => $t.id))}');"> <i class="fa fa-trash"></i> {fc_lang('删除')}</a>{/if}
+            </td>
+		</tr>
+		{/loop}
+		</tbody>
+		</table>
+		</form>
+		</div>
+	</div>
+</div>
+{template nfooter.html}

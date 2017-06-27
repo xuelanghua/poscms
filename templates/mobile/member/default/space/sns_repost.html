@@ -1,0 +1,76 @@
+
+<script type="text/javascript">
+var THEME_URL = '{MEMBER_THEME_PATH}';
+$(function(){
+    dr_find_user(0);
+    $('#dr_content').focus();
+});
+</script>
+{if !$ci->callback}
+<script type="text/javascript" src="{MEMBER_THEME_PATH}sns/sns.js"></script>
+{/if}
+<div id="dr_weibo" class="send_weibo diy-send-weibo" style="width:500px;margin:10px 0px 10px 0;">
+    <div class="forward-content"><a href="javascript:;" event-node="face_card" uid="{$data.uid}">@{$data.username}</a>&nbsp;&nbsp;{dr_sns_content($data.content)}</div>
+    <div class="input">
+        <div class="input_before mb5" style="margin-bottom: 10px;">
+            <textarea id="dr_content" name="at" class="input_tips" style="width: 488px;"></textarea>
+        </div>
+        <div class="action clearfix">
+            <div class="kind">
+                <div class="acts">
+                    <a class="face-block" href="javascript:;" onclick="$('.talkPop').hide();$('#emotions').show(200)"><i class="face"></i>表情</a>
+                    <a class="at-block" href="javascript:;" onclick="$('.talkPop').hide();$('#atchoose').show(200)"><i class="at"></i>好友</a>
+                </div>
+
+                <div class="talkPop alL" id="emotions" style="z-index: 888;left:40px;display:none;">
+                	<div class="wrap-layer">
+                    	<div class="arrow arrow-t"></div>
+                        <div class="talkPop_box">
+                        	<div class="close hd" style="background-image:none">
+                            	<a onclick="$('#emotions').hide(200)" class="ico-close" href="javascript:void(0)" title="关闭"> </a><span>常用表情</span>
+                            </div>
+                            <div class="faces_box" id="emot_content">
+                            	{loop $emotion $t}
+                            	<a href="javascript:void(0)" onclick="dr_emotion('{basename($t, '.gif')}')"><img src="{SITE_URL}api/emotions/{$t}" width="24" height="24"></a>
+                                {/loop}
+                            	<div class="c"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="talkPop alL" id="atchoose" style="z-index: 888;left:80px;display:none;">
+                    <div class="wrap-layer">
+                        <div class="arrow arrow-t"></div>
+                        <div class="talkPop_box">
+                            <div class="close hd" style="background-image:none">
+                                <a onclick="$('#atchoose').hide()" class="ico-close" href="javascript:void(0)"></a>
+                            </div>
+                            <div class="faces_box" id="at_content">
+                                <div id="friendchoose" class="friend clearfix">
+                                    <ul id="groups" class="groups">
+                                        <li id="dr_group_0" onclick="dr_find_user(0)" style="cursor:pointer" class="current">
+                                            <i class="ico-at-group mr5"></i>&nbsp;未分组
+                                        </li>
+                                        {loop $group $i $t}
+                                        <li id="dr_group_{$t.id}" onclick="dr_find_user({$t.id})" style="cursor:pointer">
+                                            <i class="ico-at-group mr5"></i>&nbsp;{dr_strcut($t.title,15)}
+                                        </li>
+                                        {/loop}
+                                    </ul>
+                                    <div id="groupusers" class="groupusers">
+                                        <ul id="group-2">
+                                            加载中...
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>

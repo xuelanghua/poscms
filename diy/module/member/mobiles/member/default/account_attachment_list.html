@@ -1,0 +1,109 @@
+{template "nheader.html"}
+<script type="text/javascript">
+	function dr_delete(id) {
+		art.dialog.confirm("<font color=red><b>你确认要删除吗？</b></font>", function(){
+			// 将表单数据ajax提交验证
+			$.ajax({type: "POST",dataType:"json", url: "{dr_member_url(APP_DIR.'/account/del_attach')}",data: {id:id}, success: function(data) {
+				//验证成功
+				if (data.status == 1) {
+					dr_tips(data.code, 3, 1);
+					$("#dr_row_"+id).hide();
+				} else {
+					dr_tips(data.code, 3, 0);
+				}
+				art.dialog.close();
+				return false;
+			},
+				error: function(HttpRequest, ajaxOptions, thrownError) {
+
+				}
+			});
+			return true;
+		});
+		return false;
+	}
+</script>
+<div class="alert alert-info">
+	附件总空间：{if $acount}{dr_format_file_size($acount)}{else}不限制{/if}，已使用：{dr_format_file_size($ucount)}{if $acount}，剩余：{dr_format_file_size($scount)}{/if}。
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="portlet-body">
+			<div class="table-toolbar">
+				<form method="get" action="">
+					<input name="c" type="hidden" value="{$get.c}" />
+					<input name="m" type="hidden" value="{$get.m}" />
+					<div class="row">
+						<div class="col-md-2 col-sm-2 hidden-480" style="max-width: 100px;">
+							<label><select name="module" class="form-control">
+							<option value=""> -- </option>
+							{loop $module $dir $name}
+							<option value="{$dir}" {if $get.module==$dir}selected{/if}>{$name}</option>
+							{/loop}
+							</select></label>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<label>
+								<div class="input-group">
+									<input type="text" class="form-control" name="ext" placeholder="输入扩展名" value="{$get.ext}">
+									<span class="input-group-btn">
+										<button class="btn green mysubmit" type="submit"><i class="fa fa-search"></i> 搜索</button>
+									</span>
+								</div>
+							</label>
+						</div>
+
+					</div>
+				</form>
+			</div>
+
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+					<tr>
+						<th>文件名</th>
+						<th>大小</th>
+						<th>扩展名</th>
+						<th>上传时间</th>
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody id="dr_body">
+					{loop $list $t}
+					<tr id="dr_row_{$t.id}">
+						<td class="algin_l"><a href="{$t.attachment}" title="{$t.filename}" target="_blank">{dr_strcut($t.filename, 40)}</a></td>
+						<td class="algin_c">{dr_format_file_size($t.filesize)}</td>
+						<td class="algin_c">{$t.fileext}</td>
+						<td class="algin_c">{dr_date($t['inputtime'])}</td>
+						<td class="algin_c"><a href="javascript:;" class="btn red-mint btn-xs" onclick="dr_delete('{$t.id}')"><i class="fa fa-trash-o"></i> 删除</a></td>
+					</tr>
+					{/loop}
+					</tbody>
+				</table>
+				</table>
+			</div>
+
+		</div>
+
+
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<ul class="pagination">
+			{$pages}
+			<li><a href="javascript:;">共{$page_total}条</a></li>
+		</ul>
+	</div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info" style="margin-top: 15px">
+	左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

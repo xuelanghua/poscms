@@ -1,0 +1,58 @@
+{template "nheader.html"}
+<script type="text/javascript">
+	$(function() {
+		{if $result_error}
+		d_tips('{$result_error.error}');
+		{/if}
+	});
+	function show_category_field(catid) {
+		{if $category_field_url}
+			window.location.href = '{$category_field_url}&catid='+catid;
+		{/if}
+	}
+</script>
+<div class="row">
+	<div class="col-md-12">
+		<!-- BEGIN VALIDATION STATES-->
+		<!-- BEGIN FORM-->
+		<form action="" method="post" class="form-horizontal" novalidate="novalidate">
+			<input name="dr_id" id="dr_id" type="hidden" value="{$data.id}" />
+			<input name="dr_module" id="dr_module" type="hidden" value="{APP_DIR}" />
+			<div class="form-body">
+				<div class="portlet light">
+					<div class="portlet-title mytitle">
+						<div class="caption">
+							{fc_lang('基本内容')}
+						</div>
+					</div>
+					<div class="portlet-body">
+						{if !$isedit}
+						<div class="form-group">
+							<label class="col-md-2 control-label"><font color="red">*</font>&nbsp;{fc_lang('栏目分类')}：</label>
+							<div class="col-md-10">
+								<label>{$select}</label>
+							</div>
+						</div>
+						{/if}
+						{$myfield}
+					</div>
+
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-offset-2 col-md-3">
+								<button type="submit" class="mysubmit btn green"><i class="fa fa-save"></i> 提交审核</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</form>
+		<!-- END FORM-->
+		<!-- END VALIDATION STATES-->
+	</div>
+</div>
+
+{template "nfooter.html"}

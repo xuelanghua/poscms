@@ -1,0 +1,133 @@
+{template "header.html", "/"}
+
+<div class="page-container">
+    <div class="page-content-wrapper">
+        {template "header.html"}
+        <div class="page-content">
+            <div class="container">
+                <div class="page-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="bg-white">
+                                <link href="{HOME_THEME_PATH}slide/slide.css" type="text/css" rel="stylesheet">
+                                <div id="myslide" style="width: auto; height: auto; overflow: hidden">
+                                    <table width="100%" cellSpacing="0" cellPadding="0">
+                                        <tr>
+                                            <td class="pic" id="bimg">
+                                                <!--查询推荐位1的内容，field需要用到的字段（不填表示全部），按displayorder（后台指定排序）排序-->
+                                                {list action=module flag=1 field=thumb,title,url order=displayorder,updatetime num=5}
+                                                <div class="{if $key==0}dis{else}undis{/if}" name="f">
+                                                    <a href="{$t.url}" title="{$t.title}" {if $t.target}target="_blank"{/if}><img alt="{$t.title}" style="width: 100%; height: 345px;" src="{dr_thumb($t.thumb, 450, 345)}" border="0"></a>
+                                                </div>
+                                                {/list}
+                                                <table id="font_hd" width="100%" cellSpacing="0" cellPadding="0">
+                                                    <tr>
+                                                        <td class="title" id="info">
+                                                            <!--查询推荐位1的内容，field需要用到的字段（不填表示全部），按displayorder（后台指定排序）排序-->
+                                                            {list action=module flag=1 field=thumb,title,url order=displayorder,updatetime num=5}
+                                                            <div class="{if $key==0}dis{else}undis{/if}" name="f">
+                                                                <a href="{$t.url}" title="{$t.title}" {if $t.target}target="_blank"{/if}>{$t.title}</a>
+                                                            </div>
+                                                            {/list}
+                                                        </td>
+                                                        <td id="simg" nowrap="nowrap" style="text-align:right">
+                                                            <!--查询推荐位1的内容，field需要用到的字段（不填表示全部），按displayorder（后台指定排序）排序-->
+                                                            {list action=module flag=1 field=thumb,title,url order=displayorder,updatetime num=5}
+                                                            <div class="{if $key==0}{else}f1{/if}" onclick=play(x[{$key}],{$key}) name="f">{$key+1}</div>
+                                                            {/list}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <script src="{HOME_THEME_PATH}slide/slide.js"></script>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="portlet light  ">
+                                <div class="portlet-body ">
+                                    <div class="row">
+                                        <!--查询推荐位2（好图推荐）的内容，field需要用到的字段（不填表示全部），按displayorder（后台指定排序）排序-->
+                                        {list action=module flag=2 field=title,url,thumb order=displayorder,updatetime num=6}
+                                        <div class="col-sm-4">
+                                            <div class="tile-container">
+                                                <div class="tile-thumbnail">
+                                                    <a href="javascript:;">
+                                                        <a href="{$t.url}" ><img src="{dr_thumb($t.thumb, 190, 120)}" width="190" height="120"></a>
+                                                    </a>
+                                                </div>
+                                                <div class="tile-title">
+                                                    <h5><a href="{$t.url}" class="title">{dr_strcut($t.title, 22)}</a></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/list}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet light" style="height: 90px; text-align: center;">
+                                <h2>POSCMS全能网站管理系统</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--循环输出顶级栏目下面的子栏目及其内容，运用到了双list循环标签因此需要定义返回值return=c（都懂得）-->
+                    {list action=category pid=0 num=5 return=c}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="portlet light">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <span class="caption-subject bold uppercase"><a class=" font-green" href="{$c.url}">{$c.name}</a></span>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                        <!-- 调用其子栏目 -->
+                                        {list action=category pid=$c.id}
+                                        <li><a href="{$t.url}">{$t.name}</a></li>
+                                        {/list}
+                                    </ul>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="row">
+                                        <!-- 最新数据 -->
+                                        {list action=module catid=$c.id order=updatetime num=8}
+                                        <div class="col-sm-3">
+                                            <div class="tile-container">
+                                                <div class="tile-thumbnail">
+                                                    <a href="javascript:;">
+                                                        <a href="{$t.url}" ><img src="{dr_thumb($t.thumb, 250, 200)}" width="250" height="200"></a>
+                                                    </a>
+                                                </div>
+                                                <div class="tile-title">
+                                                    <h5><a href="{$t.url}" class="title">{dr_strcut($t.title, 28)}</a></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/list}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/list}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{template "footer.html", "/"}

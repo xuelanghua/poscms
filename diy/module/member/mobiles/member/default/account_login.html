@@ -1,0 +1,40 @@
+{template "nheader.html"}
+
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="portlet-body">
+
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+					<tr>
+						<th class=""> 登录时间 </th>
+						<th> 登录地区 </th>
+						<th> 客户端详情 </th>
+					</tr>
+					</thead>
+					<tbody id="dr_body">
+					{list action=sql sql='select * from @#member_login where uid=$uid order by logintime desc'}
+					<tr>
+						<td class="">{dr_date($t.logintime, NULL, 'red')}</td>
+						<td class=""><a href="http://www.baidu.com/baidu?wd={$t.loginip}" target="_blank">{if $t.oauthid}【{$t.oauthid}】{/if}{$ci->dip->address($t.loginip)}</a></td>
+						<td class="">{dr_strcut($t.useragent, 60)}</td>
+					</tr>
+					{/list}
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+
+
+	</div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info">
+	左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

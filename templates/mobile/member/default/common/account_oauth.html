@@ -1,0 +1,56 @@
+{template "nheader.html"}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="portlet-body">
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="text-center"> 服务商 </th>
+                        <th> 头像 </th>
+                        <th> 昵称 </th>
+                        <th> 到期时间 </th>
+                        <th> 操作 </th>
+                    </tr>
+                    </thead>
+                    <tbody id="dr_body">
+                    {list action=cache name=OAUTH}
+                    {php $id=$t['id'];}
+                    <tr>
+                        <td class="text-center"><img align="absmiddle" src="{THEME_PATH}oauth/{$t.icon}.png"></td>
+                        <td>
+                            {if isset($list[$id])}
+                            <img align="absmiddle" width="50" src="{$list[$id]['avatar']}">
+                            {/if}
+                        </td>
+                        <td class="">{if isset($list[$id])}{$list[$id]['nickname']}{/if}</td>
+                        <td class="">{if isset($list[$id])}{dr_date($list[$id]['expire_at'])}{/if}</td>
+                        <td>
+                            {if isset($list[$id])}
+                            <a href="javascript:;" class="btn red btn-xs" onclick="dr_confirm_url('您确认要解除绑定吗？', '{dr_member_url('account/jie', array('id' => $id))}')"><i class="fa fa-user-times"></i> 解绑</a>
+                            <a href="javascript:;" class="btn green btn-xs" onclick="window.location.href='{SITE_URL}index.php?s=member&c=account&m=bang&id={$id}'"><i class="fa fa-refresh"></i> 更新</a>
+                            {else}
+                            <a href="javascript:;" class="btn green btn-xs" onclick="window.location.href='{SITE_URL}index.php?s=member&c=account&m=bang&id={$id}'"><i class="fa fa-user-plus"></i> 绑定</a>
+                            {/if}
+                        </td>
+                    </tr>
+                    {/list}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info">
+    左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

@@ -1,0 +1,64 @@
+{template "nheader.html"}
+
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="portlet-body">
+			<div class="table-toolbar">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="btn-group">
+							<a class="btn green" href="{dr_member_url('address/add')}"> 添加新地址
+								<i class="fa fa-plus"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+					<tr>
+						<th class="text-center"> 默认 </th>
+						<th> 姓名 </th>
+						<th> 电话 </th>
+						<th> 邮编 </th>
+						<th> 地址 </th>
+						<th> 操作 </th>
+					</tr>
+					</thead>
+					<tbody id="dr_body">
+					{loop $list $t}
+					<tr>
+						<td class="text-center"> {if $t.default}
+							<span class="font-green-turquoise"><i class="fa fa-check-circle-o"></i></span>
+							{else}
+							<span class="font-red"><i class="fa fa-times-circle-o"></i></span>
+							{/if} </td>
+						<td class="">{$t.name}</td>
+						<td class="">{$t.phone}</td>
+						<td class="">{$t.zipcode}</td>
+						<td class="">{dr_linkagepos('address', $t.city, '&nbsp;&nbsp;', NULL)}&nbsp;&nbsp;{$t.address}</td>
+						<td class="">
+							<a href="{dr_member_url('address/edit', array('id'=>$t.id))}" class="btn green btn-xs" ><i class="fa fa-edit"></i> 修改</a>
+							<a href="{dr_member_url('address/del', array('id'=>$t.id))}" class="btn red-mint btn-xs" ><i class="fa fa-trash-o"></i> 删除</a>
+						</td>
+					</tr>
+					{/loop}
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+
+
+	</div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info">
+	左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

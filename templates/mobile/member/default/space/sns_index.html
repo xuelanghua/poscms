@@ -1,0 +1,256 @@
+{template "nheader.html"}
+<link href="{MEMBER_THEME_PATH}sns/sns2.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{MEMBER_THEME_PATH}sns/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript">
+var THEME_URL = '{MEMBER_THEME_PATH}';
+var moreurl = '{$moreurl}';
+$(function(){
+    dr_find_user(0);
+    $("#dr_content").focus();
+    var unid = "weibo";
+    var fileSizeLimit = "10240KB";
+    var total = "9";
+    $('#uploadify_'+unid).uploadify({
+        formData: {
+            attach_type: 'feed_image',
+            upload_type: 'image',
+            thumb: 1,
+            width: 100,
+            height: 100,
+            cut: 1,
+            PHPSESSID: "{dr_authcode($uid, 'ENCODE')}"
+        },
+        fileSizeLimit: fileSizeLimit,
+        fileTypeDesc: 'Image Files',
+        fileTypeExts: "*.jpg; *.gif; *.jpeg; *.png; ",
+        swf: '{MEMBER_THEME_PATH}sns/uploadify/uploadify.swf',
+        uploader: '{dr_member_url("api/sns_upload")}',
+        width: 80,
+        height: 80,
+        buttonImage: '{MEMBER_THEME_PATH}sns/add-photo-multi.png',
+        queueSizeLimit: 9,
+        queueID: true,
+        overrideEvents: ['onSelectError', 'onDialogClose'],
+        onUploadSuccess : function(file, data, response) {
+            // 解析JSON数据
+            var jsondata = $.parseJSON(data);
+            if (jsondata.status === 1) {
+                // 添加附件ID表单项目
+                var $sendAction = $('.attach_div');
+                if ($sendAction.find('.attach_ids').length === 0) {
+                    $sendAction.append('<input id="attach_ids" class="attach_ids" type="hidden" name="attach_ids" feedtype="image" value="" />');
+                }
+                dr_multimage.removeLoading(unid);
+                $('#btn_'+unid).before($('<li class="dr_row_li" id="li_'+unid+'_'+file.index+'"><img src="'+jsondata.data.src+'" width="80" height="80" /><a href="javascript:;" onclick="dr_multimage.removeImage(\''+unid+'\', '+file.index+', '+jsondata.data.attach_id+')"><span class="del">删除</span></a></li>').fadeIn('slow'));
+                // 动态设置数目
+                dr_multimage.upNumVal(unid, 'inc');
+                // 设置附件的值
+                dr_multimage.upAttachVal('add', jsondata.data.attach_id);
+            } else {
+                dr_tips('error');
+            }
+        },
+        onSelectError: function (file, errorCode, errorMsg) {
+            switch (errorCode) {
+                case -100:
+                    dr_tips('选择的上传数目超过，您还能上传'+errorMsg+'个图片');
+                    break;
+                case -110:
+                    dr_tips("文件 [" + file.name + "] 大小超出系统限制的" + $('#uploadify_'+unid).uploadify('settings', 'fileSizeLimit') + "大小", 4);
+                    break;
+                case -120:
+                    dr_tips("文件 [" + file.name + "] 大小异常");
+                    break;
+                case -130:
+                    dr_tips("文件 [" + file.name + "] 类型不正确");
+                    break;
+            }
+        },
+        onFallback: function () {
+            dr_tips('未安装FLASH控件');
+        },
+        onUploadStart: function (file) {
+            dr_multimage.addLoading(unid);
+            // 验证是否能继续上传
+            var len = $('#ul_'+unid).find('li').length - 1;
+            if (len > total) {
+                dr_multimage.removeLoading(unid);
+                dr_tips('最多只能上传' + total + '个图片');
+                // 停止上传
+                $('#uploadify_'+unid).uploadify('stop');
+                // 移除队列
+                $('#uploadify_'+unid).uploadify('cancel', file.id);
+            }
+        }
+    });
+    // 加载更多
+    $("#dr_loadmore").click(function(){
+        var page = $("#dr_page").val();
+        $("#dr_loadmore").html('<img src="{MEMBER_THEME_PATH}loading.gif">');
+        $.get("{$moreurl}", {page:page}, function(data){
+            if (data != "null") {
+                $("#feed-lists").append(data);
+                $("#dr_page").val(Number(page) + 1);
+                var url = window.location.href;
+                url = url.replace(/&page=[0-9]+/, '');
+                history.pushState({}, "title", url+"&page="+page);
+                $("#dr_loadmore").html('<i class="fa fa-refresh"></i> 加载更多');
+            } else {
+                $("#dr_loadmore_html").hide();
+            }
+        });
+    });
+});
+
+</script>
+<input name="page" id="dr_page" type="hidden" value="{$page}" />
+<script type="text/javascript" src="{MEMBER_THEME_PATH}sns/sns.js"></script>
+<div class="row">
+    <div class="col-md-12" id="dr_weibo">
+
+        <div class="send_weibo diy-send-weibo">
+            <div class="input">
+                <div class="input_before mb5" style="margin-bottom: 10px;">
+                    <textarea id="dr_content" name="at" class="input_tips">{if $topic}#{$topic.name}# {/if}</textarea>
+                </div>
+                <div class="action clearfix">
+                    <div class="kind">
+                        <div class="right release">
+                            <a class="btn-grey-white" href="javascript:;" onclick="dr_post()"><span>发布</span></a>
+                        </div>
+                        <div class="acts">
+                            <a class="face-block" href="javascript:;" onclick="$('.talkPop').hide();$('#emotions').show(200)"><i class="face"></i>表情</a>
+                            <a class="at-block" href="javascript:;" onclick="$('.talkPop').hide();$('#atchoose').show(200)"><i class="at"></i>好友</a>
+                            <a class="image-block" href="javascript:;" onclick="$('.talkPop').hide();$('#multi_image').show(200)"><i class="image"></i>图片</a>
+                            <a class="topic-block" href="javascript:;" onclick="$('.talkPop').hide();$('#huati').show(200);$('#huati_name').focus()"><i class="topic"></i>话题</a>
+                        </div>
+
+                        <div class="talkPop alL" id="emotions" style="">
+                            <div class="wrap-layer">
+                                <div class="arrow arrow-t"></div>
+                                <div class="talkPop_box">
+                                    <div class="close2 hd">
+                                        <a onclick="$('#emotions').hide(200)" class="ico-close" href="javascript:void(0)" title="关闭"> </a><span>常用表情</span>
+                                    </div>
+                                    <div class="faces_box" id="emot_content">
+                                        {loop $emotion $t}
+                                        <a href="javascript:void(0)" onclick="dr_emotion('{basename($t, '.gif')}')"><img src="{SITE_URL}api/emotions/{$t}" width="24" height="24"></a>
+                                        {/loop}
+                                        <div class="c"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="talkPop alL" id="atchoose" style="left:40px;">
+                            <div class="wrap-layer">
+                                <div class="arrow arrow-t"></div>
+                                <div class="talkPop_box">
+                                    <div class="close2 hd">
+                                        <a onclick="$('#atchoose').hide()" class="ico-close" href="javascript:void(0)"></a>
+                                    </div>
+                                    <div class="faces_box" id="at_content">
+                                        <div id="friendchoose" class="friend clearfix">
+                                            <ul id="groups" class="groups">
+                                                <li id="dr_group_0" onclick="dr_find_user(0)" style="cursor:pointer" class="current">
+                                                    <i class="ico-at-group mr5"></i>&nbsp;未分组
+                                                </li>
+                                                {loop $group $i $t}
+                                                <li id="dr_group_{$t.id}" onclick="dr_find_user({$t.id})" style="cursor:pointer">
+                                                    <i class="ico-at-group mr5"></i>&nbsp;{dr_strcut($t.title,15)}
+                                                </li>
+                                                {/loop}
+                                            </ul>
+                                            <div id="groupusers" class="groupusers">
+                                                <ul id="group-2">
+                                                    加载中...
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="talkPop alL" id="multi_image" style="left:100px;">
+                            <div class="wrap-layer">
+                                <div class="arrow arrow-t"></div>
+                                <div class="talkPop_box">
+                                    <div class="close2 hd">
+                                        <a onclick="$('#multi_image').hide()" class="ico-close" href="javascript:;"></a>
+                                                <span>
+                                                    共&nbsp;
+                                                    <em id="upload_num_weibo">
+                                                        0
+                                                    </em>
+                                                    &nbsp;张，还能上传&nbsp;
+                                                    <em id="total_num_weibo">
+                                                        9
+                                                    </em>
+                                                    &nbsp;张（按住ctrl可选择多张）
+                                                </span>
+                                    </div>
+
+                                    <div class="img-list clearfix">
+                                        <ul id="ul_weibo">
+                                            <li id="btn_weibo"><input style="display:none" id="uploadify_weibo" type="file" /></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="attach_div" style="display:none"></div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="talkPop alL" id="huati" style="left:150px">
+                            <div class="wrap-layer">
+                                <div class="arrow arrow-t">
+                                </div>
+                                <div class="talkPop_box">
+                                    <div class="close2 hd">
+                                        <a onclick="$('#huati').hide()" class="ico-close" href="javascript:void(0)"></a>
+                                    </div>
+                                    <div class="video-box" id="video_content">
+                                        <input type="text" style="width: 320px; margin-right:10px" id="huati_name" class="s-txt left" />
+                                        <input type="button" onclick="dr_huati_add()" value="添加" class="btn-green-big" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feed-nav">
+            <div class="tab-menu">
+                <ul>
+                    {if $ta}<li class="current"><span><a href="{dr_member_url('space/sns/index', array('uid'=>$ta.uid))}">【{$ta.username}】的动态</a></span></li>{/if}
+                    {if $topic}<li class="current"><span><a href="{dr_member_url('space/sns/topic', array('id'=>$topic.id))}">相关动态</a></span></li>{/if}
+                    <li {if !$type}class="current"{/if}><span><a href="{dr_member_url('space/sns/index', array('type'=>0))}">我关注的</a></span></li>
+                    <li {if $type==1}class="current"{/if}><span><a href="{dr_member_url('space/sns/index', array('type'=>1))}">我赞过的</a></span></li>
+                    <li {if $type==2}class="current"{/if}><span><a href="{dr_member_url('space/sns/index', array('type'=>2))}">我收藏的</a></span></li>
+                    <li {if $type==3}class="current"{/if}><span><a href="{dr_member_url('space/sns/index', array('type'=>3))}">全站动态</a></span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="feed-lists" class="feed_lists clearfix">
+            {template "sns_data.html"}
+        </div>
+
+        <div class="clearfix"></div>
+
+
+    </div>
+</div>
+
+
+<div class="row" id="dr_loadmore_html" style="margin-top:20px">
+    <div class="col-md-offset-4 col-md-4 text-center">
+        <a href="javascript:;" class="btn default btn-block" id="dr_loadmore"> <i class="fa fa-refresh"></i> 加载更多 </a>
+    </div>
+</div>
+{template "nfooter.html"}

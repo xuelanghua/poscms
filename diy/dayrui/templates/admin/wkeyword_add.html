@@ -1,0 +1,242 @@
+{template nheader.html}
+<script type="application/javascript">
+    $(function(){
+        dr_set_value("{$data.mtype}", 1);
+    });
+    function dr_set_value(i, ii) {
+        $('.dvalue').hide();
+        $('.dr_html_'+i).show();
+        if (ii != 1) {
+            dr_clear_sc()
+        }
+    }
+    function dr_clear_sc() {
+        $(".sc_result").html("");
+        $(".wz_result").val("");
+    }
+    function dr_add_sc(type, width) {
+        art.dialog.open("{dr_url('wsms/ajax_sc')}&type="+type, {
+            title: "选择素材",
+            opacity: 0.1,
+            width: width,
+            height: 400,
+            ok: function () {
+                var iframe = this.iframe.contentWindow;
+                if (!iframe.document.body) {
+                    alert("iframe loading")
+                    return false;
+                };
+                var id;
+                var value;
+                var select = iframe.document.getElementsByName("dr_select");
+                for (var i=0; i < select.length; i++) {
+                    if (select[i].checked) {
+                        id = select[i].value;
+                        value = iframe.document.getElementById("dr_row_"+id).innerHTML;
+                        if (type == 'wz') {
+                            $('.wz_result').val(value);
+                            $('.sc_result').html('<input type="hidden" name="sc" value="0">'+value+'');
+                        } else if (type == 'tp') {
+                            $('.sc_result').html('<input type="hidden" name="sc" value="'+id+'">'+value+'');
+                        } else if (type == 'tw') {
+                            $('.sc_result').html('<input type="hidden" name="sc" value="'+id+'">'+value+'');
+                        } else {
+                            $('.sc_result').html('<input type="hidden" name="sc" value="'+id+'"><span class="badge badge-success">'+value+'</span>');
+                        }
+
+                    }
+                }
+            },
+            cancel: true
+        });
+    }
+</script>
+<style>
+    #user_result .badge{
+        margin-top: 10px;margin-right: 10px;
+    }
+    .sc_result img {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+<form class="form-horizontal" action="" method="post" id="myform" name="myform">
+    <div class="page-bar">
+        <ul class="page-breadcrumb mylink">
+            {$menu.link}
+        </ul>
+        <ul class="page-breadcrumb myname">
+            {$menu.name}
+        </ul>
+        <div class="page-toolbar">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> {fc_lang('操作菜单')}
+                    <i class="fa fa-angle-down"></i>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    {loop $menu.quick $t}
+                    <li>
+                        <a href="{$t.url}">{$t.icon} {$t.name}</a>
+                    </li>
+                    {/loop}
+                    <li class="divider"> </li>
+                    <li>
+                        <a href="javascript:window.location.reload();">
+                            <i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="page-title">
+        <small></small>
+    </h3>
+    <div class="portlet light bordered myfbody">
+
+        <div class="portlet-title">
+            <div class="caption">
+                <span class="caption-subject font-green sbold uppercase">关键字</span>
+            </div>
+        </div>
+        <div class="portlet-body">
+
+            <div class="row">
+                <div class="portlet-body form">
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">{fc_lang('关键词')}：</label>
+                        <div class="col-md-9">
+                            {dr_field_input('keywords', 'Text', $field['keywords']['setting'], $data['keywords'])}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" style="padding-top: 10px;">{fc_lang('类型')}：</label>
+                        <div class="col-md-9">
+                            <div class="radio-list">
+                                {loop $type $name $i}
+                                <label class="radio-inline"><input onclick="dr_set_value('{$i}')" {if $i==$data.mtype}checked{/if} name="data[mtype]" type="radio" value="{$i}" /> {$name}</label>
+                                {/loop}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dvalue dr_html_wz">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-9">
+                                <a href="javascript:dr_add_sc('wz', 700);"><i class="fa fa-plus-circle"></i> 选择素材</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="javascript:dr_clear_sc();" ><i class="fa fa-trash"></i> 清空</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-9 ">
+                                <textarea name="content" style="height: 200px" class="wz_result form-control">{$data.content}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dvalue dr_html_tp">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-9">
+                                <a href="javascript:dr_add_sc('tp', 900);"><i class="fa fa-plus-circle"></i> 选择素材</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="javascript:dr_clear_sc();" ><i class="fa fa-trash"></i> 清空</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-9 sc_result">
+                                <input type="hidden" name="sc" value="{$data.mid}"> <img src="{dr_get_file($sc.file)}">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="dvalue dr_html_yy">
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-9">
+                                <a href="javascript:dr_add_sc('yy', 700);"><i class="fa fa-plus-circle"></i> 选择素材</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="javascript:dr_clear_sc();" ><i class="fa fa-trash"></i> 清空</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-9 sc_result">
+                                <input type="hidden" name="sc" value="{$data.mid}">
+                                <span class="badge badge-success">{$data.title}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dvalue dr_html_sp">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-9">
+                                <a href="javascript:dr_add_sc('sp', 700);"><i class="fa fa-plus-circle"></i> 选择素材</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="javascript:dr_clear_sc();" ><i class="fa fa-trash"></i> 清空</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-9 sc_result">
+                                <input type="hidden" name="sc" value="{$data.mid}">
+                                <span class="badge badge-success">{$data.title}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dvalue dr_html_tw">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-9">
+                                <a href="javascript:dr_add_sc('tw', 1000);"><i class="fa fa-plus-circle"></i> 选择素材</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="javascript:dr_clear_sc();" ><i class="fa fa-trash"></i> 清空</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-9 sc_result">
+                                <input type="hidden" name="sc" value="{$data.mid}">
+                                <img src="{dr_get_file($sc.thumb)}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dvalue dr_html_plun">
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="myfooter">
+        <div class="row">
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn green"> <i class="fa fa-save"></i> {fc_lang('保存')}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{template nfooter.html}

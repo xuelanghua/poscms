@@ -1,0 +1,118 @@
+{template "header.html", "/"}
+<link href="{MODULE_THEME_PATH}order2.css" rel="stylesheet" type="text/css" />
+<link href="{HOME_THEME_PATH}pages/css/error.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function() {
+        dr_load_cart();
+    });
+
+    function jdr_uid(obj, uid){
+        var now = $(obj).prop("checked");
+        if (now == 'checked') {
+            $('.jdr'+uid).prop("checked", true);
+        } else {
+            $('.jdr'+uid).prop("checked", false);
+        }
+    };
+    function jdr_all(obj){
+        var now = $(obj).prop("checked");
+        if (now == 'checked') {
+            $('.jdcheckbox').prop("checked", true);
+        } else {
+            $('.jdcheckbox').prop("checked", false);
+        }
+    };
+    function dr_load_cart() {
+        $.ajax({type: "GET", url: "{dr_url('order/cart/ajax_data')}&"+Math.random(), dataType:"jsonp",
+            success: function (data) {
+                $("#dr_cart").html(data.html);
+            }
+        });
+    }
+    function dr_set_num(num, id) {
+        $.ajax({type: "GET", url: "{dr_url('order/cart/update_num')}&id="+id+"&num="+num+"&"+Math.random(), dataType:"jsonp",
+            success: function (data) {
+                if (data.status) {
+                    // 重新载入
+                    dr_load_cart();
+                } else {
+                    $('#dr_update_'+id).html('<span style="color:#e4393c">'+data.code+'</span>');
+                }
+            }
+        });
+    }
+    function dr_update_num(op, id) {
+        var num = parseInt($("#dr_row_num_"+id).val());
+        if (isNaN(num) || num <= 1) num = 1;
+        if (op) {
+            // 加操作
+            num++;
+        } else {
+            // 减操作
+            num--;
+            if (isNaN(num) || num <= 1) num = 1;
+        }
+        $("#dr_row_num_"+id).val(num);
+        dr_set_num(num, id);
+    }
+    function dr_delete_all() {
+        var _data = $("#myform").serialize();
+        if ((_data.split('ids')).length-1 <= 0) {
+            dr_tips(lang['select_null'], 2);
+            return true;
+        }
+        $('#dr_delete_load_all').show();
+        $.ajax({type: "POST", dataType: "jsonp", url: "{dr_url('order/cart/delete_all')}&"+Math.random(), data: _data, success: function (data) {
+            if (data.status) {
+                // 重新载入
+                dr_load_cart();
+            } else {
+                dr_tips(data.code);
+                $('#dr_delete_load_all').hide();
+            }
+        }});
+    }
+
+    function dr_delete(id) {
+        $('#dr_delete_load_'+id).show();
+        $.ajax({type: "GET", url: "{dr_url('order/cart/delete')}&id="+id+"&"+Math.random(), dataType:"jsonp",
+            success: function (data) {
+                if (data.status) {
+                    // 重新载入
+                    dr_load_cart();
+                } else {
+                    dr_tips(data.code);
+                    $('#dr_delete_load_'+id).hide();
+                }
+            }
+        });
+    }
+</script>
+<div class="page-container">
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="container">
+
+                <ul class="page-breadcrumb breadcrumb">
+                    <li>
+                        <a href="{SITE_URL}">首页</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                        <span>我的购物车</span>
+                    </li>
+                </ul>
+
+                <form action="" id="myform" method="post">
+                    <div class="page-content-inner" id="dr_cart">
+                        <div class="cart_loading"><img src="{THEME_PATH}admin/images/loading-mini.gif" />&nbsp;数据加载中...</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{template "footer.html"}

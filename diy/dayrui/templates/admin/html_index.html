@@ -1,0 +1,110 @@
+{template nheader.html}
+
+<div class="page-bar">
+	<ul class="page-breadcrumb mylink">
+		{$menu.link}
+	</ul>
+	<ul class="page-breadcrumb myname">
+		{$menu.name}
+	</ul>
+	<div class="page-toolbar">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+				<i class="fa fa-angle-down"></i>
+			</button>
+			<ul class="dropdown-menu pull-right" role="menu">
+				{loop $menu.quick $t}
+				<li>
+					<a href="{$t.url}">{$t.icon} {$t.name}</a>
+				</li>
+				{/loop}
+				<li class="divider"> </li>
+				<li>
+					<a href="javascript:window.location.reload();">
+						<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<h3 class="page-title">
+	<small>系统仅可用生成网站首页、模块栏目、模块内容、模块首页</small>
+</h3>
+
+<div class="portlet light bordered">
+	<div class="portlet-title">
+		<div class="caption">
+			<span class="caption-subject font-green"><i class="fa fa-file"></i> {fc_lang('静态生成')}</span>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<label><a href="{dr_url('html/tohtml')}" class="btn green onloading"> {fc_lang('生成网站首页')} </a></label>
+		{loop $module $t}
+		{if $t.ishtml && !$t.share}
+		<label><a href="{dr_url('html/tohtml')}&dir={$t.dirname}" class="btn green onloading"> {fc_lang('生成%s首页', $t.name)} </a></label>
+		{/if}
+		{/loop}
+	</div>
+</div>
+
+{if $share}
+<div class="portlet light bordered">
+	<div class="portlet-title">
+		<div class="caption">
+			<span class="caption-subject font-green"><i class="fa fa-file-o"></i> {fc_lang('共享模块')}</span>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="row">
+			<form action="index.php?c=category&m=html" method="post">
+			<input type="hidden" name="type" value="html" id="category_share">
+			<div class="col-sm-4">
+				<p class="text-center">{$share}</p>
+				<p class="text-center">
+					<button type="submit" onclick="$('#category_share').val('html')" class="btn green noloading"><i class="fa fa-refresh"></i> {fc_lang('生成共享栏目')} </button>
+				</p>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+{/if}
+
+{loop $module $t}
+<div class="portlet light bordered">
+	<div class="portlet-title">
+		<div class="caption">
+			<span class="caption-subject font-green"><i class="fa {$t.icon}"></i> {fc_lang($t.name)}</span>
+		</div>
+	</div>
+	<div class="portlet-body">
+		{if $t.ishtml}
+		<div class="row">
+			{if !$t.share}
+			<form action="index.php?s={$t.dirname}&c=category&m=html" method="post">
+			<input type="hidden" name="type" value="html" id="category_{$t.dirname}">
+			<div class="col-sm-4">
+				<p class="text-center">{$t.select}</p>
+				<p class="text-center">
+					<button type="submit" onclick="$('#category_{$t.dirname}').val('html')" class="btn green noloading"><i class="fa fa-refresh"></i> {fc_lang('生成栏目')} </button>
+				</p>
+			</div>
+			</form>
+			{/if}
+			<form action="index.php?s={$t.dirname}&c=show&m=html" method="post">
+			<input type="hidden" name="type" value="html" id="show_{$t.dirname}">
+			<div class="col-sm-4">
+				<p class="text-center">{$t.select}</p>
+				<p class="text-center">
+					<button type="submit" onclick="$('#show_{$t.dirname}').val('html')" class="btn green noloading"><i class="fa fa-refresh"></i> {fc_lang('生成内容')} </button>
+				</p>
+			</div>
+			</form>
+		</div>
+		{else}
+		<a href="{$t.html_url}">此模块没有开启静态生成功能</a>
+		{/if}
+	</div>
+</div>
+{/loop}
+{template nfooter.html}

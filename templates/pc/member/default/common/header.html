@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$meta_name}{if defined('MODULE_NAME')}-{MODULE_NAME}{/if}-{SITE_NAME}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{THEME_PATH}oauth/OAuth.css" rel="stylesheet" type="text/css" />
+<link href="{THEME_PATH}admin/css/table_form.css" rel="stylesheet" type="text/css" />
+<link href="{MEMBER_THEME_PATH}images/reset.css" rel="stylesheet" type="text/css"/>
+<link href="{MEMBER_THEME_PATH}images/member.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">var memberpath = "{MEMBER_PATH}";</script>
+<script type="text/javascript" src="{THEME_PATH}js/{SITE_LANGUAGE}.js"></script>
+<script type="text/javascript" src="{THEME_PATH}js/jquery.min.js"></script>
+<script type="text/javascript" src="{THEME_PATH}js/jquery.artDialog.js?skin=default"></script>
+<script type="text/javascript" src="{THEME_PATH}js/validate.js"></script>
+<script type="text/javascript" src="{THEME_PATH}js/admin.js"></script>
+<script type="text/javascript" src="{THEME_PATH}js/dayrui.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".account").bind({
+		'mouseover':function(){
+			$(this).addClass("account_mouseover");
+		},
+		'mouseout':function(){
+			$(this).removeClass('account_mouseover');
+		}
+	});
+	$("#back-to-top").hide();
+	$(window).scroll(function() {
+		if ($(window).scrollTop()>100) {
+			$("#back-to-top").fadeIn(1500);
+		} else {
+			$("#back-to-top").fadeOut(1500);
+		}
+	});
+	$("#back-to-top").click(function(){
+		$('body,html').animate({scrollTop:0},1000);
+		return false;
+	});
+	$.ajax({type: "GET", url:dr_url, dataType:'jsonp', jsonp:"callback", async: false,
+		success: function (data) {
+			if (data.status) {
+				$("#dr_notece_img").show();
+				dr_flash_title();
+			} else {
+				$("#dr_notece_img").hide();
+			}
+		},
+		error: function(HttpRequest, ajaxOptions, thrownError) {
+			
+		}
+	});
+});
+
+var dr_url = "{dr_member_url('api/notice')}&"+Math.random();
+var dr_step = 0;
+var dr_caltitle = "【　　　】"+document.title;
+var dr_callbacktitle = "【新提醒】"+document.title;
+
+function dr_flash_title() {
+	dr_step++;
+	if (dr_step==3) {
+		dr_step=1;
+	}
+	if (dr_step==1) {
+		document.title=dr_callbacktitle;
+	}
+	if (dr_step==2) {
+		document.title=dr_caltitle;	
+	}
+	setTimeout("dr_flash_title()", 500);
+}
+
+function dr_select_m(ii) {
+	var v = $("#mico_"+ii).attr("v");
+	$(".mul").hide();
+	if (v == "1") {
+		$("#mul_"+ii).hide();
+		$("#mico_"+ii).attr("v", "2");
+		$("#mico_"+ii).attr("src", "{MEMBER_THEME_PATH}images/select2.gif");
+	} else {
+		$("#mul_"+ii).show();
+		$("#mico_"+ii).attr("v", "1");
+		$("#mico_"+ii).attr("src", "{MEMBER_THEME_PATH}images/select1.gif");
+	}
+}
+</script>
+</head>
+<body>
+<div class="topnav_w">
+    <div class="topnav">
+    	<a target="_blank" href="{SITE_URL}" class="site">网站首页</a>
+		{if $member}
+    	<a target="_blank" href="{dr_space_url($uid)}" class="site">我的空间</a>
+		{/if}
+        <div class="login">
+        {if $member}
+            <strong>欢迎回来，{$member.username}，{$member.group.name}，{$member.level.name}，<a href="{dr_member_url('pm/index')}">{if $newpm}<img src="{MEMBER_THEME_PATH}images/new_pm.gif" align="absmiddle" style="margin-right:3px;" />{/if}短消息</a>，<a href="{dr_member_url('notice/go')}"><img id="dr_notece_img" src="{MEMBER_THEME_PATH}images/notice.gif" align="absmiddle" style="margin-right:3px;display:none" />提醒</a></strong>
+            <div class="account"><span>账户</span> 
+                <ul>
+                    <li><a href="{dr_member_url('account/index')}">基本资料</a></li>
+                    <li><a href="{dr_member_url('account/password')}">修改密码</a></li>
+                    <li><a href="{dr_member_url('account/avatar')}">上传头像</a></li>
+                    <li><a href="javascript:;" onclick="dr_loginout('退出成功')">我要退出</a></li>
+                </ul>
+            </div>
+        {else}
+        	<a class="bt_l" href="{dr_member_url('login/index')}">登录</a>
+       		<a class="bt_r" href="{dr_member_url('register/index')}">注册</a>
+        {/if}
+        </div>
+    </div>
+</div>
+{if $member}
+<div class="hearder">
+	<div class="logoNav">
+		<div class="wrap">
+			<div class="logo"><a href="/"><img src="{MEMBER_THEME_PATH}images/logo_new.png" border="0" align="absmiddle" alt="logo"></a></div>
+			<div class="nav">
+				<ul>
+					<li id="mindex"><a href="{MEMBER_URL}">首页</a></li>
+                    {loop $menu $m}
+                    <li {if $menu_tid==$m.id}class="current"{/if}><a href="{if $m.url}{$m.url}{else}{dr_member_url($m.uri)}{/if}">{$m.name}</a></li>
+                    {/loop}
+			　　　</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{else}
+<div class="hearder">
+    <div class="logoNav">
+        <div class="wrap" style="width: 980px;margin: 0 auto;">
+            <div class="logo"><a href="/"><img src="{MEMBER_THEME_PATH}images/logo_new.png" border="0" align="absmiddle" alt="logo"></a></div>
+
+        </div>
+    </div>
+</div>
+{/if}
+<div id="back-to-top" style="display: block;"><a href="#top">TOP</a></div>

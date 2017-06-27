@@ -1,0 +1,72 @@
+{template nheader.html}
+<script type="text/javascript">
+    $(function(){
+        {if $result_error}
+            dr_tips("{$result_error}", 3);
+            {/if}
+                dr_set_type({intval($data.type)});
+            });
+            function dr_set_type(value) {
+                if (value == 1) {
+                    $("#dr_name").html("{SITE_SCORE}");
+                    $("#dr_value").html("");
+                } else {
+                    $("#dr_name").html("{SITE_MONEY}");
+                    $("#dr_value").html("元");
+                }
+            }
+</script>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <!-- BEGIN FORM-->
+        <form action="" method="post" class="form-horizontal" novalidate="novalidate">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">付款方式：</label>
+                    <div class="col-md-10">
+                        <div class="radio-list ">
+                            <label class="radio-inline"><input name="data[type]" onclick="dr_set_type(0)" type="radio" value="0" {if !$data.type}checked=""{/if}>{SITE_MONEY}</label>
+                            <label class="radio-inline"><input name="data[type]" onclick="dr_set_type(1)" type="radio" value="1" {if $data.type}checked=""{/if}><label>{SITE_SCORE}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group my0">
+                    <label class="col-md-2 control-label"><span id="dr_name"></span>：</label>
+                    <div class="col-md-2">
+                        <div class="input-icon ">
+                            <i class="fa fa-rmb"></i>
+                            <input type="text" class="form-control" value="{$data.value}" name="data[value]" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-control-static " id="dr_value">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group my1">
+                    <label class="col-md-2 control-label">收款会员：</label>
+                    <div class="col-md-3">
+                        <div class="input-icon ">
+                            <i class="fa fa-user"></i>
+                            <input type="text" class="form-control" value="{$data.username}" name="data[username]" placeholder="收款会员">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-3">
+                        <button type="submit" class="mysubmit btn green"><i class="fa fa-rmb"></i> 确认转账</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <!-- END FORM-->
+        <!-- END VALIDATION STATES-->
+    </div>
+</div>
+
+{template "nfooter.html"}

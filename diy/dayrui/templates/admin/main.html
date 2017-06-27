@@ -1,0 +1,192 @@
+{template "nheader.html"}
+<script type="text/javascript">
+    $(function(){
+        $.getScript("{dr_url('home/mtotal')}");
+        // 检查是否更新
+        {if $member.adminid == 1}
+        $.ajax({type: "GET", url:'http://www.poscms.net/index.php?c=fc&m=version&my={DR_VERSION_ID}', dataType:'jsonp',jsonp:"callback",
+            success: function (data) {
+                $("#finecms_version").html(data.html);
+            }
+        });
+        {/if}
+    });
+</script>
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="{dr_url('home/main')}">{fc_lang('网站后台')}</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <a class="blue">{fc_lang('总览')}</a>
+        </li>
+    </ul>
+    <div class="page-toolbar">
+    </div>
+</div>
+<!-- END PAGE BAR -->
+
+<!-- BEGIN PAGE TITLE-->
+<h3 class="page-title">
+    <small></small>
+</h3>
+
+{if $ip}
+<div class="alert alert-block alert-danger fade in">
+    <button type="button" class="close" data-dismiss="alert"></button>
+    <p> {$ip} </p>
+</div>
+{/if}
+<dayrui>
+
+
+
+{if !is_file(WEBPATH.'config/license.php')}
+<div class="alert alert-block alert-danger fade in">
+    <button type="button" class="close" data-dismiss="alert"></button>
+    <p> <a style="color:red" href="javascript:;" onclick="dr_tips('网站上线之后（本地或局域网可忽略），请在客户平台进行授权域名，并下载授权证书，放到网站的./config/目录之下', 999)">软件正版授权证书不存在，请上线之后立即处理，否则官方将终止您的账户...</a> </p>
+</div>
+{/if}
+
+{template "main2.html"}
+
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-bar-chart font-green-sharp" style="font-size: 20px;"></i>
+                    <span class="caption-subject font-green-sharp  ">{fc_lang('数据统计')}</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div>
+                    <table class="table mtable table-nomargin table-bordered table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th style="text-align:center">{fc_lang('模块')}</th>
+                            <th style="text-align:center">{fc_lang('总数据')}</th>
+                            <th style="text-align:center">{fc_lang('今日')}</th>
+                            <th style="text-align:center">{fc_lang('审核')}</th>
+                            <th style="text-align:center">{fc_lang('扩展审核')}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {loop $mtotal $dir $t}
+                        <tr>
+                            <td style="text-align:center">{$t.name}</td>
+                            <td style="text-align:center"><a class="drlabel drlabel-success" href="{$t.content}" id="{$dir}_content"><img src="{THEME_PATH}admin/images/mloading.gif"></a></td>
+                            <td style="text-align:center"><a class="drlabel drlabel-success" href="{$t.today}" id="{$dir}_today"><img src="{THEME_PATH}admin/images/mloading.gif"></a></td>
+                            <td style="text-align:center"><a class="drlabel drlabel-important" href="{$t.content_verify}" id="{$dir}_content_verify"><img src="{THEME_PATH}admin/images/mloading.gif"></a></td>
+                            <td style="text-align:center"><a class="drlabel drlabel-important" href="{$t.extend_verify}" id="{$dir}_extend_verify"><img src="{THEME_PATH}admin/images/mloading.gif"></a></td>
+                        </tr>
+                        {/loop}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+        <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cog font-red-sunglo" style="font-size: 20px;"></i>
+                    <span class="caption-subject font-red-sunglo">系统信息</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div>
+                    <table class="table table-light mtable">
+                        <tr>
+                            <td class="mleft" align="right">{fc_lang('授权域名')}：</td>
+                            <td>&nbsp;<a href="http://www.dayrui.com/license/domain/{$sqdomain}" target="_blank">{$sqdomain}</a></td>
+                        </tr>
+                        <tr>
+                            <td class="mleft" align="right">{fc_lang('程序内核')}：</td>
+                            <td>&nbsp;<a href="{dr_url('upgrade/index')}"> POSCMS&nbsp;v{DR_VERSION}&nbsp; <b style="color:red" id="finecms_version"></b> </a></td>
+                        </tr>
+                        <tr>
+                            <td class="mleft" align="right">{fc_lang('服务器环境')}：</td>
+                            <td>&nbsp;{$server} 、PHP{PHP_VERSION} 、MySql{$sqlversion}</td>
+                        </tr>
+                        <tr>
+                            <td class="mleft" align="right">{fc_lang('上传最大值')}：</td>
+                            <td>&nbsp;{php echo @ini_get("upload_max_filesize");} </td>
+                        </tr>
+                        <tr>
+                            <td class="mleft" align="right">{fc_lang('POST最大值')}：</td>
+                            <td>&nbsp;{php echo @ini_get("post_max_size");}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-volume-down font-blue-hoki" style="font-size: 20px;"></i>
+                    <span class="caption-subject font-blue-hoki">{fc_lang('通知提醒')}</span>
+                </div>
+                <ul class="nav nav-tabs">
+                    <li class="">
+                        <a href="{$notice_url}" class="active"> {fc_lang('全部')} </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="portlet-body">
+                <div >
+                    {if !$notice}
+                    <div style="text-align: center"> {fc_lang('无任何提醒')} </div>
+                    {else}
+
+                    <ul class="feeds">
+                        {loop $notice $t}
+                        <li>
+                            <a href="{dr_url('notice/go', array('id' => $t.id))}">
+                                <div class="col1">
+                                    <div class="cont">
+                                        <div class="cont-col1">
+                                            {if $t.type =='system'}
+                                            <div class="label label-sm label-danger">
+                                                <i class="fa fa-bell-o"></i>
+                                            </div>
+                                            {else if $t.type =='content'}
+                                            <div class="label label-sm label-warning">
+                                                <i class="fa fa-th-large"></i>
+                                            </div>
+                                            {else if $t.type =='app'}
+                                            <div class="label label-sm label-info">
+                                                <i class="fa fa-cloud"></i>
+                                            </div>
+                                            {else if $t.type =='member'}
+                                            <div class="label label-sm label-success">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            {/if}
+                                        </div>
+                                        <div class="cont-col2">
+                                            <div class="desc mdesc"> {$t.msg} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2">
+                                    <div class="date"> {dr_date($t.inputtime,'m-d')} </div>
+                                </div>
+                            </a>
+                        </li>
+                        {/loop}
+                    </ul>
+                    {/if}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{template "nfooter.html"}

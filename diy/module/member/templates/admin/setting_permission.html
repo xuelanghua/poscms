@@ -1,0 +1,76 @@
+{template nheader.html}
+<div class="page-bar">
+    <ul class="page-breadcrumb mylink">
+        {$menu.link}
+
+    </ul>
+    <ul class="page-breadcrumb myname">
+        {$menu.name}
+    </ul>
+    <div class="page-toolbar">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                {loop $menu.quick $t}
+                <li>
+                    <a href="{$t.url}">{$t.icon} {$t.name}</a>
+                </li>
+                {/loop}
+                <li class="divider"> </li>
+                <li>
+                    <a href="javascript:window.location.reload();">
+                        <i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<h3 class="page-title">
+    <small>{fc_lang('将会员权限及积分规则细化到不同会员组的各个等级中；正数表示增加积分数量；负数表扣减积分数量')}</small>
+</h3>
+<div class="portlet light bordered">
+    <div class="portlet-body">
+        <div class="table-scrollable v3table">
+		<table class="table">
+        <tr>
+        	{php $id=0;}
+        	<td style="border-top:0" align="left" width="250">{fc_lang('游客')}</td>
+            <td style="border-top:0" align="left">
+            <a href="javascript:;" onclick="dr_member_rule('{$id}', '{dr_url("member/setting/rule", array("id"=>$id))}', '{fc_lang('游客')}')" class="blue">[{fc_lang('规则设置')}]</a>
+            <div id="dr_status_{$id}" class="onShow"></div>
+            </td>
+        </tr>
+        {list action=cache name=MEMBER.group return=group}
+        {if $group['id'] > 2}
+        <tr>
+        	<td align="left" width="250">{$group['name']}</td>
+            <td align="left"></td>
+        </tr>
+        {loop $group['level'] $level}
+        <tr>
+        	{php $id=$group['id'].'_'.$level['id'];}
+        	<td align="left" width="250" style="padding-left:40px">{$level['name']}&nbsp;&nbsp;{dr_show_stars($level['stars'])}</td>
+            <td align="left">
+            <a href="javascript:;" onclick="dr_member_rule('{$id}', '{dr_url("member/setting/rule", array("id"=>$id))}', '{$group['name']}-{$level['name']}')" class="blue">[{fc_lang('规则设置')}]</a>
+            <div id="dr_status_{$id}" class="onShow"></div>
+            </td>
+        </tr>
+        {/loop}
+        {else}
+        <tr>
+        	{php $id=$group['id'];}
+        	<td align="left" width="250">{$group['name']}</td>
+            <td align="left">
+            <a href="javascript:;" onclick="dr_member_rule('{$id}', '{dr_url("member/setting/rule", array("id"=>$id))}', '{$group['name']}')" class="blue">[{fc_lang('规则设置')}]</a>
+            <div id="dr_status_{$id}" class="onShow"></div>
+            </td>
+        </tr>
+        {/if}
+        {/list}
+        </table>
+	    </div>
+	</div>
+</div>
+{template nfooter.html}

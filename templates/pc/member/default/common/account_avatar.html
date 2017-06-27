@@ -1,0 +1,101 @@
+{template "nheader.html"}
+
+<div class="row">
+    <div class="col-md-12">
+
+
+        {if IS_MOBILE}
+
+        <div class="form-group ">
+            <div class="col-md-12">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-preview thumbnail" id="mytx" style="width: 100%; height:auto;">
+                    <img src="{dr_avatar($member.uid, 0)}">
+                    </div>
+                    <div>
+                    <span class="btn red btn-outline btn-file">
+                        <span class="fileinput-new"> 上传 </span>
+                        <span class="fileinput-exists"> 上传 </span>
+                        <input type="file" name="..."> </span>
+                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> <i class="fa fa-trash-o"></i>  删除 </a>
+                        <a href="javascript:dr_save();" class="btn green fileinput-exists"> <i class="fa fa-save"></i> 保存 </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function dr_save() {
+                dr_tips('正在上传...', 3, 2);
+                var tx = $('#mytx img').attr('src');
+                $.post("{dr_member_url('account/upload', array('iajax' => 1))}", {tx: tx}, function(data) {
+                    if(data == 1) {
+                        dr_tips('上传成功', 3, 1);
+                        window.location.reload();
+                    } else {
+                        dr_tips('上传失败：'+data);
+                    }
+                });
+            }
+        </script>
+        {else}
+        {if $ucenter}
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="72%">
+                    <h5>头像保存后，您可能需要刷新一下本页面(按F5键)，才能查看最新的头像效果</h5><br>
+                    {uc_avatar($ucenter)}
+                </td>
+                <td width="28%" valign="top"><img src="{dr_avatar($uid, 90)}"></td>
+            </tr>
+        </table>
+        {else}
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="72%">
+                    <script type="text/javascript" src="{THEME_PATH}avatar/swfobject.js"></script>
+                    <script type="text/javascript">
+                        var flashvars = {
+                            'upurl':"{base64_encode(dr_member_url('account/upload'))}&callback=return_avatar&"
+                        };
+                        var params = {
+                            'align':'middle',
+                            'play':'true',
+                            'loop':'false',
+                            'scale':'showall',
+                            'wmode':'window',
+                            'devicefont':'true',
+                            'id':'Main',
+                            'bgcolor':'#ffffff',
+                            'name':'Main',
+                            'allowscriptaccess':'always'
+                        };
+                        var attributes = {
+
+                        };
+                        swfobject.embedSWF("{THEME_PATH}avatar/main.swf", "myContent", "490", "434", "9.0.0","{THEME_PATH}avatar/expressInstall.swf", flashvars, params, attributes);
+                        function return_avatar(data) {
+                            if(data == 1) {
+                                dr_tips('上传成功', 3, 1);
+                                window.location.reload();
+                            } else {
+                                dr_tips('上传失败：'+data);
+                            }
+                        }
+                    </script>
+                    <div id="myContent">
+                        <p>Loading ... </p>
+                    </div>
+                </td>
+                <td width="28%" valign="top">
+                    <p><img width="180" src="{dr_avatar($uid, 180)}"></p>
+                    <p><img width="90" src="{dr_avatar($uid, 90)}"></p>
+                    <p><img width="45" src="{dr_avatar($uid, 45)}"></p>
+                </td>
+            </tr>
+        </table>
+        {/if}
+        {/if}
+    </div>
+</div>
+
+{template "nfooter.html"}

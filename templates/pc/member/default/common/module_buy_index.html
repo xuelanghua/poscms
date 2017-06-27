@@ -1,0 +1,87 @@
+{template nheader.html}
+<script type="text/javascript">
+	function dr_delete() {
+		art.dialog.confirm("<font color=red><b>你确认要删除选中项吗？</b>", function(){
+			var _data = $("#myform").serialize();
+			var _url = window.location.href;
+			if ((_data.split('ids')).length-1 <= 0) {
+				dr_tips("到底删除谁？您还没有选择呢", 2);
+				return true;
+			}
+			// 将表单数据ajax提交验证
+			$.ajax({type: "POST",dataType:"json", url: _url, data: _data,
+				success: function(data) {
+					//验证成功
+					if (data.status == 1) {
+						dr_tips(data.code, 3, 1);
+						$(".aui_state_lock").hide();
+						art.dialog.close();
+						// 刷新页
+						setTimeout('window.location.reload(true)', 3000);
+						return true;
+					} else {
+						dr_tips(data.code, 3, 2);
+						return true;
+					}
+				},
+				error: function(HttpRequest, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + HttpRequest.statusText + "\r\n" + HttpRequest.responseText);
+				}
+			});
+			return false;
+		});
+		return false;
+	}
+</script>
+
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="portlet-body">
+
+
+			<form action="" method="post" name="myform" id="myform">
+				<input name="action" id="action" type="hidden" value="" />
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+						<tr>
+							<th class="algin_l">主题</th>
+							<th class="algin_c">{SITE_SCORE}</th>
+							<th class="algin_l">购买时间</th>
+						</tr>
+						</thead>
+						<tbody id="dr_body">
+						{loop $list $t}
+						<tr>
+							<td class=""><a href="{dr_url_prefix($t.url, APP_DIR)}" title="{$t.title}" target="_blank">{$t.title}</a></td>
+							<td class="">{$t.score}</td>
+							<td class="">{dr_date($t.inputtime, '', 'red')}</td>
+						</tr>
+						{/loop}
+						</tbody>
+					</table>
+					</table>
+				</div>
+			</form>
+		</div>
+
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<ul class="pagination">
+			{$pages}
+			<li><a href="javascript:;">共{$page_total}条</a></li>
+		</ul>
+	</div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info" style="margin-top: 15px">
+	左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

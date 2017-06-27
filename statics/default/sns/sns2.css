@@ -1,0 +1,2622 @@
+#dr_weibo .sperson-feedlist {padding:20px;margin-right:5px;}
+
+#dr_weibo .feed_lists .page{margin:0 20px}
+
+#dr_weibo .feed_lists .note{padding:10px;text-align:center;_height:600px;}
+
+#dr_weibo .feed_list .content .remark em,#dr_weibo .layer-content .remark em{color:#999;font-style:normal;}
+
+#dr_weibo .feed_list{cursor:default;border-bottom:#dfdfdf dotted 1px;margin:0;padding:15px 0 10px 0;zoom:1}
+
+#dr_weibo .feed_list:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+
+#dr_weibo .feed_list .face {float: left;width: 50px;}
+
+#dr_weibo .feed_list .face .icon-new{position:absolute;top:0;left:0;width:24px;height:10px;}
+
+#dr_weibo .feed_list .face img{vertical-align: top;width:50px;height:50px;}
+
+#dr_weibo .feed_list a.date{color:#bbb}
+
+#dr_weibo .feed_list .content{font-size: 14px;line-height: 22px;margin: 0 0 0 60px;}
+
+#dr_weibo .feed_list .content em,#dr_weibo .feed_list .comment .arrline{vertical-align:top;color:#e1e1e1;font-style:normal;}
+
+#dr_weibo .feed_list .content em img{vertical-align:middle;}
+
+#dr_weibo .feed_list .content p.hd{font-size:14px;padding:0 0 5px 0;vertical-align:top;}
+
+#dr_weibo .feed_list .content p.hd span img{vertical-align:middle;}
+
+#dr_weibo .remark a:link,#dr_weibo .remark a:visited{margin:0;color:#999;font-size:12px;}
+
+#dr_weibo .feed_list .content .hd a.name{margin:0;font-size:12px;font-weight:bold;}
+
+#dr_weibo .feed_list .content p.hd a.date {float:right;font-size: 12px;color:#bbb}
+
+#dr_weibo .feed_lists .load{width:auto;height:auto}
+
+#dr_weibo li {list-style-type: none;  }
+#dr_weibo .sperson-feedlist .person-info .remark a{color:#c1c1c1}
+
+#dr_weibo .sperson-feedlist .person-info .remark a:hover{padding:0 0 10px}
+
+#dr_weibo .sperson-feedlist .person-info .remark{}
+
+#dr_weibo .sperson-feedlist .person-info .remark em{color:#c1c1c1;}
+
+#dr_weibo .sperson-feedlist dt.face{float:left;width:50px;height:50px}
+
+#dr_weibo .sperson-feedlist dt.face img{vertical-align: top}
+
+#dr_weibo .sperson-feedlist dt.face a.face{display: block}
+
+#dr_weibo .sperson-feedlist dd.person-info{position:relative;margin:0 0 0 65px;_padding:0;}
+
+#dr_weibo .sperson-feedlist dd.person-info .groupbtn{position:absolute;top:0;line-height:24px;height:24px;padding:0 5px;text-align:center;font-size:12px;background:#fff;border:1px solid #fff;_height:16px;_line-height:16px;_padding:4px 5px;}
+
+#dr_weibo .sperson-feedlist dd.person-info .groupbtn:hover{position:absolute;top:0;background:#f8f8f8;padding:0 5px;border:1px solid #e5e5e5;text-align:center;border-radius:2px;-webkit-border-radius:2px;-khtml-border-radius:2px;-zom-border-radius:2px;_height:16px;_line-height:16px;_padding:4px 5px;display:block;}
+
+#dr_weibo .sperson-feedlist dd.person-info p{line-height:18px;margin:0 0 5px 0}
+
+#dr_weibo .sperson-feedlist dd.person-info p.hd{font-size:12px;border:none;}
+
+#dr_weibo .sperson-feedlist dd.person-info a.name{margin:0 5px 0 0}
+
+#dr_weibo .sperson-feedlist dd.person-info p.hd span{font-size:12px;}
+
+#dr_weibo .sperson-feedlist dd.person-info p.link{padding:3px 0 0}
+
+#dr_weibo .sperson-feedlist dd.person-info .link a,#dr_weibo  .sperson-feedlist dd.person-info .tags a{color:#5F93D3}
+
+#dr_weibo .sperson-feedlist dd.person-info p.tags{padding:3px 0 0}
+
+#dr_weibo .sperson-feedlist dd.concern{float:right;}
+
+#dr_weibo .sperson-feedlist .info-left {padding-top:5px;}
+
+#dr_weibo .sperson-feedlist .groupbtn {margin-top:10px;}
+
+#dr_weibo .sperson-feedlist .online {padding-left:15px;}
+
+#dr_weibo .sperson-feedlist .right {padding-top:5px;}
+
+#dr_weibo .sperson-feedlist .info-right{position:relative;width:250px;}
+
+#dr_weibo .sperson-feedlist .info-right .btn-green,#dr_weibo  .sperson-feedlist .info-right .btn-gray,#dr_weibo  .sperson-feedlist .info-right .btn-red{float:right;height:28px}
+
+#dr_weibo .sperson-feedlist .info-right .s-select{width:80px}
+
+#dr_weibo .sperson-feedlist .info-right p{margin:0 0 20px;text-align: right;}
+
+#dr_weibo .sperson-feedlist .info-right .ico-add{margin:0 5px 0 0}
+
+#dr_weibo .sperson-feedlist .person-info .ico-female,#dr_weibo .sperson-feedlist .person-info .ico-male{vertical-align:-2px;margin:0 5px 0 0;*vertical-align:2px}
+
+#dr_weibo .sperson-feedlist .person-info .tags a.font-orange{color:#FF6600}
+
+#dr_weibo .sperson-feedlistbig{zoom:1;margin:0 -15px;_margin:0 -30px;}
+
+#dr_weibo .sperson-feedlistbig dl{float:left;border:#d7d7d7 solid 1px;padding:10px 12px;background:#f8f8f8;width:200px;margin:0 0 15px 15px;}
+
+#dr_weibo .sperson-feedlistbig dl:hover{background:#fff;border:#eee solid 1px;}
+
+#dr_weibo .sperson-feedlistbig dt.face a{display: block;margin:0 0 10px;width:200px;height:200px;background:#fff ;}
+
+#dr_weibo .sperson-feedlistbig dd.person-info p{line-height:18px;height:18px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;_width:200px;}
+
+#dr_weibo .sperson-feedlistbig .info-left{padding:0 0 10px;}
+
+#dr_weibo .sperson-feedlistbig .info-right .FollwGroup{float:left;}
+
+#dr_weibo .sperson-feedlistbig .info-right .btn-green,#dr_weibo  .sperson-feedlistbig .info-right .btn-red,#dr_weibo  .sperson-feedlistbig .info-right .btn-gray{float:right;width:80px;height:28px}
+
+#dr_weibo .sperson-feedlistbig .info-right .btn-green span,#dr_weibo  .sperson-feedlistbig .info-right .btn-red span,#dr_weibo  .sperson-feedlistbig .info-right .btn-gray span{padding:6px 10px;_padding:8px 10px 4px;}
+
+
+#dr_weibo a.font-orange:link,#dr_weibo  a.font-orange:visited{color:#f60}
+
+#dr_weibo .f3,#dr_weibo a.f3:hover{color:#333;font-weight:normal;}
+
+#dr_weibo .f9:link,#dr_weibo a.f9:hover{color:#999}
+
+#dr_weibo .cRed,#dr_weibo a.cRed:link,#dr_weibo a.cRed:visited{color:red;}
+
+#dr_weibo .font-orange{color:#f60}
+
+#dr_weibo .vline{font-style:normal;margin:0 5px;}
+
+#dr_weibo .checkbox{vertical-align:middle;margin:0 5px 0 0;_vertical-align:-1px;*margin:0 3px 0 -3px;}
+
+#dr_weibo .clearfix{*zoom:1}
+
+#dr_weibo .clearfix:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+
+#dr_weibo .clear{clear:both}
+
+#dr_weibo .hide{overflow:hidden}
+
+#dr_weibo .font-w{font-weight:normal;}
+
+#dr_weibo .border-b{border-bottom:1px solid #ccc;}
+
+#dr_weibo .border-r{border-right:1px solid #ccc;}
+
+#dr_weibo 
+#dr_weibo .btn-big,#dr_weibo .btn-big span,#dr_weibo .btn-cancel span,#dr_weibo .btn-grey-white,#dr_weibo .btn-green-small,#dr_weibo .btn-green-big,#dr_weibo .btn-register,#dr_weibo .btn-login,#dr_weibo .btn-att-green,#dr_weibo .btn-att-white,#dr_weibo .btn-copy,#dr_weibo .btn-cancel,#dr_weibo .btn-grey{background:url(btn.png) no-repeat 0 0;display:inline-block;vertical-align:middle;cursor:pointer;_background:url(btn.gif) no-repeat 0 0;}
+
+#dr_weibo .btn-grey-white{background-position:0 -60px;width:80px;height:30px;line-height:30px;text-align:center;font-size:14px;color:#666;display:inline-block;height:31px;_line-height:31px;}
+
+#dr_weibo a.btn-grey-white:link,#dr_weibo a.btn-grey-white:visited,#dr_weibo a.btn-grey-white:hover{color:#666;text-decoration:none;}
+
+#dr_weibo .btn-grey{background-position:0 -260px;width:80px;height:30px;line-height:30px;text-align:center;font-size:14px;color:#666;}
+
+#dr_weibo .btn-grey-white span{color:#666;}
+
+#dr_weibo .btn-grey-small{background-position:0 -164px;width:80px;height:24px;color:#666;line-height:24px;text-align:center;cursor:pointer;}
+
+#dr_weibo a.btn-register:link,#dr_weibo a.btn-register:visited,#dr_weibo a.btn-register:hover,#dr_weibo .btn-register span{color:#fff;font-size:14px;text-align:center;line-height:30px;display:block;}
+
+#dr_weibo .btn-register span{color:#fff;font-size:16px;text-align:center;line-height:46px;display:block;}
+
+#dr_weibo .item-step3 .btn-register{margin:30px 0 0 120px;}
+
+#dr_weibo .btn-att-white{background-position:-112px -212px;width:80px;text-align:center;}
+
+#dr_weibo .btn-att-white span{font-size:12px;color:#999;height:14px;line-height:14px;padding:5px 0;display:inline-block;}
+
+#dr_weibo .btn-copy{background-position:0 -316px;width:140px;height:46px;line-height:46px;}
+
+#dr_weibo .btn-copy span{font-size:16px;color:#fff;text-align:center;display:block;}
+
+#dr_weibo .btn-cancel{background-position:0 -452px;padding:0 0 0 2px;}
+
+#dr_weibo .btn-cancel span{background-position:right -484px;padding:0 6px;color:#666;display:inline-block;line-height:14px;height:14px;padding:5px;*height:15px;*line-height:15px;}
+
+#dr_weibo .btn-cancel span a.tag{color:#666;margin:0 5px 0 0;}
+
+#dr_weibo .btn-big{background-position:0 -528px;padding:0 0 0 2px;font-size:12px;}
+
+#dr_weibo .btn-big span{background-position:right -568px;padding:0 6px;color:#666;display:inline-block;line-height:14px;height:14px;padding:8px;*height:15px;*line-height:15px;}
+
+#dr_weibo 
+#dr_weibo .icon{height:18px;width:18px;display:inline-block;vertical-align:-4px;background-repeat:no-repeat;vertical-align:-2px\9}
+
+#dr_weibo .ico-del,#dr_weibo .ico-cover,#dr_weibo .ico-modify,#dr_weibo .ico-artwork,#dr_weibo .ico-feed,#dr_weibo .ico-list,#dr_weibo .icon-notice,#dr_weibo .ico-url-web,#dr_weibo .ico-url-taobao,#dr_weibo .ico-url-music,#dr_weibo .ico-url-video,#dr_weibo .ico-details,#dr_weibo .ico-task-ok,#dr_weibo .ico-at-group,#dr_weibo .ico-img,#dr_weibo .ico-piece,#dr_weibo .ico-num1,#dr_weibo .ico-num2,#dr_weibo .ico-num3,#dr_weibo .ico-num4,#dr_weibo .ico-num5,#dr_weibo .ico-num6,#dr_weibo .ico-num7,#dr_weibo .ico-num8,#dr_weibo .ico-num9,#dr_weibo .ico-num10,#dr_weibo .ico-detail,#dr_weibo .ico-piece,#dr_weibo .ico-num1,#dr_weibo .ico-num2,#dr_weibo .ico-num3,#dr_weibo .ico-num4,#dr_weibo .ico-num5,#dr_weibo .ico-num6,#dr_weibo .ico-num7,#dr_weibo .ico-num8,#dr_weibo .ico-num9,#dr_weibo .ico-num10,#dr_weibo .ico-myapp,#dr_weibo .ico-att,#dr_weibo .ico-topic,#dr_weibo .ico-approve,#dr_weibo .ico-level,#dr_weibo .ico-aut,#dr_weibo .ico-add,#dr_weibo .ico-add-h,#dr_weibo .ico-set,#dr_weibo .ico-account,#dr_weibo .ico-password,#dr_weibo .ico-female,#dr_weibo .ico-male,#dr_weibo .ico-home,#dr_weibo  .ico-at,#dr_weibo  .ico-comment,#dr_weibo  .ico-forward,#dr_weibo  .ico-favorites,#dr_weibo .ico-search,#dr_weibo .btn-blue .ico-search,#dr_weibo .ico-female,#dr_weibo .ico-male,#dr_weibo .ico-topic-add,#dr_weibo .ico-topic-rec,#dr_weibo .ico-ok-gray,#dr_weibo  .ico-ok-task,#dr_weibo  .ico-star,#dr_weibo  .ico-star-gray,#dr_weibo  .ico-star-task,#dr_weibo  .ico-new-task,#dr_weibo  .ico-edit-task,#dr_weibo  .ico-date-task,#dr_weibo  .ico-status-task,#dr_weibo  .ico-new,#dr_weibo  .ico-new-finished,#dr_weibo  .ico-share-task,#dr_weibo  .ico-num-red,#dr_weibo  .ico-num-white,#dr_weibo  .ico-pen,#dr_weibo  .ico-card,#dr_weibo  .ico-card-big,#dr_weibo  .ico-duty,#dr_weibo  .ico-message,#dr_weibo  .ico-faq,#dr_weibo  .ico-bbs,#dr_weibo  .ico-best,#dr_weibo  .ico-pack-up,#dr_weibo .ico-show-all,#dr_weibo .ico-turn-l,#dr_weibo .ico-turn-r,#dr_weibo .ico-show-big,#dr_weibo  .ico-turn-left,#dr_weibo  .ico-turn-right,#dr_weibo  .ico-img,#dr_weibo  .ico-edit,#dr_weibo  .ico-edit-w,#dr_weibo  .ico-marrow,#dr_weibo  .ico-top,#dr_weibo  .ico-recommend,#dr_weibo  .ico-heart,#dr_weibo  .ico-gold,#dr_weibo  .ico-favorites-color,#dr_weibo  .ico-thumbs,#dr_weibo  .ico-search-ask,#dr_weibo  .ico-q-mark,#dr_weibo  .ico-c-mark,#dr_weibo  .ico-black,#dr_weibo  .ico-speaker,#dr_weibo  .ico-wallet,#dr_weibo  .ico-setup,#dr_weibo  .ico-setup-gray,#dr_weibo  .ico-weibo,#dr_weibo  .ico-archives,#dr_weibo  .ico-att,#dr_weibo  .ico-fans,#dr_weibo  .ico-list,#dr_weibo  .ico-array,#dr_weibo  .ico-list-gray,#dr_weibo  .ico-array-gray,#dr_weibo .ico-wbo,#dr_weibo .ico-share-blue,#dr_weibo .ico-view-big,#dr_weibo .ico-rotate-l,#dr_weibo .ico-rotate-r{background:url(icon.png) no-repeat;display:inline-block;_background:url(icon.gif) no-repeat;}
+
+#dr_weibo .ico-myapp{background-position:0 -80px;width:17px;height:17px;display:inline-block;vertical-align:middle;margin:0 5px 0 0;}
+
+#dr_weibo .ico-att{background-position:0 -108px;width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 5px 0 0;}
+
+#dr_weibo .ico-topic{background-position:0 -140px;width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 5px 0 0;}
+
+#dr_weibo .ico-approve{background-position:0 -28px;width:13px;height:13px;margin:0 9px 0 4px;}
+
+#dr_weibo .ico-level{background-position:0 -52px;width:34px;height:13px;}
+
+#dr_weibo .ico-aut{background-position:0 -456px;width:16px;height:16px;margin:0 9px 0 4px;vertical-align:-2px}
+
+#dr_weibo .ico-add{background-position:-56px 0;width:10px;height:10px;margin:0 5px 0 0;vertical-align:-1px;}
+
+#dr_weibo .ico-add-h{background-position:-55px -22px;width:14px;height:9px;margin:0 5px 0 0;vertical-align:middle}
+
+#dr_weibo .ico-account{background-position:-112px 0;width:30px;height:22px;margin:0 10px 0 0;vertical-align:middle;}
+
+#dr_weibo .ico-password{background-position:-111px -39px;width:30px;height:30px;margin:-5px 10px 0 0;vertical-align:-6px;}
+
+#dr_weibo .ico-set{background-position:-212px 0;width:24px;height:24px;margin:0 10px 0 0;display:inline-block;vertical-align:middle;}
+
+#dr_weibo .ico-topic-add{background-position:-120px 0;width:19px;height:12px;margin:0 5px 0 0;display:inline-block;vertical-align:middle;}
+
+#dr_weibo .ico-topic-rec{background-position:-120px -55px;width:15px;height:18px;margin:-5px 5px 0 0;display:inline-block;vertical-align:middle;}
+
+#dr_weibo .ico-details{background-position:-407px -147px;width:72px;height:18px;vertical-align:middle;}
+
+#dr_weibo .ico-feed{background-position:-632px 0;width:21px;height:21px;vertical-align:middle;}
+
+#dr_weibo .ico-list{background-position:-632px -40px;width:20px;height:20px;vertical-align:middle;*cursor:pointer;}
+
+#dr_weibo .ico-forward{background-position:-219px 0;width:16px;height:16px;display:inline-block;vertical-align:-5px;*vertical-align:-3px}
+
+#dr_weibo .ico-view-big{background-position:-632px -72px;width:16px;height:16px;vertical-align:middle;margin:0 5px 0 0;}
+
+#dr_weibo .ico-view-big:hover{background-position:-672px -72px;width:16px;height:16px;vertical-align:middle;margin:0 5px 0 0;}
+
+#dr_weibo .ico-rotate-l{background-position:-632px -100px;width:14px;height:16px;vertical-align:middle;margin:0 5px 0 0;}
+
+#dr_weibo .ico-rotate-l:hover{background-position:-672px -100px;width:14px;height:16px;vertical-align:middle;margin:0 5px 0 0;}
+
+#dr_weibo .ico-rotate-r{background-position:-632px -126px;width:14px;height:16px;vertical-align:middle;margin:0 5px 0 0;}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .ico-pack-up{background-position:0 -400px;width:10px;height:14px;vertical-align:middle;margin:0 5px 0 0;cursor:pointer;}
+
+#dr_weibo .ico-show-big{background-position:0 -365px;width:14px;height:14px;vertical-align:middle;margin:0 5px 0 0;cursor:pointer;}
+
+#dr_weibo .ico-turn-l{background-position:0 -337px;width:14px;height:14px;vertical-align:middle;margin:0 5px 0 0;cursor:pointer;}
+
+#dr_weibo .ico-turn-r{background-position:0 -311px;width:14px;height:14px;vertical-align:middle;margin:0 5px 0 0;cursor:pointer;}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .ico-url-web{background-position:-407px 0;width:72px;height:18px;vertical-align:middle;*cursor:pointer;}
+
+#dr_weibo .ico-url-taobao{background-position:-407px -36px;width:72px;height:18px;vertical-align:middle;}
+
+#dr_weibo .ico-url-music{background-position:-407px -73px;width:72px;height:18px;vertical-align:middle;}
+
+#dr_weibo .ico-url-video{background-position:-407px -110px;width:72px;height:18px;vertical-align:middle;}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .ico-bar-top{background:#777;color:#fff;padding:1px 4px;line-height:12px;border-radius:2px;-webkit-border-radius:2px;-zom-border-radius:2px;-kthml-border-radius:2px;font-style:normal;}
+
+#dr_weibo .ico-img{background-position:0 -425px;width:16px;height:16px;vertical-align:-3px;margin:0 0 0 5px;cursor:default;*vertical-align:0;}
+
+#dr_weibo .ico-at-group{background-position:-118px 0;width:16px;height:16px;vertical-align:middle;}
+
+#dr_weibo .ico-task-ok{background-position:-119px -60px;width:12px;height:12px;vertical-align:middle;}
+
+#dr_weibo 
+#dr_weibo .icon-notice{background-position:-71px -60px;width:12px;height:12px;vertical-align:middle;margin:4px 0 0 0;}
+
+#dr_weibo .ico-piece{background-position:-266px 0;display:inline-block;width:4px;height:4px;margin:0 5px 0 0;}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .ico-home{background-position:-71px -28px;width:16px;height:16px;vertical-align:-4px;margin:0 3px 0 0;*vertical-align:-1px;_vertical-align:1px;}
+
+#dr_weibo .ico-at{background-position:0 -77px}
+
+#dr_weibo .ico-wbo{background-position:0 -244px}
+
+#dr_weibo .ico-search{background-position:0 0;width:17px;height:17px}
+
+#dr_weibo .ico-female{background-position:-168px 0;width:10px;height:14px;margin:0 5px 0 0;vertical-align:-3px;*vertical-align:1px}
+
+#dr_weibo .ico-male{background-position:-168px -28px;width:14px;height:14px;margin:0 5px;vertical-align:-4px;*vertical-align:1px}
+
+#dr_weibo .ico-new{background-position:-94px -25px;width:19px;height:12px;}
+
+#dr_weibo .ico-ok-gray{background-position:0 -1796px;width:14px;height:12px;margin:0 5px 0 0;vertical-align:middle}
+
+#dr_weibo .ico-ok-task{background-position:-128px -451px;width:12px;height:12px;margin:0 5px 0 0;vertical-align:middle}
+
+#dr_weibo .ico-star{background-position:-128px -526px;width:16px;height:23px;margin:0 3px;vertical-align:middle;_vertical-align:auto}
+
+#dr_weibo .ico-star-gray{background-position:-128px -502px;width:14px;height:14px;margin:0 3px;vertical-align:middle}
+
+#dr_weibo .ico-star-task{background-position:-128px -477px;width:12px;height:12px;margin:0 5px 0 0;vertical-align:middle}
+
+#dr_weibo .ico-new-task{background-position:0 -1550px;width:19px;height:16px;vertical-align:middle}
+
+#dr_weibo .ico-edit-task{background-position:-128px -268px;width:13px;height:15px;margin:0 5px 0 0;vertical-align:middle}
+
+#dr_weibo .ico-date-task{background-position:-128px -100px;width:14px;height:14px;margin:0 5px 0 0;vertical-align:middle}
+
+#dr_weibo .ico-status-task{background-position:-128px -197px;width:14px;height:14px;margin:0 5px 0 0}
+
+#dr_weibo .ico-new-finished{background-position:0 -1628px;width:19px;height:12px}
+
+#dr_weibo .ico-share-task{background-position:-128px -320px;width:16px;height:16px;margin:0 5px 0 0;vertical-align:middle}
+
+#dr_weibo .ico-share-blue{background-position:-160px -99px;width:16px;height:16px;vertical-align:middle}
+
+#dr_weibo .ico-num-red{background-position:0 -1602px;width:26px;height:16px;line-height:16px;text-align:center}
+
+#dr_weibo .ico-num-white{background-position:-158px 0;width:26px;height:16px;line-height:16px;text-align:center}
+
+#dr_weibo .ico-pen{background-position:-128px -398px;width:15px;height:15px;margin:0 5px 0 0;vertical-align:middle}
+
+#dr_weibo .ico-card{background-position:-94px 0;width:16px;height:12px}
+
+#dr_weibo .ico-card-big{background-position:-160px -75px;width:24px;height:14px}
+
+#dr_weibo .ico-duty{background-position:0 -1173px;width:18px;height:18px}
+
+#dr_weibo .ico-message{background-position:0 -1228px;width:18px;height:18px}
+
+#dr_weibo .ico-faq{background-position:0 -1347px;width:18px;height:18px}
+
+#dr_weibo .ico-bbs{background-position:0 -1285px;width:18px;height:18px}
+
+#dr_weibo .ico-best{background-position:-124px -567px;width:29px;height:53px}
+
+#dr_weibo 
+#dr_weibo .ico-edit{background-position:-128px -148px;width:16px;height:12px;vertical-align:middle;margin:0 5px 0 0;}
+
+#dr_weibo .ico-edit-w{background-position:-128px -172px;width:16px;height:16px}
+
+#dr_weibo .ico-marrow{background-position:0 -1965px;width:17px;height:17px}
+
+#dr_weibo .ico-top{background-position:0 -1995px;width:17px;height:17px}
+
+#dr_weibo .ico-recommend{background-position:0 -2027px;width:17px;height:17px}
+
+#dr_weibo .ico-heart{background-position:-128px -76px;width:16px;height:16px}
+
+#dr_weibo .ico-gold{background-position:-128px 0;width:16px;height:16px}
+
+#dr_weibo .ico-favorites-color{background-position:-128px -52px;width:16px;height:16px;}
+
+#dr_weibo .ico-thumbs{background-position:-128px -26px;width:16px;height:16px}
+
+#dr_weibo .ico-more{border-color: #535353 transparent transparent;border-style: solid dashed dashed;border-width: 4px 4px 0;display: inline-block;font-size: 0;height: 0;line-height: 0;margin: 0 0 0 3px;vertical-align: middle;width: 0}
+
+#dr_weibo .ico-search-ask{background-position:0 -2178px;width:20px;height:20px}
+
+#dr_weibo .ico-q-mark{background-position:-199px 0;width:18px;height:18px}
+
+#dr_weibo .ico-c-mark{background-position:-199px -26px;width:18px;height:18px}
+
+#dr_weibo .ico-black{background-position:0 -2306px;width:14px;height:14px;margin:0 5px 0 0}
+
+#dr_weibo .ico-speaker{background-position:0 -2335px;width:13px;height:13px;margin:0 5px 0 0}
+
+#dr_weibo .ico-wallet{background-position:-71px 0;width:16px;height:16px;vertical-align:middle;cursor:pointer;}
+
+#dr_weibo .ico-setup{background-position:-94px -75px;width:11px;height:11px;margin:0 5px 0 0}
+
+#dr_weibo .ico-setup-gray{background-position:-94px -99px;width:11px;height:11px;margin:0 5px 0 0}
+
+#dr_weibo .ico-weibo{background-position:-63px 0;width:16px;height:16px;margin:0 5px 0 0;vertical-align:middle;}
+
+#dr_weibo .ico-archives{background-position:-63px -26px;width:16px;height:16px;margin:0 5px 0 0;vertical-align:middle}
+
+#dr_weibo .ico-fans{background-position:-63px -76px;width:16px;height:16px;margin:0 5px 0 0;vertical-align:middle}
+
+#dr_weibo 
+#dr_weibo .ico-list-gray{background-position:-94px -320px;width:11px;height:11px;margin:0 10px 0 0}
+
+#dr_weibo .ico-array{background-position:-94px -344px;width:11px;height:11px;margin:0 10px 0 0}
+
+#dr_weibo .ico-array-gray{background-position:-94px -371px;width:11px;height:11px;margin:0 10px 0 0}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .ico-search-task,#dr_weibo  .ico-search-task:hover{background:url(btn.png) no-repeat;display:inline-block;vertical-align:middle;overflow:hidden}
+
+#dr_weibo .ico-search-task{background-position:0 -45px;width:50px;height:26px;border:none 0;cursor: pointer;}
+
+#dr_weibo .ico-search-task:hover{background-position:0 -86px;width:50px;height:26px}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .ico-error,#dr_weibo  .ico-ok,#dr_weibo .ico-wait,#dr_weibo .ico-no,#dr_weibo .ico-ok-big,#dr_weibo .ico-error-big{background:url(ico-tips.png) no-repeat 0 0;display:inline-block;background:url(ico-tips.gif) no-repeat 0 0\0;}
+
+#dr_weibo 
+#dr_weibo .ico-error{background-position:-39px 0;width:20px;height:20px;margin:0 5px 0 0;vertical-align:-4px}
+
+#dr_weibo .ico-ok{background-position:0 0;width:20px;height:20px;margin:0 5px 0 0;vertical-align:middle;*vertical-align:-2px}
+
+#dr_weibo .ico-wait{background-position:0 -33px;width:20px;height:20px;margin:0 5px 0 0;vertical-align:middle}
+
+#dr_weibo .ico-no{background-position:-40px -32px;width:20px;height:20px;margin:0 5px 0 0;vertical-align:middle}
+
+#dr_weibo .ico-ok-big{background-position:-80px 0;width:38px;height:38px;vertical-align:middle;margin:0 10px 0 0;}
+
+#dr_weibo .ico-error-big{background-position:-80px -48px;width:38px;height:38px;vertical-align:middle;margin:0 10px 0 0;}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .ico-doc-small,#dr_weibo  .ico-docx-small,#dr_weibo  .ico-xls-small,#dr_weibo  .ico-xlsx-small,#dr_weibo  .ico-txt-small,#dr_weibo  .ico-pdf-small,#dr_weibo  .ico-pdfx-small,#dr_weibo  .ico-ppt-small,#dr_weibo  .ico-pptx-small,#dr_weibo  .ico-pic-small,#dr_weibo  .ico-jpg-small,#dr_weibo  .ico-jpeg-small,#dr_weibo  .ico-gif-small,#dr_weibo  .ico-png-small,#dr_weibo  .ico-bmp-small,#dr_weibo  .ico-tif-small,#dr_weibo  .ico-rar-small ,#dr_weibo  .ico-zip-small ,#dr_weibo  .ico-doc,#dr_weibo  .ico-docx,#dr_weibo  .ico-xls,#dr_weibo  .ico-xlsx,#dr_weibo  .ico-txt,#dr_weibo  .ico-pdf,#dr_weibo  .ico-pdfx,#dr_weibo  .ico-ppt,#dr_weibo  .ico-pptx,#dr_weibo  .ico-pic,#dr_weibo  .ico-jpg,#dr_weibo  .ico-jpeg,#dr_weibo  .ico-gif,#dr_weibo  .ico-png,#dr_weibo  .ico-bmp,#dr_weibo  .ico-tif,#dr_weibo  .ico-rar,#dr_weibo  .ico-zip,#dr_weibo .ico-attach
+#dr_weibo {width:16px;height:16px;background:url(ico-file.png) no-repeat;display:inline-block;vertical-align:middle;overflow:hidden;margin:0 5px 0 0}
+
+#dr_weibo 
+#dr_weibo .ico-doc-small,#dr_weibo  .ico-docx-small,#dr_weibo  .ico-xls-small,#dr_weibo  .ico-xlsx-small,#dr_weibo  .ico-txt-small,#dr_weibo  .ico-pdf-small,#dr_weibo  .ico-pdfx-small,#dr_weibo  .ico-ppt-small,#dr_weibo  .ico-pptx-small,#dr_weibo  .ico-pic-small,#dr_weibo  .ico-jpg-small,#dr_weibo  .ico-jpeg-small,#dr_weibo  .ico-gif-small,#dr_weibo  .ico-png-small,#dr_weibo  .ico-bmp-small,#dr_weibo  .ico-tif-small,#dr_weibo  .ico-rar-small,#dr_weibo  .ico-zip-small{width:18px;height:18px;vertical-align: -4px;}
+
+#dr_weibo 
+#dr_weibo .ico-doc,#dr_weibo  .ico-docx,#dr_weibo  .ico-xls,#dr_weibo  .ico-xlsx,#dr_weibo  .ico-txt,#dr_weibo  .ico-pdf,#dr_weibo  .ico-pdfx,#dr_weibo  .ico-ppt,#dr_weibo  .ico-pptx,#dr_weibo  .ico-pic,#dr_weibo  .ico-jpg,#dr_weibo  .ico-jpeg,#dr_weibo  .ico-gif,#dr_weibo  .ico-png,#dr_weibo  .ico-bmp,#dr_weibo  .ico-tif,#dr_weibo  .ico-rar,#dr_weibo  .ico-zip{width:48px;height:48px}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .ico-doc{background-position:0 0}
+          .ico-doc-small{background-position:0 -58px}
+
+#dr_weibo .ico-docx{background-position:0 0}
+         .ico-docx-small{background-position:0 -58px}
+
+#dr_weibo .ico-xls{background-position:-58px 0}
+      .ico-xls-small{background-position:-28px -58px}
+
+#dr_weibo .ico-xlsx{background-position:-58px 0}
+     .ico-xlsx-small{background-position:-28px -58px}
+
+#dr_weibo .ico-txt{background-position:-174px 0}
+     .ico-txt-small{background-position:-84px -58px}
+
+#dr_weibo .ico-pdf{background-position:-116px 0}
+     .ico-pdf-small{background-position:-56px -58px}
+
+#dr_weibo .ico-pdfx{background-position:-116px 0}
+    .ico-pdfx-small{background-position:-56px -58px}
+
+#dr_weibo .ico-ppt{background-position:-232px 0}
+     .ico-ppt-small{background-position:-112px -58px}
+
+#dr_weibo .ico-pptx{background-position:-232px 0}
+    .ico-pptx-small{background-position:-112px -58px}
+
+#dr_weibo .ico-pic{background-position:-290px 0}
+     .ico-pic-small{background-position:-140px -58px}
+
+#dr_weibo .ico-jpg{background-position:-348px 0}
+     .ico-jpg-small{background-position:-168px -58px}
+
+#dr_weibo .ico-jpeg{background-position:-348px 0}
+    .ico-jpeg-small{background-position:-168px -58px}
+
+#dr_weibo .ico-gif{background-position:-406px 0}
+     .ico-gif-small{background-position:-196px -58px}
+
+#dr_weibo .ico-png{background-position:-522px 0}
+     .ico-png-small{background-position:-252px -58px}
+
+#dr_weibo .ico-bmp{background-position:-580px 0}
+     .ico-bmp-small{background-position:-280px -58px}
+
+#dr_weibo .ico-tif{background-position:-464px 0}
+     .ico-tif-small{background-position:-224px -58px}
+
+#dr_weibo .ico-rar{background-position:-638px 0}
+     .ico-rar-small{background-position:-308px -58px}
+
+#dr_weibo .ico-zip{background-position:-638px 0}
+     .ico-zip-small{background-position:-308px -58px}
+
+#dr_weibo .ico-attach{background-position:-365px -59px;width:14px;height:15px;display:inline-block;vertical-align:top;margin:1px 0 0 5px;*margin-top:-2px;}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .ico-home-app{background:url(icon_apps.png) no-repeat;display:inline-block;overflow:hidden}
+
+#dr_weibo .ico-home-app{width:13px;height:13px;vertical-align: -2px;}
+
+#dr_weibo 
+#dr_weibo .btn-red .ico-search{background-position:-93px -147px;width:14px;height:14px;padding:0;margin:6px}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .ico-add,#dr_weibo  .ico-add-black,#dr_weibo  .ico-add-blue,#dr_weibo  .ico-add-white,#dr_weibo  .ico-minus,#dr_weibo  .ico-minus-gray,#dr_weibo  .ico-already,#dr_weibo  .ico-connect,#dr_weibo  .ico-export,#dr_weibo  .ico-down,#dr_weibo 
+#dr_weibo .arrow-down{width:10px;height:10px;background:url(add.png) no-repeat;display:inline-block;vertical-align:middle;overflow:hidden;margin:0 4px 0 0;_background:url(add.gif) no-repeat;}
+
+#dr_weibo .ico-add{background-position: 0 -19px;vertical-align:0;_vertical-align:2px;}
+
+#dr_weibo .ico-add-black{background-position: 0 -55px;width:8px;height:8px;vertical-align:0;_vertical-align:5px;}
+
+#dr_weibo *+html .ico-add-black,#dr_weibo *+html .ico-add-white{vertical-align:3px;}
+
+#dr_weibo .ico-add-white{background-position:0 -73px;vertical-align:0;width:8px;height:8px;_vertical-align:5px;}
+
+#dr_weibo 
+#dr_weibo .ico-minus{background-position:0 -91px}
+
+#dr_weibo .ico-minus-gray{background-position:0 -113px;width:8px;height:2px;}
+
+#dr_weibo .ico-already{background-position:0 -187px;width:10px;height:7px;}
+
+#dr_weibo .ico-connect{background-position:0 -167px;}
+
+#dr_weibo .ico-export{background-position:0 0;width:11px;height:9px}
+
+#dr_weibo .ico-down{background-position:0 -204px;width:9px;height:13px;cursor:pointer;}
+
+#dr_weibo 
+#dr_weibo .wrap-layer .content-layer textarea{color:#535353;}
+
+#dr_weibo .wrap-layer .content-layer .pop .form-tt{width:40px;display:block;float:left}
+
+#dr_weibo .wrap-layer .content-layer .pop .form-row{margin:0 0 0 40px}
+
+#dr_weibo .wrap-layer .content-layer .pop dd{padding:0 0 10px }
+
+#dr_weibo .wrap-layer .content-layer .pop dd:after{clear: both;content: ".";display: block;height: 0;visibility: hidden}
+
+#dr_weibo .wrap-layer .content-layer .pop .s-txt,#dr_weibo  .wrap-layer .content-layer .pop .s-txt-focus{vertical-align:middle}
+
+#dr_weibo .wrap-layer .content-layer .pop .double{margin-top:10px;_margin-left:43px}
+
+#dr_weibo .wrap-layer .content-layer .pop .ico-add{margin:0 5px}
+
+#dr_weibo 
+#dr_weibo .layer-invite .s-txt{width:182px;}
+
+#dr_weibo .layer-invite textarea{width:414px;height:60px;_width:410px}
+
+#dr_weibo .layer-invite .btn-green{margin:0 0 0 40px}
+
+#dr_weibo 
+#dr_weibo .wrap-layer .content-layer .layer-letter .form-tt{width:60px;display:block;float:left}
+
+#dr_weibo .wrap-layer .content-layer .layer-letter .form-row{margin:0 0 0 60px}
+
+#dr_weibo .layer-letter textarea{width:394px;height:60px;_width:390px}
+
+#dr_weibo .layer-letter .s-txt{width:392px;}
+
+#dr_weibo .layer-letter .btn-green{margin-left:60px}
+
+#dr_weibo 
+#dr_weibo .layer-forward .forward-content{background:#fafafa;padding:6px 10px;margin:0 0 5px}
+
+#dr_weibo .layer-forward .feed-repeat{line-height:20px}
+
+#dr_weibo .layer-forward .feed-repeat .action .faces{float:left;background:url(icon.png) no-repeat 0 0;display:inline-block;width:16px;height:16px;margin:0 10px 0 0;cursor:pointer}
+
+#dr_weibo .layer-forward .feed-repeat .input {position: relative}
+
+#dr_weibo .layer-forward .feed-repeat .input .action{margin:10px 0 0;*zoom:1}
+
+#dr_weibo .layer-forward .feed-repeat .input .commoned_list{float:left}
+
+#dr_weibo .layer-forward .feed-repeat textarea{width:455px;height:60px;margin:10px 0 0}
+
+#dr_weibo .layer-forward .feed-repeat .num {color: #B8B7B7;float: right;margin-top: -5px;position: relative;text-align: right}
+
+#dr_weibo .layer-forward .feed-repeat .num span {font-family: Constantia,#dr_weibo Georgia;font-size: 22px;font-weight: 700;margin: 0 5px}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .layer-prompt{padding:15px;text-align:center}
+
+#dr_weibo .layer-prompt p{padding:10px 0;font-size:14px}
+
+#dr_weibo .layer-prompt a{margin:0 5px;font-size:12px}
+
+#dr_weibo .layer-prompt-moment{padding:10px 15px;text-align:center;color:#535353}
+
+#dr_weibo .wrap-layer .content-layer-moment{width:150px}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .layer-follow{width:400px;padding:15px;overflow:hidden;*zoom:1;*width:402px;}
+
+#dr_weibo .layer-follow .actionBtn{height:50px}
+
+#dr_weibo .layer-follow .tit{padding:0 0 10px;line-height:18px;}
+
+#dr_weibo .layer-follow .tit strong{padding:0 5px}
+
+#dr_weibo .layer-follow .group-name{color:#535353}
+
+#dr_weibo .layer-follow .group-name ul{overflow:hidden;*zoom:1}
+
+#dr_weibo .layer-follow .group-name li{padding:5px;margin:0 0 5px;line-height:18px;display:block;vertical-align:top;border:#ccc dotted 1px;cursor:pointer;}
+
+#dr_weibo .layer-follow .group-name li:hover{background:#f1f1f1;}
+
+#dr_weibo .layer-follow .group-name .cursor{cursor:pointer}
+
+#dr_weibo .layer-follow .group-name li .hover{visibility: hidden;_visibility: visible}
+
+#dr_weibo .layer-follow .group-name li:hover .hover{visibility: visible;}
+
+#dr_weibo .layer-follow .group-name .s-txt,#dr_weibo  .layer-follow .group-name .s-txt-focus{padding:3px}
+
+#dr_weibo 
+#dr_weibo .layer-follow .group-name .btn-green,#dr_weibo  .layer-follow .group-name .btn-gray{height:22px;padding:0}
+
+#dr_weibo .layer-follow .group-name .btn-green span,#dr_weibo  .layer-follow .group-name .btn-gray span{padding:3px 10px;_padding:5px 10px 1px;}
+
+#dr_weibo .layer-follow .actionBtn{height:30px}
+
+#dr_weibo .wrap-layer .content-layer .layer-follow .tit .s-txt{width:340px;}
+
+#dr_weibo .wrap-layer .content-layer .layer-follow .tit .s-txt-focus{width:380px;margin:0 0 0 5px}
+
+#dr_weibo #createFollowGroup .s-txt,#dr_weibo  #createFollowGroup .s-txt-focus{width:250px;}
+
+#dr_weibo .layer-follow .new-add{background:#fafafa;padding:10px;color:#535353}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .tab-menu .layer-group-list ul li{float:none;margin:0;height:auto}
+
+#dr_weibo .tab-menu .open .layer-group-list{display:block}
+
+#dr_weibo .layer-group-list{display:none}
+
+#dr_weibo .layer-group-list{position:absolute;left:0;top:32px;z-index:99;}
+
+#dr_weibo .layer-group-list .inner{background:#fff;width:93px;border:#ccc solid 1px;border-top:none;margin:-2px 0 0;overflow:hidden;zoom:1;position:relative;z-index:99;}
+
+#dr_weibo .layer-group-list ul{position:relative;z-index:99;zoom:1}
+
+#dr_weibo .layer-group-list ul li{overflow:hidden;zoom:1;width:93px;}
+
+#dr_weibo .layer-group-list li a:link,#dr_weibo .layer-group-list li a:visited{color: #333;display:block;line-height:17px;padding: 6px 10px;float:none;overflow:hidden;}
+
+#dr_weibo .layer-group-list li a:hover{display:block;background:#eee;text-decoration: none}
+
+#dr_weibo .layer-group-list li.line{background:none;border-bottom:#d7d7d7 dashed 1px;margin:5px 0;}
+
+#dr_weibo .layer-follow-list{border:#ccc solid 1px;background:#fff;position: absolute;}
+
+#dr_weibo .layer-follow-list .quike-add{border-top: 1px dashed #eee;display: block;margin: 0;padding: 0;position:relative}
+
+#dr_weibo .layer-follow-list .group-lists{padding:5px 0}
+
+#dr_weibo .layer-follow-list .group-lists input{_margin:0;}
+
+#dr_weibo .layer-follow-list .group-lists label{display: block;padding: 5px 10px;white-space: nowrap;_padding:3px 8px 3px 5px; cursor:pointer;}
+
+#dr_weibo .layer-follow-list .group-lists label:hover,#dr_weibo  .layer-follow-list .group-lists .hover{background:#eee}
+
+#dr_weibo .layer-follow-list-list li a{color: #666666;display: block;padding: 5px 10px;white-space: nowrap;}
+
+#dr_weibo .quike-add .row{padding:5px 10px;white-space:nowrap}
+
+#dr_weibo .quike-add .border{border-top:#eee dashed 1px;padding:5px}
+
+#dr_weibo .quike-add .btn-gray,#dr_weibo .quike-add .btn-green{height:24px;min-width:50px;_width:50px}
+
+#dr_weibo .quike-add .btn-gray span,#dr_weibo .quike-add .btn-green span{padding:4px}
+
+#dr_weibo .quike-add .s-txt{width:120px;padding:4px}
+
+#dr_weibo 
+#dr_weibo /*微博发布框表情*/
+#dr_weibo .acts .face,#dr_weibo  .acts .image,#dr_weibo  .acts .video,#dr_weibo  .acts .file,#dr_weibo  .acts .at,#dr_weibo  .acts .topic,#dr_weibo .contribute{background:url(icon.png) no-repeat 0 0;display:block;vertical-align:middle;_background:url(icon.gif) no-repeat 0 0;overflow:hidden;}
+
+#dr_weibo .acts .face-block .face{background-position:-31px -28px;_vertical-align:1px;}
+
+#dr_weibo .acts .image-block .image{background-position:-31px -61px;_vertical-align:1px;}
+
+#dr_weibo .acts .file-block .file{background-position:-31px -96px;_vertical-align:1px;}
+
+#dr_weibo .acts .video-block .video{background-position:-31px -244px;_vertical-align:1px;}
+
+#dr_weibo .acts .at-block .at{background-position:-31px -133px;_vertical-align:1px;}
+
+#dr_weibo .acts .topic-block .topic{background-position:-31px -170px;_vertical-align:1px;}
+
+#dr_weibo .contribute{background-position:-31px -207px;width:16px;height:16px;_vertical-align:1px;}
+
+#dr_weibo .acts a .ico-contribute-h{color:#038803;}
+
+#dr_weibo 
+#dr_weibo .acts .face-block:hover .face{background-position:0 -28px;}
+
+#dr_weibo .acts .image-block:hover .image{background-position:0 -61px;}
+
+#dr_weibo .acts .file-block:hover .file{background-position:0 -96px;}
+
+#dr_weibo .acts .video-block:hover .video{background-position:0 -244px;}
+
+#dr_weibo .acts .at-block:hover .at{background-position:0 -133px;}
+
+#dr_weibo .acts .topic-block:hover .topic{background-position:0 -170px;}
+
+#dr_weibo a:hover .contribute{background-position:0 -207px;}
+
+#dr_weibo .acts .image-block,#dr_weibo .acts .file-block{position:relative;}
+
+#dr_weibo .acts .face-block,#dr_weibo .acts .face-block:hover,#dr_weibo .acts .image-block,#dr_weibo .acts .image-block:hover,#dr_weibo  .acts .video-block,#dr_weibo .acts .video-block:hover,#dr_weibo  .acts .file-block,#dr_weibo .acts .file-block:hover,#dr_weibo  .acts .at-block,#dr_weibo .acts .at-block:hover,#dr_weibo  .acts .topic-block,#dr_weibo .acts .topic-block:hover,#dr_weibo .acts .contribute-block,#dr_weibo .acts .contribute-block:hover{overflow:hidden;display:inline-block;line-height:14px;margin:0 6px 0 0;color:#999;outline:none;_margin:0 3px 0 0;}
+
+#dr_weibo *+html .acts .face-block,#dr_weibo *+html .acts .face-block:hover,#dr_weibo *+html .acts .image-block,#dr_weibo *+html .acts .image-block:hover,#dr_weibo *+html .acts .video-block,#dr_weibo *+html .acts .video-block:hover,#dr_weibo *+html .acts .file-block,#dr_weibo *+html .acts .file-block:hover,#dr_weibo *+html .acts .at-block,#dr_weibo *+html .acts .at-block:hover,#dr_weibo *+html .acts .topic-block,#dr_weibo *+html .acts .topic-block:hover,#dr_weibo *+html .acts .contribute-block,#dr_weibo *+html .acts .contribute-block:hover{margin:0 2px 0 0;}
+
+#dr_weibo .acts .image-block input,#dr_weibo  .acts .file-block input{position:absolute;right:-5px;top:-5px;outline:none;font-size:16px;cursor:pointer;filter:alpha(opacity=0); /*IE*/-moz-opacity:0; /*MOZ ,#dr_weibo  FF*/opacity:0;*top:-5px;*right:5px}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo /*微博加载*/
+#dr_weibo .feed_lists .loading{/*background:#F5F6F7;border-top:#ebebeb solid 1px*/height:16px;line-height:16px;padding:6px 0;text-align:center;color:#999;}
+
+#dr_weibo .feed_lists .loading img{vertical-align:middle;margin:0 0 0 5px}
+
+#dr_weibo 
+#dr_weibo /*feed-lists*/
+#dr_weibo /*.feed_lists{overflow:hidden;zoom:1;}
+*/
+#dr_weibo .feed_lists .page{margin:0 20px}
+
+#dr_weibo .feed_lists .note{padding:10px;text-align:center;_height:600px;}
+
+#dr_weibo .feed_list .content .remark em,#dr_weibo .layer-content .remark em{color:#999;font-style:normal;}
+
+#dr_weibo .feed_list{cursor:default;border-bottom:#dfdfdf dotted 1px;margin:0;padding:15px 0 10px 0;zoom:1}
+
+#dr_weibo .feed_list:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+
+#dr_weibo .feed_list .face {float: left;width: 50px;}
+
+#dr_weibo .feed_list .face .icon-new{position:absolute;top:0;left:0;width:24px;height:10px;}
+
+#dr_weibo .feed_list .face img{vertical-align: top;width:50px;height:50px;}
+
+#dr_weibo .feed_list a.date{color:#bbb}
+
+#dr_weibo .feed_list .content{font-size: 14px;line-height: 22px;margin: 0 0 0 60px;}
+
+#dr_weibo .feed_list .content em,#dr_weibo .feed_list .comment .arrline{vertical-align:top;color:#e1e1e1;font-style:normal;}
+
+#dr_weibo .feed_list .content em img{vertical-align:middle;}
+
+#dr_weibo .feed_list .content p.hd{font-size:14px;padding:0 0 5px 0;vertical-align:top;}
+
+#dr_weibo .feed_list .content p.hd span img{vertical-align:middle;}
+
+#dr_weibo .remark a:link,#dr_weibo .remark a:visited{margin:0;color:#999;font-size:12px;}
+
+#dr_weibo .feed_list .content .hd a.name{margin:0;font-size:12px;font-weight:bold;}
+
+#dr_weibo .feed_list .content p.hd a.date {float:right;font-size: 12px;color:#bbb}
+
+#dr_weibo /*.feed_list .content .radius{font-size:12px;border-radius:2px;-moz-border-radius:2px;-webkit-border-radius:2px;background:#bbb;color:#fff;padding:2px 5px;margin:0 0 0 5px;padding:0 3px 3px\9;display: inline-block;line-height:16px;height:12px\9;_padding:3px 3px 1px;_height:12px;}
+*/
+#dr_weibo .feed_lists .load{width:auto;height:auto}
+
+#dr_weibo 
+#dr_weibo /*feed 问答*/
+#dr_weibo /*.feed_list .faq-bg{background:url(../image/feed-faq-bg.png) no-repeat right 20px #f9f9f9;position:relative}
+*/
+#dr_weibo .feed_list .faq-bg .from{padding:5px 0}
+
+#dr_weibo .feed_list .faq-bg .from em{padding:0 5px;color:#999}
+
+#dr_weibo .feed_list .faq-bg .face{width:20px;height:20px}
+
+#dr_weibo .feed_list .faq-bg .info{padding:5px 0 0}
+
+#dr_weibo .feed_list .faq-bg .question{padding:0 0 5px}
+
+#dr_weibo .feed_list .content .faq-bg dt{margin:10px 0 0}
+
+#dr_weibo 
+#dr_weibo /*微博评论*/
+#dr_weibo .feed_lists .repeat {background:#f9fafa;border:1px solid #eee;padding:20px;position:relative;font-size: 12px;margin: 15px 0 0 0;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;*zoom:1;}
+
+#dr_weibo .feed_list .action{margin:5px 0 0}
+
+#dr_weibo .feed_list .num{float:right;margin:-8px 0 0 0;line-height:14px;*margin:0;}
+
+#dr_weibo .feed_list .pading .action{padding:0}
+
+#dr_weibo .feed_list .action .btn-green{float:right}
+
+#dr_weibo .feed_list .action .faces{float:left;background:url(icon.png) no-repeat -32px 0;display:inline-block;width:16px;height:16px;margin:0 10px 0 0;cursor:pointer;_margin:0 5px 0 0}
+
+#dr_weibo .feed_list .repeat .arrow{margin:0 0 0 85px;position:absolute;height:8px;width:14px;top:-11px;right:7px;}
+
+#dr_weibo .feed_list .repeat .arrow-t{background-position:0 -138px;width:16px;height:11px;}
+
+#dr_weibo .feed_list .repeat .input{padding:8px 0 0}
+
+#dr_weibo .commoned_list{float:left;margin:-3px 0 0}
+
+#dr_weibo .commoned_list li{margin:0 0 5px;}
+
+#dr_weibo .feed_list .comment_list em{font-size:12px;color:#7b7b7b;font-style:normal;}
+
+#dr_weibo .feed_list .content .comment_list .cont em{vertical-align:middle;}
+
+#dr_weibo .comment_list{border-bottom:#eee solid 1px;clear: both;overflow: hidden;padding:8px 0;zoom:1;position:relative;}
+
+#dr_weibo .comment_list dt{float:left;width:30px;}
+
+#dr_weibo .comment_list dd{line-height:20px;margin:0 0 0 40px;word-wrap:break-word;word-break:break-all;}
+
+#dr_weibo .comment_list dd em{font-style:normal;}
+
+#dr_weibo .comment_list .floor{position:absolute;right:0;top:8px;color:#7b7b7b;_top:4px;line-height:20px;}
+
+#dr_weibo .comment_list dd .cont{margin:0 30px 0 0;}
+
+#dr_weibo .comment_list dd .info{*margin:0 -7px 0 0;}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo /*feed 转发*/
+#dr_weibo .feed_list .comment{font-size:12px;color:#333;background-color:#F9FAFA;margin:10px 0 5px 0;position:relative;padding:10px 15px;_position:static;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;border:#e1e1e1 solid 1px;}
+
+#dr_weibo .feed_list .comment .question strong,#dr_weibo  .feed_list .comment .answer strong{color:#bbb;display:inline;}
+
+#dr_weibo .feed_list .comment .ico-best{position:absolute;right:-1px;top:-1px;_top:8px;/* for Ie6 */}
+
+#dr_weibo *+html .feed_list .comment .ico-best{top:7px;/* for Ie7 */}
+
+#dr_weibo .feed_list .comment dt a.tit{font-weight:700}
+
+#dr_weibo .feed_list .comment dt .date{float:right}
+
+#dr_weibo .feed_list .comment dt.no_border{margin:0;padding:0 0 10px;line-height:15px;color:#ddd}
+
+#dr_weibo .feed_list .comment dt.no_border a{margin:0}
+
+#dr_weibo .feed_list .comment dd.info a.date{display:none}
+
+#dr_weibo .feed_list .comment dd.name{margin:0;height:auto;width:auto;}
+
+#dr_weibo 
+#dr_weibo .feed_list a.ico-details:link,#dr_weibo .feed_list a.ico-details:visited{color:#fff;}
+
+#dr_weibo /*.triangle-l{width:0;height:0;border-color:transparent #414448 transparent transparent;border-width:4px 4px 4px 0;border-style:solid;position:absolute;left:-3px;top:4px;line-height:0;font-size:0;_border-top-color:#fff;_border-bottom-color:#fff;_filter: chroma( color =#fff);_border-width:3px 3px 3px 0;}
+*/
+#dr_weibo .feed_list .comment .face{width:20px;height:20px;margin:0 10px 0 0}
+
+#dr_weibo .feed_list .comment .info a{color:#3366CC;font-size:12px;font-weight:bold;}
+
+#dr_weibo .feed_list .content p.info{font-size: 12px;color:#999;padding:5px 0 0;overflow:hidden;*zoom:1;}
+
+#dr_weibo .feed_list .content p.border{border:none 0;border-bottom:#ccc solid 1px;height:10px;overflow:hidden;margin:0 0 8px}
+
+#dr_weibo .feed_list .content p.border .arrow-t{margin:3px 0 0 85px;position:absolute;}
+
+#dr_weibo .feed_list .info a:link,#dr_weibo .feed_list .info a:visited,#dr_weibo  .feed_list .content .more{color:#99B2E5;font-weight:normal;}
+
+#dr_weibo .feed_list a.date{font-size:12px;margin:0 15px 0 0;}
+
+#dr_weibo .feed_list .content p.info span span{margin:0 10px 0 0;}
+
+#dr_weibo .feed_list .expand{padding:0;}
+
+#dr_weibo .feed_list .arrow{height: 11px;overflow:hidden;width: 25px;position:absolute;top:-10px;left:10px;}
+
+#dr_weibo .feed_list .type-bg{background:#fff;border-radius:2px;-moz-border-radius:2px;-webkit-border-radius:2px;padding:0 3px;}
+
+#dr_weibo .feed_list .bgcolor_arrow{color:#F2F2F2;}
+
+#dr_weibo .feed_list em.arrline,#dr_weibo .feed_list .comment span.downline{display: block;font-family: "SimSun";font-size: 21px;height: 10px;overflow: hidden;_display:none;}
+
+#dr_weibo /*.feed_list .comment span{margin:-9px 0 0;}
+*/
+#dr_weibo .feed_list .comment span.downline{color:#F9FAFA;margin:-9px 0 0;}
+
+#dr_weibo 
+#dr_weibo /*赞*/
+#dr_weibo .praise-list{background:#fff;width:200px;border:1px solid #dfdfdf;padding:10px 0 0 10px;margin:5px 0 0 0;position:relative;left:380px;}
+
+#dr_weibo .praise-list .arrow-t{top:-8px;left:55px;}
+
+#dr_weibo .praise-list li{float:left;margin:0 10px 10px 0;position:relative;}
+
+#dr_weibo .praise-detail-list{background:#fff;border:1px solid #dfdfdf;padding:20px 0 0 0;margin:5px 0 0 0;position:relative;left:0;}
+
+#dr_weibo .praise-detail-list .arrow-t{top:-8px;left:490px;}
+
+#dr_weibo .praise-detail-list ul{overflow:hidden;*zoom:1;}
+
+#dr_weibo .praise-detail-list li{float:left;margin:0 0 15px 15px;position:relative;}
+
+#dr_weibo .praise-list .ico-close1,#dr_weibo .praise-detail-list .ico-close1{position:absolute;top:2px;right:2px;}
+
+#dr_weibo .praise-page{margin:0 15px 15px 0;text-align:right;}
+
+#dr_weibo 
+#dr_weibo /*feed 通讯录*/
+#dr_weibo .feed_list .mod-card{border:#EAEAEA solid 1px;padding:10px;background:url(card-bg.png) repeat top left;margin:5px 0}
+
+#dr_weibo .feed_list .mod-card dl{border:none 0;padding:0;margin:0;}
+
+#dr_weibo .feed_list .mod-card dt{margin:0 10px 0 0}
+
+#dr_weibo .feed_list .mod-card dd.info{margin:0 0 0 60px;line-height:18px;font-size:12px;}
+
+#dr_weibo .feed_list .mod-card dd.info p{padding:0 0 5px}
+
+#dr_weibo .feed_list .mod-card dd.info p.name{font-size:18px;color:#333}
+
+#dr_weibo .feed_list .mod-card dd.info p em{color:#333}
+
+#dr_weibo .feed_list .mod-card .ico-card{float:right}
+
+#dr_weibo .feed_list .mod-card .info a{float:none}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo 
+#dr_weibo /*图片列表*/
+#dr_weibo .feed_img_lists{padding:5px 0 0 0;overflow:hidden;*zoom:1}
+
+#dr_weibo .feed_img_lists img{vertical-align:top;}
+
+#dr_weibo .feed_img_lists li{position:relative;float:left;}
+
+#dr_weibo .feed_img_lists li a{display:inline-block;}
+
+#dr_weibo .feed_img_lists .small li{padding:1px;border:#eee solid 1px;background:#fff;position:static;font-size:0;margin:0 10px 0 0;}
+
+#dr_weibo .feed_img_lists .small{overflow:hidden;*zoom:1;}
+
+#dr_weibo 
+#dr_weibo .feed_img_lists .small li:hover{border:#ddd solid 1px}
+
+#dr_weibo .feed_img_lists .tools{padding:0 0 5px}
+
+#dr_weibo .feed_img_lists .small{overflow: hidden;*zoom:1}
+
+#dr_weibo .feed_img_lists .tools a,#dr_weibo .feed_img_lists .tools a:hover{font-size:12px;margin:0 5px 0 0;cursor:pointer;}
+
+#dr_weibo .feed_img_lists .small li a{width:100px;height:100px;overflow:hidden;vertical-align:middle;display:table-cell;border:none 0;padding:0;background:#fff;filter:alpha(opacity=100); /*IE*/-moz-opacity:1; /*MOZ ,#dr_weibo  FF*/opacity:1;}
+
+#dr_weibo .feed_img_lists .big{border:#f0f0f0 solid 1px;padding:6px 15px 15px 15px;background:#f9fafa;border-radius:3px;color:#ddd;}
+
+#dr_weibo .feed_img_lists .big li{margin:3px 0;position:relative;float:none;}
+
+#dr_weibo *+html .feed_img_lists .big li{padding:3px 0;}
+
+#dr_weibo .feed_img_lists .big li a{border:none 0;padding:0;margin:0;display:block;}
+
+#dr_weibo .feed_img_lists .big li a .imgsmall{max-width:557px;_width:expression(documentElement.clientWidth > 557 ? "557px" : (documentElement.clientWidth < 1? "1px" : "auto"));}
+
+#dr_weibo .feed_list .comment .feed_img_lists .big{border:none 0;border-radius:0;padding:0;color:#ddd;}
+
+#dr_weibo .feed_img_lists .big .img-ope{position:absolute;top:0;left:0;}
+
+#dr_weibo .feed_img_lists .big .img-ope a{font-size:12px;display:inline-block;margin:0 5px 0 0;cursor:pointer;}
+
+#dr_weibo 
+#dr_weibo 
+#dr_weibo .feed_img_lists .imgicon{cursor:url(cursor_zoom.cur),#dr_weibo  auto}
+
+#dr_weibo .feed_img_lists .imgSmall{cursor:url(cursor_minify.cur),#dr_weibo  auto}
+
+#dr_weibo .feed_img_lists a:hover .imgicon{cursor:url("big.cur"),#dr_weibo  auto}
+
+#dr_weibo .feed_img_lists a:hover .imgsmall{cursor:url("small.cur"),#dr_weibo auto}
+
+#dr_weibo .feed_quote {
+margin: 7px 5px 10px 0;
+position: relative;
+#dr_weibo }
+
+#dr_weibo .feed_quote .q_con .ico-show-all{width:14px;height:14px;padding:0 5px 0 0;vertical-align:middle;}
+
+#dr_weibo .q_con {
+background-color: #FBFBFB;
+border: 1px solid #E4E4E4;
+border-radius: 3px 3px 3px 3px;
+line-height: 1.7em;
+overflow: hidden;
+padding: 12px;
+#dr_weibo }
+
+#dr_weibo .q_tit {
+background-position: right 0;
+display: none;
+height: 5px;
+overflow: hidden;
+#dr_weibo }
+
+#dr_weibo .feed_img {
+position: relative;
+#dr_weibo }
+
+#dr_weibo .feed_img .video_play {
+left: 65px;
+margin: -15px 0 0 -15px;
+opacity: 0.5;
+position: absolute;
+top: 53px;
+#dr_weibo }
+
+#dr_weibo .ico_cls {
+background-position: -121px -4px;
+height: 9px;
+margin-right: 3px;
+width: 7px;
+#dr_weibo }
+
+#dr_weibo .ico_original {
+background-position: -132px -4px;
+height: 9px;
+margin-right: 3px;
+width: 9px;
+#dr_weibo }
+
+#dr_weibo .cGray2,#dr_weibo  .cGray2:visited,#dr_weibo  a.cGray2 {
+color: #999999;
+#dr_weibo }
+
+#dr_weibo 
+#dr_weibo /*文件列表*/
+#dr_weibo .feed_file_list{margin:5px 0 0 0;border:#EAEAEA solid 1px;border-top:none 0;padding:0;background:#fff;overflow:hidden;*zoom:1}
+
+#dr_weibo .feed_file_list li{font-size:12px;line-height:18px;padding:6px 5px;border-top:#eaeaea solid 1px;
+transition: all .5s ease;
+-moz-transition: all .5s ease;
+-o-transition: all .5s ease;
+-webkit-transition: translate .5s ease;
+overflow:hidden;*zoom:1}
+
+#dr_weibo .feed_file_list li a{font-size:12px}
+
+#dr_weibo .feed_file_list li:hover{background:#f9fafa;cursor:pointer}
+
+#dr_weibo .feed_file_list li .current{
+visibility: hidden\0;
+transition: all .5s ease;
+-moz-transition: all .5s ease;
+-o-transition: all .5s ease;
+-webkit-transition: translate .5s ease;
+transform:translate(0px,#dr_weibo -36px);
+-moz-transform:translate(0px,#dr_weibo -36px);
+-webkit-transform:translate(0px,#dr_weibo -36px);
+-o-transform:translate(0px,#dr_weibo -36px);
+#dr_weibo }
+
+#dr_weibo .feed_file_list li:hover .current{
+visibility: visible\0;
+transform:translate(0px,#dr_weibo 0px);
+-moz-transform:translate(0px,#dr_weibo 0px);
+-webkit-transform:translate(0px,#dr_weibo 0px);
+-o-transform:translate(0px,#dr_weibo 0px);
+#dr_weibo }
+
+#dr_weibo .feed_file_list span.tips{color:#999}
+
+#dr_weibo 
+#dr_weibo /*微博发布框*/
+#dr_weibo .send_weibo{margin:0 0 15px;}
+
+#dr_weibo .send_weibo .title{font-size:12px;font-weight:normal; color:#535353;}
+
+#dr_weibo .send_weibo .title span{}
+
+#dr_weibo .send_weibo .title a,#dr_weibo .send_weibo .title a:hover{font-size: 14px;color:#666; font-weight:bold;display:inline-block; height:30px; line-height:30px;}
+
+#dr_weibo .send_weibo .title a.on,#dr_weibo .send_weibo .title a.on:hover{ color:#004499; font-weight:bold; background:url(s_tab_on.gif) no-repeat center bottom;}
+
+#dr_weibo .send_weibo ul,#dr_weibo  .send_weibo li {
+list-style: none;
+margin: 0;
+padding: 0;
+#dr_weibo }
+
+#dr_weibo .send_weibo .title .num{font-size:12px;color:#ccc;font-weight:normal;}
+
+#dr_weibo .send_weibo .title .num span{ font-family: Constantia,#dr_weibo Georgia;font-size: 22px;font-weight: 700;margin: 0 5px;color:#004499;}
+
+#dr_weibo .send_weibo .input{position:relative;z-index:9;}
+
+#dr_weibo .send_weibo .s-txt{border: 1px solid #ddd;color: #999;height: 30px;line-height: 30px;padding: 0 4px;width: 98.3%;_width:96.0%}
+
+#dr_weibo .send_weibo .input .input_before .ico-close{position:absolute;right:5px;top:5px}
+
+#dr_weibo .send_weibo .input .input_before .s-textarea{border:none;width:504px;height:64px;overflow-y:auto;outline:none;_width:497px}
+
+#dr_weibo .send_weibo .input .action{position:relative;*zoom:1}
+
+#dr_weibo .send_weibo .input .btn-disable,#dr_weibo  .send_weibo .input .btn-send,#dr_weibo .send_weibo .input .btn-gray,#dr_weibo  .send_weibo .input .release{float: right;}
+
+#dr_weibo .send_weibo .input .release{width:auto;font-size:12px;}
+
+#dr_weibo .send_weibo .input-content{overflow:hidden;*zoom:1;}
+
+#dr_weibo .input-content .image-list{margin:10px 0 0 0;overflow: hidden;border-left:#eee solid 1px;*zoom:1;}
+
+#dr_weibo .input-content .image-list li{background:#fff;border: 1px solid #eee;border-left:none 0;float: left;text-align: center;width: 126px;padding:13px 0 5px;_width:125px}
+
+#dr_weibo .image-list .loading{padding:0}
+
+#dr_weibo .image-list li .loads{width: 126px;height:102px;position:relative}
+
+#dr_weibo .image-list li .loads img{position:absolute;left:55px;top:50px}
+
+#dr_weibo .send_weibo .input-content .image-list li a{display:block;}
+
+#dr_weibo .send_weibo .input-content .image-list .pic{display:table-cell;vertical-align:middle;width:126px;height:100px;text-align:center;overflow:hidden;}
+
+#dr_weibo .send_weibo .input-content .image-list .name{padding:5px}
+
+#dr_weibo .weibo-file-list{margin:10px 0 0;border:1px solid #DDD;border-top:none 0;overflow:hidden;*zoom:1;}
+
+#dr_weibo .weibo-file-list li{background:#fff;border-top:#ddd solid 1px;line-height:16px;padding:5px;position:relative;_padding:3px 5px;}
+
+#dr_weibo .weibo-file-list li:hover{background:#F3F3F3;cursor:pointer}
+
+#dr_weibo .weibo-file-list .ico-close{position:absolute;top:5px;right:10px}
+
+#dr_weibo .weibo-file-list span{padding:0 5px;color:#999}
+
+#dr_weibo .weibo-file-list .loads,#dr_weibo  .weibo-file-list .tips{display:inline}
+
+#dr_weibo .weibo-file-list .loads img{vertical-align:middle}
+
+#dr_weibo .send_weibo .acts .tips-img{position:absolute;top:-25px;left:0}
+
+#dr_weibo .send_weibo .acts .tips-img dt{text-align:center;height:10px;overflow:hidden;}
+
+#dr_weibo .send_weibo .acts .tips-img dd .arrow-open{position:absolute;top:22px;*top:20px;left:50%;border-color:#000 transparent transparent ;border-width:5px 5px 0;margin:0;text-align:center;}
+
+#dr_weibo .send_weibo .acts .tips-img dd{text-align:center;position:relative;height:16px;line-height:16px;color:#fff;background:#000;padding:3px 10px;filter:alpha(opacity=80); /*IE*/-moz-opacity:0.8; /*MOZ ,#dr_weibo  FF*/opacity:0.8; /*CSS3,#dr_weibo  FF1.5*/_display:inline;}
+
+#dr_weibo .send_weibo  img.load{width:auto;height:auto}
+
+
+#dr_weibo .weibo-contribute{border:1px solid #ddd;padding:10px;margin:10px 0 0 0;}
+
+#dr_weibo .weibo-contribute span{margin:0 10px 0 0;}
+
+
+#dr_weibo .box-purview{border:#eee solid 1px;padding:20px;margin:10px 20px;text-align:center;background:#f8f8f8}
+
+#dr_weibo .layer-content .send_weibo .box-purview{margin:0;}
+
+
+#dr_weibo .input_after{height:100px;border:#ddd solid 1px;*zoom:1}
+
+#dr_weibo .input_tips{width:100%;height:80px;display:block;overflow-y:auto;padding:5px;font-size:14px;line-height:18px;cursor:text;outline:none;border:#ddd solid 1px;background:#fff;box-shadow:1px 1px 3px #dcdcdc inset;-moz-box-shadow:1px 1px 3px #dcdcdc inset;-khtml-box-shadow:1px 1px 3px #dcdcdc inset;}
+
+#dr_weibo .feed_list .input_tips{width:98%;height:52px;_width:97.8%;}
+
+#dr_weibo .openbox .feed_list .input_tips{width:98.7%;height:52px;}
+
+#dr_weibo .input_tips h4{color:#ddd;height:22px;line-height:22px;padding:0 8px;font-size:12px;cursor:text}
+
+#dr_weibo .fb{background:#ffbbbb}
+
+#dr_weibo .send_weibo .release{width:130px;height:30px;}
+
+#dr_weibo .send_weibo .synchro{margin:0 15px 0 0;color:#999;cursor:pointer;line-height:30px;}
+
+#dr_weibo .send_weibo .synchro .arrow-line-down{margin:0 0 0 3px;}
+
+#dr_weibo .send_weibo .acts{height:16px;position: relative;float:left;padding:5px 0 0 0;}
+
+#dr_weibo .acts .face,#dr_weibo  .acts .image,#dr_weibo  .acts .video,#dr_weibo  .acts .file,#dr_weibo  .acts .at,#dr_weibo  .acts .topic,#dr_weibo .contribute{width:16px;height:16px;display:inline-block;cursor:pointer;margin:0 3px 0 0;padding:0;margin-top: -2px;}
+
+
+#dr_weibo .send_weibo .talkPop{margin: -10px 0 0 0; top:40px;z-index: 1001; display:none}
+
+
+#dr_weibo .feed_list .content .hover{font-style:normal;visibility:hidden;_visibility:visible}
+
+#dr_weibo .feed_list .content:hover .hover{cursor:pointer;visibility:visible;_visibility:visible;}
+
+#dr_weibo *+html .feed_list:hover .content .right{visibility:visible;}
+
+#dr_weibo .big-comment-lists dl.big-comment-list{padding:20px 0;border-bottom:1px solid #eee;overflow:hidden;*zoom:1}
+
+#dr_weibo .big-comment-lists dl.big-comment-list .hover{font-style:normal;visibility:hidden;_visibility:visible}
+
+#dr_weibo .big-comment-lists dl.big-comment-list:hover .hover{visibility:visible}
+
+#dr_weibo .big-comment-list .face{float:left;width:50px;margin:0 10px 0 0}
+
+#dr_weibo .big-comment-list .comment{margin:0 0 0 60px;line-height:21px}
+
+#dr_weibo .big-comment-list .comment .hd{padding:0 0 5px 0;font-size:14px;}
+
+#dr_weibo .big-comment-list .comment .info{padding:5px 0 0 0;}
+
+#dr_weibo .big-comment-list .detail a.name{color:#36c}
+
+#dr_weibo .date{color:#999;font-size:12px}
+
+#dr_weibo .big-comment-list .info{color:#999}
+
+#dr_weibo .big-comment-list .info a:link,#dr_weibo .big-comment-list .info a:visited{color:#5F93D3}
+
+#dr_weibo .big-comment-list .repeat {position:relative;font-size: 12px;margin: 10px 0 7px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;*zoom:1}
+
+#dr_weibo .big-comment-list .action{padding:10px 0 0}
+
+#dr_weibo .big-comment-list .action .btn-green{float:right}
+
+#dr_weibo .big-comment-list .action .faces{float:left;background:url(icon.png) no-repeat 0 0;display:inline-block;width:16px;height:16px;margin:0 10px 0 0;cursor:pointer}
+
+#dr_weibo .big-comment-list .repeat .arrow{position:absolute;height:8px;width:14px;top:-7px;right:5px}
+
+#dr_weibo .big-comment-list .repeat .arrow-t{background-position:0 -58px}
+
+#dr_weibo .big-comment-list .repeat .input{}
+
+#dr_weibo .big-comment-list .repeat .input textarea{border:#DCDCDC solid 1px;border-top-color:#B5B5B5;width:444px;height:20px;padding:4px 4px 0;overflow:hidden;_width:441px}
+
+#dr_weibo .big-comment-list .repeat .commoned_list{float:left;margin:-3px 0 0}
+
+
+#dr_weibo .feed_list_hover{border:none 0;margin:0;padding:0}
+
+#dr_weibo .feed_list_hover .content{margin:0}
+
+#dr_weibo .feed_comment{padding:0;border:none}
+
+#dr_weibo .feed_comment .page{margin:0}
+
+#dr_weibo .feed_comment .content{margin:0}
+
+
+#dr_weibo .feed_comment .repeat{margin:0 0 7px}
+
+#dr_weibo .feed_comment .comment_lists{margin:10px 0 0}
+
+#dr_weibo .main-right .feed_comment .repeat .input textarea{width:686px;height:60px}
+
+#dr_weibo .feed-share{padding:0 20px 20px;border:none 0}
+
+#dr_weibo .feed-share .input .choose-user .s-txt,#dr_weibo  .feed-share .input .choose-user .s-txt-focus{width:686px;margin:0}
+
+#dr_weibo .feed-share .repeat{margin:0}
+
+#dr_weibo .main-right .feed-share .repeat .input textarea{width:686px;height:60px;margin:10px 0 0}
+
+#dr_weibo .mod-feed-tab{overflow: hidden;*zoom:1}
+
+#dr_weibo .mod-feed-tab .inner-feed-nav{float:left}
+
+#dr_weibo .mod-feed-tab .inner-feed-nav li{float: left;}
+
+#dr_weibo .mod-feed-tab .inner-feed-nav li a,#dr_weibo .mod-feed-tab .inner-feed-nav li a:hover{display:inline-block;height:14px;line-height:14px;padding: 5px 10px;color: #666;white-space:nowrap;word-break:break-all;_float:left;_padding:7px 10px 3px;}
+
+#dr_weibo .mod-feed-tab .inner-feed-nav .current a{background:#d9d9d9;color:#666;}
+
+#dr_weibo .mod-feed-tab .inner-feed-nav .vline{padding:5px 3px;margin:0;color:#999}
+
+#dr_weibo .feed-search{width:150px;position:relative;border:1px solid #dbdbdb;height:26px;}
+
+#dr_weibo .feed-search .ico-search{position:absolute;top:5px;right:5px;}
+
+#dr_weibo .feed-search .s-txt{border:none;width:118px;height:16px;margin:0;padding:5px}
+
+
+#dr_weibo .feed-nav{position: relative}
+
+#dr_weibo .feed-nav .feed-group{float:right;padding:5px 0 0;position: relative;}
+
+#dr_weibo .feed-nav .feed-group .arrow-set-t{margin:0 0 0 5px;vertical-align: -2px;}
+
+#dr_weibo .feed-nav .feed-group .arrow-nav-b,#dr_weibo  .feed-nav .feed-group .arrow-nav-t{cursor:pointer;}
+
+#dr_weibo .feed-nav .set-hd{margin:0 0 5px 0;}
+
+#dr_weibo .form-avatar p{padding:5px 0 0}
+
+#dr_weibo .form-avatar{margin:30px 0 0 75px;padding:15px 20px;*zoom:1}
+
+#dr_weibo .form-avatar dd{padding:0 0 15px;position:relative;overflow:hidden;*zoom:1}
+
+#dr_weibo .form-avatar dd:after{clear: both;content: ".";display: block;height: 0;visibility: hidden}
+
+#dr_weibo .form-avatar dd.actionBtn{height:40px}
+
+#dr_weibo .form-avatar .input-row{margin:0 0 0 80px;position:relative}
+
+#dr_weibo .form-avatar .input-row textarea{border:#DCDCDC solid 1px;border-top-color:#B5B5B5;width:300px;height:120px;padding:4px 4px 0;overflow:hidden}
+
+#dr_weibo .form-avatar .s-txt,#dr_weibo  .form-avatar .s-txt-focus{width:300px; margin:0 5px 0 0;vertical-align:middle;*margin-left:-20px}
+
+#dr_weibo .form-avatar .mod-avatar{position:relative}
+
+#dr_weibo .form-avatar .mod-avatar div.cut-1,#dr_weibo .form-avatar .mod-avatar div.cut-2,#dr_weibo .form-avatar .mod-avatar div.cut-3{display:block;float:left;text-align:center}
+
+#dr_weibo .form-avatar .mod-avatar div.cut-1{width:200px; padding:0 0px 0 0}
+
+#dr_weibo .form-avatar .mod-avatar div.cut-2{width:100px; padding:100px 0 0 20px}
+
+#dr_weibo .form-avatar .mod-avatar div.cut-3{width:50px; padding:150px 0 0 20px}
+
+#dr_weibo .form-row .tag-lists{margin:0;padding:0;}
+
+#dr_weibo .tag-lists{padding:0 0 10px;overflow:hidden;zoom:1}
+
+#dr_weibo .tag-lists a{white-space:nowrap;display:inline-block;}
+
+
+#dr_weibo .tag-lists .ico-close{display:inline-block;background-position:0 -26px;*vertical-align:3px;}
+
+#dr_weibo .form-row .tag-lists li{float:left;margin:0 5px 5px 0;cursor:pointer;display:inline-block;white-space:nowrap;*padding:0 0 5px 0;*margin:0 5px 1px 0;height:24px;overflow:hidden;}
+
+
+#dr_weibo .setupTag_list01 {clear: both;margin-top: 6px;overflow: hidden}
+
+#dr_weibo .setupTag_list01 a{display: inline-block;line-height: 20px;padding: 2px 5px;color:#36c}
+
+#dr_weibo .setupTag_list01 a em {font-style:normal;color: #ddd;font-family: Arial;font-weight:700;font-size: 17px;margin-right: 2px;vertical-align: -2px}
+
+#dr_weibo .setupTag_list01 a:hover {background-color: #9EC97F;color: #fff;text-decoration: none}
+
+#dr_weibo .setupTag_list01 a:hover em {color: #fff;cursor: pointer;font-size: 17px;font-weight: bold}
+
+#dr_weibo .wrap-layer .content-layer textarea{color:#535353;}
+
+#dr_weibo .wrap-layer .content-layer .pop .form-tt{width:40px;display:block;float:left}
+
+#dr_weibo .wrap-layer .content-layer .pop .form-row{margin:0 0 0 40px}
+
+#dr_weibo .wrap-layer .content-layer .pop dd{padding:0 0 10px }
+
+#dr_weibo .wrap-layer .content-layer .pop dd:after{clear: both;content: ".";display: block;height: 0;visibility: hidden}
+
+#dr_weibo .wrap-layer .content-layer .pop .s-txt,#dr_weibo  .wrap-layer .content-layer .pop .s-txt-focus{vertical-align:middle}
+
+#dr_weibo .wrap-layer .content-layer .pop .double{margin-top:10px;_margin-left:43px}
+
+#dr_weibo .wrap-layer .content-layer .pop .ico-add{margin:0 5px}
+
+#dr_weibo .layer-invite .s-txt{width:182px;}
+
+#dr_weibo .layer-invite textarea{width:414px;height:60px;_width:410px}
+
+#dr_weibo .layer-invite .btn-green{margin:0 0 0 40px}
+
+#dr_weibo .wrap-layer .content-layer .layer-letter .form-tt{width:60px;display:block;float:left}
+
+#dr_weibo .wrap-layer .content-layer .layer-letter .form-row{margin:0 0 0 60px}
+
+#dr_weibo .layer-letter textarea{width:394px;height:60px;_width:390px}
+
+#dr_weibo .layer-letter .s-txt{width:392px;}
+
+#dr_weibo .layer-letter .btn-green{margin-left:60px}
+
+
+#dr_weibo .layer-forward .forward-content{background:#fafafa;padding:6px 10px;margin:0 0 5px}
+
+#dr_weibo .layer-forward .feed-repeat{line-height:20px}
+
+#dr_weibo .layer-forward .feed-repeat .action .faces{float:left;background:url(icon.png) no-repeat 0 0;display:inline-block;width:16px;height:16px;margin:0 10px 0 0;cursor:pointer}
+
+#dr_weibo .layer-forward .feed-repeat .input {position: relative}
+
+#dr_weibo .layer-forward .feed-repeat .input .action{margin:10px 0 0;*zoom:1}
+
+#dr_weibo .layer-forward .feed-repeat .input .commoned_list{float:left}
+
+#dr_weibo .layer-forward .feed-repeat textarea{width:455px;height:60px;margin:10px 0 0}
+
+#dr_weibo .layer-forward .feed-repeat .num {color: #B8B7B7;float: right;margin-top: -5px;position: relative;text-align: right}
+
+#dr_weibo .layer-forward .feed-repeat .num span {font-family: Constantia,#dr_weibo Georgia;font-size: 22px;font-weight: 700;margin: 0 5px}
+
+#dr_weibo .layer-prompt{padding:15px;text-align:center}
+
+#dr_weibo .layer-prompt p{padding:10px 0;font-size:14px}
+
+#dr_weibo .layer-prompt a{margin:0 5px;font-size:12px}
+
+#dr_weibo .layer-prompt-moment{padding:10px 15px;text-align:center;color:#535353}
+
+#dr_weibo .wrap-layer .content-layer-moment{width:150px}
+
+
+#dr_weibo .layer-follow{width:400px;padding:15px;overflow:hidden;*zoom:1;*width:402px;}
+
+#dr_weibo .layer-follow .actionBtn{height:50px}
+
+#dr_weibo .layer-follow .tit{padding:0 0 10px;line-height:18px;}
+
+#dr_weibo .layer-follow .tit strong{padding:0 5px}
+
+#dr_weibo .layer-follow .group-name{color:#535353}
+
+#dr_weibo .layer-follow .group-name ul{overflow:hidden;*zoom:1}
+
+#dr_weibo .layer-follow .group-name li{padding:5px;margin:0 0 5px;line-height:18px;display:block;vertical-align:top;border:#ccc dotted 1px;cursor:pointer;}
+
+#dr_weibo .layer-follow .group-name li:hover{background:#f1f1f1;}
+
+#dr_weibo .layer-follow .group-name .cursor{cursor:pointer}
+
+#dr_weibo .layer-follow .group-name li .hover{visibility: hidden;_visibility: visible}
+
+#dr_weibo .layer-follow .group-name li:hover .hover{visibility: visible;}
+
+#dr_weibo .layer-follow .group-name .s-txt,#dr_weibo  .layer-follow .group-name .s-txt-focus{padding:3px}
+
+#dr_weibo .layer-follow .group-name .btn-green,#dr_weibo  .layer-follow .group-name .btn-gray{height:22px;padding:0}
+
+#dr_weibo .layer-follow .group-name .btn-green span,#dr_weibo  .layer-follow .group-name .btn-gray span{padding:3px 10px;_padding:5px 10px 1px;}
+
+#dr_weibo .layer-follow .actionBtn{height:30px}
+
+#dr_weibo .wrap-layer .content-layer .layer-follow .tit .s-txt{width:340px;}
+
+#dr_weibo .wrap-layer .content-layer .layer-follow .tit .s-txt-focus{width:380px;margin:0 0 0 5px}
+
+#dr_weibo #createFollowGroup .s-txt,#dr_weibo  #createFollowGroup .s-txt-focus{width:250px;}
+
+#dr_weibo .layer-follow .new-add{background:#fafafa;padding:10px;color:#535353}
+
+#dr_weibo .tab-menu .layer-group-list ul li{float:none;margin:0;height:auto}
+
+#dr_weibo .tab-menu .open .layer-group-list{display:block}
+
+#dr_weibo .layer-group-list{display:none}
+
+#dr_weibo .layer-group-list{position:absolute;left:0;top:32px;z-index:99;-}
+
+#dr_weibo .layer-group-list .inner{background:#fff;width:93px;border:#ccc solid 1px;border-top:none;margin:-2px 0 0;overflow:hidden;zoom:1;position:relative;z-index:99;}
+
+#dr_weibo .layer-group-list ul{position:relative;z-index:99;zoom:1}
+
+#dr_weibo .layer-group-list ul li{overflow:hidden;zoom:1;width:93px;}
+
+#dr_weibo .layer-group-list li a:link,#dr_weibo .layer-group-list li a:visited{color: #333;display:block;line-height:17px;padding: 6px 10px;float:none;overflow:hidden;}
+
+#dr_weibo .layer-group-list li a:hover{display:block;background:#eee;text-decoration: none}
+
+#dr_weibo .layer-group-list li.line{background:none;border-bottom:#d7d7d7 dashed 1px;margin:5px 0;}
+
+#dr_weibo .layer-follow-list{border:#ccc solid 1px;background:#fff;position: absolute;/*-webkit-box-shadow:0 2px 8px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .35);-moz-box-shadow:0 2px 8px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .35);-khtml-box-shadow:0 2px 8px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .35);-ms-box-shadow:0 2px 8px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .35);box-shadow:0 2px 8px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .35);*/}
+
+#dr_weibo .layer-follow-list .quike-add{border-top: 1px dashed #eee;display: block;margin: 0;padding: 0;position:relative}
+
+#dr_weibo .layer-follow-list .group-lists{padding:5px 0}
+
+#dr_weibo .layer-follow-list .group-lists input{_margin:0;}
+
+#dr_weibo .layer-follow-list .group-lists label{display: block;padding: 5px 10px;white-space: nowrap;_padding:3px 8px 3px 5px;}
+
+#dr_weibo .layer-follow-list .group-lists label:hover,#dr_weibo  .layer-follow-list .group-lists .hover{background:#eee}
+
+#dr_weibo .layer-follow-list-list li a{color: #666666;display: block;padding: 5px 10px;white-space: nowrap;}
+
+#dr_weibo .quike-add .row{padding:5px 10px;white-space:nowrap}
+
+#dr_weibo .quike-add .border{border-top:#eee dashed 1px;padding:5px}
+
+#dr_weibo .quike-add .btn-gray,#dr_weibo .quike-add .btn-green{height:24px;min-width:50px;_width:50px}
+
+#dr_weibo .quike-add .btn-gray span,#dr_weibo .quike-add .btn-green span{padding:4px}
+
+#dr_weibo .quike-add .s-txt{width:120px;padding:4px}
+
+#dr_weibo .tab-menu .layer-group-list li.line{ border-bottom: 1px solid #eee;display: block;height: 12px;margin: 0;padding: 0;position: relative;top: -5px;}
+
+#dr_weibo .tab-menu .layer-channel-group-list ul li{float:none;margin:0;height:auto}
+
+#dr_weibo .tab-menu .open .layer-channel-group-list{display:block}
+
+#dr_weibo .layer-channel-group-list{display:none}
+
+#dr_weibo .layer-channel-group-list{position:absolute;left:0;top:32px;z-index:99;-}
+
+#dr_weibo .layer-channel-group-list .inner{background:#fff;width:119px;border:#ccc solid 1px;border-top:none;margin:-2px 0 0;overflow:hidden;zoom:1;position:relative;z-index:99;}
+
+#dr_weibo .layer-channel-group-list ul{position:relative;z-index:99;zoom:1}
+
+#dr_weibo .layer-channel-group-list ul li{overflow:hidden;zoom:1;width:119px;}
+
+#dr_weibo .layer-channel-group-list li a:link,#dr_weibo .layer-channel-group-list li a:visited{color: #333;display:block;line-height:17px;padding: 6px 10px;float:none;overflow:hidden;}
+
+#dr_weibo .layer-channel-group-list li a:hover{display:block;background:#eee;text-decoration: none}
+
+#dr_weibo .layer-channel-group-list li.line{border-bottom:#d7d7d7 dashed 1px;margin:5px 0;}
+
+
+#dr_weibo .tab-menu .layer-channel-group-list li.line{ border-bottom: 1px solid #eee;display: block;height: 12px;margin: 0;padding: 0;top: -5px;}
+
+
+#dr_weibo .pop-create-group{padding:15px;width:320px}
+
+#dr_weibo .pop-create-group .c104{color:#FF0000;}
+
+#dr_weibo .pop-create-group dt{font-weight:bold;}
+
+#dr_weibo .pop-create-group dt,#dr_weibo  .pop-create-group dd{padding:10px 0;}
+
+#dr_weibo .pop-create-group dd{text-align:center}
+
+#dr_weibo .pop-create-group dt.txt{text-align:center;font-weight:normal;color:#999;}
+
+#dr_weibo .pop-create-group .s-txt,#dr_weibo  .pop-create-group .s-txt-focus{width:240px;margin:0;vertical-align:middle}
+
+
+#dr_weibo .user-list dt{background:#F2F2F2;border-bottom:#e2e2e2 solid 1px;height:18px;line-height:18px;padding:5px 10px;font-weight:700;color:#535353}
+
+#dr_weibo .user-list dt span{color:#999;font-weight:300}
+
+#dr_weibo .user-list dt em{color:#f60;font-weight:700;padding:0 3px}
+
+#dr_weibo .user-list ul{zoom:1}
+
+#dr_weibo .user-list li{position:relative;background:#F9F9F9;border-bottom:#e2e2e2 solid 1px;border-top:#fff solid 1px;width:390px;height:18px;line-height:20px;padding:5px 10px;font-weight:700;color:#999;overflow: hidden;*zoom:1;_position:inherit}
+
+#dr_weibo .user-list li span{font-weight:300;color:#999;padding:0 10px}
+
+#dr_weibo .user-list li a.ico-close{position:static;}
+
+#dr_weibo .user-list li .content{white-space:nowrap;margin:0 30px 0 0;overflow: hidden;text-overflow:ellipsis;*width:300px;}
+
+#dr_weibo .choose-user span{display:inline-block;padding:5px 0 0}
+
+#dr_weibo .input .user-choose-list dt{background:#F2F2F2;border-bottom:#e2e2e2 solid 1px;height:18px;line-height:18px;padding:5px 10px;font-weight:700;color:#535353}
+
+#dr_weibo .input .user-choose-list dt span{color:#999;font-weight:300}
+
+#dr_weibo .input .user-choose-list dt em{color:#f60;font-weight:700;padding:0 3px}
+
+#dr_weibo .input .user-choose-list dd{line-height:18px;padding:5px;overflow:hidden;*zoom:1}
+
+#dr_weibo .input .user-choose-list dd label{float:left;display:inline-block;padding:0 5px 5px 0;white-space:nowrap;}
+
+
+#dr_weibo .input-class .hd{overflow:hidden;*zoom:1}
+
+#dr_weibo .input-class .hd strong{color:#535353;padding:0 5px}
+
+#dr_weibo .input-class .btn-green{height:24px}
+
+#dr_weibo .input-class .btn-green span{padding:4px 10px;padding:6px 10px 2px\9}
+
+#dr_weibo .input-class .class-lists{border:#eee solid 1px;}
+
+#dr_weibo .input-class .class-list{padding:5px 0}
+
+#dr_weibo .input-class .class-list li a{display:block;height:18px;line-height:18px;padding:5px 10px;border-bottom:#fafafa solid 1px}
+
+#dr_weibo .input-class .class-list li a:hover{background:#ECF2FF;text-decoration:none}
+
+#dr_weibo .input-class .class-list li.current{background:#ECF2FF;font-weight:700}
+
+#dr_weibo .input-class .class-list li.selected a{
+font-weight:700;
+color:#fff;
+background-color: #DD4B39;
+}
+
+#dr_weibo .input-class .class-list li.selected a:hover{
+background-color: #DD4B39;
+}
+
+
+#dr_weibo .layer-forward .feed-repeat .input-invite {width:242px}
+
+#dr_weibo .feed-repeat .input-invite .s-txt,#dr_weibo  .feed-repeat .input-invite .s-txt-focus{width:232px}
+
+#dr_weibo .layer-menu-list{margin:20px 0 20px 20px;width:240px;}
+
+#dr_weibo .layer-menu-list .ft{background:#f6f6f6;padding:5px 8px;height:18px;line-height:18px;color:#999}
+
+#dr_weibo .layer-menu-list .menu-list{border:#CCC solid 1px}
+
+#dr_weibo .layer-menu-list .menu-list .menu-list-scroll{height:200px;overflow-y:auto;padding:5px 0}
+
+#dr_weibo .layer-menu-list .menu-list dl{padding:3px 8px;*zoom:1}
+
+#dr_weibo .layer-menu-list .menu-list dl:hover {background:#ecf2ff;cursor:pointer}
+
+#dr_weibo .layer-menu-list .menu-list dt{float:left;width:20px;height:20px;margin:0 10px 0 0}
+
+#dr_weibo .layer-menu-list .menu-list dd{margin:0 0 0 30px;color:#bbb;height:16px;line-height:16px;padding:2px 0;overflow:hidden;word-wrap:break-word;text-overflow:ellipsis; white-space:nowrap;_width:132px}
+
+#dr_weibo .layer-menu-list .arrow-t{margin: 0 0 0 10px;position: absolute;top: -7px;left: 0}
+
+#dr_weibo .layer-file{width:430px;margin:20px 0 20px 20px;position:absolute;top:20px;left:600px}
+
+#dr_weibo .layer-file .ico-close{position:absolute;top:10px;right:10px}
+
+#dr_weibo .layer-file .arrow-t{margin: 0 0 0 10px;position: absolute;top: -7px;left: 0}
+
+#dr_weibo .layer-file-list{width:310px}
+
+#dr_weibo .layer-file-list .file-list dt{background:#F9F9F9;border:#eee solid 1px;padding:5px 10px}
+
+#dr_weibo .layer-file-list .file-list dt strong{padding:0 0 0 10px;font-weight:700;font-size:18px;height:20px;line-height:20px}
+
+#dr_weibo .layer-file-list .file-list dt .progress{margin:5px 0 0 0}
+
+#dr_weibo .layer-file-list .file-list dd{background:#F9F9F9;border-bottom:#eee solid 1px;border-top:#fff solid 1px;height:18px;line-height:18px;padding:5px 10px;color:#36c}
+
+#dr_weibo .layer-file-list .file-list .ico-close{margin:4px 0 0}
+
+
+#dr_weibo .layer-face{width:430px;margin:20px 0 20px 20px;position:absolute;top:600px;left:600px}
+
+#dr_weibo .layer-face .ico-close{position:absolute;top:10px;right:10px}
+
+#dr_weibo .layer-face .arrow-t{margin: 0 0 0 10px;position: absolute;top: -7px;left: 0}
+
+#dr_weibo .layer-face .face-list{overflow:hidden;*zoom:1}
+
+#dr_weibo .layer-face .face-list li {float:left;}
+
+#dr_weibo .layer-face .face-list li a{width:16px;height:16px;display:block;border:#eee solid 1px;padding:2px;margin:0 2px 2px 0}
+
+#dr_weibo .layer-face .face-list li a:hover{border:#f60 solid 1px}
+
+#dr_weibo .layer-face .face-list li img{width:16px;height:16px}
+
+#dr_weibo .layer-inner{border:#CCCCCC solid 1px;color:#999}
+
+#dr_weibo .layer-inner .layer-content{padding:10px}
+
+#dr_weibo .layer-inner .layer-content p{padding:0 0 10px}
+
+#dr_weibo .layer-inner .layer-content .action{text-align:center}
+
+#dr_weibo .layer-mini-info{min-width:170px;width:200px;color:#999}
+
+#dr_weibo .layer-mini-info .action{text-align:center;margin:15px 0 0}
+
+#dr_weibo .layer-mini-info .btn-blue,#dr_weibo  .layer-mini-info .btn-gray{height:24px;}
+
+#dr_weibo .layer-mini-info .btn-blue span,#dr_weibo  .layer-mini-info .btn-gray span{padding:4px 20px;_padding:6px 20px 2px}
+
+#dr_weibo .layer-mini-info .action .btn-cancel span,#dr_weibo .layer-content .btn-cancel span,#dr_weibo .layer-follow-list .btn-cancel span,#dr_weibo .weiba-manage .btn-cancel span,#dr_weibo .form-avatar .btn-cancel span,#dr_weibo .tipoff-manage .btn-cancel span{padding:5px 12px;_margin:-1px 0 0 0;_height:15px;}
+
+#dr_weibo .name-card{color:#535353;width:350px;}
+
+#dr_weibo .name-card .name{padding:15px 15px 10px;_padding-bottom:0;}
+
+#dr_weibo .name-card .name dt,#dr_weibo  .name-card .name dd,#dr_weibo  .name-card .info dt{float:left;}
+
+#dr_weibo .name-card .name dt img{display:block;width:50px;height:50px;}
+
+#dr_weibo .name-card .name dd{margin:-5px 0 0 10px;line-height:20px;*height:60px;}
+
+#dr_weibo .name-card .name dd p{width:260px}
+
+#dr_weibo .name_card .userdata{}
+
+#dr_weibo .name-card .userdata li{float:left}
+
+#dr_weibo .name-card .userdata li.vline{margin:0 8px}
+
+#dr_weibo .name-card .info{line-height: 18px;padding:0 15px 5px;}
+
+#dr_weibo .name-card .info dd{ margin:0 0 2px 60px;word-wrap:break-word;}
+
+#dr_weibo .name-card .info dd.tag{margin:0 0 2px 0;}
+
+#dr_weibo .name-card .info dd.tag .tag-inner{margin:0 0 0 40px;}
+
+#dr_weibo .name-card .info dd.tag span{width:40px;display:block;float:left}
+
+#dr_weibo .name-card .info dd.tag a{padding:0 10px 0 0}
+
+#dr_weibo .name-card .info .my-medal-list li{margin:0 11px 10px 0;}
+
+#dr_weibo .name-card .links{background:#F5F5F5;margin: 0;height:26px;padding: 6px 15px 5px}
+
+#dr_weibo .name-card .links p{background:#F5F5F5;margin: 0;overflow: hidden;padding: 6px 0 5px}
+
+#dr_weibo .name-card .links .right{height:27px;}
+
+#dr_weibo .name-card .links .btn-green,#dr_weibo  .name-card .links .btn-red,#dr_weibo  .name-card .links .btn-gray{height:24px}
+
+#dr_weibo .name-card .links .btn-green span,#dr_weibo  .name-card .links .btn-red span,#dr_weibo  .name-card .links .btn-gray span{padding:4px 10px;_padding:6px 10px 2px}
+
+#dr_weibo *+html .name-card .links .btn-green span,#dr_weibo  *+html .name-card .links .btn-red span,#dr_weibo  *+html .name-card .links .btn-gray span{padding:5px 10px 3px}
+
+#dr_weibo .wrap-layer .arrow{background:url(layer_arrow.png) no-repeat 0 0;display:block;overflow:hidden;position:absolute}
+
+#dr_weibo .wrap-layer .arrow-l,#dr_weibo  .wrap-layer .arrow-r{background-position: -11px -24px;height: 16px;right: -16px;top: 7px;width: 11px;_right:-15px;}
+
+#dr_weibo .wrap-layer .arrow-t,#dr_weibo  .wrap-layer .arrow-b{background-position: 0 -1px;height: 11px;left: 30px;top: -10px;width: 16px;_top:-10px}
+
+#dr_weibo .my-medal-list .wrap-layer .arrow-t{left:140px;top:-11px;_top:-10px;}
+
+#dr_weibo #face_card.wrap-layer .arrow-t{background-position: 0 -1px;height: 11px;left: 30px;top: -11px;width: 16px;_top:-10px}
+
+#dr_weibo .wrap-layer .arrow-l {background-position: 0 -24px;left: -11px;right: auto;_left:-10px;}
+
+#dr_weibo .wrap-layer .arrow-b{background-position: 0 -11px;bottom: -11px;top: auto;}
+
+#dr_weibo .log-list{background:#FBFBFB;padding:10px}
+
+#dr_weibo .log-list dt,#dr_weibo  .log-list dd{line-height:18px;padding:0 0 5px 0;margin:0 0 5px 0;background:url(line-log-list.gif) repeat-x left bottom}
+
+#dr_weibo .progress-bar{padding:10px 0;height:22px}
+
+#dr_weibo .progress-bar .progress,#dr_weibo  .progress-bar .progress-num{vertical-align:middle}
+
+#dr_weibo .progress-bar .progress-num{padding:0 0 0 10px;line-height:22px;font-size:18px;font-weight:700;color:#535353}
+
+#dr_weibo .progress,#dr_weibo  .progress .bar,#dr_weibo  .progress-green-light,#dr_weibo  .progress-green-dark,#dr_weibo  .progress-green-striped,#dr_weibo  .progress-green-transition,#dr_weibo  .progress-hot{display:block;background:url(progress-bg.png) no-repeat 0 0;text-align:left}
+
+#dr_weibo .progress,#dr_weibo  .progress .bar{width:424px;height:22px;background-position:0 0}
+
+#dr_weibo .progress .bar{background-position:0 -32px}
+
+#dr_weibo .progress-green-light{width:322px;height:22px;background-position:0 -64px}
+
+#dr_weibo .progress-green-light .bar{width:322px;height:22px;background-position:0 -96px}
+
+#dr_weibo .progress-green-dark{width:120px;height:9px;background-position:0 -208px}
+
+#dr_weibo .progress-green-dark .bar{width:120px;height:9px;background-position:0 -227px}
+
+#dr_weibo .progress-green-striped{width:210px;height:10px;background-position:0 -128px}
+
+#dr_weibo .progress-green-striped .bar{width:210px;height:10px;background-position:0 -148px}
+
+#dr_weibo .progress-green-transition{width:152px;height:10px;background-position:0 -168px}
+
+#dr_weibo .progress-green-transition .bar{width:152px;height:10px;background-position:0 -188px}
+
+#dr_weibo .progress-hot{width:80px;height:6px;background-position:0 -246px}
+
+#dr_weibo .progress-hot .bar{width:80px;height:6px;background-position:0 -262px}
+
+
+#dr_weibo .head-bd .layer-message-box{background:url(layer_bg.png) repeat scroll 0 0 transparent;border:1px solid #797979;border-radius:3px 3px 3px 3px;line-height: 17px;
+padding:6px 1px;position:absolute;right:77px;top:35px;width:190px;z-index:9999;}
+
+#dr_weibo .head-bd .layer-message-box ul{margin:0 4px}
+
+#dr_weibo .head-bd .layer-message-box li{color: #535353;line-height: 14px;padding: 5px 10px;}
+
+#dr_weibo .dropdown-menu{position:absolute;right:-5px;top:18px;width:100px}
+
+#dr_weibo .dropdown-menu dt{position:relative;height:8px}
+
+#dr_weibo .dropdown-menu dd{border:#ccc solid 1px;background:#fff;text-align:left}
+
+#dr_weibo .dropdown-menu ul li a{height:16px;line-height:16px;padding:5px 10px;display:block}
+
+#dr_weibo .dropdown-menu ul li a:hover{background:#ECF2FF;text-decoration:none}
+
+#dr_weibo .dropdown-menu .arrow-t{position:absolute;right:7px;top:1px}
+
+#dr_weibo .dropdown-menu .bg{background:#F6F6F6;padding:5px 10px;display:block}
+
+
+#dr_weibo .mod-at-wrap{position:absolute;z-index:10000;width:95%;margin:1px 0 0;background:#fff;_width:99.5%;}
+
+#dr_weibo #atUserList .mod-at{border:0;}
+
+#dr_weibo .mod-at{position:relative;z-index:99;background:#fff;border:1px solid #ddd;}
+
+#dr_weibo .mod-at-wrap .mod-at-tips{background:#F6F6F6;height:25px;line-height:25px;padding:4px 6px;}
+
+#dr_weibo .mod-at-wrap .mod-at-list{overflow-y:auto;max-height:300px;_height:expression(this.scrollHeight > 300 ? "300px" : "auto");}
+
+#dr_weibo .mod-at-wrap .at-user-list li{padding:5px;overflow:hidden;cursor:pointer;*zoom:1}
+
+#dr_weibo .mod-at-wrap .at-user-list li:hover{background:#ECF2FF;cursor:pointer}
+
+#dr_weibo .mod-at-wrap .at-user-list .current,#dr_weibo  .mod-at-wrap .at-user-list .hover{background:#ECF2FF;cursor:pointer}
+
+#dr_weibo .mod-at-wrap .at-user-list li .face{float:left;margin:0 5px 0 0;}
+
+#dr_weibo .mod-at-wrap .at-user-list li .face img{vertical-align: top;}
+
+#dr_weibo .mod-at-wrap .at-user-list li .content{margin:0 0 0 30px}
+
+#dr_weibo .mod-at-wrap .at-user-list li .content a:hover{text-decoration:none;}
+
+#dr_weibo .mod-at-wrap .at-user-list li span{color:#999;padding:0 5px}
+
+
+#dr_weibo .mod-weight{background:#fff;margin:0 0 10px;padding:10px;overflow:hidden;position:relative;*zoom:1}
+
+#dr_weibo .mod-weight .hd{font-weight:700;height:14px;cursor: move;}
+
+#dr_weibo .mod-weight .action{padding:10px 0 0 ;text-align:right;overflow:hidden;zoom:1;}
+
+#dr_weibo .mod-weight .setup{position:absolute;right:10px;top:10px;}
+
+#dr_weibo .mod-weight .setup a{vertical-align:middle;margin:0 0 0 5px;}
+
+#dr_weibo .mod-weight .hover{visibility:hidden;}
+
+#dr_weibo .mod-weight:hover .hover{visibility:visible;}
+
+#dr_weibo .mod-blacklist dl a:{display: block;font-size: 12px;height: 14px;line-height: 15px;margin: 0 0 1px;overflow: hidden;padding: 6px 15px;}
+
+
+#dr_weibo .line-warning{background:#fff;padding:10px;margin:10px 0 0;position:relative}
+
+#dr_weibo .line-warning .hover{visibility:hidden;_visibility:visible;}
+
+#dr_weibo .line-warning:hover .hover{visibility:visible;}
+
+#dr_weibo .line-warning .ico-speaker{vertical-align:-2px;position:absolute;left:20px}
+
+#dr_weibo .line-warning dl{}
+
+#dr_weibo .line-warning dl dt.hd{font-weight:700;height:14px;line-height:14px;padding:0 0 8px}
+
+#dr_weibo .line-warning dl dt.more{font-weight:300;height:14px;line-height:14px;padding:8px 0 0;margin:0;}
+
+#dr_weibo .line-warning dl dd{border-bottom:#eee solid 1px;}
+
+#dr_weibo .line-warning dl dd a{display:block;line-height:18px;margin:5px 0;overflow:hidden}
+
+#dr_weibo .announcement-list dt.hd{font-weight:700;height:14px;line-height:14px;padding:0 0 8px}
+
+#dr_weibo .announcement-list dt.more{font-weight:300;height:14px;line-height:14px;padding:8px 0 0;margin:0;}
+
+#dr_weibo .announcement-list dd{border-bottom:#eee solid 1px;}
+
+#dr_weibo .announcement-list dd a{display:block;line-height:18px;margin:5px 0;overflow:hidden}
+
+#dr_weibo .announcement-set{padding:10px 0 0;border-bottom:#d9d9d9 dashed 1px;}
+
+#dr_weibo .announcement-set dd{padding:0 0 10px;}
+
+#dr_weibo .announcement-set dd.btn{display:block;}
+
+
+#dr_weibo .item-announcement{}
+
+#dr_weibo .item-announcement img{max-width:920px;overflow:hidden;}
+
+#dr_weibo .item-announcement .hd{color: #535353;font-family: Microsoft YaHei;font-size: 22px;font-weight: 300;padding: 5px 0 10px;}
+
+#dr_weibo .item-announcement .mod-announcement{background: none repeat scroll 0 0 #fff;font-size: 14px;padding: 20px;line-height:23px}
+
+#dr_weibo .item-announcement .mod-announcement h4{background:#F1F1F1;border-bottom:1px dashed #DDDDDD;font-weight:700;margin: 0 0 15px;padding: 10px 0;
+text-align: center;}
+
+#dr_weibo .item-announcement .mod-announcement h4 span{display:block;font-size:12px;font-weight:300;color: #999;padding:0 0 0 10px;}
+
+#dr_weibo .item-announcement .mod-hot .ico{margin:0 0 0 5px;}
+
+#dr_weibo .item-announcement .mod-hot dd{border-bottom:#ebebeb solid 1px;}
+
+#dr_weibo .item-announcement .mod-hot dd a{display:block;height:16px;line-height:16px;padding:7px 0 7px 15px;background:url("pointer.gif") no-repeat scroll 5px 12px transparent;}
+
+#dr_weibo .item-announcement .mod-hot dd a:hover{background:url("pointer.gif") no-repeat scroll 5px 12px #f6f6f6;text-decoration:none;}
+
+#dr_weibo .item-announcement .mod-hot dd span{float:right;font-size:12px;color:#535353;padding:0 5px 0 0}
+
+#dr_weibo .item-announcement .file-list{padding:15px 0 0;font-size:12px;}
+
+#dr_weibo .item-announcement .file-list span{color:#999;}
+
+#dr_weibo .line-warning .setup{position:absolute;right:10px;top:10px;}
+
+#dr_weibo .line-warning .setup a{vertical-align:middle;margin:0 0 0 5px;}
+
+#dr_weibo .line-warning .hover{visibility:hidden;}
+
+#dr_weibo .line-warning:hover .hover{visibility:visible;}
+
+#dr_weibo .feedback-wrap{padding:20px 0 0}
+
+#dr_weibo .feedback-wrap .bg{background:#fafafa}
+
+#dr_weibo .feedback-wrap .feedback{padding:20px;}
+
+#dr_weibo .feedback-wrap .feedback dl{width:560px;margin:0 auto}
+
+#dr_weibo .feedback-wrap .feedback dd{padding:0 0 10px 0;overflow:hidden;zoom:1}
+
+#dr_weibo .feedback-wrap .feedback .form-tt{width:40px;float:left;padding:5px 0}
+
+#dr_weibo .feedback-wrap .feedback .form-row{float:left}
+
+#dr_weibo .feedback-wrap .feedback .s-textarea,#dr_weibo  .feedback-wrap .feedback .s-textarea-focus{width:500px}
+
+#dr_weibo .title{font-size: 22px;font-weight: 300;color: #333}
+
+
+#dr_weibo .page{padding:10px 0;text-align:right}
+
+#dr_weibo .page a{
+display: inline-block;*display: inline;/* IE7 inline-block hack */*zoom: 1;padding: 4px 10px 4px;margin: 0 0 0 5px;line-height: 14px;color: #999;
+text-align: center;
+vertical-align: middle;
+background-color: #f5f5f5;
+filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+border: 1px solid #DDDDDD;
+border-bottom-color: #DDDDDD;
+}
+
+#dr_weibo .page a:hover{
+color: #535353;text-decoration: none;background-color: #e6e6e6;background-position: 0 -15px;
+}
+
+#dr_weibo .page a.current{padding:4px 10px;background:#e6e6e6;color:#535353;}
+
+
+#dr_weibo .wrap-layer{color:#535353;position:absolute;-moz-box-shadow:0 2px 5px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .1);-khtml-box-shadow:0 2px 5px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .1);-ms-box-shadow:0 2px 5px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .1);box-shadow:0 2px 5px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .1);}
+
+#dr_weibo .wrap-layer .content-layer{position:relative;background:#fff;margin:0 auto;border:1px solid #bbb;}
+
+#dr_weibo #post-tag{border:#dcdcdc solid 1px;border-top-color:#b5b5b5;padding:4px;background:#fff;min-height: 50px;_height:50px;overflow: visible;}
+
+#dr_weibo #post-tag .s-txt,#dr_weibo  #post-tag .s-txt-focus{border:#fff solid 1px;box-shadow:0 0 0;padding:0;margin:0;width:99%;}
+
+#dr_weibo #post-tag input{float:none;vertical-align: middle;}
+
+
+#dr_weibo .profession-title{background:#f8f8f8;width:500px;text-align:center;height:30px;line-height:30px;font-size:12px;margin:20px auto 20px;}
+
+#dr_weibo .profession-title em{font-family:Times New Roman;font-size: 20px;font-weight: 700;margin: 0 5px;vertical-align:-2px;}
+
+#dr_weibo .form-set .profession-title{margin:15px auto;}
+
+
+#dr_weibo .profession-type dd a{margin:0 10px 10px 0;}
+
+#dr_weibo .profession-type dt{float:left;width:160px;font-size:14px;color:#999;text-align:right;margin:5px 0 0 0;*width:164px;}
+
+#dr_weibo .profession-type dd{margin:0 0 0 120px;}
+
+#dr_weibo .profession-type dd .tag-lists a{margin:0;}
+
+#dr_weibo .mod-rank{background:#fff;padding:10px;margin:10px 0 0;}
+
+#dr_weibo .mod-rank h3{color:#535353;font-weight:700;padding:0 0 10px;}
+
+#dr_weibo .rank-list dd{height:24px;line-height:24px;margin:0;padding:5px 0;border-bottom:#eee dashed 1px;white-space:nowrap;overflow:hidden;*zoom:1}
+
+#dr_weibo .rank-list .num{float:left;background:url(ico-rank.png) no-repeat 0 -119px;font-size:11px;width:18px;height:16px;line-height:16px;color:#fff;text-align:center;margin:5px 5px 0 0;_background:url(ico-rank.gif) no-repeat 0 -119px;}
+
+#dr_weibo .rank-list .top1,#dr_weibo  .rank-list .top2,#dr_weibo  .rank-list .top3{width:15px;height:24px;margin:0 8px 0 0;font-weight:700}
+
+#dr_weibo .rank-list .top1{background-position:0 0;}
+
+#dr_weibo .rank-list .top2{background-position:0 -39px;}
+
+#dr_weibo .rank-list .top3{background-position:0 -78px;}
+
+
+#dr_weibo .wrap-layer .content-layer .hd{background:#F9F9F9;font-weight:700;font-size:14px;color:#535353;padding:9px 15px;}
+
+#dr_weibo .ask-type-box {padding:10px 15px 15px 15px;}
+
+#dr_weibo .ask-box-lists li{line-height:30px;border-bottom:1px dashed #eee;}
+
+#dr_weibo .ask-box-lists li a{margin:0 5px;display:inline-block;}
+
+
+#dr_weibo .feed_list .content.weiba-detail{font-size:12px;margin:0;margin:5px 0;border:1px solid #98c8df;padding:5px 10px;color:#666;background:#fff;}
+
+#dr_weibo .feed_list .content.weiba-detail h3{font-weight:bold;font-size:14px;}
+
+#dr_weibo .feed_list .content.weiba-detail .f9{margin:0 0 5px 0;padding:0 0 5px 0;border-bottom:1px solid #eee;}
+
+#dr_weibo .feed_list .content.weiba-detail .date{color:#99B2E5;margin:0;}
+
+#dr_weibo .feed_list .content.weiba-detail img{max-width:503px;_width:expression(this.width > 503? "503px":this.width );}
+
+#dr_weibo .feed_list_hover .weiba-detail img{max-width:585px;_width:585px;}
+
+#dr_weibo .feed_file_list{margin:5px 0 0 0;border:#EAEAEA solid 1px;border-top:none 0;padding:0;background:#fff;overflow:hidden;*zoom:1}
+
+
+#dr_weibo .find-type{background:#f8f8f8;padding:20px;border-bottom:1px solid #ddd;height:26px;_overflow:hidden;}
+
+#dr_weibo .app-title h4{font-size:20px;color:#666;font-family:"微软雅黑";}
+
+#dr_weibo .app-tab-menu li{float:left;color:#414448;}
+
+#dr_weibo .app-tab-menu li a:link,#dr_weibo .app-tab-menu li a:visited{height:16px;line-height:16px;color:#414448;padding:5px 10px;margin:0 5px;display:inline-block;font-size:14px;font-weight:bold;position:relative;}
+
+#dr_weibo .app-title a.right{line-height:26px;}
+
+#dr_weibo .ico-num1{background-position:-303px 0;display:inline-block;width:16px;height:26px;margin:2px 15px 0 0;float:left;}
+
+#dr_weibo .ico-num2{background-position:-303px -46px;display:inline-block;width:16px;height:26px;margin:2px 15px 0 0;float:left;}
+
+#dr_weibo .ico-num3{background-position:-303px -91px;display:inline-block;width:16px;height:26px;margin:2px 15px 0 0;float:left;}
+
+#dr_weibo .ico-num4{background-position:-303px -142px;display:inline-block;width:16px;height:16px;margin:10px 15px 0 0;float:left;}
+
+#dr_weibo .ico-num5{background-position:-303px -188px;display:inline-block;width:16px;height:16px;margin:10px 15px 0 0;float:left;}
+
+#dr_weibo .ico-num6{background-position:-303px -232px;display:inline-block;width:16px;height:16px;margin:10px 15px 0 0;float:left;}
+
+#dr_weibo .ico-num7{background-position:-303px -278px;display:inline-block;width:16px;height:16px;margin:10px 15px 0 0;float:left;}
+
+#dr_weibo .ico-num8{background-position:-303px -320px;display:inline-block;width:16px;height:16px;margin:10px 15px 0 0;float:left;}
+
+#dr_weibo .ico-num9{background-position:-303px -365px;display:inline-block;width:16px;height:16px;margin:10px 15px 0 0;float:left;}
+
+#dr_weibo .ico-num10{background-position:-303px -410px;display:inline-block;width:16px;height:16px;margin:10px 15px 0 0;float:left;}
+
+
+#dr_weibo .btn-group{background:url(btn-create.png) no-repeat;display:block;}
+
+#dr_weibo .btn-group{background-position:0 0;width:230px;height:52px;}
+
+
+#dr_weibo .app-title .search-input{float:right;width:240px;z-index:99;}
+
+#dr_weibo .app-title .search-input input{width:150px;color:#999;margin:0 5px;overflow:hidden;padding:6px 0;}
+
+#dr_weibo .mod-ranking h3{font-size:16px;font-weight:bold;margin:0 0 10px 0;}
+
+#dr_weibo .rank-box1 h3{font-size:14px;font-weight:bold;}
+
+#dr_weibo .rank-box1 dl{overflow:hidden;*zoom:1;}
+
+#dr_weibo .rank-box1 dt{float:left;}
+
+#dr_weibo .rank-box1 dd{margin:0 0 0 40px;}
+
+#dr_weibo .rank-box1 dd p{line-height:16px;}
+
+#dr_weibo .rank-box1 li{margin:15px 0 0 0;overflow:hidden;*zoom:1;}
+
+#dr_weibo .rank-lists .num{margin:0 25px 0 0;}
+
+#dr_weibo .rank-lists .ico-num1,#dr_weibo .rank-lists .ico-num2,#dr_weibo .rank-lists .ico-num3{margin:10px 25px 0 0;}
+
+#dr_weibo .rank-lists .ico-num4,#dr_weibo .rank-lists .ico-num5,#dr_weibo .rank-lists .ico-num6,#dr_weibo .rank-lists .ico-num7,#dr_weibo .rank-lists .ico-num8,#dr_weibo .rank-lists .ico-num9,#dr_weibo .rank-lists .ico-num10{margin:15px 25px 0 0;}
+
+#dr_weibo {margin:10px 15px 0 0;}
+
+#dr_weibo .rank-lists p{overflow:hidden;*zoom:1;}
+
+#dr_weibo .mod-user{color:#999;}
+
+#dr_weibo .mod-user dl{float:left;padding:10px;margin:0 10px 10px 0;border:1px solid #ddd;width:210px;position:relative;_height:80px;}
+
+#dr_weibo .mod-user dt{float:left;position:relative;}
+
+#dr_weibo .mod-user dt:hover .pic-more,#dr_weibo .mod-user dt:hover .btn-cancel,#dr_weibo .mod-user dt:hover .btn-cancel span{visibility:visible;}
+
+#dr_weibo .mod-user dd{margin:0 0 0 90px;}
+
+#dr_weibo .mod-user dd p.name{margin:0 0 2px 0;width:120px;height:15px;overflow:hidden;_width:116px;}
+
+#dr_weibo .mod-user dd p{line-height:16px;margin-bottom:10px;*margin-bottom:0px;height:32px;overflow:hidden;}
+
+#dr_weibo .mod-user dd a{display:inline-block;}
+
+#dr_weibo .mod-user .no-margin{margin-right:0;}
+
+#dr_weibo .mod-user .btn-cancel,#dr_weibo .mod-user .btn-att-white{position:absolute;bottom:10px;}
+
+#dr_weibo fieldset{border-top:1px solid #ccc;height:30px;font-weight:bold;}
+
+#dr_weibo legend{border-left:2px solid #FF8800;padding:0 5px 0 10px;font-size:14px;*margin:0 0 0 -6px;}
+
+#dr_weibo .profile-photo-list p{line-height:20px;}
+
+#dr_weibo .profile-photo-list li{float:left;width:150px;padding:0 12px 30px 0;}
+
+#dr_weibo .profile-photo-list li a,#dr_weibo .profile-photo-list li a:hover{color:#999;font-weight:300;}
+
+#dr_weibo .wrap-layer{color:#535353;position:absolute;-webkit-box-shadow:0 2px 5px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .1);-moz-box-shadow:0 2px 5px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .1);-khtml-box-shadow:0 2px 5px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .1);-ms-box-shadow:0 2px 5px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .1);box-shadow:0 2px 5px 1px rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo .1);}
+
+#dr_weibo .wrap-layer .content-layer{position:relative;background:#fff;margin:0 auto;border:1px solid #bbb;}
+
+#dr_weibo .talkBox{padding:0}
+
+#dr_weibo .talkPop{clear:left;margin-top:20px;margin-left:-25px;*margin-top:0px;position:absolute !important;}
+
+#dr_weibo .talkPop .bg{background:url(layer_bg.png) repeat;border-radius:4px;padding:4px;}
+
+#dr_weibo .talkPop_arrow{background-position: -143px -4px;height:8px;width:15px;overflow:hidden}
+
+#dr_weibo .talkPop_box{background-color:#fff;border:solid 1px #dfdfdf;width:440px}
+
+#dr_weibo .talkPop_box .hd{height:30px;line-height:30px;background-color:#F8FAFC;padding:0 10px;position:relative;*width:420px}
+
+#dr_weibo .talkPop_box .hd .ico-close{position: absolute;right:10px;top:6px}
+
+#dr_weibo .talkPop_box .faces_box{padding:0 5px 5px;overflow: hidden;*zoom:1}
+
+#dr_weibo .talkPop_box .faces_box a{display: block;float:left;margin: 5px 2px 0;}
+
+#dr_weibo .talkPop_box .faces_box img{display: block;}
+
+#dr_weibo .talkPop_box #weibo_close_handle{margin:0}
+
+#dr_weibo .talkPop_box #publish_type_content{}
+
+#dr_weibo .talkBox h2 {height:37px;overflow:hidden;margin-bottom:8px}
+
+#dr_weibo .talkBox h2 span{font-size: 18px;line-height: 42px;float:left}
+
+#dr_weibo .talkPop_box .pop_tit{background-color:#eee;padding:0 10px;border-radius:3px 3px 0 0;position:relative}
+
+#dr_weibo .wordNum{float:right;font-size:12px;color:#999}
+
+#dr_weibo .wordNum strong{font-family:Constantia,#dr_weibo Georgia;font-size:30px;font-weight:normal;top:-1px;vertical-align:-2px}
+
+#dr_weibo .talkBox .cntBox {overflow:hidden;*zoom:1;padding:0 0 5px 0}
+
+#dr_weibo .talkBox .cntBox textarea,#dr_weibo .talkBox .cntBox .txtShadow{padding:5px 0;margin:0;font-size:14px;overflow:hidden}
+
+#dr_weibo .txtShadow {left:0;opacity:0;position:absolute;top:0;*top:1px;z-index:-1}
+
+#dr_weibo #publish_type_content_before{_padding-top:8px}
+
+
+#dr_weibo .talkBox .funBox{position:relative;line-height:25px;z-index:800;*zoom:1}
+
+#dr_weibo .talkBox .funBox a.a52 {width:52px;display:inline-block;_display:block;_float:left;_margin-top:-9px}
+
+#dr_weibo a.ico-close,#dr_weibo  a.ico-close:hover,#dr_weibo .ico-close1{background:url(del.png) no-repeat 0 0;width:18px;height:18px;display:inline-block;overflow:hidden;vertical-align:0;_vertical-align:2px;_background:url(del.gif) no-repeat 0 0;}
+
+#dr_weibo a.ico-close:hover{background-position:0 -50px;vertical-align:0;_vertical-align:2px}
+
+#dr_weibo .ico-close1{background-position:0 -26px;width:9px;height:8px;cursor:pointer;margin:0 0 0 8px;_vertical-align:3px;}
+
+
+#dr_weibo .friend{height:305px;overflow:hidden;position:relative;}
+
+#dr_weibo .friend .groups{width:190px;float:left;}
+
+#dr_weibo .friend .groups li{margin:0 0 10px 0;}
+
+#dr_weibo .friend .groupusers{margin:0 0 0 200px;border-left:1px solid #ddd;padding:0 0 0 5px;width:210px;height:305px;overflow-y:auto;}
+
+#dr_weibo .friend .groupusers ul{height:305px;}
+
+#dr_weibo .friend .groupusers ul li a{margin:0 0 5px 0;padding:3px 5px;display:block;cursor:pointer;float:none;}
+
+#dr_weibo .friend .groupusers ul li img{display:inline;margin:0 5px 0 0;width:20px;height:20px;}
+
+#dr_weibo .friend .groupusers ul li a:hover{background:#ECF2FF;padding:3px 5px;}
+
+#dr_weibo #at_content.faces_box{padding:10px;height:305px;overflow:hidden;}
+
+#dr_weibo .at_search{width:300px;height:20px;border-radius:3px;box-shadow:0 0 1px 0 #DCDCDC inset;background:#fff;position: absolute;top:4px;border:1px solid #ccc}
+
+#dr_weibo .at_search .ico-search{position:absolute;right:5px;top:5px;}
+
+#dr_weibo .at_search input{background:transparent;border:0;height:14px;line-height:14px;position:absolute;top:0;left:0;padding:3px;width:294px;outline:none}
+
+#dr_weibo .friend .groups li.current .ico-at-group{background-position:-118px -29px;width:16px;height:16px;}
+
+#dr_weibo img {
+border: 0 none;
+vertical-align: middle;
+}
+
+#dr_weibo .wrap-layer .talkPop_box em{font-style:normal;}
+
+#dr_weibo .wrap-layer .img-list{padding:10px;width:425px;}
+
+#dr_weibo .wrap-layer .img-list li{float:left;margin:10px 3px 0 0;width:80px;height:80px;cursor:pointer;position:relative;}
+
+#dr_weibo .wrap-layer .img-list li.load{float:left;margin:10px 5px 0 0;width:80px;height:80px;cursor:pointer;border:1px solid #ccc;}
+
+#dr_weibo .wrap-layer .img-list li.load span{margin:32px 0 0 0;text-align:center;display:block;}
+
+#dr_weibo .wrap-layer .img-list .del{background:rgba(0,#dr_weibo 0,#dr_weibo 0,#dr_weibo 0.7);color:#fff;position:absolute;left:0;bottom:0;width:80px;height:22px;line-height:20px;text-align:center;*background:#000;cursor:pointer;margin:0}
+
+#dr_weibo .wrap-layer .img-list .load{display:block;margin:32px 0 0 0;text-align:center;}
+
+#dr_weibo #btn_weibo { margin-left:5px;}
+
+#dr_weibo .send_weibo a {
+color: #3366cc;
+text-decoration: none;
+}
+
+#dr_weibo .video-box{padding:10px;}
+
+#dr_weibo .video-box p{padding:0 0 5px 0;}
+
+#dr_weibo .btn-grey{background-position:0 -260px;width:80px;height:30px;line-height:30px;text-align:center;font-size:14px;color:#666;}
+
+#dr_weibo .btn-green-big,#dr_weibo .btn-green-big:hover{background:#414448;color:#fff;width:80px;height:30px;line-height:30px;text-align:center;border:none;font-size:12px;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;}
+
+#dr_weibo .s-login .login-bd .btn-login{font-family:"微软雅黑";font-size:20px;color:#fff;width:140px;height:46px;line-height:46px;margin:-2px 0 0 0;text-align:center;background:#414448;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;*margin:2px 0 0 0;}
+
+#dr_weibo .btn-grey-small{background-position:0 -164px;width:80px;height:24px;color:#666;line-height:24px;text-align:center;cursor:pointer;}
+
+#dr_weibo .btn-register{background:#414448;width:80px;height:30px;font-size:14px;color:#fff;display:block;text-align:center;line-height:30px;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;}
+
+
+#dr_weibo .btn-green-small,#dr_weibo .btn-green-small:hover{background:#414448;width:50px;height:24px;line-height:24px;font-size:12px;color:#fff;text-align:center;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;}
+
+#dr_weibo .btn-att-green,#dr_weibo .btn-att-green:hover{background:#414448;width:80px;height:14px;line-height:14px;padding:5px 0;font-size:12px;color:#fff;text-align:center;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;}
+
+#dr_weibo .btn-copy{background-position:0 -316px;width:140px;height:46px;line-height:46px;}
+
+#dr_weibo .btn-copy span{font-size:16px;color:#fff;text-align:center;display:block;}
+
+#dr_weibo .btn-cancel:hover,#dr_weibo .btn-cancel:hover span,#dr_weibo .channel-layer .btn-cancel.current,#dr_weibo .channel-layer .btn-cancel.current span,#dr_weibo .channel-tab-menu .btn-cancel.current,#dr_weibo .channel-tab-menu .btn-cancel.current span,#dr_weibo .profession-type .btn-cancel.current,#dr_weibo .profession-type .btn-cancel.current span{background:#414448;font-size:12px;color:#fff;text-align:center;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;}
+
+#dr_weibo .btn-cancel:hover .ico-add-black{background-position:0 -73px}
+
+#dr_weibo .btn-cancel:hover span a.tag{color:#fff;margin:0 5px 0 0;}
+
+#dr_weibo .feed-nav{position: relative}
+
+#dr_weibo .feed-nav .feed-group{float:right;padding:5px 0 0;position: relative;}
+
+#dr_weibo .feed-nav .feed-group .arrow-set-t{margin:0 0 0 5px;vertical-align: -2px;}
+
+#dr_weibo .feed-nav .feed-group .arrow-nav-b,#dr_weibo  .feed-nav .feed-group .arrow-nav-t{cursor:pointer;}
+
+#dr_weibo .feed-nav .set-hd{margin:0 0 5px 0;}
+
+
+#dr_weibo .tab-menu{border-bottom:#ccc solid 1px;margin:0 0 10px;height:30px;_border:none 0;_background:url(tab-menu-line.gif) repeat-x left bottom;}
+
+#dr_weibo .tab-menu ul{float:left;height:30px;border-bottom:none 0;border-left:none 0;}
+
+#dr_weibo .tab-menu ul li{float:left;height:30px;margin:0 5px 0 0;line-height:30px;}
+
+#dr_weibo .tab-menu ul li a:link,#dr_weibo .tab-menu ul li a:visited{color:#666;display:block;float:left;line-height:30px;height:29px;padding:0 15px;text-align:center;background:#e9ecee;_height:16px;_line-height:16px;_padding:7px 15px;}
+
+#dr_weibo .tab-menu ul li a:hover {text-decoration:none;}
+
+#dr_weibo .tab-menu .current a:link,#dr_weibo .tab-menu .current a:visited{border:none 0;background:#fff;color:#333;line-height:30px;padding:0 15px;height:30px;border:1px solid #ccc;overflow:hidden;border-bottom:none;_height:16px;_line-height:16px;_padding:7px 15px;}
+
+#dr_weibo .tab-menu .current span{font-weight:700;}
+
+#dr_weibo .tab-menu .ico-more{border-color: #535353 transparent transparent;}
+
+#dr_weibo .tab-menu .open a:link,#dr_weibo .tab-menu .open a:visited{border:1px solid #ccc;background:#fff;}
+
+#dr_weibo .mod-tab-menu{height: 28px;padding:0 0 10px 0;}
+
+#dr_weibo .tab-menu-app{height:28px;border:#E4E4E4 solid 1px;border-left:none 0;-webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px;}
+
+#dr_weibo .tab-menu-app ul{float:left;height:28px}
+
+#dr_weibo .tab-menu-app ul li{float:left;position:relative}
+
+#dr_weibo .tab-menu-app ul li a:link,#dr_weibo  .tab-menu-app ul li a:visited{float:left;display:block;height:16px;padding:7px 10px 5px;padding:8px 10px 4px\9;background:#F7F7F7;color:#535353;border-left:#E4E4E4 solid 1px;}
+
+#dr_weibo .tab-menu-app ul li a:hover{text-decoration:none;}
+
+#dr_weibo .tab-menu-app ul li.current a:link,#dr_weibo  .tab-menu-app ul li.current a:visited{padding:7px 10px 5px;padding:7px 10px 5px\9;background:#0F8CA8;color:#fff;}
+
+#dr_weibo .tab-menu-app .ico-new-task{font-size:10px;position:absolute;right:0;top:-8px;text-align:center;line-height:16px;color:#fff;width:19px}
+
+#dr_weibo .menu-app-mg{margin:0 20px 15px}
+
+#dr_weibo .mod-tab-menu span.left{height:16px;line-height:16px;padding:7px 10px 3px;display:block}
+
+#dr_weibo .tab-position{margin:0 20px 10px}
+
+#dr_weibo .tab-menu .btn-blue{float:right;height:22px;padding:0;min-width:0;}
+
+#dr_weibo .tab-menu .btn-blue span{padding:3px 10px;}
+
+#dr_weibo .tab-menu .arrange{float: right;padding:5px 0 0;}
+
+#dr_weibo .tab-menu-profile{border:0;overflow:hidden;*zoom:1;}
+
+#dr_weibo .tab-menu-profile li{float:left;margin:0 10px 0 0;background:#f3f5f1;width:80px;height:30px;line-height:30px;text-align:center;}
+
+#dr_weibo .tab-menu-profile li a:link,#dr_weibo .tab-menu-profile li a:visited{display:inline-block;font-size:14px;color:#333;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;}
+
+#dr_weibo .tab-menu-profile .current a:link,#dr_weibo .tab-menu-profile .current a:visited{color:#fff;}
+
+#dr_weibo .feed_lists .loading{height:16px;line-height:16px;padding:6px 0;text-align:center;color:#999;}
+
+#dr_weibo .feed_lists .loading img{vertical-align:middle;margin:0 0 0 5px}
+
+
+#dr_weibo .feed_lists .page{margin:0 20px}
+
+#dr_weibo .feed_lists .note{padding:10px;text-align:center;_height:600px;}
+
+#dr_weibo .feed_list .content .remark em,#dr_weibo .layer-content .remark em{color:#999;font-style:normal;}
+
+#dr_weibo .feed_list{cursor:default;border-bottom:#dfdfdf dotted 1px;margin:0;padding:15px 0 10px 0;zoom:1}
+
+#dr_weibo .feed_list:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.load-more {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.load-more a {
+    background-color: #1D8BD8;
+    border-radius: 14px 14px 14px 14px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 18px 5px 20px;
+    text-decoration: none;
+}
+.msearch {
+    padding: 10px 0 0px 20px;
+    line-height: 28px;
+}
+.msearch a.cur {
+    background-color: #1D8BD8;
+    border-radius: 14px 14px 14px 14px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: bold;
+}
+.msearch a {
+    float: left;
+    padding: 0 1.5em;
+    text-decoration: none;
+}
+.msearch span {
+    color: #D5D5D5;
+    float: left;
+    padding: 0 4px;
+}
+.msearch {
+    text-align: center;
+    margin-bottom: 10px;
+}
+#dr_weibo .feed_list .face {float: left;width: 50px;}
+
+#dr_weibo .feed_list .face .icon-new{position:absolute;top:0;left:0;width:24px;height:10px;}
+
+#dr_weibo .feed_list .face img{vertical-align: top;width:50px;height:50px;}
+
+#dr_weibo .feed_list a.date{color:#bbb}
+
+#dr_weibo .feed_list .content{font-size: 14px;line-height: 22px;margin: 0 0 0 60px;}
+
+#dr_weibo .feed_list .content em,#dr_weibo .feed_list .comment .arrline{vertical-align:top;color:#e1e1e1;font-style:normal;}
+
+#dr_weibo .feed_list .content em img{vertical-align:middle;}
+
+#dr_weibo .feed_list .content p.hd{font-size:14px;padding:0 0 5px 0;vertical-align:top; margin: 0}
+
+#dr_weibo .feed_list .content p.hd span img{vertical-align:middle;}
+
+#dr_weibo .remark a:link,#dr_weibo .remark a:visited{margin:0;color:#999;font-size:12px;}
+
+#dr_weibo .feed_list .content .hd a.name{margin:0;font-size:12px;font-weight:bold;}
+
+#dr_weibo .feed_list .content p.hd a.date {float:right;font-size: 12px;color:#bbb}
+
+#dr_weibo .feed_lists .load{width:auto;height:auto}
+
+
+
+#dr_weibo .feed_list .faq-bg .from{padding:5px 0}
+
+#dr_weibo .feed_list .faq-bg .from em{padding:0 5px;color:#999}
+
+#dr_weibo .feed_list .faq-bg .face{width:20px;height:20px}
+
+#dr_weibo .feed_list .faq-bg .info{padding:5px 0 0}
+
+#dr_weibo .feed_list .faq-bg .question{padding:0 0 5px}
+
+#dr_weibo .feed_list .content .faq-bg dt{margin:10px 0 0}
+
+
+#dr_weibo .feed_lists .repeat {background:#f9fafa;border:1px solid #eee;padding:20px;position:relative;font-size: 12px;margin: 15px 0 0 0;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;*zoom:1;}
+
+#dr_weibo .feed_list .action{margin:5px 0 0}
+
+#dr_weibo .feed_list .num{float:right;margin:-8px 0 0 0;line-height:14px;*margin:0;}
+
+#dr_weibo .feed_list .pading .action{padding:0}
+
+#dr_weibo .feed_list .action .btn-green{float:right}
+
+#dr_weibo .feed_list .action .faces{float:left;background:url(icon.png) no-repeat -32px 0;display:inline-block;width:16px;height:16px;margin:0 10px 0 0;cursor:pointer;_margin:0 5px 0 0}
+
+#dr_weibo .feed_list .repeat .arrow{margin:0 0 0 85px;position:absolute;height:8px;width:14px;top:-11px;right:7px;}
+
+#dr_weibo .feed_list .repeat .arrow-t{background-position:0 -138px;width:16px;height:11px;}
+
+#dr_weibo .feed_list .repeat .input{padding:8px 0 0}
+
+#dr_weibo .commoned_list{float:left;margin:-3px 0 0}
+
+#dr_weibo .commoned_list li{margin:0 0 5px;}
+
+#dr_weibo .feed_list .comment_list em{font-size:12px;color:#7b7b7b;font-style:normal;}
+
+#dr_weibo .feed_list .content .comment_list .cont em{vertical-align:initial;}
+
+#dr_weibo .comment_list{border-bottom:#eee solid 1px;clear: both;overflow: hidden;padding:8px 0;zoom:1;position:relative;}
+
+#dr_weibo .comment_list dt{float:left;width:30px;}
+
+#dr_weibo .comment_list dd{line-height:20px;margin:0 0 0 40px;word-wrap:break-word;word-break:break-all;}
+
+#dr_weibo .comment_list dd em{font-style:normal;}
+
+#dr_weibo .comment_list .floor{position:absolute;right:0;top:8px;color:#7b7b7b;_top:4px;line-height:20px;}
+
+#dr_weibo .comment_list dd .cont{margin:0 30px 0 0;}
+
+#dr_weibo .comment_list dd .info{*margin:0 -7px 0 0;}
+
+#dr_weibo .sns_member_info {
+position: absolute;
+z-index: 99;
+margin-top:8px;
+}
+
+#dr_weibo .person-info-t{margin:0;padding:0;}
+
+#dr_weibo .person-info-t dd{margin:0;}
+
+#dr_weibo .person-info-t .btn{position:absolute;bottom:10px;left:20px;*left:12px;}
+
+#dr_weibo .person-info-t .grade{height:16px;line-height:16px;margin:10px 0 0 0;overflow:hidden;}
+
+#dr_weibo .person-info-t .tag-lists{height:17px;overflow:hidden;white-space:normal;padding:0;}
+
+#dr_weibo .person-info-b{position:absolute;right:20px;top:20px;background:#fff}
+
+#dr_weibo .feed_list .comment{font-size:12px;color:#333;background-color:#F9FAFA;margin:10px 0 5px 0;position:relative;padding:10px 15px;_position:static;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;border:#e1e1e1 solid 1px;}
+
+#dr_weibo .feed_list .comment .question strong,#dr_weibo  .feed_list .comment .answer strong{color:#bbb;display:inline;}
+
+#dr_weibo .feed_list .comment .ico-best{position:absolute;right:-1px;top:-1px;_top:8px;}
+
+#dr_weibo *+html .feed_list .comment .ico-best{top:7px;}
+
+#dr_weibo .feed_list .comment dt a.tit{font-weight:700}
+
+#dr_weibo .feed_list .comment dt .date{float:right}
+
+#dr_weibo .feed_list .comment dt.no_border{margin:0;padding:0 0 10px;line-height:15px;color:#ddd}
+
+#dr_weibo .feed_list .comment dt.no_border a{margin:0}
+
+#dr_weibo .feed_list .comment dd.info a.date{display:none}
+
+#dr_weibo .feed_list .comment dd.name{margin:0;height:auto;width:auto;}
+
+#dr_weibo .feed_list a.ico-details:link,#dr_weibo .feed_list a.ico-details:visited{color:#fff;}
+
+#dr_weibo .feed_list .comment .face{width:20px;height:20px;margin:0 10px 0 0}
+
+#dr_weibo .feed_list .comment .info a{color:#3366CC;font-size:12px;font-weight:bold;}
+
+#dr_weibo .feed_list .content p.info{font-size: 12px;color:#999;padding:5px 0 0;overflow:hidden;*zoom:1;}
+
+#dr_weibo .feed_list .content p.border{border:none 0;border-bottom:#ccc solid 1px;height:10px;overflow:hidden;margin:0 0 8px}
+
+#dr_weibo .feed_list .content p.border .arrow-t{margin:3px 0 0 85px;position:absolute;}
+
+#dr_weibo .feed_list .info a:link,#dr_weibo .feed_list .info a:visited,#dr_weibo  .feed_list .content .more{color:#99B2E5;font-weight:normal;}
+
+#dr_weibo .feed_list a.date{font-size:12px;margin:0 15px 0 0;}
+
+#dr_weibo .feed_list .content p.info span span{margin:0 10px 0 0;}
+
+#dr_weibo .feed_list .expand{padding:0;}
+
+#dr_weibo .feed_list .arrow{height: 11px;overflow:hidden;width: 25px;position:absolute;top:-10px;left:10px;}
+
+#dr_weibo .feed_list .type-bg{background:#fff;border-radius:2px;-moz-border-radius:2px;-webkit-border-radius:2px;padding:0 3px;}
+
+#dr_weibo .feed_list .bgcolor_arrow{color:#F2F2F2;}
+
+#dr_weibo .feed_list em.arrline,#dr_weibo .feed_list .comment span.downline{display: block;font-family: "SimSun";font-size: 21px;height: 10px;overflow: hidden;_display:none;}
+
+#dr_weibo .feed_list .comment span.downline{color:#F9FAFA;margin:-9px 0 0;}
+
+
+#dr_weibo .praise-list{background:#fff;width:200px;border:1px solid #dfdfdf;padding:10px 0 0 10px;margin:5px 0 0 0;position:relative;left:380px;}
+
+#dr_weibo .praise-list .arrow-t{top:-8px;left:55px;}
+
+#dr_weibo .praise-list li{float:left;margin:0 10px 10px 0;position:relative;}
+
+#dr_weibo .praise-detail-list{background:#fff;border:1px solid #dfdfdf;padding:20px 0 0 0;margin:5px 0 0 0;position:relative;left:0;}
+
+#dr_weibo .praise-detail-list .arrow-t{top:-8px;left:490px;}
+
+#dr_weibo .praise-detail-list ul{overflow:hidden;*zoom:1;}
+
+#dr_weibo .praise-detail-list li{float:left;margin:0 0 15px 15px;position:relative;}
+
+#dr_weibo .praise-list .ico-close1,#dr_weibo .praise-detail-list .ico-close1{position:absolute;top:2px;right:2px;}
+
+#dr_weibo .praise-page{margin:0 15px 15px 0;text-align:right;}
+
+#dr_weibo .feed_list .mod-card{border:#EAEAEA solid 1px;padding:10px;background:url(card-bg.png) repeat top left;margin:5px 0}
+
+#dr_weibo .feed_list .mod-card dl{border:none 0;padding:0;margin:0;}
+
+#dr_weibo .feed_list .mod-card dt{margin:0 10px 0 0}
+
+#dr_weibo .feed_list .mod-card dd.info{margin:0 0 0 60px;line-height:18px;font-size:12px;}
+
+#dr_weibo .feed_list .mod-card dd.info p{padding:0 0 5px}
+
+#dr_weibo .feed_list .mod-card dd.info p.name{font-size:18px;color:#333}
+
+#dr_weibo .feed_list .mod-card dd.info p em{color:#333}
+
+#dr_weibo .feed_list .mod-card .ico-card{float:right}
+
+#dr_weibo .feed_list .mod-card .info a{float:none}
+
+
+#dr_weibo .feed_img_lists{padding:5px 0 0 0;overflow:hidden;*zoom:1}
+
+#dr_weibo .feed_img_lists img{vertical-align:top;}
+
+#dr_weibo .feed_img_lists li{position:relative;float:left;}
+
+#dr_weibo .feed_img_lists li a{display:inline-block;}
+
+#dr_weibo .feed_img_lists .small li{padding:1px;border:#eee solid 1px;background:#fff;position:static;font-size:0;margin:0 10px 0 0;}
+
+#dr_weibo .feed_img_lists .small{overflow:hidden;*zoom:1;}
+
+#dr_weibo .feed_img_lists .small li:hover{border:#ddd solid 1px}
+
+#dr_weibo .feed_img_lists .tools{padding:0 0 5px}
+
+#dr_weibo .feed_img_lists .small{overflow: hidden;*zoom:1}
+
+#dr_weibo .feed_img_lists .tools a,#dr_weibo .feed_img_lists .tools a:hover{font-size:12px;margin:0 5px 0 0;cursor:pointer;}
+
+#dr_weibo .feed_img_lists .small li a{width:100px;height:100px;overflow:hidden;vertical-align:middle;display:table-cell;border:none 0;padding:0;background:#fff;filter:alpha(opacity=100); -moz-opacity:1; opacity:1;}
+
+#dr_weibo .feed_img_lists .big{border:#f0f0f0 solid 1px;padding:6px 15px 15px 15px;background:#f9fafa;border-radius:3px;color:#ddd;}
+
+#dr_weibo .feed_img_lists .big li{margin:3px 0;position:relative;float:none;}
+
+#dr_weibo *+html .feed_img_lists .big li{padding:3px 0;}
+
+#dr_weibo .feed_img_lists .big li a{border:none 0;padding:0;margin:0;display:block;}
+
+#dr_weibo .feed_img_lists .big li a .imgsmall{max-width:557px;_width:expression(documentElement.clientWidth > 557 ? "557px" : (documentElement.clientWidth < 1? "1px" : "auto"));}
+
+#dr_weibo .feed_list .comment .feed_img_lists .big{border:none 0;border-radius:0;padding:0;color:#ddd;}
+
+#dr_weibo .feed_img_lists .big .img-ope{position:absolute;top:0;left:0;}
+
+#dr_weibo .feed_img_lists .big .img-ope a{font-size:12px;display:inline-block;margin:0 5px 0 0;cursor:pointer;}
+
+
+#dr_weibo .feed_quote {
+margin: 7px 5px 10px 0;
+position: relative;
+}
+
+#dr_weibo .feed_quote .q_con .ico-show-all{width:14px;height:14px;padding:0 5px 0 0;vertical-align:middle;}
+
+#dr_weibo .q_con {
+background-color: #FBFBFB;
+border: 1px solid #E4E4E4;
+border-radius: 3px 3px 3px 3px;
+line-height: 1.7em;
+overflow: hidden;
+padding: 12px;
+}
+
+#dr_weibo .q_tit {
+background-position: right 0;
+display: none;
+height: 5px;
+overflow: hidden;
+}
+
+#dr_weibo .feed_img {
+position: relative;
+}
+
+#dr_weibo .feed_img .video_play {
+left: 65px;
+margin: -15px 0 0 -15px;
+opacity: 0.5;
+position: absolute;
+top: 53px;
+}
+
+#dr_weibo .ico_cls {
+background-position: -121px -4px;
+height: 9px;
+margin-right: 3px;
+width: 7px;
+}
+
+#dr_weibo .ico_original {
+background-position: -132px -4px;
+height: 9px;
+margin-right: 3px;
+width: 9px;
+}
+
+#dr_weibo .cGray2,#dr_weibo  .cGray2:visited,#dr_weibo  a.cGray2 {
+color: #999999;
+}
+
+
+#dr_weibo .feed_file_list{margin:5px 0 0 0;border:#EAEAEA solid 1px;border-top:none 0;padding:0;background:#fff;overflow:hidden;*zoom:1}
+
+#dr_weibo .feed_file_list li{font-size:12px;line-height:18px;padding:6px 5px;border-top:#eaeaea solid 1px;
+transition: all .5s ease;
+-moz-transition: all .5s ease;
+-o-transition: all .5s ease;
+-webkit-transition: translate .5s ease;
+overflow:hidden;*zoom:1}
+
+#dr_weibo .feed_file_list li a{font-size:12px}
+
+#dr_weibo .feed_file_list li:hover{background:#f9fafa;cursor:pointer}
+
+#dr_weibo .feed_file_list li .current{
+visibility: hidden\0;
+transition: all .5s ease;
+}
+
+#dr_weibo .feed_file_list li:hover .current{
+visibility: visible\0;
+}
+
+#dr_weibo .feed_file_list span.tips{color:#999}
+
+#dr_weibo .forward-content{background:#FAFAFA;padding:6px 10px;margin:0 0 5px;line-height:18px}

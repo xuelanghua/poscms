@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <title>搜索-{SITE_NAME}</title>
+    <link href="{HOME_THEME_PATH}so/so.css" rel="stylesheet" />
+    <script type="text/javascript" src="{THEME_PATH}js/jquery.min.js"></script>
+</head>
+<body>
+<div class="clr sr_body">
+    <div class="sr_main">
+        <div class="sr_head">
+            <div class="l" id="search">
+                <a href="{SITE_URL}" class="on">首页</a>
+                {list action=cache name=module}
+                - <a href="{$t.url}">{$t.name}</a>
+                {/list}
+            </div>
+        </div>
+        <div class="sr_logo" style="margin-bottom: 44px;">
+            <a href="{dr_so_url()}"><img src="{HOME_THEME_PATH}layouts/layout3/img/logo.png" /></a>
+        </div>
+
+        <form name="search" action="index.php" type="get">
+            <input type="hidden" name="c" value="so"/>
+            <input type="hidden" name="module" value="{$module}"/>
+            <div class="sr_frm">
+                <div class="sr_frm_box">
+                    <div class="sr_frmipt"><input type="text" id="keyword" name="keyword" class="ipt"><input type="submit" class="ss_btn" value="搜 索"></div>
+                </div>
+            </div>
+        </form>
+        <script language="JavaScript">
+            <!--
+            $(document).ready(function(){
+                $("#keyword").focus();
+            });
+            //-->
+        </script>
+        <div class="sr_footer">
+            <p class="cp">Powered by POSCMS {DR_NAME} v{DR_VERSION} © 2011-2017 Dayrui Inc.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

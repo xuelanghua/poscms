@@ -1,0 +1,79 @@
+{template nheader.html}
+<div class="page-bar">
+	<ul class="page-breadcrumb mylink">
+		{$menu.link}
+
+	</ul>
+	<ul class="page-breadcrumb myname">
+		{$menu.name}
+	</ul>
+	<div class="page-toolbar">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+				<i class="fa fa-angle-down"></i>
+			</button>
+			<ul class="dropdown-menu pull-right" role="menu">
+				{loop $menu.quick $t}
+				<li>
+					<a href="{$t.url}">{$t.icon} {$t.name}</a>
+				</li>
+				{/loop}
+				<li class="divider"> </li>
+				<li>
+					<a href="javascript:window.location.reload();">
+						<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<h3 class="page-title">
+	<small>{fc_lang('会员等级通过经验值自动升级，可以通过不同的等级来划分会员的使用权限')}</small>
+</h3>
+<form action="" method="post" name="myform" id="myform">
+	<input name="action" id="action" type="hidden" value="" />
+	<div class="portlet mylistbody">
+		<div class="portlet-body">
+			<div class="table-scrollable">
+
+				<table class="mytable table table-striped table-bordered table-hover table-checkable dataTable">
+
+		<thead>
+		<tr>
+			<th width="20"></th>
+			<th>Id</th>
+			<th>{fc_lang('名称')}</th>
+			<th>{fc_lang('图标')}</th>
+			<th>{fc_lang(SITE_EXPERIENCE.'要求')}</th>
+			<th class="dr_option">{fc_lang('操作')}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{loop $list $t}
+		<tr id="dr_row_{$t['id']}">
+			<td><input name="ids[]" type="checkbox" class="dr_select toggle md-check" value="{$t.id}" /></td>
+			<td>{$t.id}</td>
+			<td>{$t.name}</td>
+			<td>{dr_show_stars($t['stars'])}</td>
+			<td>{$t.experience}</td>
+			<td class="dr_option">
+			{if $this->ci->is_auth('member/admin/level/edit')}<a class="aedit" href="{dr_url('member/level/edit',array('gid'=>$groupid, 'id'=>$t['id']))}"> <i class="fa fa-edit"></i> {fc_lang('修改')}</a>{/if}
+			{if $this->ci->is_auth('member/admin/level/del')}<a class="adel" href="javascript:;" onClick="return dr_dialog_del('{fc_lang('您确定要这样操作吗？')}','{dr_url('member/level/del',array('gid'=>$groupid, 'id'=>$t['id']))}');"> <i class="fa fa-trash"></i> {fc_lang('删除')}</a>{/if}
+			</td>
+		</tr>
+		{/loop}
+		<tr class="mtable_bottom">
+			<th width="20" ><input class="toggle md-check" name="dr_select" id="dr_select" type="checkbox" onClick="dr_selected()" /></th>
+			<td colspan="99" >
+			{if $this->ci->is_auth('member/admin/level/del')}<button type="button" class="btn red btn-sm " value="{fc_lang('删除')}" name="option" onClick="$('#action').val('del');dr_confirm_set_all('{fc_lang('您确定要这样操作吗？')}')"><i class="fa fa-trash"></i> {fc_lang('删除')}</button>
+			{/if}
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+
+</form>
+{template nfooter.html}

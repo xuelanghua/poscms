@@ -1,0 +1,109 @@
+<script type="text/javascript">
+$(function() {
+	document.onkeydown = function(e){  //防止回车提交表单
+		var ev = document.all ? window.event : e;
+		if (ev.keyCode==13) {
+			$("#mark").val("1"); // 标识不能提交表单
+		}
+	}
+});
+function dr_form_check() {
+	if ($("#mark").val() == 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+</script>
+<div style="max-height:400px;overflow-x:hidden;overflow-y:auto">
+<form action="" method="post" id="myform" name="myform" onsubmit="return dr_form_check()">
+<input name="mark" id="mark" type="hidden" value="0">
+<table width="550" border="0" cellspacing="0" cellpadding="0" class="table-list">
+{if $get.id}
+  <tr>
+    <td colspan="2"><b>{SITE_EXPERIENCE}</b></td>
+    <td colspan="2"><b>{SITE_SCORE}</b></td>
+  </tr>
+  <tr>
+    <td width="160" align="right">{fc_lang('每日登录增加%s', SITE_EXPERIENCE)}：</td>
+    <td><input type="text" name="data[login_experience]" value="{abs(intval($data['login_experience']))}" size="5" class="input-text" /></td>
+    <td width="160" align="right">{fc_lang('每日登录增加%s', SITE_SCORE)}：</td>
+    <td width=""><input type="text" name="data[login_score]" value="{abs(intval($data['login_score']))}" size="5" class="input-text" /></td>
+  </tr>
+  <tr>
+    <td align="right">{fc_lang('上传头像增加%s', SITE_EXPERIENCE)}：</td>
+    <td><input type="text" name="data[avatar_experience]" value="{abs(intval($data['avatar_experience']))}" size="5" class="input-text" /></td>
+    <td align="right">{fc_lang('上传头像增加%s', SITE_SCORE)}：</td>
+    <td><input type="text" name="data[avatar_score]" value="{abs(intval($data['avatar_score']))}" size="5" class="input-text" /></td>
+  </tr>
+  <tr>
+    <td align="right">{fc_lang('完善资料增加%s', SITE_EXPERIENCE)}：</td>
+    <td><input type="text" name="data[complete_experience]" value="{abs(intval($data['complete_experience']))}" size="5" class="input-text" /></td>
+    <td align="right">{fc_lang('完善资料增加%s', SITE_SCORE)}：</td>
+    <td><input type="text" name="data[complete_score]" value="{abs(intval($data['complete_score']))}" size="5" class="input-text" /></td>
+  </tr>
+  <tr>
+    <td align="right">{fc_lang('绑定OAuth增减%s', SITE_EXPERIENCE)}：</td>
+    <td><input type="text" name="data[bang_experience]" value="{intval($data['bang_experience'])}" size="5" class="input-text" /></td>
+    <td align="right">{fc_lang('绑定OAuth增减%s', SITE_SCORE)}：</td>
+    <td><input type="text" name="data[bang_score]" value="{intval($data['bang_score'])}" size="5" class="input-text" /></td>
+  </tr>
+  <tr>
+    <td align="right">{fc_lang('解绑OAuth增减%s', SITE_EXPERIENCE)}：</td>
+    <td><input type="text" name="data[jie_experience]" value="{intval($data['jie_experience'])}" size="5" class="input-text" /></td>
+    <td align="right">{fc_lang('解绑OAuth增减%s', SITE_SCORE)}：</td>
+    <td><input type="text" name="data[jie_score]" value="{intval($data['jie_score'])}" size="5" class="input-text" /></td>
+  </tr>
+  <tr>
+    <td align="right">{fc_lang('更新文档时间增减%s', SITE_EXPERIENCE)}：</td>
+    <td><input type="text" name="data[update_experience]" value="{intval($data['update_experience'])}" size="5" class="input-text" /></td>
+    <td align="right">{fc_lang('更新文档时间增减%s', SITE_SCORE)}：</td>
+    <td><input type="text" name="data[update_score]" value="{intval($data['update_score'])}" size="5" class="input-text" /></td>
+  </tr>
+  <tr>
+    <td align="right">{fc_lang('下载附件增减%s', SITE_EXPERIENCE)}：</td>
+    <td><input type="text" name="data[download_experience]" value="{intval($data['download_experience'])}" size="5" class="input-text" /></td>
+    <td align="right">{fc_lang('下载附件增减%s', SITE_SCORE)}：</td>
+    <td><input type="text" name="data[download_score]" value="{intval($data['download_score'])}" size="5" class="input-text" /></td>
+  </tr>
+    <tr>
+        <td align="right">{fc_lang('邀请好友注册增加%s', SITE_EXPERIENCE)}：</td>
+        <td><input type="text" name="data[invite_experience]" value="{abs(intval($data['invite_experience']))}" size="5" class="input-text" /></td>
+        <td align="right">{fc_lang('邀请好友注册增加%s', SITE_SCORE)}：</td>
+        <td><input type="text" name="data[invite_score]" value="{abs(intval($data['invite_score']))}" size="5" class="input-text" /></td>
+    </tr>
+    <tr>
+        <td align="right">{fc_lang('发布一条动态增加%s', SITE_EXPERIENCE)}：</td>
+        <td><input type="text" name="data[feed_experience]" value="{abs(intval($data['feed_experience']))}" size="5" class="input-text" /></td>
+        <td align="right">{fc_lang('发布一条动态增加%s', SITE_SCORE)}：</td>
+        <td><input type="text" name="data[feed_score]" value="{abs(intval($data['feed_score']))}" size="5" class="input-text" /></td>
+    </tr>
+  <tr>
+    <td colspan="2"><b>{fc_lang('其他规则')}</b></td>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td align="right">{fc_lang('是否允许上传附件')}：</td>
+    <td><input name="data[is_upload]" type="checkbox" value="1" {if $data['is_upload']}checked{/if} /></td>
+    <td align="right">{fc_lang('是否允许下载附件')}：</td>
+    <td><input name="data[is_download]" type="checkbox" value="1" {if $data['is_download']}checked{/if} /></td>
+  </tr>
+  <tr>
+    <td align="right">{fc_lang('附件总空间')}：</td>
+    <td ><input type="text" name="data[attachsize]" value="{intval($data['attachsize'])}" size="5" class="input-text" />MB</td>
+    <td align="right"></td>
+    <td ></td>
+  </tr>
+  <tr>
+    <td style="border:none; text-align:center; color:#F00" colspan="4"><b>{fc_lang(''.SITE_EXPERIENCE.'不要设置为负数，'.SITE_EXPERIENCE.'只能无限增加')}</b></td>
+  </tr>
+{else}
+  <tr>
+    <td style="border:none;" align="right" width="250">{fc_lang('是否允许下载附件')}：</td>
+    <td style="border:none;">
+<input name="data[test]" type="hidden" value="0"><input name="data[is_download]" type="checkbox" value="1" {if $data['is_download']}checked{/if} /></td>
+  </tr>
+{/if}
+</table>
+</form>
+</div>

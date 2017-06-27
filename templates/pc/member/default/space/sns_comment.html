@@ -1,0 +1,26 @@
+{loop $list $t}
+<dl class="comment_list" id="dr_row_comment_{$t.id}">
+    <dt class="memberinfo_avatar"><img style="width:30px;height:30px" src="{dr_avatar($t.uid)}" /></dt>
+    <dd>
+        <p class="cont">
+            <a href="javascript:;" uid="{$t.uid}" event-node="face_card">{$t.username}</a>：
+            <em>{dr_sns_content($t.comment)}</em>
+        </p>
+        <p class="info right">
+            <span class="time">
+                {dr_fdate($t.inputtime)}
+            </span>
+            <span>
+                &nbsp;&nbsp;&nbsp;
+                {if $member.adminid || $t.uid==$member.uid}
+                <a href="javascript:void(0);" onclick="dr_sns_delete_comment({$t.id})">删除</a>
+                <i class="vline">|</i>
+                {/if}
+                <a href="javascript:void(0)" onclick="dr_recomment('{$t.fid}', '{$t.username}')">回复</a>
+            </span>
+        </p>
+    </dd>
+
+</dl>
+{/loop}
+{if $more}<span class="info clearfix"><a class="fw" href="{dr_sns_feed_url($fid)}">查看更多</a></span>{/if}

@@ -1,0 +1,53 @@
+{template nheader.html}
+<div class="page-bar">
+    <ul class="page-breadcrumb mylink">
+        {$menu.link}
+        <li><a href="{SYS_HELP_URL}160.html" target="_blank"><i class="fa fa-book"></i> {fc_lang('在线帮助')}</a></li>
+    </ul>
+    <ul class="page-breadcrumb myname">
+        {$menu.name}
+    </ul>
+    <div class="page-toolbar">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                {loop $menu.quick $t}
+                <li>
+                    <a href="{$t.url}">{$t.icon} {$t.name}</a>
+                </li>
+                {/loop}
+                <li class="divider"> </li>
+                <li>
+                    <a href="javascript:window.location.reload();">
+                        <i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<h3 class="page-title">
+    <small>{fc_lang('按会员组设置会员空间的初始化栏目，<font color=red>对已经开通空间的会员无效</font>')}</small>
+</h3>
+<div class="portlet light bordered myfbody">
+    <div class="portlet-title tabbable-line">
+	<div class="table-list">
+		<table width="100%">
+        {list action=cache name=MEMBER.group return=group}
+        <tr>
+        	<td align="left" width="200">{$group.name}</td>
+            <td align="left">
+            {if $group.allowspace}
+                <a style="color:#0000ff" href="{dr_url('space/space/category', array('id' => $group.id))}">{fc_lang('设置栏目')}</a>
+            {else}
+                {fc_lang('<font color="red">该会员组不允许使用空间，</font><a href="%s" style="color:blue">开启方法</a>', dr_url('member/group/edit/', array('id' => $group.id, 'page' => 2)))}
+            {/if}
+            </td>
+        </tr>
+        {/list}
+        </table>
+	</div>
+	</div>
+</div>
+{template nfooter.html}

@@ -1,0 +1,59 @@
+<div class="page_url"><a href="{SITE_URL}">首页</a> <span>&gt;</span> <a href="{dr_member_url('home/index')}">会员中心</a> {if $meta_name != '会员中心'}<span>&gt;</span> {$meta_name}{/if}</div>
+<div class="aside">
+    <div class="round memberinfo">
+        <table width="178" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td rowspan="2" width="50"><div class="memberinfo_avatar"><a href="{dr_member_url('account/avatar')}"><img src="{dr_avatar($uid)}"></a></div></td>
+                <td><b>&nbsp;{$member.username}</b></td>
+            </tr>
+            <tr>
+                <td colspan="2"><div class="dr_stars"><a href="" title="{$member.levelname}">{dr_show_stars($member.levelstars)}</a></div></td>
+            </tr>
+            <tr height="20">
+                <td colspan="3" style="padding-top:8px;">
+                    {SITE_EXPERIENCE}：<a href="{dr_member_url('pay/experience')}">{$member.experience}</a>
+                </td>
+            </tr>
+            <tr height="20">
+                <td colspan="3">
+                    {SITE_SCORE}：<a href="{dr_member_url('pay/score')}">{$member.score}</a>
+                </td>
+            </tr>
+            <tr height="20">
+                <td colspan="3">
+                    {SITE_MONEY}：<a href="{dr_member_url('pay/index')}">{$member.money}</a>
+                </td>
+            </tr>
+            <tr height="20">
+                <td colspan="3">
+                    会员组：{$member.groupname}
+                </td>
+            </tr>
+            {if $member.levelid}
+            <tr height="20">
+                <td colspan="3">
+                    会员等级：{$member.levelname}
+                </td>
+            </tr>
+            {/if}
+            {if $member.groupid==1 && $regverify == 1}
+            <tr height="20">
+                <td colspan="3">
+                    审核会员：<a href="{dr_member_url('login/resend')}">重发邮件</a>
+                </td>
+            </tr>
+            {/if}
+        </table>
+    </div>
+    <div class="menu round">
+        <h4><strong>通知</strong></h4>
+        <ul>
+            <li><a href="{dr_member_url('pm/index')}" {if $ci->router->class == 'pm'}class="cur"{/if}>短消息（{$notice[0]}）</a></li>
+            <li><a href="{dr_member_url('notice/index')}" {if  $ci->router->class == 'notice' && $ci->router->method == 'index'}class="cur"{/if}>系统提醒（{$notice[1]}）</a></li>
+            <li><a href="{dr_member_url('notice/member')}" {if  $ci->router->class == 'notice' && $ci->router->method == 'member'}class="cur"{/if}>互动提醒（{$notice[2]}）</a></li>
+            <li><a href="{dr_member_url('notice/module')}" {if  $ci->router->class == 'notice' && $ci->router->method == 'module'}class="cur"{/if}>模块提醒（{$notice[3]}）</a></li>
+            <li><a href="{dr_member_url('notice/app')}" {if  $ci->router->class == 'notice' && $ci->router->method == 'app'}class="cur"{/if}>应用提醒（{$notice[4]}）</a></li>
+        </ul>
+    </div>
+</div>
+<script>$('#mindex').attr('class', 'current')</script>

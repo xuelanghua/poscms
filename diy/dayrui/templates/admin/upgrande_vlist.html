@@ -1,0 +1,19 @@
+{loop $vlist $t}
+<tr>
+    <td><a href="{$t.url}" {if $nid==$t.id} style="color:red"{/if} {if DR_VERSION_ID==$t.id} style="color:green"{/if} target="_blank">v{$t.title}</a></td>
+    <td  {if $nid==$t.id} style="color:red"{/if} {if DR_VERSION_ID==$t.id} style="color:green"{/if}>{dr_date($t.updatetime)}</td>
+    <td class="dr_option">
+        {if $nid==$t.id}
+            <a class="aedit" href="http://www.poscms.net/index.php?c=fc&m=update&id={$t.id}&url={urlencode(ADMIN_URL.dr_url('upgrade/update'))}">{fc_lang('在线升级')}</a>
+        {/if}
+        <a class="aadd" href="http://www.poscms.net/index.php?c=sys&m=bdb&id={$t.title}" target="_blank">{fc_lang('补丁包下载')}</a>
+        {if $nid-1==$t.id && is_dir(WEBPATH.'cache/backup/'.$t.id.'/')}
+        <a class="aadd" href="javascript:dr_hf('{$t.id}');">{fc_lang('恢复此版本')}</a>
+        {/if}
+        <a class="alist" href="{$t.url}" target="_blank">{fc_lang('升级说明')}</a>
+        {if DR_VERSION_ID==$t.id}
+        <a class="adel" href="javascript:;">{fc_lang('当前版本')}</a>
+        {/if}
+    </td>
+</tr>
+{/loop}

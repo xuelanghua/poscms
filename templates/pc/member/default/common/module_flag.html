@@ -1,0 +1,160 @@
+{template nheader.html}
+<script type="text/javascript">
+	function dr_remove() {
+		$("#action").val('flag');
+		var _data = $("#myform").serialize();
+		var _url = window.location.href;
+		if ((_data.split('ids')).length-1 <= 0) {
+			dr_tips("到底移出谁？您还没有选择呢", 2);
+			return true;
+		}
+		// 将表单数据ajax提交验证
+		$.ajax({type: "POST",dataType:"json", url: _url, data: _data,
+			success: function(data) {
+				//验证成功
+				if (data.status == 1) {
+					dr_tips(data.code, 3, 1);
+					// 刷新页
+					setTimeout('window.location.reload(true)', 3000);
+				} else {
+					dr_tips(data.code, 3, 2);
+					return true;
+				}
+			},
+			error: function(HttpRequest, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + HttpRequest.statusText + "\r\n" + HttpRequest.responseText);
+			}
+		});
+		return false;
+	}
+	function dr_update() {
+		$("#action").val('update');
+		var _data = $("#myform").serialize();
+		var _url = window.location.href;
+		if ((_data.split('ids')).length-1 <= 0) {
+			dr_tips("到底更新谁？您还没有选择呢", 2);
+			return true;
+		}
+		// 将表单数据ajax提交验证
+		$.ajax({type: "POST",dataType:"json", url: _url, data: _data,
+			success: function(data) {
+				//验证成功
+				if (data.status == 1) {
+					dr_tips(data.code, 3, 1);
+					// 刷新页
+					setTimeout('window.location.reload(true)', 3000);
+				} else {
+					dr_tips(data.code, 3, 2);
+					return true;
+				}
+			},
+			error: function(HttpRequest, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + HttpRequest.statusText + "\r\n" + HttpRequest.responseText);
+			}
+		});
+		return false;
+	}
+	function dr_delete(catid, id) {
+		art.dialog.confirm("<font color=red><b>你确认要删除吗？</b></font>", function(){
+			// 将表单数据ajax提交验证
+			$.ajax({type: "POST",dataType:"json", url: "{dr_member_url(APP_DIR.'/home/del')}",data: {catid:catid,id:id}, success: function(data) {
+				//验证成功
+				if (data.status == 1) {
+					dr_tips(data.code, 3, 1);
+					$("#dr_row_"+id).hide();
+				} else {
+					dr_tips(data.code, 3, 0);
+				}
+				art.dialog.close();
+				return false;
+			},
+				error: function(HttpRequest, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + HttpRequest.statusText + "\r\n" + HttpRequest.responseText);
+				}
+			});
+			return true;
+		});
+		return false;
+	}
+
+
+</script>
+
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="portlet-body">
+
+			{if $flag_error}
+			<div class="alert alert-danger">
+				{$flag_error}
+			</div>
+			{else}
+			<div class="table-toolbar">
+				<form method="get" action="">
+					<div class="row">
+						<div class="col-md-12">
+							{loop $flag $i $t}
+							<label>
+								<div class="btn-group">
+									<a class="btn {if $i==$id}green {else}btn-default{/if}" href="{dr_member_url(APP_DIR.'/home/flag', array('id' => $i))}"> {$t.name}
+									</a>
+								</div>
+							</label>
+							{/loop}
+						</div>
+
+					</div>
+				</form>
+			</div>
+
+			<form action="" method="post" name="myform" id="myform">
+				<input name="action" id="action" type="hidden" value="" />
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+						<tr>
+							<th style="width:20px;" class="algin_r">&nbsp;</th>
+							<th class="algin_l">主题</th>
+							<th class="algin_c">栏目</th>
+							<th class="algin_l">更新时间</th>
+							<th >状态</th>
+							<th ></th>
+						</tr>
+						</thead>
+						<tbody id="dr_body">
+						{template module_data.html}
+						</tbody>
+						<tr>
+							<td style="padding-top:15px;padding-left:15px"><input class="toggle md-check" ck="0" type="checkbox" onclick="dr_selected2()" id="dr_select" name="dr_select"></td>
+							<td colspan="22">
+								<div class="row">
+									<div class="col-md-1">
+										<label>
+											<button type="button" class="btn btn-sm red" onClick="dr_delete()"><i class="fa fa-trash-o"></i> 移出</button>
+										</label>
+									</div>
+									<div class="col-md-5">
+										&nbsp;
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+					</table>
+				</div>
+			</form>
+			{/if}
+		</div>
+
+
+	</div>
+</div>
+
+
+{if IS_MOBILE}
+<div class="alert alert-info" style="margin-top: 15px">
+	左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

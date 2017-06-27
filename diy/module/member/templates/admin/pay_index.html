@@ -1,0 +1,97 @@
+{template nheader.html}
+<div class="page-bar">
+	<ul class="page-breadcrumb mylink">
+		{$menu.link}
+
+	</ul>
+	<ul class="page-breadcrumb myname">
+		{$menu.name}
+	</ul>
+	<div class="page-toolbar">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+				<i class="fa fa-angle-down"></i>
+			</button>
+			<ul class="dropdown-menu pull-right" role="menu">
+				{loop $menu.quick $t}
+				<li>
+					<a href="{$t.url}">{$t.icon} {$t.name}</a>
+				</li>
+				{/loop}
+				<li class="divider"> </li>
+				<li>
+					<a href="javascript:window.location.reload();">
+						<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div class="mytopsearch">
+	<form method="post" action="" name="searchform" id="searchform">
+		<label>{fc_lang('会员账号')}：</label>
+		<label><input type="text" class="form-control" value="{$param.keyword}" placeholder="{fc_lang('输入账号')}" name="data[keyword]" /></label>
+
+		<label>&nbsp;&nbsp;{fc_lang('时间')} ：</label>
+		<label>{dr_field_input('start', 'Date', array('option'=>array('format'=>'Y-m-d','width'=>100)), (int)$param['start'])}</label>
+		<label><i class="fa fa-minus"></i></label>
+		<label>{dr_field_input('end', 'Date', array('option'=>array('format'=>'Y-m-d','width'=>80)), (int)$param['end'])}</label>
+
+		<label>&nbsp;&nbsp;{fc_lang('类型')} ：</label>
+		<label><select class="form-control" name="data[type]">
+			<option value=""> -- </option>
+			<option value="1" {if $param['type']==1}selected{/if}> {fc_lang('收入')} </option>
+			<option value="2" {if $param['type']==2}selected{/if}> {fc_lang('消费')} </option>
+		</select>
+		</label>
+
+		<label>&nbsp;&nbsp;{fc_lang('状态')} ：</label>
+		<label><select class="form-control" name="data[status]">
+		<option value=""> -- </option>
+		<option value="1" {if $param['status']==1}selected{/if}> {fc_lang('成功')} </option>
+		<option value="0" {if !$param['status'] && strlen($param['status']) > 0}selected{/if}> {fc_lang('等待付款')} </option>
+		</select>
+		</label>
+		<label><button type="submit" class="btn green btn-sm"> <i class="fa fa-search"></i> {fc_lang('搜索')}</button></label>
+	</form>
+</div>
+
+<form action="" method="post" name="myform" id="myform">
+	<input name="action" id="action" type="hidden" value="del" />
+	<div class="portlet mylistbody">
+		<div class="portlet-body">
+			<div class="table-scrollable">
+
+				<table class="mytable table table-striped table-bordered table-hover table-checkable dataTable">
+
+				<thead>
+				<tr>
+					<th width="150">{fc_lang('时间')}</th>
+					<th width="120">{fc_lang('会员')}</th>
+					<th width="200">{SITE_MONEY}</th>
+					<th width="90">{fc_lang('类型')}</th>
+					<th width="120">{fc_lang('状态')}</th>
+					<th class="dr_option">{fc_lang('备注说明')}</th>
+				</tr>
+				</thead>
+				<tbody>
+				{loop $list $t}
+				<tr>
+					<td>{dr_date($t['inputtime'])}</td>
+					<td>{if $t.uid}<a onclick="dr_dialog_member('{$t.uid}')" href="javascript:;">{php $m=dr_member_info($t.uid); echo $m.username;}</a>{else}{fc_lang('游客')}{/if}</td>
+					<td><b>{if $t['value'] > 0}<font color="#009933">+{$t['value']}</font>{else}<font color="#FF0000">{$t['value']}</font>{/if}</b></td>
+					<td>{if $t.type}{$pay[$t['type']]['name']}{else}{fc_lang('自助')}{/if}</td>
+					<td>{if $t.status}<font color="#009933">{fc_lang('成功')}</font>{else}<font color="#FF0000">{fc_lang('等待付款')}</font>{/if}</td>
+					<td class="dr_option">{dr_lang_note($t['note'])}</td>
+				</tr>
+				{/loop}
+				</tbody>
+				</table>
+		</div>
+	</div>
+</div>
+</form>
+<div id="pages" style="margin-top: 20px"><a>{fc_lang('共%s条', $param['total'])}</a>{$pages}</div>
+{template nfooter.html}

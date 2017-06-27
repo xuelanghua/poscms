@@ -1,0 +1,56 @@
+{template "nheader.html"}
+<link href="{MEMBER_THEME_PATH}sns/sns2.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$(function(){
+    // 加载更多
+    $("#dr_loadmore a").click(function(){
+        var page = $("#dr_page").val();
+        $("#dr_loading").html("<div style='padding:30px;text-align:center;'><img src='{MEMBER_THEME_PATH}images/loading.gif' /></div>");
+        $.get("{$moreurl}", {page:page}, function(data){
+            if (data != "null") {
+                $("#dr_body").append(data);
+                $("#dr_page").val(Number(page) + 1);
+            }
+            $("#dr_loading").html("");
+        });
+    });
+    // 取消关注按钮
+    $('.dr_follow_btn_span').hover(function(){
+        $(this).html('<b class="ico-minus-gray"></b>取消关注');
+    },function(){
+        var value = $(this).attr('value');
+        if (value == 1) {
+            $(this).html('<b class="ico-connect"></b>相互关注');
+        } else {
+            $(this).html('<b class="ico-already"></b>已关注');
+        }
+    });
+    // 取消关注操作
+    $('.dr_follow_btn').click(function(){
+        var id = $(this).attr('fid');
+        var uid = $(this).attr('uid');
+        $.get("{dr_member_url('sns/follow_delete')}&uid="+uid, function(data){
+            if (data) {
+                $('#dr_row_'+id).remove();
+                dr_tips('取消关注成功', 2, 1);
+            }
+        });
+    });
+});
+</script>
+<input name="page" id="dr_page" type="hidden" value="2" />
+<script type="text/javascript" src="{MEMBER_THEME_PATH}sns/sns.js"></script>
+
+<div class="row">
+    <div class="col-md-12" id="dr_weibo">
+            <div class="main">
+                <div id="dr_body" class="sperson-feedlist">
+                    {template "sns_fans_data.html"}
+                </div>
+                <div class="bk10"></div>
+                <div id="dr_loading"></div>
+                <div id="dr_loadmore" class="load-more"><a href="javascript:;">查 看 更 多</a></div>
+            </div>
+    </div>
+</div>
+{template "nfooter.html"}

@@ -1,0 +1,101 @@
+{template nheader.html}
+
+
+<div class="page-bar">
+    <ul class="page-breadcrumb mylink">
+        {$menu.link}
+    </ul>
+    <ul class="page-breadcrumb myname">
+        {$menu.name}
+    </ul>
+    <div class="page-toolbar">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> {fc_lang('操作菜单')}
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                {loop $menu.quick $t}
+                <li>
+                    <a href="{$t.url}">{$t.icon} {$t.name}</a>
+                </li>
+                {/loop}
+                <li class="divider"> </li>
+                <li>
+                    <a href="javascript:window.location.reload();">
+                        <i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<h3 class="page-title">
+    <small></small>
+</h3>
+
+<form class="form-horizontal" action="" method="post" id="myform" name="myform">
+    <input name="page" id="mypage" type="hidden" value="{$page}" />
+    <div class="portlet light bordered myfbody">
+        <div class="portlet-title tabbable-line">
+            <ul class="nav nav-tabs" style="float:left;">
+                <li class="{if $page==0}active{/if}">
+                    <a href="#tab_0" data-toggle="tab" onclick="$('#mypage').val('0')"> <i class="fa fa-cog"></i> 系统回复设置 </a>
+                </li>
+            </ul>
+        </div>
+        <div class="portlet-body">
+            <div class="tab-content">
+
+                <div class="tab-pane {if $page==0}active{/if}" id="tab_0">
+                    <div class="form-body">
+
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">欢迎信息关键字ID：</label>
+                            <div class="col-md-9">
+                                <label><input class="form-control" type="text" name="data[hello]" value="{$data['hello']}"></label>
+                                <span class="help-block">
+                                    指定用户添加公众帐号好友时，发送的欢迎信息, 你可以在这里输入关键字ID, 那么用户添加公众号好友时就相当于发送这个内容至系统
+                                    <br>例如"欢迎关注", 那么用户添加公众号好友时, 系统相当于接受了粉丝用户的消息, 内容为"欢迎关注"
+
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">默认回复关键字ID：</label>
+                            <div class="col-md-9">
+                                <label><input class="form-control" type="text" name="data[reply]" value="{$data['reply']}"></label>
+                                <span class="help-block">
+                                    指定系统不知道该如何回复粉丝的消息时，发送的默认信息, 你可以在这里输入关键字ID, 那么系统不知道该如何回复粉丝的消息时就相当于发送这个内容至系统
+
+                                </span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+        <div class="myfooter">
+            <div class="row">
+                <div class="portlet-body form">
+                    <div class="form-body">
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn green"> <i class="fa fa-save"></i> {fc_lang('保存')}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{template nfooter.html}

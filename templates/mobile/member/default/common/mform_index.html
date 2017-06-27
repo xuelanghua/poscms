@@ -1,0 +1,125 @@
+{template "nheader.html"}
+<script type="text/javascript">
+	$(function(){
+		// 排序操作
+		$('.dr_table th').click(function(e) {
+			var _class = $(this).attr("class");
+			if (_class == undefined) return;
+			var _name = $(this).attr("name");
+			var _order = '';
+			if (_class == "sorting") {
+				_order = 'desc';
+			} else if (_class == "sorting_desc") {
+				_order = 'asc';
+			} else {
+				_order = 'desc';
+			}
+			var url = "{dr_member_order($moreurl)}&order="+_name+" "+_order;
+			location.href=url;
+		});
+	});
+	function dr_delete(id) {
+		art.dialog.confirm("<font color=red><b>你确认要删除吗？</b></font>", function(){
+			$.ajax({type: "POST",dataType:"json", url: "{dr_member_url(APP_DIR.'/'.$this->ci->router->class.'/del')}",data: {id:id}, success: function(data) {
+				if (data.status == 1) {
+					dr_tips(data.code, 3, 1);
+					$("#dr_row_"+id).hide();
+				} else {
+					dr_tips(data.code, 3, 0);
+				}
+				art.dialog.close();
+				return false;
+			},
+				error: function(HttpRequest, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + HttpRequest.statusText + "\r\n" + HttpRequest.responseText);
+				}
+			});
+			return true;
+		});
+		return false;
+	}
+</script>
+
+
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="portlet-body">
+			<div class="table-toolbar">
+				<form method="get" action="">
+					<input name="s" type="hidden" value="member" />
+					<input name="mod" type="hidden" value="{APP_DIR}" />
+					<input name="c" type="hidden" value="{$this->ci->router->class}" />
+					<input name="m" type="hidden" value="index" />
+					<input id="dr_order" name="order" type="hidden" value="{$get.order}" />
+					<div class="row">
+						<div class="col-md-4 col-sm-4 hidden-480" style="max-width:120px">
+							<label>
+								<input type="text" class="form-control" name="cid" value="{if $get.cid}{$get.cid}{/if}" placeholder="输入文档id" >
+							</label>
+						</div>
+						<div class="col-md-6 col-sm-6">
+							<label>
+								<div class="input-group">
+									<input type="text" class="form-control" name="kw" value="{$get.kw}" placeholder="输入关键字搜索">
+									<span class="input-group-btn">
+										<button class="btn green mysubmit" type="submit"><i class="fa fa-search"></i> 搜索</button>
+									</span>
+								</div>
+							</label>
+						</div>
+
+					</div>
+				</form>
+			</div>
+
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+					<tr>
+
+						<th class="{ns_sorting('subject')}" name="subject">主题</th>
+						<th class="{ns_sorting('inputtime')}" name="inputtime">发布时间</th>
+						<th></th>
+					</tr>
+					</thead>
+					<tbody id="dr_body">
+					{loop $list $t}
+					<tr id="dr_row_{$t.id}">
+						<td class=""><div class="dr_title">{dr_keyword_highlight($t.subject, $get.kw)}</div></td>
+						<td class="">{dr_date($t.inputtime, '', 'red')}</td>
+						<td class="">
+							<a href="javascript:;" onclick="dr_dialog_show('查看', '{dr_member_url(APP_DIR.'/'.$this->ci->router->class.'/show', array('id' => $t.id))}')" class="btn blue btn-xs" ><i class="fa fa-search"></i> 查看</a>
+							{if $isedit}
+							<a href="{dr_member_url(APP_DIR.'/'.$this->ci->router->class.'/edit', array('id' => $t.id))}" class="btn green btn-xs" ><i class="fa fa-edit"></i> 修改</a>
+							{/if}
+							<a href="javascript:;" onclick="dr_delete('{$t.id}')" class="btn red-mint btn-xs" ><i class="fa fa-trash-o"></i> 删除</a>
+						</td>
+					</tr>
+					{/loop}
+					</tbody>
+				</table>
+				</table>
+			</div>
+
+		</div>
+
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<ul class="pagination">
+			{$pages}
+			<li><a href="javascript:;">共{$page_total}条</a></li>
+		</ul>
+	</div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info" style="margin-top: 15px">
+	左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

@@ -1,0 +1,76 @@
+<script type="text/javascript">
+    //防止回车提交表单
+    $(function() {
+        document.onkeydown = function(e){
+            var ev = document.all ? window.event : e;
+            if (ev.keyCode==13) {
+                $("#mark").val("1"); // 标识不能提交表单
+            }
+        }
+    });
+    function dr_form_check() {
+        if ($("#mark").val() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+<div style="width:550px;max-height:480px;overflow:auto;margin-bottom:10px;">
+    <form action="" method="post" id="myform" name="myform" onsubmit="return dr_form_check()">
+        <input name="mark" id="mark" type="hidden" value="0">
+        <div class="subnav">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="border:none;padding-right:10px"><img src="{THEME_PATH}space/{$space}/preview.jpg" /></td>
+                    <td style="border:none">
+                        <div class="table-list">
+                            <table width="100%">
+                                <tr>
+                                    <td align="left"><b>{fc_lang('会员组')}</b></td>
+                                    <td align="center" style="padding-right:10px;text-align:center"><b>{SITE_SCORE}</b></td>
+                                    <td align="center" style="padding-right:10px;width:50px;text-align:center"><b>{fc_lang('可用')}</b></td>
+                                </tr>
+                                {list action=cache name=MEMBER.group return=group}
+                                {if $group.id > 2}
+                                <tr>
+                                    <td align="left" width="250">{$group.name}</td>
+                                    <td align="left"></td>
+                                    <td align="left"></td>
+                                </tr>
+                                {loop $group.level $level}
+                                <tr>
+                                    {php $id=$group['id'].'_'.$level['id'];}
+                                    <td align="left" width="250" style="padding-left:20px">{$level.name}&nbsp;&nbsp;{dr_show_stars($level['stars'])}</td>
+                                    <td align="left" style="padding-right:10px">
+                                        <input name="data[{$id}][price]" size="5" style="text-align:center" type="text" value="{intval($data[$id]['price'])}" />
+                                    </td>
+                                    <td align="center" style="padding-right:10px">
+                                        <input name="data[{$id}][use]" type="checkbox" {if isset($data[$id]['use']) && $data[$id]['use']}checked="checked"{/if} value="1" />
+                                    </td>
+                                </tr>
+                                {/loop}
+                                {else}
+                                <tr>
+                                    {php $id=$group['id'];}
+                                    <td align="left" width="250">{$group.name}</td>
+                                    <td align="left" style="padding-right:10px">
+                                        <input name="data[{$id}][price]" size="5" style="text-align:center" type="text" value="{intval($data[$id]['price'])}" />
+                                    </td>
+                                    <td align="center" style="padding-right:10px">
+                                        <input name="data[{$id}][use]" type="checkbox" {if isset($data[$id]['use']) && $data[$id]['use']}checked="checked"{/if} value="1" />
+                                    </td>
+                                </tr>
+                                {/if}
+                                {/list}
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:none; text-align:center; color:#F00;padding-top:10px" colspan="2"><b>{fc_lang('空间模板的售价请填写正整数值，0表示免费')}</b></td>
+                </tr>
+            </table>
+        </div>
+</div>
+</form>

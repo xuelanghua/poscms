@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>admin</title>
+    <link href="{THEME_PATH}admin/css/index.css" rel="stylesheet" type="text/css" />
+    <link href="{THEME_PATH}admin/css/table_form.css" rel="stylesheet" type="text/css" />
+    <link href="{THEME_PATH}js/swfupload/swfupload.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">var memberpath = "{MEMBER_PATH}";</script>
+    <script type="text/javascript" src="{THEME_PATH}js/{SITE_LANGUAGE}.js"></script>
+    <script type="text/javascript" src="{THEME_PATH}js/jquery.min.js"></script>
+    <script type="text/javascript" src="{THEME_PATH}js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{THEME_PATH}js/jquery.artDialog.js?skin=default"></script>
+    <script type="text/javascript" src="{THEME_PATH}js/validate.js"></script>
+    <script type="text/javascript" src="{THEME_PATH}js/admin.js"></script>
+    <script type="text/javascript" src="{THEME_PATH}js/dayrui.js"></script>
+    <script type="text/javascript" src="{THEME_PATH}js/swfupload/swfupload.js"></script>
+    <script type="text/javascript" src="{THEME_PATH}js/swfupload/fileprogress.js"></script>
+    <script type="text/javascript" src="{THEME_PATH}js/swfupload/handlers.js"></script>
+</head>
+<body style="font-size:12px">
+
+<div class="subnav">
+    <div class="explain-col">
+        <form method="post" action="" name="searchform" id="searchform">
+            <select name="data[group]">
+                <option value="-1" {if $param.group==-1}selected{/if}>全部</option>
+                {loop $groups $i $t}
+                <option value="{$i}" {if $param.group==$i}selected{/if}>{$t.name}</option>
+                {/loop}
+            </select> ：
+            <select name="data[field]">
+            {loop $field $i $t}
+            <option value="{$i}" {if $param.field==$i}selected{/if}>{$t}</option>
+            {/loop}
+        </select> ：
+            <input type="text" class="input-text" value="{$param.keyword}" size="20" name="data[keyword]" />&nbsp;
+            <input type="submit" value="{fc_lang('搜索')}" class="button" name="search" />
+        </form>
+    </div>
+    <div class="bk10"></div>
+    <div class="table-list">
+        <table class="table" width="100%">
+            <thead>
+            <tr>
+                <th width="20" align="right"><input name="dr_select" class="toggle md-check" id="dr_select" type="checkbox" onClick="dr_selected()" /></th>
+                <th width="60">头像</th>
+                <th align="left">昵称</th>
+                <th align="left">绑定会员</th>
+                <th align="left">粉丝组</th>
+                <th align="left">关注/取消时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            {loop $list $t}
+            <tr>
+                <td align="right"><input type="hidden" id="dr_row_{$t.id}" value="{dr_deal_emoji($t.nickname)}"><input name="ids[]" type="checkbox" class="dr_select toggle md-check" value="{$t['id']}" /></td>
+                <td><img width="50" height="50" src="{$t.headimgurl}"></td>
+                <td>{dr_deal_emoji($t.nickname)}</td>
+                <td>{if $t.uid}<span class="badge badge-success"> {$t.username} </span>{else}<span class="badge badge-warning"> 未绑定 </span>{/if}</td>
+                <td>{$groups[$t.groupid]['name']}</td>
+                <td>{dr_date($t.subscribe_time)}</td>
+            </tr>
+            {/loop}
+            </tbody>
+        </table>
+
+    </div>
+</div>

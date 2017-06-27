@@ -1,0 +1,76 @@
+{template nheader.html}
+<div class="page-bar">
+    <ul class="page-breadcrumb mylink">
+        {$menu.link}
+        <li><a href="{SYS_HELP_URL}160.html" target="_blank"><i class="fa fa-book"></i> {fc_lang('在线帮助')}</a></li>
+    </ul>
+    <ul class="page-breadcrumb myname">
+        {$menu.name}
+    </ul>
+    <div class="page-toolbar">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                {loop $menu.quick $t}
+                <li>
+                    <a href="{$t.url}">{$t.icon} {$t.name}</a>
+                </li>
+                {/loop}
+                <li class="divider"> </li>
+                <li>
+                    <a href="javascript:window.location.reload();">
+                        <i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<h3 class="page-title">
+    <small></small>
+</h3>
+<form class="form-horizontal" action="" method="post" id="myform" name="myform">
+<div class="portlet light bordered myfbody" style="margin-bottom:70px">
+    <div class="portlet-title">
+        <div class="caption">
+            <span class="caption-subject font-green sbold uppercase">{fc_lang('同步到会员组')}</span>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+        <div class="form-body">
+            <div class="form-group">
+                <label class="col-md-2 control-label"></label>
+                <div class="col-md-9">
+                    <select name="syn[]" multiple style="width: 150px; height: 150px;">
+                        {loop $group $t}
+                        {if $t.id!=$get.gid}
+                        <option value="{$t.id}" selected>{$t.name}</option>
+                        {/if}
+                        {/loop}
+                    </select>
+                    <span class="help-block">{fc_lang('可以将当前会员组的栏目同步至以上选中的会员组中（会覆盖）')}</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="myfooter">
+    <div class="row">
+        <div class="portlet-body form">
+            <div class="form-body">
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn green"> <i class="fa fa-refresh"></i> {fc_lang('同步到会员组')}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+{template nfooter.html}

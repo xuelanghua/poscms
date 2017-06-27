@@ -1,0 +1,64 @@
+{template nheader.html}
+<div class="page-bar">
+	<ul class="page-breadcrumb mylink">
+		{$menu.link}
+		<li><a href="{SYS_HELP_URL}160.html" target="_blank"><i class="fa fa-book"></i> {fc_lang('在线帮助')}</a></li>
+	</ul>
+	<ul class="page-breadcrumb myname">
+		{$menu.name}
+	</ul>
+	<div class="page-toolbar">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+				<i class="fa fa-angle-down"></i>
+			</button>
+			<ul class="dropdown-menu pull-right" role="menu">
+				{loop $menu.quick $t}
+				<li>
+					<a href="{$t.url}">{$t.icon} {$t.name}</a>
+				</li>
+				{/loop}
+				<li class="divider"> </li>
+				<li>
+					<a href="javascript:window.location.reload();">
+						<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<h3 class="page-title">
+	<small>{fc_lang('创建空间时会同步创建以下栏目结构，<a href="%s" style="color:blue">您可以在通过这里同步到其他会员组</a>', dr_url('space/space/syn/', array('gid' => $get.id)))}</small>
+</h3>
+
+<div class="portlet light bordered">
+	<div class="portlet-body">
+		<div class="table-scrollable v3table">
+		<form action="" method="post" name="myform" id="myform">
+		<input name="action" id="action" type="hidden" value="order" />
+		<table class="table">
+		<thead>
+        <tr>
+			<th width="20"></th>
+            <th>{fc_lang('栏目名称')}</th>
+            <th>{fc_lang('类型')}</th>
+            <th>{fc_lang('显示方式')}</th>
+            <th class="dr_option">{fc_lang('操作')}</th>
+        </tr>
+        </thead>
+		<tbody>
+		{$list}
+		<tr class="mtable_bottom">
+			<th align="right"><input name="dr_select" class="toggle md-check" type="checkbox" onClick="dr_selected()" /></th>
+			<td colspan="4" align="left">
+				<button type="button" class="btn red btn-sm" name="option" onClick="$('#action').val('del');return dr_confirm_set_all('{fc_lang('您确定要这样操作吗？')}')"><i class="fa fa-trash"></i> {fc_lang('删除')}</button>
+
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		</form>
+		</div>
+	</div>
+</div>
+{template nfooter.html}

@@ -1,0 +1,55 @@
+{template "header.html", "/"}
+
+<div class="page-container">
+	<div class="page-content-wrapper">
+
+		<div class="page-content">
+			<div class="container">
+				<ul class="page-breadcrumb breadcrumb">
+					<li>
+						<a href="{SITE_URL}">首页</a>
+						<i class="fa fa-circle"></i>
+					</li>
+					<li>
+						<span>{$form.name}列表</span>
+					</li>
+				</ul>
+
+				<div class="page-content-inner">
+					<div class="search-page search-content-2">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="search-container ">
+									<ul class="search-container">
+										<!--分页显示列表数据-->
+										{list action=form form=$form_table order=inputtime page=1 pagesize=1 urlrule=$urlrule}
+										<li class="search-item clearfix">
+											<div class="search-content text-left">
+												<h4 class="search-title">
+													<a href="{$form_url}{$t.id}">{$t.title}</a>
+												</h4>
+											</div>
+										</li>
+										{/list}
+									</ul>
+									<div class="search-pagination">
+										<ul class="pagination">
+											{$pages}
+										</ul>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{template "footer.html", "/"}

@@ -1,0 +1,86 @@
+<div class="side_more_box">
+    <div class="box">
+        <div class="space_user_info">
+            <div class="face"><img class="J_avatar" src="{dr_avatar($space.uid, 120)}" width="120" height="120" /></div>
+            <h2 class="name">{$space.username}</h2>
+            <div class="operate cc">
+                <script language="javascript" src="{dr_url('space/api/guanzhu', array('style'=>$style, 'uid' => $space.uid))}"></script>
+                <a class="J_send_msg_pop message J_qlogin_trigger" href="javascript:;" online="-1" onClick="dr_chat(this)" username="{$space.username}" uid="{$space.uid}"><em></em>写私信</a>
+            </div>
+            <div class="present"></div>
+            <div class="num">
+                <ul>
+                    <li><a href="{dr_space_sns_url($space.uid, 'follow')}"><span>{$space_count.follow}</span><em>关注</em></a></li>
+                    <li><a href="{dr_space_sns_url($space.uid, 'fans')}"><span>{$space_count.fans}</span><em>粉丝</em></a></li>
+                    <li class="tail"><a href="{dr_space_sns_url($space.uid, 'feed')}"><span>{$space_count.feed}</span><em>动态</em></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="side_more_box">
+        {if $cat}
+        {if $related}
+        <div class="box">
+            <div class="hd">
+                <h3><a href="{dr_space_list_url($space.uid, $parent.id)}">{$parent.name}</a></h3><span>&nbsp;</span>
+            </div>
+            <div class="ct">
+                <ul class="catlist">
+                    {loop $related $c}
+                    <li><a href='{dr_space_list_url($space.uid, $c.id)}' {if $c.id==$catid}class="on"{/if}>{$c.name}</a></li>
+                    {/loop}
+                </ul>
+            </div>
+        </div>
+        {/if}
+        {else}
+        <div class="box">
+            <div class="hd">
+                <a href="{dr_space_sns_url($space.uid, 'access')}" class="more">全部</a>
+                <h3>最近来访</h3><span>&nbsp;</span>
+            </div>
+            <div class="ct">
+                <div class="space_face_list">
+                    <ul class="cc">
+                        {php $sql= 'select * from (select * from @#space_access where uid='.$space['uid'].' order by inputtime desc ) t group by uid order by inputtime desc limit 6';}
+                        {list action=sql sql='$sql'}
+                        <li><a class="J_user_card_show" href="{dr_space_url($t.uid)}"><img class="J_avatar" src="{dr_avatar($t.uid)}" width="50" height="50" /><p style="text-align:center">{$t.username}</p></a><div class="time" style="text-align:center">{dr_fdate($t.inputtime)}</div></li>
+                        {/list}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="hd">
+                <a href="{dr_space_sns_url($space.uid, 'fans')}" class="more">全部</a>
+                <h3>TA的粉丝</h3><span>&nbsp;</span>
+            </div>
+            <div class="ct">
+                <div class="space_face_list">
+                    <ul class="cc">
+                        {list action=table table=sns_follow uid=$space.uid num=6 order=ctime}
+                        <li><a class="J_user_card_show" href="{dr_space_url($t.fid)}"><img class="J_avatar" src="{dr_avatar($t.fid)}" width="50" height="50" /><p style="text-align:center">{$t.fusername}</p></a><div class="time" style="text-align:center">{dr_fdate($t.ctime)}</div></li>
+                        {/list}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="hd">
+                <a href="{dr_space_sns_url($space.uid, 'follow')}" class="more">全部</a>
+                <h3>TA的关注</h3><span>&nbsp;</span>
+            </div>
+            <div class="ct">
+                <div class="space_face_list">
+                    <ul class="cc">
+                        {list action=table table=sns_follow fid=$space.uid num=6 order=ctime}
+                        <li><a class="J_user_card_show" href="{dr_space_url($t.uid)}"><img class="J_avatar" src="{dr_avatar($t.uid)}" width="50" height="50" /><p style="text-align:center">{$t.username}</p></a><div class="time" style="text-align:center">{dr_fdate($t.ctime)}</div></li>
+                        {/list}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {/if}
+    </div>
+</div>

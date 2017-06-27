@@ -1,0 +1,75 @@
+{template nheader.html}
+{if $my}
+<div class="row">
+    <div class="portlet light ">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-user "></i>
+                <span class="caption-subject   uppercase">我购买的模板</span>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="row" style="margin: 0">
+                {loop $my $t}
+                <div class="col-md-2" style="box-shadow:3px;padding: 10px 0; {if $style==$t.name}border: 1px solid #3FD5C0{/if}">
+                    <div class="tile-container">
+                        <div class="tile-thumbnail text-center">
+                            <a {if $style==$t.name} href="javascript:;"{else} href="{if $t.price && !$my[$dir]}javascript:dr_confirm_url('您确定购买此模板吗？', '{dr_member_url('space/template', array('style'=>$t.name))}');{else}{dr_member_url('space/template', array('style'=>$t.name))}{/if}" {/if}>
+
+                            <img width="120" height="150" src="{$t.preview}" /></a>
+
+                        </div>
+                        <div class="tile-title text-center">
+                            <h5>{$t.name}</h5>
+                        </div>
+                    </div>
+                </div>
+                {/loop}
+            </div>
+        </div>
+    </div>
+
+</div>
+{/if}
+
+<div class="row">
+    <div class="portlet light ">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-social-dribbble "></i>
+                <span class="caption-subject   uppercase">全部模板</span>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="row" style="margin: 0">
+                {loop $list $dir $t}
+                {if !isset($my[$dir])}
+                <div class="col-md-2" style="padding: 10px 0; {if $style==$t.name}border: 1px solid #3FD5C0{/if}">
+                    <div class="tile-container">
+                        <div class="tile-thumbnail text-center">
+                            <a {if $style==$t.name} href="javascript:;"{else} href="{if $t.price && !$my[$dir]}javascript:dr_confirm_url('您确定购买此模板吗？', '{dr_member_url('space/space/template', array('style'=>$t.name))}');{else}{dr_member_url('space/space/template', array('style'=>$t.name))}{/if}" {/if}>
+
+                            <img width="120" height="150" src="{$t.preview}" /></a>
+
+                        </div>
+                        <div class="tile-title text-center">
+                            <h5>{$t.name}</h5>
+                        </div>
+                        <div class="tile-title text-center">
+                            {if $t.price}
+                            <font color="red">售价：{$t.price}（{SITE_SCORE}）</font>
+                            {else}
+                            <font color="blue">免费</font>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+                {/if}
+                {/loop}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{template "nfooter.html"}

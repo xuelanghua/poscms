@@ -1,0 +1,1 @@
+a:7:{s:5:"share";i:1;s:5:"field";a:4:{s:5:"thumb";s:0:"";s:5:"title";s:0:"";s:8:"keywords";s:0:"";s:11:"description";s:0:"";}s:7:"dirname";s:5:"share";s:8:"category";a:0:{}s:12:"category_dir";a:0:{}s:14:"category_level";i:0;s:14:"category_field";i:0;}

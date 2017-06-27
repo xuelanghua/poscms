@@ -1,0 +1,133 @@
+{template "nheader.html"}
+<script type="text/javascript">
+	$(function(){
+		$(".select-cat").hide();
+	});
+	function dr_order() {
+		$("#action").val('order');
+		var _data = $("#myform").serialize();
+		var _url = window.location.href;
+		if ((_data.split('ids')).length-1 <= 0) {
+			dr_tips("到底排序谁？您还没有选择呢", 2);
+			return true;
+		}
+		// 将表单数据ajax提交验证
+		$.ajax({type: "POST",dataType:"json", url: _url, data: _data,
+			success: function(data) {
+				//验证成功
+				if (data.status == 1) {
+					dr_tips(data.code, 3, 1);
+					// 刷新页
+					setTimeout('window.location.reload(true)', 3000);
+				} else {
+					dr_tips(data.code, 3, 2);
+					return true;
+				}
+			},
+			error: function(HttpRequest, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + HttpRequest.statusText + "\r\n" + HttpRequest.responseText);
+			}
+		});
+		return false;
+	}
+	function dr_delete(catid, id) {
+
+		var d = top.dialog({
+			title: lang["tips"],
+			fixed: true,
+			content: '<img src="/statics/js/skins/icons/question.png"> <font color=red><b>你确认要删除吗？</b></font>',
+			okValue: lang['ok'],
+			ok: function () {
+				$("#action").val('del');
+				var _data = $("#myform").serialize();
+				var _url = window.location.href;
+				if ((_data.split('ids')).length-1 <= 0) {
+					d.close().remove();
+					dr_tips("到底删除谁？您还没有选择呢", 2);
+					return true;
+				}
+				// 将表单数据ajax提交验证
+				$.ajax({type: "POST",dataType:"json", url: _url, data: _data,
+					success: function(data) {
+						//验证成功
+						d.close().remove();
+						if (data.status == 1) {
+							dr_tips(data.code, 3, 1);
+							// 刷新页
+							setTimeout('window.location.reload(true)', 3000);
+						} else {
+							dr_tips(data.code, 3, 2);
+							return true;
+						}
+					},
+					error: function(HttpRequest, ajaxOptions, thrownError) {
+						alert(thrownError + "\r\n" + HttpRequest.statusText + "\r\n" + HttpRequest.responseText);
+					}
+				});
+				return true
+			},
+			cancelValue: lang['cancel'],
+			cancel: function () {}
+		});
+		d.show();
+	}
+</script>
+<input name="page" id="dr_page" type="hidden" value="2" />
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="portlet-body">
+
+			{if $is_edit}
+			<div class="table-toolbar">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="btn-group">
+							<a class="btn green" href="{dr_member_url('space/category/add')}"> 添加新栏目
+								<i class="fa fa-plus"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{/if}
+
+			<form action="" method="post" name="myform" id="myform">
+			<input name="action" id="action" type="hidden" value="" />
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+					<tr>
+						<td class="algin_c" width="30"></td>
+						<td class="algin_c" width="50" align="center">排序</td>
+						<td class="algin_l">栏目名称</td>
+						<td class="algin_c" align="center">类型</td>
+						<td class="algin_c" align="center">显示</td>
+						<td class="algin_c"></td>
+					</tr>
+					</thead>
+					<tbody id="dr_body">
+					{$list}
+					</tbody>
+					<tr>
+						<td style="padding-top:15px;padding-left:15px"><input class="toggle md-check" ck="0" type="checkbox" onclick="dr_selected2()" id="dr_select" name="dr_select"></td>
+						<td colspan="22">
+							<button type="button" class="btn btn-sm btn-success" onClick="dr_order()"><i class="fa fa-refresh"></i> 排序</button>
+							{if $is_edit}<button type="button" class="btn btn-sm red" onClick="dr_delete()"><i class="fa fa-trash-o"></i> 删除</button>{/if}
+						</td>
+					</tr>
+				</table>
+			</div>
+			</form>
+		</div>
+
+
+	</div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info">
+	左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

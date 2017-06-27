@@ -1,0 +1,104 @@
+{template "nheader.html"}
+<script>
+function dr_show_wb(obj) {
+    var msg = $(obj).html();
+    var throughBox = art.dialog.through;
+    throughBox({
+        title:'{fc_lang('话题')}',
+        content: msg,
+        lock: true,
+        width:300,
+        height:100,
+        opacity: 0.1
+    });
+}
+</script>
+<div class="page-bar">
+	<ul class="page-breadcrumb mylink">
+		{$menu.link}
+		<li><a href="{SYS_HELP_URL}2084.html" target="_blank"><i class="fa fa-book"></i> {fc_lang('在线帮助')}</a></li>
+	</ul>
+	<ul class="page-breadcrumb myname">
+		{$menu.name}
+	</ul>
+	<div class="page-toolbar">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+				<i class="fa fa-angle-down"></i>
+			</button>
+			<ul class="dropdown-menu pull-right" role="menu">
+				{loop $menu.quick $t}
+				<li>
+					<a href="{$t.url}">{$t.icon} {$t.name}</a>
+				</li>
+				{/loop}
+				<li class="divider"> </li>
+				<li>
+					<a href="javascript:window.location.reload();">
+						<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="mytopsearch">
+	<form method="post" action="" name="searchform" id="searchform">
+		<label><select class="form-control" name="data[field]">
+			<option value="uid" {if $param.field=='uid'}selected{/if}>Uid</option>
+			{loop $field $t}
+			<option value="{$t.fieldname}" {if $param.field==$t.fieldname}selected{/if}>{$t.name}</option>
+			{/loop}
+		</select></label>
+		<label>：</label>
+		<label><input type="text" class="form-control" value="{$param.keyword}" placeholder="{fc_lang('多个Id可以用“,”分隔')}" name="data[keyword]" /></label>
+		<label><button type="submit" class="btn green btn-sm"> <i class="fa fa-search"></i> {fc_lang('搜索')}</button></label>
+	</form>
+</div>
+
+<div class="portlet light bordered">
+	<div class="portlet-body">
+		<div class="table-scrollable v3table">
+		<form action="" method="post" name="myform" id="myform">
+        <input name="action" id="action" type="hidden" value="del" />
+		<table class="table">
+		<thead>
+		<tr>
+			<th width="10" align="right"></th>
+			<th class="{ns_sorting('name')}" name="name">{fc_lang('话题')}</th>
+			<th class="{ns_sorting('username')}" name="username">{fc_lang('发起人')}</th>
+			<th class="{ns_sorting('count')}" name="count">{fc_lang('动态数')}</th>
+			<th class="{ns_sorting('inputtime')}" name="inputtime">{fc_lang('更新时间')}</th>
+			<th class="dr_option">{fc_lang('操作')}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{loop $list $t}
+		<tr id="dr_row_{$t.id}">
+			<td><input name="ids[]" type="checkbox" class="toggle md-check dr_select" value="{$t.id}" /></td>
+			<td>#{dr_keyword_highlight($t.name, $param.keyword)}#</td>
+			<td><a onclick="dr_dialog_member('{$t.uid}')" href="javascript:;">{$t.username}</a></td>
+			<td>{$t.count}</td>
+			<td>{dr_date($t.inputtime, NULL, 'red')}</td>
+			<td class="dr_option">
+				<a class="ago" href="{dr_member_url('space/sns/topic', array('id'=>$t.id))}" target="_blank">{fc_lang('访问')}</a>
+			</td>
+		</tr> 
+		{/loop}
+		<tr class="mtable_bottom">
+        	<th width="20"  ><input class="toggle md-check" name="dr_select" id="dr_select" type="checkbox" onClick="dr_selected()" /></th>
+			<td colspan="10" >
+            {if $this->ci->is_auth('space/admin/sns/del')}
+				<button type="button" class="btn red btn-sm" name="option" onClick="$('#action').val('del');dr_confirm_set_all('{fc_lang('您确定要这样操作吗？')}')"> <i class="fa fa-trash"></i> {fc_lang('删除')}</button>
+			{/if}
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		</form>
+        <div id="pages"><a>{fc_lang('共%s条', $param['total'])}</a>{$pages}</div>
+		</div>
+	</div>
+</div>
+{template nfooter.html}
+{php exit;}

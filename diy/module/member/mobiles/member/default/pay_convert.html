@@ -1,0 +1,92 @@
+{template "nheader.html"}
+<script type="text/javascript">
+    $(function(){
+        {if $result_error}
+            dr_tips("{$result_error}", 3);
+            {/if}
+                dr_set_type({intval($type)});
+            });
+            function dr_set_score(value) {
+                $("#dr_price").html(parseFloat(value/{intval(SITE_CONVERT)}));
+            }
+            function dr_set_price(value) {
+                $("#dr_score").html(parseFloat(value*{intval(SITE_CONVERT)}));
+            }
+            function dr_set_type(value) {
+                if (value == 1) {
+                    $(".my0").hide();
+                    $(".my1").show();
+                } else {
+                    $(".my1").hide();
+                    $(".my0").show();
+                }
+            }
+</script>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <!-- BEGIN FORM-->
+        <form action="" method="post" class="form-horizontal" novalidate="novalidate">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">兑换比率：</label>
+                    <div class="col-md-10">
+                        <div class="form-control-static ">
+                            1 {SITE_MONEY}&nbsp;=&nbsp;{SITE_CONVERT}&nbsp;{SITE_SCORE}，可用{SITE_MONEY}&nbsp;<span class="dr_price">{$member.money}</span>&nbsp;，可用{SITE_SCORE}&nbsp;<span class="dr_price">{$member.score}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">兑换方式：</label>
+                    <div class="col-md-10">
+                        <div class="radio-list ">
+                            <label class="radio-inline"><input name="type" onclick="dr_set_type(0)" type="radio" value="0" {if !$data.type}checked=""{/if}> {SITE_SCORE}</label>
+                            <label class="radio-inline"><input name="type" onclick="dr_set_type(1)" type="radio" value="1" {if $data.type}checked=""{/if}> {SITE_MONEY}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group my0">
+                    <label class="col-md-2 control-label">兑换数量：</label>
+                    <div class="col-md-2">
+                        <div class="input-icon ">
+                            <i class="fa fa-rmb"></i>
+                            <input type="text" class="form-control" name="score0" onblur="dr_set_score(this.value)" placeholder="兑换数量">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-control-static ">
+                            {SITE_SCORE}，&nbsp;&nbsp;需要&nbsp;<span class="dr_price" id="dr_price">0</span>&nbsp;元
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group my1">
+                    <label class="col-md-2 control-label">兑换金额：</label>
+                    <div class="col-md-2">
+                        <div class="input-icon ">
+                            <i class="fa fa-rmb"></i>
+                            <input type="text" class="form-control" name="score1" onblur="dr_set_price(this.value)" placeholder="兑换金额">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-control-static ">
+                            元，&nbsp;&nbsp;需要&nbsp;<span class="dr_price" id="dr_score">0</span>&nbsp;{SITE_SCORE}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-3">
+                        <button type="submit" class="mysubmit btn green"><i class="fa fa-rmb"></i> 确认兑换</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <!-- END FORM-->
+        <!-- END VALIDATION STATES-->
+    </div>
+</div>
+
+{template "nfooter.html"}

@@ -1,0 +1,147 @@
+{template "header.html", "/"}
+
+<div class="page-container">
+    <div class="page-content-wrapper">
+        {template "header.html"}
+        <div class="page-content">
+            <div class="container">
+                <ul class="page-breadcrumb breadcrumb">
+                    <li>
+                        <a href="{SITE_URL}">首页</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    {if !IS_SHARE}
+                    <li>
+                        <a href="{MODULE_URL}">{MODULE_NAME}</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    {/if}
+                    {dr_catpos($catid, '', true, '<li><a href="{url}">{name}</a><i class="fa fa-circle"></i></li>')}
+                    <li>
+                        <span>列表</span>
+                    </li>
+                </ul>
+
+                <div class="page-content-inner">
+                    <div class="search-page search-content-2">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="search-container ">
+                                    <ul class="search-container">
+                                        <!--分页显示列表数据-->
+                                        {list action=module catid=$catid field=title,url,updatetime,description,keywords,hits order=updatetime page=1}
+                                        <li class="search-item clearfix">
+                                            <div class="search-content text-left">
+                                                <h4 class="search-title">
+                                                    <a title="{$t.title}" href="{$t.url}">{$t.title}</a>
+                                                </h4>
+                                                <p class="search-desc">{$t.description}</p>
+                                                <div class="search-post-foot">
+                                                    <ul class="search-post-tags">
+                                                        {php $kw=@explode(',', $t.keywords);}
+                                                        {loop $kw $a}
+                                                        {if $a}
+                                                        <li class="uppercase">
+                                                            <a href="{dr_tag_url(APP_DIR, $a)}" target="_blank">{$a}</a>
+                                                        </li>
+                                                        {/if}
+                                                        {/loop}
+                                                    </ul>
+                                                    <div class="search-post-meta">
+                                                        <i class="icon-calendar font-blue"></i>
+                                                        <a href="javascript:;">{$t.updatetime}</a>
+                                                    </div>
+                                                    <div class="search-post-meta">
+                                                        <i class="icon-fire font-blue"></i>
+                                                        <a href="javascript:;">{$t.hits}次</a>
+                                                    </div>
+                                                    <div class="search-post-meta">
+                                                        <i class="icon-bubble font-blue"></i>
+                                                        <a href="javascript:;">{$t.comments}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {/list}
+                                    </ul>
+                                    <div class="search-pagination">
+                                        <ul class="pagination">
+                                            {$pages}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <!-- BEGIN PORTLET-->
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold uppercase">栏目索引</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="todo-project-list">
+                                            <ul class="nav nav-stacked">
+                                                <!--循环输出当前栏目的同级栏目，定义返回值return=c-->
+                                                {php $a = array('badge-info', 'badge-success', 'badge-default', 'badge-danger');}
+                                                {list action=category pid=$cat.pid return=c}
+                                                <li {if $c.id==$catid} class="active"{/if}><a href="{$c.url}"><span class="badge {$a[array_rand($a)]}"> {$c.total} </span>{$c.name}</a></li>
+                                                {/list}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold uppercase">阅读排行榜</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="todo-project-list">
+                                            <ul class="nav nav-stacked">
+                                                <!--我们按点击排序-->
+                                                {list action=module catid=$catid field=title,url order=hits num=9}
+                                                <li><a href="{$t.url}" title="{$t.title}"><span class="badge {$a[array_rand($a)]}" style="float: left"> {$key+1} </span>
+                                                    &nbsp;{dr_strcut($t.title, 33)}</a></li>
+                                                {/list}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold uppercase">相关Tag</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="todo-project-list">
+                                            <div class="nav nav-stacked" style="line-height: 25px">
+                                                <!--此标签用于调用tag标签，非当前模块需要加上model=模块名称,num=显示条数-->
+                                                {list action=tag order=rand num=40}
+                                                <a href="{$t.url}" title="点击量：{$t.hits}"><span class="badge {$a[array_rand($a)]}">{$t.name}</span></a>
+                                                {/list}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END PORTLET-->
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{template "footer.html", "/"}

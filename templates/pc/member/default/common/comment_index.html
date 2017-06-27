@@ -1,0 +1,98 @@
+{template nheader.html}
+<script type="text/javascript">
+	$(function(){
+		// 排序操作
+		$('.dr_table th').click(function(e) {
+			var _class = $(this).attr("class");
+			if (_class == undefined) return;
+			var _name = $(this).attr("name");
+			var _order = '';
+			if (_class == "sorting") {
+				_order = 'desc';
+			} else if (_class == "sorting_desc") {
+				_order = 'asc';
+			} else {
+				_order = 'desc';
+			}
+			var url = "{dr_member_order($moreurl)}&order="+_name+" "+_order;
+			location.href=url;
+		});
+	});
+</script>
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="portlet-body">
+			<div class="table-toolbar">
+				<form method="get" action="">
+					<input name="s" type="hidden" value="member" />
+					<input name="mod" type="hidden" value="{APP_DIR}" />
+					<input name="c" type="hidden" value="{$this->ci->router->class}" />
+					<input name="m" type="hidden" value="index" />
+					<input name="order" type="hidden" value="{$get.order}" />
+					<div class="row">
+						<div class="col-md-6">
+							<label class="text-right">
+								<div class="input-group">
+									<input type="text" class="form-control" id="dr_keywords" name="kw" placeholder="关键字查询" value="{$kw}">
+									<span class="input-group-btn">
+										<button class="btn green mysubmit" type="submit"><i class="fa fa-search"></i> 搜索</button>
+									</span>
+								</div>
+							</label>
+						</div>
+						<div class="col-md-4 col-md-offset-2">
+
+						</div>
+
+					</div>
+				</form>
+			</div>
+
+			<form action="" method="post" name="myform" id="myform">
+				<input name="action" id="action" type="hidden" value="" />
+				<div class="table-responsive">
+					<table class="dr_table table dataTable">
+						<thead>
+						<tr>
+							<th class="{ns_sorting('title')}" name="title">主题</th>
+							<th class="algin_c" class="{ns_sorting('comments')}" name="comments">评论数</th>
+							<th></th>
+						</tr>
+						</thead>
+						<tbody id="dr_body">
+						{loop $list $t}
+						<tr id="dr_row_{$t.id}">
+							<td class=""><div class="dr_title"><a href="{$t.url}" title="{$t.title}" target="_blank">{dr_keyword_highlight($t.title, $get.kw)}</a></div></td>
+							<td class="">{$t.comments}</td>
+							<td class="">
+								<a href="{$t.url}" title="{$t.title}" target="_blank" class="btn btn-warning btn-xs" ><i class="fa fa-search"></i> 访问</a>
+							</td>
+						</tr>
+						{/loop}
+						</tbody>
+					</table>
+				</div>
+			</form>
+		</div>
+
+
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<ul class="pagination">
+			{$pages}
+			<li><a href="javascript:;">共{$page_total}条</a></li>
+		</ul>
+	</div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info" style="margin-top: 15px">
+	左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

@@ -1,0 +1,138 @@
+{template "nheader.html"}
+<script type="text/javascript">
+    $(function() {
+        {if $result_error}
+        dr_tips('{$result_error.msg}', 3);
+        {/if}
+        //每隔5秒保存表单数据
+        {if !$data.id && !$did}
+        setInterval("dr_save_add_data()", 5000);
+        {/if}
+        // 加载草稿
+        $("#dr_cgbox").mouseover(function(){
+            $(".dr_cgbox").show();
+        }).mouseout(function(){
+            $(".dr_cgbox").hide();
+        });
+        // 删除草稿数据
+        $(".dr_cgbox_delete").click(function(){
+            var did = $(this).attr("did");
+            var num = parseInt($("#dr_cg_nums").html());
+            $.ajax({
+                type: "POST",
+                dataType:"json",
+                url: memberpath+'index.php?s=member&c=api&m=ajax_delete_draft&sid={SITE_ID}&dir={APP_DIR}&did='+did,
+                success: function(data) {
+                    if (data == did) {
+                        $("#dr_cgbox_"+did).remove();
+                        $("#dr_cg_nums").html(num - 1);
+                    } else {
+                        dr_tips(data);
+                    }
+                },
+                error: function(HttpRequest, ajaxOptions, thrownError) { }
+            });
+        });
+        $(".dr_cgbox_select").click(function(){
+            var did = $(this).attr("did");
+            window.location.href = '{$draft_url}&did='+did;
+        });
+        // 自动保存草稿
+        {if $did}
+            setInterval("dr_save_draft_data()", 5000);
+            {/if}
+            });
+            function dr_sync(id, _this) {
+                var tid = $("#dr_"+id).val();
+                if (tid == 1) {
+                    $("#dr_"+id).val("0");
+                    $(_this).attr("src", "{THEME_PATH}oauth/"+id+".gif");
+                } else {
+                    $("#dr_"+id).val("1");
+                    $(_this).attr("src", "{THEME_PATH}oauth/"+id+"_on.gif");
+                }
+            }
+// 动态保存草稿数据
+            function dr_save_draft_data() {
+                $.ajax({
+                    type: "POST",
+                    dataType:"json",
+                    url: memberpath+'index.php?s=member&c=api&m=ajax_save_draft&sid={SITE_ID}&dir={APP_DIR}&did={$did}',
+                    data: $("#myform").serialize(),
+                    success: function(data) { },
+                    error: function(HttpRequest, ajaxOptions, thrownError) { }
+                });
+            }
+// 动态保存表单数据
+            function dr_save_add_data() {
+                $.ajax({
+                    type: "POST",
+                    dataType:"json",
+                    url: memberpath+'index.php?s=member&c=api&m=ajax_save_add&dir={APP_DIR}_extend',
+                    data: $("#myform").serialize(),
+                    success: function(data) { },
+                    error: function(HttpRequest, ajaxOptions, thrownError) { }
+                });
+            }
+</script>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <!-- BEGIN FORM-->
+        <form action="" method="post" class="form-horizontal" novalidate="novalidate">
+            <input name="action" id="dr_action" type="hidden" value="" />
+            <input name="dr_id" id="dr_id" type="hidden" value="{$data.id}" />
+            <input name="dr_module" id="dr_module" type="hidden" value="{APP_DIR}" />
+            <div class="form-body">
+
+                <div class="portlet light bordered">
+                    <div class="portlet-title  mytitle">
+                        <div class="caption"><span class="caption-subject font-green">{fc_lang('基本内容')}</span></div>
+                        </div>
+                        {if $draft_list}
+                        <div class="actions">
+                            <div class="btn-group">
+                                <a class="btn btn-sm green dropdown-toggle" href="javascript:;" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> 草稿（<span id="dr_cg_nums">{count($draft_list)}</span>）
+                                    <i class="fa fa-file-o"></i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    {loop $draft_list $t}
+                                    <li id="dr_cgbox_{$t.id}">
+                                        <a href="javascript:;" class="dr_cgbox_select" did="{$t.id}">{dr_date($t.inputtime)}</a>
+                                    </li>
+                                    {/loop}
+                                </ul>
+                            </div>
+                        </div>
+                        {/if}
+                    </div>
+                    <div class="portlet-body">
+                        {$myfield}
+                    </div>
+
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-3">
+                                <button type="submit" class="mysubmit btn green"><i class="fa fa-save"></i> 保存</button>
+                                <button value="" onclick="$('#dr_action').val('draft')" type="submit" class="mysubmit btn blue"> <i class="fa fa-file-o"></i> 草稿</button>
+                            </div>
+                            {if !$data.id && $ci->get_cache('module-'.SITE_ID.'-'.APP_DIR, 'setting', 'syn2')}
+                            <div class="col-md-7" style="padding-top: 6px">
+                                <label>将它同步至微博：</label>
+                                <img src="{THEME_PATH}oauth/sina_share.gif" onclick="{if $member.oauth.sina}dr_sync('sina_share',this){else}dr_confirm_url('您还没有绑定新浪账号呢，现在就去绑定吗？离开页面内容会消失', '{dr_member_url('account/oauth')}'){/if}" align="absmiddle" style="cursor:pointer" />
+                                <input name="sina_share" id="dr_sina_share" type="hidden" value="0" />
+                            </div>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+        <!-- END FORM-->
+        <!-- END VALIDATION STATES-->
+    </div>
+</div>
+
+{template "nfooter.html"}

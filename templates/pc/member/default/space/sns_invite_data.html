@@ -1,0 +1,7 @@
+{loop $list $t}
+<tr>
+	<td class="algin_l">{$t.rid}</td>
+	<td class="algin_c">{$t.rname}</td>
+	<td class="algin_l">{dr_date($t.regtime, '', 'red')}</td>
+</tr>
+{/loop}

@@ -1,0 +1,135 @@
+{template "nheader.html"}
+<link href="{MEMBER_THEME_PATH}sns/sns2.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$(function(){
+    // 加载更多
+    $("#dr_loadmore a").click(function(){
+        var page = $("#dr_page").val();
+        $("#dr_loading").html("<div style='padding:30px;text-align:center;'><img src='{MEMBER_THEME_PATH}images/loading.gif' /></div>");
+        $.get("{$moreurl}", {page:page}, function(data){
+            if (data != "null") {
+                $("#dr_body").append(data);
+                $("#dr_page").val(Number(page) + 1);
+            }
+            $("#dr_loading").html("");
+        });
+    });
+    // 取消关注按钮
+    $('.dr_follow_btn_span').hover(function(){
+        $(this).html('<b class="ico-minus-gray"></b>取消关注');
+    },function(){
+        var value = $(this).attr('value');
+        if (value == 1) {
+            $(this).html('<b class="ico-connect"></b>相互关注');
+        } else {
+            $(this).html('<b class="ico-already"></b>已关注');
+        }
+    });
+    // 取消关注操作
+    $('.dr_follow_btn').click(function(){
+        var id = $(this).attr('fid');
+        var uid = $(this).attr('uid');
+        $.get("{dr_member_url('space/sns/follow_delete')}&uid="+uid, function(data){
+            if (data) {
+                $('#dr_row_'+id).remove();
+                dr_tips('取消关注成功', 2, 1);
+            }
+        });
+    });
+});
+// 选择分组
+function dr_group_select(id) {
+    $('#dr_group_select_'+id).show();
+}
+function dr_group_select_value(id,gid) {
+    $('#dr_group_select_'+id).hide();
+    $.get("{dr_member_url('space/sns/group_select')}&id="+id+"&gid="+gid, function(data){
+        if (data) {
+            $('#dr_group_'+id).html(data);
+            dr_tips('分组成功', 2, 1);
+        }
+    });
+}
+function dr_remark(id){
+    var throughBox = $.dialog.through; // 创建窗口
+    var dr_Dialog = throughBox({
+        title: '设置备注',
+        opacity: 0.1,
+        width: 300,
+        height:60
+    });
+    var url = '{dr_member_url("space/sns/remark")}&id='+id;
+    // ajax调用窗口内容
+    $.ajax({type: "GET", url:url, dataType:'text', success: function (text) {
+        var win = $.dialog.top;
+        dr_Dialog.content(text);
+        // 添加按钮
+        dr_Dialog.button({name: '保存', callback:function() {
+            var _data = win.$("#myform").serialize();
+            $.ajax({type: "POST",dataType:"text", url: url, data: _data, // 将表单数据ajax提交验证
+                    success: function(data) {
+                        $('#dr_remark_'+id).html(data);
+                        dr_tips('操作成功',2,1);
+                    },
+                    error: function(HttpRequest, ajaxOptions, thrownError) {
+                        dr_alert(HttpRequest.responseText);
+                    }
+                });
+            },
+            focus: true
+        });
+        },
+        error: function(HttpRequest, ajaxOptions, thrownError) {
+            dr_alert(HttpRequest.responseText);
+        }
+    });
+}
+// 分组管理
+function dr_group_list(){
+    art.dialog.open('{dr_member_url("space/sns/group")}', {
+        title: '分组管理',
+        opacity: 0.1,
+        width: 400,
+        height:300,
+        ok: function () {
+            window.location.reload();
+        },
+        cancel: function () {
+            window.location.reload();
+        }
+    });
+}
+</script>
+<input name="page" id="dr_page" type="hidden" value="2" />
+<script type="text/javascript" src="{MEMBER_THEME_PATH}sns/sns.js"></script>
+<div class="row">
+    <div class="col-md-12" id="dr_weibo">
+                {if !$ta}
+                <div class="msearch mbutton">
+                    <form method="get" action="">
+                        <input name="s" type="hidden" value="member" />
+                        <input name="mod" type="hidden" value="space" />
+                        <input name="c" type="hidden" value="sns" />
+                        <input name="m" type="hidden" value="follow" />
+                        <input name="gid" type="hidden" value="{$get.gid}" />
+                        <a href="{dr_member_url('space/sns/follow')}" {if !$get.gid}class="cur"{/if}>全部</a>
+                        {loop $group $t}
+                        <a href="{dr_member_url('space/sns/follow', array('gid'=>$t.id))}" {if $get.gid==$t.id}class="cur"{/if}>{$t.title}</a>
+                        {/loop}
+                        <a href="javascript:;" onclick="dr_group_list()">管理分组</a>
+                        <button type="submit" class="red_button" style="float:right;margin-left:20px">查询</button>
+                        <input type="text" name="kw" value="{$get.kw}" class="input_text" placeholder="搜索会员名" style="color:#999;width:150px;float:right">
+                    </form>
+                </div>
+                <div class="bk10"></div>
+                {/if}
+                <div id="dr_body" class="sperson-feedlist">
+                    {template "sns_follow_data.html"}
+                </div>
+                <div class="bk10"></div>
+                <div id="dr_loading"></div>
+                <div id="dr_loadmore" class="load-more"><a href="javascript:;">查 看 更 多</a></div>
+
+    </div>
+</div>
+{template "nfooter.html"}

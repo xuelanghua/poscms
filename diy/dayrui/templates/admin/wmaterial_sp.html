@@ -1,0 +1,101 @@
+{template nheader.html}
+<link href="{THEME_PATH}admin/weixin/home/css/base.css" rel="stylesheet">
+<link href="{THEME_PATH}admin/weixin/home/css/module.css" rel="stylesheet">
+<link href="{THEME_PATH}admin/weixin/home/css/wei.css" rel="stylesheet">
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/static/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/static/zclip/ZeroClipboard.min.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/home/js/dialog.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/home/js/admin_common.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/home/js/admin_image.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/static/masonry/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="{THEME_PATH}admin/weixin/static/jquery.dragsort-0.5.2.min.js"></script>
+<script type="text/javascript">
+    var  IMG_PATH = "{THEME_PATH}admin/weixin/Home/images";
+    var  STATIC = "{THEME_PATH}admin/weixin/static";
+    var  ROOT = "{SITE_URL}";
+    var  UPLOAD_FILE = "{dr_url('weixin/ajaxload')}";
+</script>
+
+<div class="page-bar">
+    <ul class="page-breadcrumb mylink">
+        {$menu.link}
+    </ul>
+    <ul class="page-breadcrumb myname">
+        {$menu.name}
+    </ul>
+
+</div>
+
+<div class="mytopsearch">
+    <form class="row" method="post" action="" name="searchform" id="searchform">
+        <input name="search" id="search" type="hidden" value="1" />
+        <div class="col-md-12">
+            <label>
+                <select name="data[field]" class="form-control">
+                    <option value="id" {if $param.field=='id'}selected{/if}>Id</option>
+                    <option value="uid" {if $param.field=='uid'}selected{/if}>Uid</option>
+                    {loop $field $t}
+                    {if $t.ismain && $t.fieldname != 'inputtime'}
+                    <option value="{$t.fieldname}" {if $param.field==$t.fieldname}selected{/if}>{$t.name}</option>
+                    {/if}
+                    {/loop}
+                </select>
+            </label>
+            <label><i class="fa fa-caret-right"></i></label>
+            <label style="padding-right: 20px;"><input type="text" class="form-control" placeholder="{fc_lang('多个Id可以用“,”分隔')}" value="{$param['keyword']}" name="data[keyword]" /></label>
+            <label>{fc_lang('录入时间')} ：</label>
+            <label>{dr_field_input('start', 'Date', array('option'=>array('format'=>'Y-m-d','width'=>'100')), (int)$param.start)}</label>
+            <label><i class="fa fa-minus"></i></label>
+            <label style="margin-right:10px">{dr_field_input('end', 'Date', array('option'=>array('format'=>'Y-m-d','width'=>'100')), (int)$param.end)}</label>
+            <label><button type="submit" class="btn green btn-sm" name="submit" > <i class="fa fa-search"></i> {fc_lang('搜索')}</button></label>
+        </div>
+    </form>
+</div>
+
+
+<div class="portlet light bordered">
+    <div class="portlet-body">
+        <div class="table-scrollable v3table">
+
+            <ul class="picture_list" style="padding-left: 50px;">
+                {loop $list $vo}
+                    <li>
+                        <div class="picture_item">
+                            <div class="video_item">
+                                <p class="title">{dr_strcut($vo.title, 15)}</p>
+                                <p class="ctime colorless">{dr_date($vo.inputtime)}</p>
+                                <div class="video_area">
+                                    <video src="{dr_get_file($vo.file)}" controls="controls">您的浏览器不支持 video 标签。</video>
+                                </div>
+                            </div>
+                            <div class="picture_action item_three_action">
+                                <a href="{dr_get_file($vo.file)}" title="下载"> <i class="fa fa-download"></i> </a>
+                                <a href="{dr_url('wmaterial/sp', array('action'=> 'edit', 'id'=>$vo.id))}" title="修改"> <i class="fa fa-edit"></i> </a>
+                                <a href="javascript:;" onclick="del({$vo.id}, this)" title="删除"> <i class="fa fa-trash"></i> </a>
+                            </div>
+                        </div>
+                    </li>
+                {/loop}
+
+            </ul>
+
+
+
+            <div id="pages"><a>{fc_lang('共%s条', $param.total)}</a>{$pages}</div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+
+    })
+    function del(id, _this){
+        if(!confirm('确认删除？')) return false;
+
+        $(_this).parent().parent().parent().remove();
+        $.post("{dr_url('wmaterial/sp', array('action'=> 'del'))}",{id:id});
+    }
+</script>
+{template nfooter.html}

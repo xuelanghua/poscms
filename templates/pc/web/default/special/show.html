@@ -1,0 +1,191 @@
+{template "header.html", "/"}
+<script language="javascript">
+	// 这是加入收藏夹的ajax请求，我就随意写了一下提示信息，至于美化啊什么交给你们了
+	function dr_favorite() {
+		$.get("/index.php?s={MOD_DIR}&c=api&m=favorite&id={$id}", function(data){
+			if (data == 1) {
+				dr_tips("没有登录，不能收藏");
+			} else if (data == 2) {
+				dr_tips("文档不存在，无法收藏");
+			} else if (data == 3) {
+				dr_tips("更新收藏成功", 3, 1);
+			} else if (data == 4) {
+				dr_tips("收藏成功", 3, 1);
+			}
+		});
+	}
+</script>
+<div class="page-container">
+	<div class="page-content-wrapper">
+		{template "header.html"}
+		<div class="page-content">
+			<div class="container">
+
+				<ul class="page-breadcrumb breadcrumb">
+					<li>
+						<a href="{SITE_URL}">首页</a>
+						<i class="fa fa-circle"></i>
+					</li>
+					{if !IS_SHARE}
+					<li>
+						<a href="{MODULE_URL}">{MODULE_NAME}</a>
+						<i class="fa fa-circle"></i>
+					</li>
+					{/if}
+					{dr_catpos($catid, '', true, '<li><a href="{url}">{name}</a><i class="fa fa-circle"></i></li>')}
+					<li>
+						<span>{$title}</span>
+					</li>
+				</ul>
+
+				<div class="page-content-inner">
+					<div class="search-page search-content-2">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="portlet light" style="">
+									<div class="portlet-title">
+										<div class="caption">
+											<span class="caption-subject font-dark bold uppercase">{$title}</span>
+										</div>
+									</div>
+									<div class="search-post-foot" style="padding-top:0px;text-align:left;padding-bottom: 10px">
+										<div class="search-post-meta">
+											<i class="icon-user font-blue"></i>
+											<a href="javascript:;">{$author}</a>
+										</div>
+										<div class="search-post-meta">
+											<i class="icon-calendar font-blue"></i>
+											<a href="javascript:;">{$updatetime}</a>
+										</div>
+										<div class="search-post-meta">
+											<i class="icon-fire font-blue"></i>
+											<a href="javascript:;">{dr_show_hits($id)}次</a>
+										</div>
+										<div class="search-post-meta">
+											<i class="icon-bubble font-blue"></i>
+											<a href="javascript:;">{$comments}</a>
+										</div>
+										<div class="search-post-meta">
+											<i class="icon-flag font-blue"></i>
+											<a href="javascript:dr_favorite();">加入收藏</a>
+										</div>
+									</div>
+									<div class="portlet-body" style="height: auto;">
+										{$content}
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-12">
+								<link href="{HOME_THEME_PATH}slide/slide.css" type="text/css" rel="stylesheet">
+								<div id="myslide" style="height:281px">
+									<table width="100%" cellSpacing="0" cellPadding="0" style="height:281px">
+										<tr>
+											<td class="pic" id="bimg">
+												<!--查询推荐位2（首页幻灯）的内容，field需要用到的字段（不填表示全部），按displayorder（后台指定排序）排序-->
+												{loop $banner $key $t}
+												<div class="{if $key==0}dis{else}undis{/if}" name="f">
+													<img alt="{$t.title}" style="height:281px;" src="{dr_get_file($t.file)}" border="0">
+												</div>
+												{/loop}
+												<table id="font_hd" width="100%" cellSpacing="0" cellPadding="0">
+													<tr>
+														<td class="" id="info">
+															{loop $banner $key $t}
+															<div class="{if $key==0}dis{else}undis{/if}" name="f">
+																{$t.title}
+															</div>
+															{/loop}
+														</td>
+														<td id="simg" nowrap="nowrap" style="text-align:right">
+															{loop $banner $key $t}
+															<div class="{if $key==0}{else}f1{/if}" onclick=play(x[{$key}],{$key}) name="f">{$key+1}</div>
+															{/loop}
+														</td>
+													</tr>
+												</table>
+												<script src="{HOME_THEME_PATH}slide/slide.js"></script>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+
+						<div class="row" style="margin-top: 20px">
+							<div class="col-md-12">
+								<div class="portlet light search-container">
+
+									<div class="portlet-title">
+										<div class="caption">
+											<span class="caption-subject font-dark bold uppercase">新闻列表</span>
+										</div>
+									</div>
+
+									<ul class="search-container">
+										{if $guanlian}
+										{list action=module module=news IN_id=$guanlian}
+										<li class="search-item clearfix">
+											<div class="search-content text-left">
+												<h4 class="search-title">
+													<a title="{$t.title}" href="{$t.url}">{dr_keyword_highlight($t.title, $keyword)}</a>
+												</h4>
+												<p class="search-desc">{dr_keyword_highlight($t.description, $keyword)}</p>
+												<div class="search-post-foot">
+													<ul class="search-post-tags">
+														{php $kw=@explode(',', $t.keywords);}
+														{loop $kw $a}
+														{if $a}
+														<li class="uppercase">
+															<a href="{dr_tag_url(APP_DIR, $a)}" target="_blank">{$a}</a>
+														</li>
+														{/if}
+														{/loop}
+													</ul>
+													<div class="search-post-meta">
+														<i class="icon-calendar font-blue"></i>
+														<a href="javascript:;">{$t.updatetime}</a>
+													</div>
+													<div class="search-post-meta">
+														<i class="icon-fire font-blue"></i>
+														<a href="javascript:;">{$t.hits}次</a>
+													</div>
+												</div>
+											</div>
+										</li>
+										{/list}
+										{/if}
+									</ul>
+
+								</div>
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">
+
+								<div class="portlet light">
+									<div class="portlet-title">
+										<div class="caption">
+											<span class="caption-subject font-dark bold uppercase">评论</span>
+										</div>
+									</div>
+									{dr_module_comment(MOD_DIR, $id)}
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{template "footer.html", "/"}

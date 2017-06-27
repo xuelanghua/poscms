@@ -1,0 +1,127 @@
+{template nheader.html}
+{php $_pages=$pages;}
+<div class="page-bar">
+	<ul class="page-breadcrumb mylink">
+		{$menu.link}
+
+	</ul>
+	<ul class="page-breadcrumb myname">
+		{$menu.name}
+	</ul>
+	<div class="page-toolbar">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+				<i class="fa fa-angle-down"></i>
+			</button>
+			<ul class="dropdown-menu pull-right" role="menu">
+				{loop $menu.quick $t}
+				<li>
+					<a href="{$t.url}">{$t.icon} {$t.name}</a>
+				</li>
+				{/loop}
+				<li class="divider"> </li>
+				<li>
+					<a href="javascript:window.location.reload();">
+						<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div class="mytopsearch">
+	<form method="post" action="" name="searchform" id="searchform">
+		<label>{fc_lang('会员组')}：</label>
+		<label>
+			<select class="form-control" name="data[groupid]">
+				<option value=""> -- </option>
+				{list action=cache name=MEMBER.group}
+				<option value="{$t.id}" {if $t.id==$param.groupid}selected{/if}> {$t.name} </option>
+				{/list}
+			</select>
+		</label>
+		<label>
+			<select class="form-control" name="data[field]">
+				{loop $field $t}
+				<option value="{$t.fieldname}" {if $param.field==$t.fieldname}selected{/if}>{$t.name}</option>
+				{/loop}
+				<option value="uid" {if $param.field=='uid'}selected{/if}>uid</option>
+			</select>
+		</label>
+		<label><input type="text" class="form-control" value="{$param.keyword}" placeholder="{fc_lang('多个Id可以用“,”分隔')}" name="data[keyword]" /></label>
+		<label><button type="submit" class="btn green btn-sm"> <i class="fa fa-search"></i> {fc_lang('搜索')}</button></label>
+	</form>
+</div>
+
+<form action="" method="post" name="myform" id="myform">
+	<input name="action" id="action" type="hidden" value="del" />
+	<div class="portlet mylistbody">
+		<div class="portlet-body">
+			<div class="table-scrollable">
+
+				<table class="mytable table table-striped table-bordered table-hover table-checkable dataTable">
+
+		<thead>
+		<tr>
+			<th width="10"></th>
+			<th>Uid</th>
+			<th class="{ns_sorting('username')}" name="username" >{fc_lang('会员')}</th>
+			<th class="{ns_sorting('groupid')}" name="groupid" >{fc_lang('会员组')}</th>
+			<th class="{ns_sorting('experience')}" name="experience">{SITE_EXPERIENCE}</th>
+			<th class="{ns_sorting('score')}" name="score">{SITE_SCORE}</th>
+			<th class="{ns_sorting('money')}" name="money">{SITE_MONEY}</th>
+			<th class="{ns_sorting('regtime')}" name="regtime" >{fc_lang('注册时间')}</th>
+			<th class="dr_option">{fc_lang('操作')}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{loop $list $t}
+		<tr id="dr_row_{$t.uid}">
+			<td><input name="ids[]" type="checkbox" class="dr_select toggle md-check" value="{$t.uid}" /></td>
+			<td>{$t.uid}</td>
+			<td>
+            <a onclick="dr_dialog_member('{$t.uid}')" href="javascript:;">
+			{if $t.groupid==2 && !$t.username}
+			{get_member_nickname($t.uid)}&nbsp;<font color=red>{fc_lang('未完善资料')}</font>
+			{else}
+			{dr_keyword_highlight($t.username, $param.keyword)}
+			{/if}
+            </a>
+			</td>
+			<td><font {if $t.groupid==1}color="#FF0000"{/if}>{MEMBER.group.$t[groupid].name}</font></td>
+			<td><a {if $this->ci->is_auth('member/admin/home/experience')}href="{dr_url('member/home/experience',array('uid'=>$t.uid))}" style="color: blue;text-decoration: underline;font-size: 12px;"{/if}>{$t.experience}</a></td>
+			<td><a {if $this->ci->is_auth('member/admin/home/score')}href="{dr_url('member/home/score',array('uid'=>$t.uid))}" style="color: blue;text-decoration: underline;font-size: 12px;"{/if}>{$t.score}</a></td>
+			<td>{$t.money}</td>
+			<td>{dr_date($t.regtime, NULL, 'red')}</td>
+			<td class="dr_option">
+			{if $this->ci->is_auth('member/admin/home/edit')}<a class="aedit" {if $t.id==1}href="javascript:;"{else}href="{dr_url('member/home/edit',array('uid'=>$t.uid))}"{/if}> <i class="fa fa-edit"></i> {fc_lang('修改')}</a>{/if}
+			{if MEMBER_OPEN_SPACE && $this->ci->is_auth('space/admin/space/edit')}<a class="alist" href="{dr_url('space/space/edit',array('uid' => $t.uid))}"> <i class="fa fa-database"></i> {fc_lang('空间')}</a>{/if}
+            {if $member.adminid==1}<a class="ago" href="{dr_member_url('api/ologin')}&uid={$t.uid}" target="_blank"> <i class="fa fa-send"></i> {fc_lang('登录会员')}</a>{/if}
+			</td>
+		</tr> 
+		{/loop}
+		<tr class="mtable_bottom">
+        	<th width="20"  ><input name="dr_select" class="toggle md-check" id="dr_select" type="checkbox" onClick="dr_selected()" /></th>
+			<td colspan="10"  >
+            {if $this->ci->is_auth('member/admin/home/del')}
+				<label><button type="button" class="btn red btn-sm" name="option" onClick="$('#action').val('del');dr_confirm_set_all('{fc_lang('您确定要这样操作吗？')}')"><i class="fa fa-trash"></i> {fc_lang('删除')}</button></label>
+            {/if}
+            {if $this->ci->is_auth('member/admin/home/edit')}
+			<label><button type="button" class="btn green btn-sm" name="option" onClick="$('#action').val('update');dr_confirm_set_all('{fc_lang('您确定要这样操作吗？')}')"><i class="fa fa-edit"></i> {fc_lang('修改为')}</button></label>
+			<label><select class="form-control" name="groupid">
+			{list action=cache name=MEMBER.group}
+            <option value="{$t.id}" {if $t.id==3}selected{/if}> {$t.name} </option>
+            {/list}
+        	</select></label>
+            {/if}
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+</form>
+<div id="pages"><a>{fc_lang('共%s条', $param['total'])}</a>{$_pages}</div>
+{template nfooter.html}

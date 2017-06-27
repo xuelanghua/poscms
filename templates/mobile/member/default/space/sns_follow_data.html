@@ -1,0 +1,63 @@
+{loop $list $t}
+<dl class="feed_list" id="dr_row_{$t.id}">
+    <dt class="face memberinfo_avatar"><a href="{dr_space_url($t.uid)}"><img src="{dr_avatar($t.uid)}" width="50" height="50" /></a></dt>
+    <dd class="person-info">
+        {if !$ta}
+        <div class="info-right right">
+            <a href="javascript:;" onclick="dr_group_select({$t.id})" class="groupbtn followGroup2 right">
+                <span id="dr_group_{$t.id}">{if $group[$t.gid]}{dr_strcut($group[$t.gid]['title'],15)}{else}未分组{/if}</span>
+                <i class="arrow-down"></i>
+            </a>
+            <span class="right">
+                <a href="javascript:;" fid="{$t.id}" uid="{$t.uid}" class="dr_follow_btn btn-att-white">
+                    {if $t.isdouble}
+                    <span class="dr_follow_btn_span" value="{$t.isdouble}"><b class="ico-connect"></b>相互关注</span>
+                    {else}
+                    <span class="dr_follow_btn_span" value="{$t.isdouble}"><b class="ico-already"></b>已关注</span>
+                    {/if}
+                </a>
+            </span>
+            <div id="dr_group_select_{$t.id}" class="layer-follow-list" style="top: 35px;display: none;">
+                <div id="followGroupSelector" class="group-lists">
+                    {loop $group $g}
+                    <label class="" onclick="dr_group_select_value({$t.id}, {$g.id})">{$g.title}</label>
+                    {/loop}
+                </div>
+
+            </div>
+        </div>
+        {/if}
+        <div class="info-left">
+            <p class="hd">
+                {if $ci->db->where('uid', $t.uid)->count_all_results('member_online')}
+                <img src="{MEMBER_THEME_PATH}images/web0.gif" align="absmiddle" style="cursor:pointer" onclick="dr_chat(this)" username="{$t.username}" uid="{$t.uid}" online=1>
+                {else}
+                <img src="{MEMBER_THEME_PATH}images/web0-off.gif" align="absmiddle" style="cursor:pointer" onclick="dr_chat(this)" username="{$t.username}" uid="{$t.uid}" online=0>
+                {/if}
+                <a class="follow_uname" href="javascript:;" onclick="dr_chat(this)" username="{$t.username}" uid="{$t.uid}">{dr_keyword_highlight($t.username, $get.kw)}</a>
+                &nbsp;
+                {if !$ta}
+                <span class="remark">
+                    <em>(</em>
+                    <a id="dr_remark_{$t.id}" href="javascript:;" onclick="dr_remark({$t.id})" class="remark_2">
+                        {if $t.remark}{$t.remark}{else}设置备注{/if}
+                    </a>
+                    <em>)</em>
+                </span>
+                {/if}
+            </p>
+            <p class="action">
+                {php $m=dr_sns_info($t.uid);}
+                关注：
+                <a href="{dr_member_url('space/sns/follow', array('uid'=>$t.uid))}">{$m.follow}</a>
+                <i class="vline">|</i>
+                粉丝：
+                <a href="{dr_member_url('space/sns/fans', array('uid'=>$t.uid))}">{$m.fans}</a>
+                <i class="vline">|</i>
+                动态：
+                <a href="{dr_member_url('space/sns/index', array('uid'=>$t.uid))}">{$m.weibo}</a>
+            </p>
+        </div>
+    </dd>
+</dl>
+{/loop}

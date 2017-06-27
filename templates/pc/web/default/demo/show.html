@@ -1,0 +1,356 @@
+{template "header.html", "/"}
+<script language="javascript">
+    // 这是加入收藏夹的ajax请求，我就随意写了一下提示信息，至于美化啊什么交给你们了
+    function dr_favorite() {
+        $.get("/index.php?s={MOD_DIR}&c=api&m=favorite&id={$id}", function(data){
+            if (data == 1) {
+                dr_tips("没有登录，不能收藏");
+            } else if (data == 2) {
+                dr_tips("文档不存在，无法收藏");
+            } else if (data == 3) {
+                dr_tips("更新收藏成功", 3, 1);
+            } else if (data == 4) {
+                dr_tips("收藏成功", 3, 1);
+            }
+        });
+    }
+</script>
+<div class="page-container">
+    <div class="page-content-wrapper">
+        {template "header.html"}
+        <div class="page-content">
+            <div class="container">
+
+                <ul class="page-breadcrumb breadcrumb">
+                    <li>
+                        <a href="{SITE_URL}">首页</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                        <a href="{MODULE_URL}">{MODULE_NAME}</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    {dr_catpos($catid, '', true, '<li><a href="{url}">{name}</a><i class="fa fa-circle"></i></li>')}
+                    <li>
+                        <span>{$title}</span>
+                    </li>
+                </ul>
+
+                <div class="page-content-inner">
+                    <div class="search-page search-content-2">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="portlet light">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold uppercase">{$title}</span>
+                                        </div>
+                                        <div class="actions">
+                                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="全屏查看"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="search-post-foot" style="padding-top:0px;text-align:left;padding-bottom: 10px">
+                                        <div class="search-post-meta">
+                                            <i class="icon-user font-blue"></i>
+                                            <a href="javascript:;">{$author}</a>
+                                        </div>
+                                        <div class="search-post-meta">
+                                            <i class="icon-calendar font-blue"></i>
+                                            <a href="javascript:;">{$updatetime}</a>
+                                        </div>
+                                        <div class="search-post-meta">
+                                            <i class="icon-fire font-blue"></i>
+                                            <a href="javascript:;">{dr_show_hits($id)}次</a>
+                                        </div>
+                                        <div class="search-post-meta">
+                                            <i class="icon-bubble font-blue"></i>
+                                            <a href="javascript:;">{$comments}</a>
+                                        </div>
+                                        <div class="search-post-meta">
+                                            <i class="icon-flag font-blue"></i>
+                                            <a href="javascript:dr_favorite();">加入收藏</a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body" style="height: auto;">
+                                        {$content}
+                                    </div>
+
+                                    <div class="blog-single-foot">
+                                        <ul class="blog-post-tags">
+                                            {loop $keyword_list $name $url}
+                                            <li class="uppercase">
+                                                <a href="{$url}" target="_blank">{$name}</a>
+                                            </li>
+                                            {/loop}
+                                        </ul>
+                                        <p class="f14" style="margin-bottom: ">
+                                            <strong>上一篇：</strong>{if $prev_page}<a href="{$prev_page.url}">{$prev_page.title}</a>{else}没有了{/if}<br>
+                                            <strong>下一篇：</strong>{if $next_page}<a href="{$next_page.url}">{$next_page.title}</a>{else}没有了{/if}
+                                        </p>
+                                    </div>
+
+                                    {dr_module_comment(MOD_DIR, $id)}
+
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-12">
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">单选按钮字段: danxuananniu</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        <p>选择值：{$danxuananniu} </p>
+                                        <p>选择的名称：
+                                            {php $field = dr_field_options('danxuananniu');}
+                                            {$field[$danxuananniu]} </p>
+                                    </div>
+                                </div>
+
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">下拉选择字段: xialaxuanze</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        <p>选择值：{$xialaxuanze} </p>
+                                        <p>选择的名称：
+                                            {php $field = dr_field_options('xialaxuanze');}
+
+                                            {$field[$xialaxuanze]} </p>
+                                    </div>
+                                </div>
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">复选框字段: fuxuankuang</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        <p>选择值：
+                                            {loop $fuxuankuang $value}
+                                            <label class="label label-sm label-default">{$value}</label>
+                                            {/loop}
+                                        </p>
+                                        <p>选择的名称：
+
+                                            {php $field = dr_field_options('fuxuankuang');}
+                                            {loop $field $name $value}
+                                            {if in_array($name, $fuxuankuang)}
+                                            <label class="label label-sm label-default">{$value}</label>
+                                            {/if}
+                                            {/loop}
+
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">城市联动选择字段: ldcd</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        <p>联动菜单名称：{dr_linkage('address', $ldcd, 0, 'name')}</p>
+                                        <p>联动菜单顶级的名称：{dr_linkage('address', $ldcd, 1, 'name')}</p>
+                                        <p>面包屑导航：{dr_linkagepos('address', $ldcd, ' - ')}</p>
+                                    </div>
+                                </div>
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">单个文件上传: dangewenjian</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        <p>文件的地址：{dr_get_file($dangewenjian)}</p>
+                                        <p>文件的下载地址：{dr_down_file($dangewenjian)}</p>
+
+                                        <p>图片缩略图200x200：{dr_thumb($thumb, 200, 200)}
+                                    </div>
+                                </div>
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">	多个文件或图片 : dgwjhtp</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        {loop $dgwjhtp $i $c}
+                                        <p>
+                                            标题：{$c.title}<br>
+                                            文件原始地址：{dr_get_file($c.file)}<br>
+                                            图片缩略图：{dr_thumb($c.file, 200, 200)}<hr>
+                                        </p>
+                                        {/loop}
+
+                                    </div>
+                                </div>
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">	图片专用 : tpzy</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        {loop $tpzy $i $c}
+                                        <p>
+                                            图片原始地址：{dr_get_file($c.file)}<br>
+                                            图片缩略图：{dr_thumb($c.file, 200, 200)}<hr>
+                                        </p>
+                                        {/loop}
+
+                                    </div>
+                                </div>
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">日期时间格式: inputtime</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        <p>默认输出：{$inputtime}</p>
+                                        <p>自定义时间：{dr_date($_inputtime, 'Y-m-d')}</p>
+                                        <p>友好的时间：{dr_fdate($_inputtime)}</p>
+                                    </div>
+                                </div>
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">	内容关联（新闻） nrglxw</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        {if $nrglxw}
+                                        {list action=module module=news IN_id=$nrglxw num=5 return=r}
+                                        <p><a href="{$r.url}">{$r.title}</a></p>
+                                        {/list}
+                                        {else}
+                                        没有关联
+                                        {/if}
+                                    </div>
+                                </div>
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">参数属性 spsx</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        {loop $spsx $i $c}
+                                        <p>{$c.name}：{$c.value}</p>
+                                        {/loop}
+                                    </div>
+                                </div>
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">	视频文件	 spwj</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        <p>文件：{dr_get_file($spwj.file)}</p>
+                                    </div>
+                                </div>
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">	颜色选取	 ysxqfyb</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        <p>{$ysxqfyb}</p>
+                                    </div>
+                                </div>
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">百度地图 baiduditu</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+                                        {dr_baidu_map($baiduditu, 17, '100%', '400')}
+                                    </div>
+                                </div>
+
+
+                                <div class="portlet light ">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-dark bold ">阅读收费 yuedushoufei</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="portlet-body">
+
+                                        {dr_show_buy($id)}
+
+                                        <table>
+                                            {list action=cache name=MEMBER.group return=group}
+                                            {if $group.id > 2}
+                                            <tr>
+                                                <td align="left" width="90">{$group.name}</td>
+                                                <td align="left"></td>
+                                            </tr>
+                                            {loop $group.level $level}
+                                            <tr>
+                                                {php $lid=$group['id'].'_'.$level['id'];}
+                                                <td align="left" style="padding-left:40px">{$level.name}</td>
+                                                <td align="left">
+                                                    {$yuedushoufei[$lid]} {SITE_SCORE}
+                                                </td>
+                                            </tr>
+                                            {/loop}
+                                            {/if}
+                                            {/list}
+                                        </table>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{template "footer.html", "/"}

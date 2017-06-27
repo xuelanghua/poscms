@@ -1,0 +1,460 @@
+.order-tb {
+    width: 100%;
+}
+.root61 .order-tb .number-col {
+    width: 590px;
+}
+.order-tb .number-col {
+    width: 395px;
+}
+col {
+    display: table-column;
+}
+.root61 .order-tb .consignee-col {
+    width: 115px;
+}
+.order-tb .amount-col, .order-tb .consignee-col, .order-tb .status-col, .operate-col {
+    width: 105px;
+}
+.order-tb thead th {
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background: #f5f5f5;
+    color: #666;
+    font-weight: 400;
+}
+.order-tb .sep-row {
+    height: 20px;
+}
+.order-tb .sep-row td {
+    border: 0;
+}
+.order-tb tbody td {
+    border: 1px solid #e5e5e5;
+    border-right: none;
+    border-bottom: none;
+}
+.order-tb .tr-th {
+    background: #f5f5f5;
+    height: 31px;
+    line-height: 31px;
+    color: #aaa;
+    overflow: hidden;
+}
+.order-tb .tr-th td {
+    border-bottom-color: #f5f5f5;
+}
+.order-tb .tr-th .gap {
+    width: 14px;
+}
+.order-tb .tr-th span {
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    padding: 2px 0 0;
+    _display: inline;
+}
+.order-tb .tr-th .dealtime {
+    margin-right: 30px;
+    _margin-right: 15px;
+    font-family: verdana;
+}
+.order-tb .tr-th .number {
+    width: 226px;
+    font-family: verdana;
+}
+.order-otime {
+    color: #fe0c0c;
+    float:right !important;
+    padding-right: 15px!important;
+}
+.order-tb .tr-th a {
+    color: #333;
+}
+.root61 .order-tb .tr-th .tr-operate {
+    width: 620px;
+}
+.order-tb .tr-th .tr-operate {
+    float: right;
+    position: relative;
+    margin-right: 15px;
+    width: 280px;
+    height: 23px;
+    overflow: hidden;
+}
+.order-tb .tr-th .order-shop {
+    width: 178px;
+}
+.order-tb .tr-th .order-shop .shop-txt {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 153px;
+    overflow: hidden;
+    margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.order-tb .tr-th .btn-im, .order-tb .tr-th .btn-im-off {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 0 0 0 5px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.order-tb .tr-th .tel {
+    width: 180px;
+    color: #aaa;
+    font-family: verdana;
+}
+.order-tb .tr-th .tel .tel-icon {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    margin-right: 3px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.order-tb .tr-bd {
+    text-align: center;
+    vertical-align: top;
+}
+.order-tb .tr-bd td {
+    padding: 14px 0;
+}
+.root61 .order-tb .goods-item {
+    width: 330px;
+    margin-right: 84px;
+}
+.order-tb .goods-item {
+    display: inline-block;
+    display: block;
+    float: left;
+    width: 255px;
+    margin-right: 10px;
+}
+.order-tb .goods-item .p-img {
+    float: left;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #efefef;
+    margin: 0 14px;
+    _display: inline;
+}
+.root61 .order-tb .goods-item .p-msg {
+    width: 240px;
+}
+.order-tb .goods-item .p-msg {
+    float: left;
+    width: 160px;
+}
+.order-tb .goods-item .p-name {
+    height: 36px;
+    line-height: 18px;
+    overflow: hidden;
+    color: #333;
+    text-align: left;
+}
+.order-tb .goods-item .p-name a {
+    color: #333;
+}
+.root61 .order-tb .goods-number {
+    width: 90px;
+}
+.order-tb .goods-number {
+    float: left;
+    width: 40px;
+    text-align: left;
+    color: #aaa;
+    font-family: verdana;
+}
+.order-tb .goods-repair {
+    float: right;
+    width: 84px;
+    text-align: left;
+    color: #aaa;
+    line-height:20px;
+    font-size:12px;
+}
+.operate p {
+    line-height:23px;
+}
+.clear, .clr {
+    display: block;
+    overflow: hidden;
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+}
+.order-tb .tooltip {
+    position: relative;
+    width: 100px;
+    margin: 0 auto;
+    z-index: 2;
+    cursor: pointer;
+}
+.order-tb .consignee .txt {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 72px;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+.order-tb .consignee b {
+    display: inline-block;
+    width: 14px;
+    height: 16px;
+    vertical-align: middle;
+    margin: 0 0 0 5px;
+}
+.order-tb .tooltip .prompt-02 {
+    position: absolute;
+    z-index: 1;
+    width: 220px;
+    right: 90px;
+    top: -22px;
+    padding: 20px;
+    display: none;
+    color: #666;
+    line-height: 22px;
+}
+.order-tb .tooltip .prompt-01 {
+    position: absolute;
+    z-index: 1;
+    width: 400px;
+    right: 90px;
+    top: -22px;
+    padding: 9px;
+    display: none;
+    cursor: auto;
+}
+.order-tb .prompt-01 {
+    position: absolute;
+    width: 122px;
+    border: 1px solid #ddd;
+    background: #fff;
+    -webkit-box-shadow: 0 0 2px 2px #eee;
+    -moz-box-shadow: 0 0 2px 2px #eee;
+    box-shadow: 0 0 2px 2px #eee;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+}
+.prompt-01 {
+    position: absolute;
+    width: 122px;
+    border: 1px solid #ddd;
+    background: #fff;
+    -webkit-box-shadow: 0 0 2px 2px #eee;
+    -moz-box-shadow: 0 0 2px 2px #eee;
+    box-shadow: 0 0 2px 2px #eee;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+}
+.order-tb .tooltip .prompt-02 .pc {
+    min-height: 0;
+}
+.order-tb .tooltip .prompt-01 .pc {
+    min-height: 235px;
+}
+order-tb .prompt-02 .pc {
+    color: #666;
+}
+.order-tb .prompt-01 .pc {
+    background: #fff;
+    padding: 0;
+    color: #333;
+    text-align: left;
+}
+.prompt-01 .pc {
+    background: #fff;
+    padding: 10px;
+    color: #333;
+    text-align: left;
+    overflow: hidden;
+}
+.order-tb .prompt-01 .p-arrow-left {
+    right: -8px;
+    top: 25px;
+    width: 8px;
+    height: 16px;
+    background-position: -7px 0;
+}
+.prompt-01 .p-arrow-left {
+    right: -8px;
+    top: 20px;
+    width: 8px;
+    height: 16px;
+    background-position: -7px 0;
+}
+.prompt-01 .p-arrow {
+    position: absolute;
+}
+.order-tb .amount strong {
+    font-family: verdana;
+    color: #333;
+}
+.ftx-13 {
+    color: #aaa;
+}
+.order-tb .cellphone-icon {
+    display: inline-block;
+    width: 56px;
+    height: 14px;
+    overflow: hidden;
+}
+.order-tb .status {
+    position: relative;
+    z-index: 5;
+    color: #333;
+    line-height: 22px;
+}
+.ftx-02, .ftx02 {
+    color: #71b247;
+}
+.order-tb .tooltip {
+    position: relative;
+    width: 100px;
+    margin: 0 auto;
+    z-index: 2;
+    cursor: pointer;
+}
+.order-tb .tooltip .auto-icon {
+    display: inline-block;
+    width: 22px;
+    height: 16px;
+    margin: 0 3px 0 0;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.order-tb .tooltip .circle-icon {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin: 0 0 0 3px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.order-tb .tr-th .dealtime {
+    margin-right: 30px;
+    _margin-right: 15px;
+    font-family: verdana;
+}
+
+#orderinfo .mc, #ordermess .mc {
+    padding: 5px 8px;
+    background: #fff;
+    overflow: visible;
+}
+#orderinfo .mc dl.fore {
+    border-top: 0;
+}
+#orderinfo .mc dt {
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+#orderinfo .mc dl {
+    padding: 10px 5px;
+    border-top: 1px solid #EDEDED;
+}
+#orderinfo .p-list {
+    overflow: hidden;
+    margin-right: -1px;
+    border-left: 1px solid #DEDEDE;
+}
+#orderinfo .p-list table {
+    border-collapse: collapse;
+    margin-left: -1px;
+    border: solid #DEDEDE;
+    border-width: 0 1px;
+}
+#orderinfo .p-list th {
+    padding: 5px;
+    background: #F0F0F0;
+    border-top: 1px solid #DEDEDE;
+    border-bottom: 1px solid #DEDEDE;
+    border-left: 1px solid #F0F0F0;
+    font-weight: normal;
+    text-align:center;
+}
+#orderinfo .p-list td {
+    padding: 5px;
+    background: #fff;
+    border-top: 1px solid #DEDEDE;
+    border-bottom: 1px solid #DEDEDE;
+    border-left: 1px solid #F0F0F0;
+    text-align: center;
+}
+.img-list .img-box {
+    border: 1px solid #e1e1e1;
+    display: block;
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+}
+.ftx04, .flk04 a:link, .flk04 a:visited, a.flk04:link, a.flk04:visited {
+    color: #F00;
+}
+#orderinfo dl li {
+    font-family: simsun;
+}
+#orderinfo .total {
+    padding: 15px 10px 0;
+    margin-bottom:120px;
+}
+#orderinfo .total ul {
+    float: right;
+    padding: 0 20px 10px 0;
+    overflow: hidden;
+    font-size: 14px;
+}
+#orderinfo .total li {
+    overflow: hidden;
+    line-height: 20px;
+}
+#orderinfo .total li span {
+    float: left;
+    width: 150px;
+    text-align: right;
+}
+#orderinfo .total .extra {
+    float: right;
+    padding: 10px 20px 0 0;
+    border-top: 1px solid #ccc;
+    font-size: 16px;
+    font-weight: bold;
+}
+#orderstate {
+    border: 1px solid #EED97C;
+    padding: 0 5px;
+    background: #FFFCEB;
+    margin-bottom:10px;
+}
+#orderstate .mt {
+    padding: 4px 8px;
+    height: 25px;
+    line-height: 25px;
+}
+#orderstate .mc {
+    padding: 10px 8px;
+}
+#orderstate .mt strong {
+    float: left;
+    font-size: 14px;
+}
+.fr {
+    float: right;
+}
+#orderstate .fr p {
+    float: left;
+    padding: 0 5px;
+}
+.dr_order_kd td {
+    padding-top:0;
+    padding-bottom:0;
+}
+

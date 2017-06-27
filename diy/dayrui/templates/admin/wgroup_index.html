@@ -1,0 +1,70 @@
+{template nheader.html}
+<script type="text/javascript">
+</script>
+
+<div class="page-bar">
+    <ul class="page-breadcrumb mylink">
+        {$menu.link}
+    </ul>
+    <ul class="page-breadcrumb myname">
+        {$menu.name}
+    </ul>
+    <div class="page-toolbar">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> {fc_lang('操作菜单')}
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                {loop $menu.quick $t}
+                <li>
+                    <a href="{$t.url}">{$t.icon} {$t.name}</a>
+                </li>
+                {/loop}
+                <li class="divider"> </li>
+                <li>
+                    <a href="javascript:window.location.reload();">
+                        <i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<h3 class="page-title">
+    <small>增加和修改操作之后必须要同步至微信公众平台服务端才能生效</small>
+</h3>
+
+
+<div class="portlet light bordered">
+    <div class="portlet-body">
+        <div class="table-scrollable v3table">
+            <form action="" method="post" name="myform" id="myform">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>{fc_lang('名称')}</th>
+                        <th width="100">{fc_lang('类型')}</th>
+                        <th width="100">{fc_lang('粉丝数')}</th>
+                        <th class="dr_option">{fc_lang('操作')}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {loop $list $t}
+                    <tr>
+                        <td>{$t['name']}</td>
+                        <td>{if $t.wechat_id==-1}<span class="badge badge-warning"> 未同步 </span>{else if $t.wechat_id>99}<span class="badge badge-success"> 自定义 </span>{else}<span class="badge badge-info"> 系统 </span>{/if}</td>
+                        <td>{$t.count}</td>
+                        <td class="dr_option">
+                            {if $this->ci->is_auth('admin/wgroup/edit')}<a class="aedit" href="{dr_dialog_url(dr_url('wgroup/edit',array('id' => $t.id)), 'edit')}"> <i class="fa fa-edit"></i> {fc_lang('修改')}</a>{/if}
+                            {if $t.wechat_id >=0 && $t.wechat_id <100} {else}<a class="adel" href="{dr_url('wgroup/del',array('id'=>$t['id']))}"> <i class="fa fa-trash"></i> {fc_lang('删除')}</a>{/if}
+                        </td>
+                    </tr>
+                    {/loop}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+{template nfooter.html}

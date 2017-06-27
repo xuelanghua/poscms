@@ -1,0 +1,86 @@
+{template nheader.html}
+<script type="text/javascript">
+	function dr_delete(id) {
+		var _url = window.location.href;
+		art.dialog.confirm("<font><b>你确认要删除吗？</b></font>", function(){
+			var _data = $("#myform").serialize();
+			if ((_data.split('ids')).length-1 <= 0) {
+				dr_tips("到底标删除？您还没有选择呢", 2);
+				return true;
+			}
+			$.ajax({type: "POST",dataType:"json", url: _url, data: _data, success: function(data) {
+				if (data.status == 1) {
+					dr_tips(data.code, 3, 1);
+					$("input[name='ids[]']:checkbox:checked").each(function(){
+						$("#dr_row_"+$(this).val()).remove();
+					});
+				} else {
+					dr_tips(data.code, 3, 0);
+				}
+				art.dialog.close();
+				return false;
+			},
+				error: function(HttpRequest, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + HttpRequest.statusText + "\r\n" + HttpRequest.responseText);
+				}
+			});
+			return true;
+		});
+		return false;
+	}
+</script>
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="portlet-body">
+
+
+			<form action="" method="post" name="myform" id="myform">
+				<input name="action" id="action" type="hidden" value="" />
+				<div class="table-responsive">
+					<ul class="feeds" id="dr_body">
+						{loop $list $t}
+						<li style="padding: 10px 0">
+							<div class="col1">
+								<div class="cont">
+									<div class="cont-col1" style="padding-left:5px;">
+										<div class="label label-sm label-default">
+											<i class="{$ci->get_cache('member-menu', 'uri', $get[c].'/'.$get[m], 'icon')}"></i>
+										</div>
+									</div>
+									<div class="cont-col2">
+										<div class="desc"> {$t.content}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col2">
+								<div class="date"> {dr_fdate($t.inputtime)} </div>
+							</div>
+						</li>
+						{/loop}
+					</ul>
+				</div>
+			</form>
+		</div>
+
+
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<ul class="pagination">
+			{$pages}
+			<li><a href="javascript:;">共{$page_total}条</a></li>
+		</ul>
+	</div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info" style="margin-top: 15px">
+	左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

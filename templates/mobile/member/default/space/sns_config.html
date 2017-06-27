@@ -1,0 +1,42 @@
+{template "nheader.html"}
+<script type="text/javascript">
+    $(function(){
+        {if $save}
+            dr_tips('保存成功', 3, 1);
+            {/if}
+        });
+</script>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <!-- BEGIN FORM-->
+        <form action="" method="post" class="form-horizontal" novalidate="novalidate">
+            <input name="aa" type="hidden" value="aa" >
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">查看权限：</label>
+                    <div class="col-md-10">
+                        <div class="radio-list">
+                            <p style="margin-top: 10px"><label><input type="checkbox" name="data[show_all]" {if $data.show_all}checked{/if} value="1" /> 全站</label></p>
+                            <p><label><input type="checkbox" name="data[show_fans]" {if $data.show_fans}checked{/if} value="1" /> 我的粉丝</label></p>
+                            <p><label><input type="checkbox" name="data[show_follow]" {if $data.show_follow}checked{/if} value="1" /> 我关注的</label></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-3">
+                        <button type="submit" class="mysubmit btn green"><i class="fa fa-save"></i> 保存</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <!-- END FORM-->
+        <!-- END VALIDATION STATES-->
+    </div>
+</div>
+
+{template "nfooter.html"}

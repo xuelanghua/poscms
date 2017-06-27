@@ -1,0 +1,50 @@
+{template "head.html"}
+{template "header.html"}
+<div class="container man">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="space_content">
+				<div class="box">
+
+
+                    <div class="my_article">
+                        <div class="hd"><h2 class="name">{$cat.name}</h2></div>
+                        <div class="ct">
+                            <table width="100%" class="mb10">
+                                <thead>
+                                <tr>
+                                    <td class="subject">标题</td>
+                                    <td class="time">发布时间</td>
+                                    <td class="num" style="text-align:center">人气</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {list action=model modelid=$modelid space=$spaceid IN_catid=$cat.childids page=1 pagesize=10 urlrule=$urlrule}
+                                <tr>
+                                    <td class="subject">
+                                        <a href='{dr_space_show_url($spaceid, $modelid, $t.id)}' class="st">{$t.title}</a>
+                                    </td>
+                                    <td class="time">{$t.updatetime}</td>
+                                    <td class="num" style="text-align:center"><span>{$t.hits}</span></td>
+                                </tr>
+                                {/list}
+                                </tbody>
+                            </table>
+                            <div class="">
+                                <div class="pages">{$pages}</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+			    </div>
+		    </div>
+		</div>
+        <div class="col-md-3">
+            {template "sidebar.html"}
+        </div>
+	</div>
+	{template "footer.html"}
+</div>
+</body>
+</html>

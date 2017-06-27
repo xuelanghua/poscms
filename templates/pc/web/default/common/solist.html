@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <title>搜索 - “{$keyword}” - {$meta_title}</title>
+    <link href="{HOME_THEME_PATH}so/search.css" rel="stylesheet" />
+    <script type="text/javascript" src="{THEME_PATH}js/jquery.min.js"></script>
+</head>
+<body>
+<div class="clr sr_body sr_list">
+    <div class="sr_main">
+        <div class="sr_head">
+            <div class="l">
+                <a href="{SITE_URL}" class="on">首页</a>
+                {list action=cache name=module}
+                - <a href="{$t.url}">{$t.name}</a>
+                {/list}
+            </div>
+        </div>
+
+        <div class="wrap sr_logo">
+            <a href="{dr_so_url()}" class="l" style="padding-top: 20px;padding-right: 20px;"><img src="{HOME_THEME_PATH}layouts/layout3/img/logo.png" /></a>
+            <div class="l">
+                <div class="sr_frm_box">
+                    <form name="search" action="index.php" type="get">
+                        <div class="sr_frmipt">
+                            <input type="hidden" name="c" value="so"/>
+                            <input type="hidden" name="module" value="{$dirname}"/>
+                            <input type="text" name="keyword" class="ipt" id="keyword" value="{$keyword}">
+                            <input type="submit" class="ss_btn" value="搜 索"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="brd1s"></div>
+        <div class="wrap sr_lists">
+            <div class="l">
+                <div>
+                    <span>按模块搜索</span>
+                    <ul>
+                        {loop $module $dir $t}
+                        <li><a href="{dr_so_url($params, 'module', $dir)}" {if $dir==$dirname}class="ac"{/if}>{$t.name}（{intval($t.search.sototal)}）</a></li>
+                        {/loop}
+                    </ul>
+                </div>
+                <div class="bgno">
+                    <span>按时间搜索</span>
+                    {php $time = array('不限'=>'', '一天内'=>strtotime(date('Y-m-d 00:00:00')).','.strtotime(date('Y-m-d 23:59:59')), '一周内'=>strtotime(date('Y-m-d 00:00:00', strtotime('-7 day'))).','.strtotime(date('Y-m-d 23:59:59')), '一月内'=>strtotime(date('Y-m-d 00:00:00', strtotime('-1 month'))).','.strtotime(date('Y-m-d 23:59:59')), '一年内'=>strtotime(date('Y-m-d 00:00:00', strtotime('-1 year'))).','.strtotime(date('Y-m-d 23:59:59')));}
+                    <ul>
+                        {loop $time $i $t}
+                        <li><a href="{dr_so_url($params, 'updatetime', $t)}" {if $get.updatetime==$t}class="ac"{/if}>{$i}</a></li>
+                        {/loop}
+                    </ul>
+                </div>
+            </div>
+            <div class="c wrap">
+                <ul class="wrap">
+                    {if $searchid}
+                    {list action=search module=$dirname id=$searchid total=$sototal catid=$catid order=$params.order page=1 pagesize=10 urlrule=$urlrule}
+                    <li class="wrap">
+                        <div>
+                            <h5><a href="{$t.url}" target="_blank">{dr_keyword_highlight($t.title, $keyword)}</a></h5>
+                            <p>{dr_keyword_highlight($t.description, $keyword)}</p>
+                        </div>
+                        <div class="adds">时间：{$t.updatetime}</div>
+                    </li>
+                    {/list}
+                    {if !$total}
+                    <div class="norecord">对不起，没有找到任何记录！</div>
+                    {/if}
+                    {else}
+                    <div style="margin-top:20px">对不起，没有找到任何记录！</div>
+                    {/if}
+                </ul>
+                <div id="pages" class="text-c mg_t20">{$pages}</div>
+            </div>
+        </div>
+    </div>
+    <div class="sr_footer">
+        <p class="cp">Powered by {DR_NAME} v{DR_VERSION} © 2011-2017 Dayrui Inc.</p>
+    </div>
+    <script language="JavaScript">
+        <!--
+        $(document).ready(function(){
+            $("#keyword").focus();
+        });
+        //-->
+    </script>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{template "head.html"}
+{template "header.html"}
+<div class="container man">
+	<div class="row">
+		<div class="col-md-9">
+            <div class="space_content">
+				<div class="box">
+                    <div class="my_article">
+                        <div class="hd">
+                            <h2>{$title}</h2>
+                        </div>
+                    </div>
+					<div class="space_fans">
+                        {list action=table table=space_access spaceid=$space.uid order=inputtime page=1 pagesize=10 urlrule=$urlrule}
+						<dl class="cc">
+							<dt>
+                            	<a href="{dr_space_url($t.uid)}" class="J_user_card_show"><img class="J_avatar" src="{dr_avatar($t.uid)}" width="50" height="50"></a>
+                            </dt>
+							<dd>
+								<div class="title">
+                                    {if $ci->db->where('uid', $t.uid)->count_all_results('member_online')}
+                                    <img src="{MEMBER_THEME_PATH}images/web0.gif" align="absmiddle" style="cursor:pointer" onclick="dr_chat(this)" username="{$t.username}" uid="{$t.uid}" online=1>
+                                    {else}
+                                    <img src="{MEMBER_THEME_PATH}images/web0-off.gif" align="absmiddle" style="cursor:pointer" onclick="dr_chat(this)" username="{$t.username}" uid="{$t.uid}" online=0>
+                                    {/if}
+									<a href="{dr_space_url($t.fid)}" class="name J_user_card_show">{$t.username}</a>
+									<span class="man_unol"></span>
+
+								</div>
+								<div class="num">
+                                    {php $m=dr_sns_info($t.uid);}
+									关注<a href="{dr_space_sns_url($t.uid, 'follow')}">{$m.follow}</a><span>|</span>
+                                    粉丝<a href="{dr_space_sns_url($t.uid, 'fans')}">{$m.fans}</a><span>|</span>
+                                    动态<a href="{dr_space_sns_url($t.uid, 'feed')}">{$m.weibo}</a>
+								</div>
+								<div class="attribute">
+                                    {dr_fdate($t.inputtime)}
+                                </div>
+							</dd>
+						</dl>
+						{/list}
+				        <div class="pages">{$pages}</div>
+				    </div>
+			    </div>
+		    </div>
+		</div>
+		<div class="col-md-3">
+		{template "sidebar.html"}
+		</div>
+	</div>
+	{template "footer.html"}
+</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<dl class="name clearfix">
+    <dt class="memberinfo_avatar"><img style="width:40px;height:40px" src="{dr_avatar($uid)}" /></dt>
+    <dd style="padding-top:5px">
+        <p style="text-align:left">{$memberinfo.username}</p>
+        <div>
+            <ul class="userdata clearfix">
+                <li>
+                    <a href="{dr_space_sns_url($uid, 'follow')}" target="_blank">关注</a>
+                    {$membersns.follow}
+                </li>
+                <li class="vline">|</li>
+                <li>
+                    <a href="{dr_space_sns_url($uid, 'fans')}" target="_blank">粉丝</a>
+                    {$membersns.fans}
+                </li>
+                <li class="vline">|</li>
+                <li>
+                    <a href="{dr_space_sns_url($uid, 'feed')}" target="_blank">动态</a>
+                    {$membersns.weibo}
+                </li>
+            </ul>
+        </div>
+    </dd>
+</dl>
+<dl class="links">
+    <div class="right">
+        <a href="javascript:;" uid="{$uid}" class="btn-att-white dr_follow_link">
+            <span id="dr_follow_{$uid}">
+                {if $follow == -1}
+                <b class="ico-add-black"></b>关注
+                {else if $follow == 1}
+                <b class="ico-connect"></b>相互关注
+                {else}
+                <b class="ico-already"></b>已关注
+                {/if}
+            </span>
+        </a>
+    </div>
+    <p class="left">
+        <span>
+            <a href="javascript:;" onclick="dr_chat(this)" username="{$memberinfo.username}" uid="{$memberinfo.uid}">
+                发私信
+            </a>
+        </span>
+    </p>
+</dl>
+<script type="text/javascript">
+$(function(){
+    // 单击按钮
+    $('.dr_follow_link').click(function(){
+        var uid = $(this).attr('uid');
+        $.ajax({type: "GET", url:"{dr_member_url('space/sns/set_follow')}&uid="+uid, dataType:'jsonp',jsonp:"callback",async: false,
+            success: function (text) {
+                var data = text.html;
+                if (data == 1) {
+                    dr_tips('关注成功', 3, 1);
+                    $('#dr_follow_'+uid).html('<b class="ico-already"></b>已关注');
+                } else if(data == 2) {
+                    dr_tips('相互关注成功', 3, 1);
+                    $('#dr_follow_'+uid).html('<b class="ico-connect"></b>相互关注')
+                } else if(data == -1) {
+                    dr_tips('取消关注', 3, 1);
+                    $('#dr_follow_'+uid).html('<b class="ico-add-black"></b>关注');
+                } else {
+                    dr_tips('关注失败');
+                }
+            }
+        });
+    });
+});
+</script>

@@ -1,0 +1,131 @@
+{template "nheader.html"}
+<script type="text/javascript">
+	$(function(){
+		{if $result_error}
+			dr_tips('{$result_error}', 3);
+			{/if}
+				dr_category_select($("#dr_modelid").val());
+				dr_set_type({intval($data.type)});
+			});
+			function dr_category_select(mid) {
+				var type = $("#dr_type_id").val();
+				$.post("{dr_member_url('space/category/select')}&mid="+mid+"&type="+type+"&pid={$data.pid}", function(data){
+					$("#dr_category").html(data);
+				});
+			}
+			function dr_set_type(id) {
+				$(".dr_cat_hide").hide();
+				$(".dr_type_"+id).show();
+				$("#dr_type_id").val(id);
+				dr_category_select($("#dr_modelid").val(), id);
+
+			}
+</script>
+<input type="hidden" id="dr_type_id" value="{intval($data['type'])}">
+<div class="row">
+	<div class="col-md-12">
+		<!-- BEGIN VALIDATION STATES-->
+		<!-- BEGIN FORM-->
+		<form action="" method="post" class="form-horizontal" novalidate="novalidate">
+			<div class="form-body">
+				{if strlen($result_error) > 3}
+				<div class="alert alert-danger display-hide" style="display: block;">
+					<button class="close" data-close="alert"></button> {$result_error}</div>
+				{/if}
+				{if $is_edit}
+				<div class="form-group">
+					<label class="col-md-2 control-label">栏目类型：</label>
+					<div class="col-md-10">
+						<div class="radio-list" style="padding-top:0px;">
+							<label class="radio-inline"><input type="radio" type="radio" value="0" {if $data.id}disabled{/if} onclick="dr_set_type(0)" name="data[type]" {if !$data['type']}checked{/if} /> 外链&nbsp;&nbsp;</label>
+							<label class="radio-inline"><input type="radio" value="1" {if $data.id}disabled{/if} onclick="dr_set_type(1)" name="data[type]" {if $data['type']==1}checked{/if} /> 模型&nbsp;&nbsp;</label>
+							<label class="radio-inline"><input type="radio" value="2" {if $data.id}disabled{/if} onclick="dr_set_type(2)" name="data[type]" {if $data['type']==2}checked{/if}  /> 单页&nbsp;&nbsp;</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group dr_cat_hide dr_type_1">
+					<label class="col-md-2 control-label">模型选择：</label>
+					<div class="col-md-10">
+						<label>
+						<select class="form-control" name="data[modelid]" {if $data.id || $data.type}disabled{/if} id="dr_modelid" onchange="dr_category_select(this.value)">
+						<option value="0"> -- </option>
+						{list action=cache name=SPACE-MODEL}
+						{if $t['setting'][$markrule]['use']}<option value="{$t.id}" {if $t.id==$data.modelid}selected{/if}> {$t.name} </option>{/if}
+						{/list}
+						</select></label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">上级栏目：</label>
+					<div class="col-md-10">
+						<label id="dr_category"></label>
+					</div>
+				</div>
+				{/if}
+
+				<div class="form-group">
+					<label class="col-md-2 control-label">显示方式：</label>
+					<div class="col-md-10">
+						<div class="radio-list" style="padding-top:0px;">
+							<label class="radio-inline"><input type="radio" value="0" name="data[showid]" {if !$data['showid']}checked{/if} /> 不显示</label>
+							<label class="radio-inline"><input type="radio" value="1" name="data[showid]" {if $data['showid']==1}checked{/if} /> 顶部</label>
+							<label class="radio-inline"><input type="radio" value="2" name="data[showid]" {if $data['showid']==2}checked{/if} /> 底部</label>
+							<label class="radio-inline"><input type="radio" value="3" name="data[showid]" {if $data['showid']==3}checked{/if} /> 都显示</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">栏目名称：</label>
+					<div class="col-md-10">
+						<label><input type="text" class="form-control" name="data[name]" value="{$data.name}" placeholder="栏目名称"></label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">外链地址：</label>
+					<div class="col-md-10">
+						<input type="text" class="form-control" name="data[link]" value="{$data.link}" placeholder="外链地址">
+					</div>
+				</div>
+				{if !$data.child}
+				<div class="form-group">
+					<label class="col-md-2 control-label">SEO标题：</label>
+					<div class="col-md-10">
+						<input type="text" class="form-control" name="data[title]" value="{$data.title}" placeholder="SEO标题">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">SEO关键字：</label>
+					<div class="col-md-10">
+						<input type="text" class="form-control" name="data[keywords]" value="{$data.keywords}" placeholder="SEO关键字">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">SEO描述：</label>
+					<div class="col-md-10">
+						<input type="text" class="form-control" name="data[description]" value="{$data.description}" placeholder="SEO描述">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">单页内容：</label>
+					<div class="col-md-10">
+						{dr_field_input('body', 'Ueditor', array('option' => array( 'mode' => 2, 'height' => 200, 'width' => '100%'), 'validate' => array('xss' => 1)), $data['body'])}
+					</div>
+				</div>
+				{/if}
+			</div>
+
+			<div class="form-actions">
+				<div class="row">
+					<div class="col-md-offset-2 col-md-3">
+						<button type="submit" class="mysubmit btn green"><i class="fa fa-save"></i> 保存</button>
+					</div>
+				</div>
+			</div>
+
+		</form>
+		<!-- END FORM-->
+		<!-- END VALIDATION STATES-->
+	</div>
+</div>
+
+{template "nfooter.html"}

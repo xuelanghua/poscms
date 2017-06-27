@@ -1,0 +1,111 @@
+{template "head.html"}
+{template "header.html"}
+<div class="container man">
+	<div class="row">
+
+		<div class="col-md-9">
+			<div class="space_content" id="J_feed_lists">
+
+
+                {list action=table table=sns_feed uid=$space.uid order=inputtime page=1 pagesize=10 urlrule=$urlrule}
+				<div class="box">
+                    <dl class="feed_list" id="dr_row_{$t.id}">
+                        <dt class="face memberinfo_avatar">
+                            <a href="{dr_sns_feed_url($t.uid, $t.id)}" event-node="face_card" uid="{$t.uid}"><img src="{dr_avatar($t.uid)}" /></a>
+                        </dt>
+                        <dd class="content">
+                            <p class="hd">
+                                <a href="{dr_sns_feed_url($t.uid, $t.id)}" class="name" event-node="face_card" uid="{$t.uid}">{$t.username}</a>
+                                <span class="remark"></span>
+                            </p>
+        <span class="contents">
+            {dr_sns_content($t.content)}
+            {php $images = $t.images ? @explode('|', $t.images) : '';}
+            {if $images}
+            <br>
+            <div class="feed_img_lists" rel="small">
+                <ul class="small">
+                    {loop $images $img}
+                    <li style="margin-top:10px">
+                        <a href="{dr_get_file($img)}" target="_blank"><img class="imgicon" src="{dr_get_file($img)}" width="100" height="100"></a>
+                    </li>
+                    {/loop}
+                </ul>
+            </div>
+            {/if}
+            {if $t.repost_id && $repost = dr_sns_feed($t.repost_id)}
+            <dl class="comment">
+                <dt class="arrow bgcolor_arrow"><em class="arrline">◆</em><span class="downline">◆</span></dt>
+                <dd class="name">
+                    <a event-node="face_card" uid="{$repost.uid}" href="javascript:;" class="name" target="_self">@{$repost.username}</a></dd>
+                <dd>{dr_sns_content($repost.content)}</dd>
+                <p class="info">
+				    <span class="right">
+					<a href="{dr_sns_feed_url($repost.uid, $repost.id)}">原文转发({$repost.repost})</a><i class="vline">|</i>
+					<a href="{dr_sns_feed_url($repost.uid, $repost.id)}">原文评论({$repost.comment})</a>
+				    </span>
+                    <span>
+                        &nbsp;&nbsp;<a href="{dr_sns_feed_url($repost.uid, $repost.id)}" class="date">{dr_fdate($repost.inputtime)}</a>
+                        <span>{$repost.source}</span>
+                    </span>
+                </p>
+            </dl>
+            {/if}
+        </span>
+                            <p class="info">
+            <span class="right">
+                <a href="javascript:void(0);" onclick="dr_sns_repost({$t.id})">转发</a>
+                <i class="vline">|</i>
+                <a href="javascript:;" onclick="dr_sns_favorite({$t.id})" id="dr_favorite_{$t.id}">{if @in_array($t.id, $favorite)}取消收藏{else}收藏{/if}</a>
+                <i class="vline">|</i>
+                <a href="javascript:;" onclick="dr_sns_digg({$t.id})">赞(<span id="dr_digg_{$t.id}" style="margin:0">{$t.digg}</span>)</a>
+                <i class="vline">|</i>
+                <a href="javascript:void(0)" onclick="dr_sns_list_comment({$t.id})">评论({$t.comment})</a>
+            </span>
+            <span>
+                <span class="date">
+                    &nbsp;&nbsp;<a href="{dr_sns_feed_url($t.uid, $t.id)}" class="date">{dr_fdate($t.inputtime)}</a>
+                </span>
+                <span>{$t.source}</span>
+                {if $member.adminid || $t.uid==$member.uid}
+                <em class="hover">
+                    &nbsp;&nbsp;<a href="javascript:void(0)" onclick="dr_sns_delete({$t.id})">删除</a>
+                </em>
+                {/if}
+            </span>
+                            </p>
+                            <div class="repeat clearfix" id="dr_comment_{$t.id}" style="display:none">
+                                <div class="input" model-node="comment_textarea">
+                                    <div class="input_before1" model-node="mini_editor">
+                                        <textarea class="input_tips" id="comment_content_{$t.id}" style="width:99%"></textarea>
+                                    </div>
+                                    <div class="action clearfix">
+                                        <div><a href="javascript:void(0);" onclick="dr_sns_comment_post({$t.id})" class="btn-green-small right"><span>回复</span></a></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div id="commentlist_{$t.id}" class="comment_lists">
+                                    <img src="{MEMBER_THEME_PATH}sns/loading.gif" />
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+			    </div>
+                {/list}
+
+				<div class="pages">
+					{$pages}
+				</div>
+                
+			</div>
+		</div>
+        <div class="col-md-3">
+            {template "sidebar.html"}
+        </div>
+	</div>
+	{template "footer.html"}
+</div>
+<script type="text/javascript">var memberpath = "{MEMBER_PATH}";</script>
+<script type="text/javascript" src="{$theme}js/sns.js"></script>
+</body>
+</html>

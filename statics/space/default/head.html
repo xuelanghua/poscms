@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<title>{$meta_title}</title>
+<meta name="keywords" content="{$meta_keywords}" />
+<meta name="description" content="{$meta_description}" />
+<meta name="generator" content="POSCMS" />
+<link rel="stylesheet" type="text/css" href="{$theme}css/bootstrap.min.css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="{$theme}css/index.css">
+<link rel="stylesheet" href="{$theme}css/core.css" />
+<link rel="stylesheet" href="{$theme}css/style.css" />
+<link rel="stylesheet" href="{$theme}css/widthauto.css" />
+
+<!--关键JS开始--> 
+<script type="text/javascript">var memberpath = "{MEMBER_PATH}";</script>
+<script type="text/javascript" src="{THEME_PATH}js/{SITE_LANGUAGE}.js"></script>
+<script type="text/javascript" src="{THEME_PATH}js/jquery.min.js"></script>
+    <link rel="stylesheet" href="{THEME_PATH}js/ui-dialog.css">
+    <script type="text/javascript"t src="{THEME_PATH}js/dialog-plus.js"></script>
+<script type="text/javascript" src="{THEME_PATH}js/jquery.artDialog.js?skin=default"></script>
+<script type="text/javascript" src="{THEME_PATH}js/dayrui.js"></script>
+<script type="text/javascript" src="{$theme}js/core.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 顶部导航菜单的选择高亮
+	$(".dr_category").attr('class', 'dr_category');
+	$(".dr_category").each(function(){
+		var dr_select = $(this).attr('select');
+		if (dr_select == {$selected}) {
+			$(this).attr('class', 'dr_category current');
+		}
+	});
+	// 空间统计
+    $.ajax({type: "GET", url:memberpath+"index.php?s=space&c=api&m=space_count&uid={$space.uid}", dataType:'jsonp',jsonp:"callback",async: false,
+        success: function (text) {
+            window.location.href = text.url;
+        }
+    });
+});
+</script>
+<!--关键js结束-->
+</head>
+<body>

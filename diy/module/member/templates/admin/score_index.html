@@ -1,0 +1,71 @@
+{template nheader.html}
+<div class="page-bar">
+	<ul class="page-breadcrumb mylink">
+		{$menu.link}
+
+	</ul>
+	<ul class="page-breadcrumb myname">
+		{$menu.name}
+	</ul>
+	<div class="page-toolbar">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+				<i class="fa fa-angle-down"></i>
+			</button>
+			<ul class="dropdown-menu pull-right" role="menu">
+				{loop $menu.quick $t}
+				<li>
+					<a href="{$t.url}">{$t.icon} {$t.name}</a>
+				</li>
+				{/loop}
+				<li class="divider"> </li>
+				<li>
+					<a href="javascript:window.location.reload();">
+						<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div class="mytopsearch">
+	<form method="post" action="" name="searchform" id="searchform">
+		<label>{fc_lang('会员名称')}：<b>{$userinfo['username']}</b> &nbsp;&nbsp;&nbsp;{fc_lang('时间')} ： </label>
+		<label>{dr_field_input('start', 'Date', array('option'=>array('format'=>'Y-m-d','width'=>100)), (int)$param['start'])}</label>
+		<label><i class="fa fa-minus"></i></label>
+		<label>{dr_field_input('end', 'Date', array('option'=>array('format'=>'Y-m-d','width'=>100)), (int)$param['end'])}</label>
+		<label><button type="submit" class="btn green btn-sm"> <i class="fa fa-search"></i> {fc_lang('搜索')}</button></label>
+	</form>
+</div>
+
+<form action="" method="post" name="myform" id="myform">
+	<div class="portlet mylistbody">
+		<div class="portlet-body">
+			<div class="table-scrollable">
+
+				<table class="mytable table table-striped table-bordered table-hover table-checkable dataTable">
+
+		<thead>
+		<tr>
+			<th>{fc_lang('时间')}</th>
+			<th>{$name}</th>
+			<th class="dr_option">{fc_lang('备注说明')}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{loop $list $t}
+		<tr>
+			<td>{dr_date($t['inputtime'])}</td>
+			<td><b>{if $t['value'] > 0}<font color="#009933">+{$t['value']}</font>{else}<font color="#FF0000">{$t['value']}</font>{/if}</b></td>
+			<td class="dr_option">{dr_lang_note($t['note'])}</td>
+		</tr>
+		{/loop}
+		</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+</form>
+<div id="pages"><a>{fc_lang('共%s条', $param['total'])}</a>{$pages}</div>
+{template nfooter.html}

@@ -1,0 +1,52 @@
+{template nheader.html}
+
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="portlet-body">
+
+			<form action="" method="post" name="myform" id="myform">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+						<tr>
+							<th class="algin_l">时间</th>
+							<th class="algin_l">变更值</th>
+							<th class="algin_l">操作</th>
+						</tr>
+						</thead>
+						<tbody id="dr_body">
+						{loop $list $t}
+						<tr>
+							<td class="">{dr_date($t['inputtime'])}</td>
+							<td class=""><b>{if $t['value'] > 0}<font color="#009933">+{$t['value']}</font>{else}<font color="#FF0000">{$t['value']}</font>{/if}</b></td>
+							<td class="">{dr_lang_note($t['note'])}</td>
+						</tr>
+						{/loop}
+						</tbody>
+					</table>
+					</table>
+				</div>
+			</form>
+		</div>
+
+
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<ul class="pagination">
+			{$pages}
+			<li><a href="javascript:;">共{$page_total}条</a></li>
+		</ul>
+	</div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info" style="margin-top: 15px">
+	左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

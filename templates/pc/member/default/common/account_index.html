@@ -1,0 +1,93 @@
+{template "nheader.html"}
+<script type="text/javascript">
+    $(function(){
+        {if $result_error}
+            dr_tips('{$result_error.msg}', 3);
+        {/if}
+    });
+    function dr_send_sms() {
+        $.post("{dr_member_url('account/sendsms')}&phone="+$("#dr_phone").val(), function(data){
+            if (data.status == '1') {
+                dr_tips(data.code, 3, 1);
+            } else {
+                dr_tips(data.code);
+            }
+        }, 'json');
+    }
+</script>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <!-- BEGIN FORM-->
+        <form action="" method="post" class="form-horizontal" novalidate="novalidate">
+            <input type="hidden" name="data[uid]" value="{$member.uid}">
+            <div class="form-body">
+                {if $member.groupid == 2 && !$member.bang}
+                <div class="alert alert-info">您是通过快捷登录注册的，需要完善登录信息</div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">安全邮箱：</label>
+                    <div class="col-md-10">
+                        <label><input type="text" name="member[email]" class="form-control" placeholder="安全邮箱"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">登录密码：</label>
+                    <div class="col-md-10">
+                        <label><input type="password" name="member[password]" class="form-control" placeholder="登录密码"></label>
+                    </div>
+                </div>
+                {else if $member.groupid == 2 && $member.bang}
+                <div class="alert alert-info">您是通过快捷登录注册的，需要完善登录信息</div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">登录账号：</label>
+                    <div class="col-md-10">
+                        <label><input type="text" name="member[username]" class="form-control" placeholder="登录账号"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">安全邮箱：</label>
+                    <div class="col-md-10">
+                        <label><input type="text" name="member[email]" class="form-control" placeholder="安全邮箱"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">登录密码：</label>
+                    <div class="col-md-10">
+                        <label><input type="password" name="member[password]" class="form-control" placeholder="登录密码"></label>
+                    </div>
+                </div>
+                {else}
+                {if $member.email}
+                <div class="form-group">
+                    <label class="col-md-2 control-label">邮箱：</label>
+                    <div class="col-md-10" style="padding-top: 10px;">
+                        {$member.email}
+                    </div>
+                </div>
+                {else}
+                <div class="form-group">
+                    <label class="col-md-2 control-label"><font color="red">*</font>邮箱：</label>
+                    <div class="col-md-10">
+                        <label><input type="text" name="email" class="form-control" placeholder="安全邮箱"></label>
+                    </div>
+                </div>
+                {/if}
+                {$myfield}
+                {/if}
+            </div>
+
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-3">
+                        <button type="submit" class="mysubmit btn green"><i class="fa fa-save"></i> 保存</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <!-- END FORM-->
+        <!-- END VALIDATION STATES-->
+    </div>
+</div>
+
+{template "nfooter.html"}

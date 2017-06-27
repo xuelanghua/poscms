@@ -1,0 +1,32 @@
+<div class="banner" style="{if $space.banner}background:url('{dr_get_file($space.banner)}');{/if}">
+    <div class="biaoti"><h2><a href="{$space.url}">{$space.name}</a></h2></div>
+</div>
+<div class="hang">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-2 text-right"><a href="{$space.url}"><img src="{dr_get_file($space.logo)}" style="width:150px;height:150px;border:5px solid #ccc;
+" class="img-rounded"></a></div>
+            <div class="col-xs-5"><h2 style="color:#FFF"><a href="{$space.url}"><br>{$space.username}</a></h2></div>
+            <div class="col-xs-1"></div>
+            <div class="col-xs-4"><h3>浏览：{$space.hits}次</h3></div>
+        </div>
+    </div>
+</div>
+<div class="navn">
+    <div class="container">
+        <ul class="nav nav-pills" style="padding-left:18%">
+            <li class="dr_category" select="0"><a href="{$space.url}">首页</a></li>
+            <!--循环栏目开始 -->
+            {loop $category $c}
+            {if !$c.pid && ($c.showid == 1 || $c.showid == 3)}<!--这里表示循环显示顶部栏目，你就这样写就行了-->
+            <li select="{$c.id}" class='dr_category'><a href='{dr_space_list_url($spaceid, $c.id)}' {if $c.type==0}target='_blank'{/if}>{$c.name}</a></li>
+            {/if}
+            {/loop}
+        </ul>
+    </div>
+</div>
+
+<div class="container man">
+    <div class="row">
+<div class="col-md-12">当前位置：<a href="{dr_space_url($spaceid)}">首页</a> &gt; {dr_space_catpos($spaceid, $catid, ' > ')}</div>
+        </div></div>

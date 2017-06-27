@@ -1,0 +1,148 @@
+{template "header.html", "/"}
+
+<div class="page-container">
+    <div class="page-content-wrapper">
+
+        <div class="page-content">
+            <div class="container">
+
+                <ul class="page-breadcrumb breadcrumb">
+                    <li>
+                        <a href="{SITE_URL}">首页</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                        <a href="{MODULE_URL}">{MODULE_NAME}</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    {dr_catpos($catid, '', true, '<li><a href="{url}">{name}</a><i class="fa fa-circle"></i></li>')}
+                    <li>
+                        <span>搜索：{$keyword}</span>
+                    </li>
+                </ul>
+
+                <div class="page-content-inner">
+                    <div class="search-page search-content-1">
+                        <div class="portlet light ">
+                            <p style="line-height:30px">
+                                <strong>栏目分类：</strong>
+                                <a class="label {if !$catid || $cat.child}label-success{else}label-default{/if}" href="{dr_search_url($params, 'catid', NULL)}">不限</a>
+                                <!--调用栏目分类，这种用法只能用于模块列表与搜索页面-->
+                                {loop $related $t}
+                                <a class="label {if $t.id==$catid}label-success{else}label-default{/if}" href="{dr_search_url($params, 'catid', $t.id)}">{$t.name}</a>
+                                {/loop}
+                            </p>
+                            <p style="line-height:30px">
+                                <strong>地区搜索：</strong>
+                                <a class="label {if !$get.area || dr_linkage('address', $get.area, 0, 'child')}label-success{else}label-default{/if}" href="{dr_search_url($params, 'area', NULL)}">不限</a>
+
+                                <!--调用联动菜单address，pid为动态获取的地区id-->
+                                {list action=linkage code=address pid=$get.area}
+                                <a class="label {if $t.id==$get.area}label-success{else}label-default{/if}" href="{dr_search_url($params, 'area', $t.id)}">{$t.name}</a>
+                                {/list}
+                            </p>
+                            <p style="line-height:30px">
+                                <strong>租金范围：</strong>
+
+                                <!--自定义一个租金返回数组，这个都懂得，php最基础的数组用法-->
+                                {php $zujin=array('0,500'=>'500以内','500,1000'=>'500到1000','1000,2000'=>'1000到2000','2000,3000'=>'2000到3000','3000,0'=>'3000以上');}
+
+                                <a class="label {if !$get.zujin}label-success{else}label-default{/if}" href="{dr_search_url($params, 'zujin', NULL)}">不限</a>
+                                {loop $zujin $i $t}
+                                <a class="label {if $i==$get.zujin}label-success{else}label-default{/if}" href="{dr_search_url($params, 'zujin', $i)}">{$t}</a>
+                                {/loop}
+                            </p>
+                            <p style="line-height:30px">
+                                <strong>装修状况：</strong>
+
+                                <!--用dr_field_options函数将装修字段的下拉框值读出来，再循环显示，此函数只用于下拉框、单选、复选-->
+                                {php $field = dr_field_options('zhuangxiu');}
+                                <a class="label {if !$get.zhuangxiu}label-success{else}label-default{/if}" href="{dr_search_url($params, 'zhuangxiu', NULL)}">不限</a>
+                                {loop $field $i $t}
+                                <a class="label {if $i==$get.zhuangxiu}label-success{else}label-default{/if}" href="{dr_search_url($params, 'zhuangxiu', $i)}">{$t}</a>
+                                {/loop}
+                            </p>
+                            <p style="line-height:30px">
+                                <strong>户型状况：</strong>
+
+
+                                {php $field = dr_field_options('huxing');}
+                                <!--用dr_field_options函数将装修字段的下拉框值读出来，再循环显示，此函数只用于下拉框、单选、复选-->
+                                <a class="label {if !$get.huxing}label-success{else}label-default{/if}" href="{dr_search_url($params, 'huxing', NULL)}">不限</a>
+                                {loop $field $i $t}
+                                <a class="label {if $i==$get.huxing}label-success{else}label-default{/if}" href="{dr_search_url($params, 'huxing', $i)}">{$t}</a>
+                                {/loop}
+                            </p>
+
+                            <div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" onkeypress="if(event.keyCode==13) {searchByClass();return false;}" name='keyword' value='{$keyword}' id='dr_search_keyword'>
+                                    <span class="input-group-btn">
+                                        <button class="btn blue" onclick="searchByClass()" type="button">搜索</button>
+                                    </span>
+                                </div>
+                                <script type="text/javascript">
+                                    function searchByClass(){
+                                        var url="{dr_search_url($params, 'keyword', 'dayruicom')}";
+                                        var value=$("#dr_search_keyword").val();
+                                        if (value) {
+                                            location.href=url.replace('dayruicom', value);
+                                        } else {
+                                            dr_tips("输入关键字");
+                                        }
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="search-container ">
+                                    {if $searchid}
+                                    <ul class="search-container">
+                                        {list action=search module=$dirname id=$searchid total=$sototal catid=$catid page=1 pagesize=10 urlrule=$urlrule}
+                                        <li class="search-item clearfix">
+                                            <a title="{$t.title}" href="{$t.url}">
+                                                <img src="{dr_thumb($t.thumb, 100, 90)}" width="100" height="90" style="margin-top: 15px;">
+                                            </a>
+                                            <div class="search-content text-left">
+                                                <h4 class="search-title">
+                                                    <a title="{$t.title}" href="{dr_mobile_show_url(MOD_DIR, $t.id)}">{dr_keyword_highlight($t.title, $keyword)}</a>
+                                                </h4>
+                                                <p>{$t.xiaoqumingcheng}，共{$t.zongceng}层，第{$t.suozaiceng}层，{$t.zhuangxiu}，{$t.chaoxiang}&nbsp;&nbsp;{dr_linkagepos('address', $t.area, '')} {$t.dizhi}</p>
+
+                                                <div class="search-post-foot">
+                                                    <div class="search-post-meta">
+                                                        <i class="icon-calendar font-blue"></i>
+                                                        <a href="javascript:;">{$t.updatetime}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {/list}
+                                    </ul>
+                                    {/if}
+                                    {if !$total || !$searchid}
+                                    <div style="clear: both; padding:20px; padding-bottom: 0">
+                                        <div class="alert alert-danger"><strong>对不起!</strong> 没有找到任何记录 </div>
+                                    </div>
+                                    {/if}
+                                    <div class="search-pagination">
+                                        <ul class="pagination">
+                                            {$pages}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{template "footer.html", "/"}

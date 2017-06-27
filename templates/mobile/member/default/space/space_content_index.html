@@ -1,0 +1,165 @@
+{template nheader.html}
+<script type="text/javascript">
+
+
+	function dr_delete(id) {
+		art.dialog.confirm("<font color='red'><b>你确认要删除吗？</b></font>", function(){
+			// 将表单数据ajax提交验证
+			$.ajax({type: "POST",dataType:"json", url: "{dr_member_url('space/'.$dclass.'/index')}",data: {id:id, action:'delete'}, success: function(data) {
+				//验证成功
+				if (data.status == 1) {
+					dr_tips(data.code, 3, 1);
+					$("#dr_row_"+id).hide();
+				} else {
+					dr_tips(data.code, 3, 0);
+				}
+				art.dialog.close();
+				return false;
+			},
+				error: function(HttpRequest, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + HttpRequest.statusText + "\r\n" + HttpRequest.responseText);
+				}
+			});
+			return true;
+		});
+		return false;
+	}
+
+	function dr_remove(id) {
+		var _data = $("#myform").serialize();
+		if ((_data.split('ids')).length-1 <= 0) {
+			dr_tips("到底移动谁？您还没有选择呢", 2);
+			return true;
+		}
+		art.dialog.confirm("<font color='red'><b>你确认要移动吗？</b></font>", function(){
+			// 将表单数据ajax提交验证
+			$.ajax({type: "POST",dataType:"json", url: "{dr_member_url('space/'.$dclass.'/index')}",data: _data, success: function(data) {
+				if (data.status == 1) {
+					dr_tips(data.code, 3, 1);
+					setTimeout('window.location.reload(true)', 3000); // 刷新页
+				} else {
+					dr_tips(data.code, 3, 2);
+					return true;
+				}
+			},
+				error: function(HttpRequest, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + HttpRequest.statusText + "\r\n" + HttpRequest.responseText);
+				}
+			});
+			return true;
+		});
+		return false;
+	}
+
+</script>
+
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="portlet-body">
+			<div class="table-toolbar">
+				<form method="get" action="">
+					<input name="s" type="hidden" value="member" />
+					<input name="mod" type="hidden" value="space" />
+					<input name="c" type="hidden" value="{$dclass}" />
+					<input name="m" type="hidden" value="index" />
+					<div class="row">
+						<div class="col-md-6">
+							<label>
+							<div class="btn-group">
+								<a class="btn green" href="{dr_member_url('space/'.$dclass.'/add')}"> 发布内容
+									<i class="fa fa-plus"></i>
+								</a>
+							</div>
+							</label>
+						</div>
+						<div class="col-md-4 col-md-offset-2">
+							<label class="text-right">
+								<div class="input-group">
+									<input type="text" class="form-control" id="dr_keywords" name="kw" placeholder="关键字查询" value="{$kw}">
+									<span class="input-group-btn">
+										<button class="btn green mysubmit" type="submit"><i class="fa fa-search"></i> 搜索</button>
+									</span>
+								</div>
+							</label>
+						</div>
+
+					</div>
+				</form>
+			</div>
+
+			<form action="" method="post" name="myform" id="myform">
+				<input name="action" id="action" type="hidden" value="remove" />
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+						<tr>
+							{if !$isdl}<th style="width:20px;" class="algin_r">&nbsp;</th>{/if}
+							<th class="algin_l">主题</th>
+							<th class="algin_l">栏目</th>
+							<th class="algin_l">更新时间</th>
+							<th class="algin_c">阅读数</th>
+							<th class="algin_c">状态</th>
+							<th class="algin_l">操作</th>
+						</tr>
+						</thead>
+						<tbody id="dr_body">
+						{loop $list $t}
+						<tr id="dr_row_{$t.id}">
+							{if !$isdl}<td class="algin_r" style="padding-top:7px;padding-left:15px"><input type="checkbox" value="{$t.id}" class="dr_select toggle md-check" name="ids[]"></td>{/if}
+							<td class="algin_l"><div class="dr_title"><a href="{dr_space_show_url($uid, $mid, $t.id)}" target="_blank">{dr_keyword_highlight($t.title, $kw)}</a></div></td>
+							<td class="algin_l"><a href="{dr_space_list_url($uid, $t.catid)}" target="_blank">{$category[$t['catid']]['name']}</a></td>
+							<td class="algin_l">{dr_date($t.updatetime, '', 'red')}</td>
+							<td class="algin_c">{$t.hits}</td>
+							<td class="algin_c">{if $t.status}通过{else}<font color="red">未审核</font>{/if}</td>
+							<td class="algin_l">
+								<a href="{dr_member_url('space/'.$dclass.'/edit', array('id'=>$t.id))}" class="btn green btn-xs" ><i class="fa fa-edit"></i> 修改</a>
+								<a href="javascript:;" onclick="dr_delete('{$t.id}')" class="btn red-mint btn-xs" ><i class="fa fa-trash-o"></i> 删除</a>
+							</td>
+						</tr>
+						{/loop}
+						</tbody>
+						{if !$isdl}
+						<tr>
+							<td style="padding-top:15px;padding-left:15px"><input class="toggle md-check" ck="0" type="checkbox" onclick="dr_selected2()" id="dr_select" name="dr_select"></td>
+							<td colspan="22">
+								<div class="row">
+									<div class="col-md-12">
+										<label>
+										<button type="button" class="btn btn-sm btn-success" onClick="dr_remove()"><i class="fa fa-edit"></i> 移动到：</button>
+										</label>
+
+										<label>
+										{$select}
+										</label>
+									</div>
+								</div>
+							</td>
+						</tr>
+						{/if}
+					</table>
+					</table>
+				</div>
+			</form>
+		</div>
+
+
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<ul class="pagination">
+			{$pages}
+			<li><a href="javascript:;">共{$page_total}条</a></li>
+		</ul>
+	</div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info" style="margin-top: 15px">
+	左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

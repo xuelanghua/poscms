@@ -1,0 +1,242 @@
+{template "nheader.html"}
+<script type="text/javascript">
+
+
+</script>
+
+<div class="page-bar">
+	<ul class="page-breadcrumb mylink">
+		{$menu.link}
+
+	</ul>
+	<ul class="page-breadcrumb myname">
+		{$menu.name}
+	</ul>
+	<div class="page-toolbar">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+				<i class="fa fa-angle-down"></i>
+			</button>
+			<ul class="dropdown-menu pull-right" role="menu">
+				{loop $menu.quick $t}
+				<li>
+					<a href="{$t.url}">{$t.icon} {$t.name}</a>
+				</li>
+				{/loop}
+				<li class="divider"> </li>
+				<li>
+					<a href="javascript:window.location.reload();">
+						<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<h3 class="page-title">
+	<small>{fc_lang('模块支持安装到多个站点之中，支持绑定独立域名，自定义在字段可以共享，数据可以同步')}</small>
+</h3>
+
+<form class="form-horizontal" action="" method="post" id="myform" name="myform">
+	<div class="portlet light bordered myfbody">
+		<div class="portlet-title tabbable-line">
+			<ul class="nav nav-tabs" style="float:left;">
+				{if !$data.share}
+				<li class="active">
+					<a href="#tab_0" data-toggle="tab"> <i class="fa fa-cog"></i> {fc_lang('站点配置')} </a>
+				</li>
+				<li class="">
+				{else}
+				<li class="active">
+				{/if}
+				<li class="">
+					<a href="#tab_1" data-toggle="tab"> <i class="fa fa-internet-explorer"></i> {fc_lang('SEO设置')} </a>
+				</li>
+				{if $mycfg}
+				<li class="">
+					<a href="#tab_2" data-toggle="tab"> <i class="fa fa-cog"></i> {fc_lang('我的配置')} </a>
+				</li>
+				{/if}
+			</ul>
+		</div>
+		<div class="portlet-body">
+			<div class="tab-content">
+
+				<div class="tab-pane {if !$data.share}active{/if}" id="tab_0">
+					<div class="form-body">
+
+						<div class="form-group ">
+							<label class="col-md-2 control-label">{fc_lang('网站名称')}：</label>
+							<div class="col-md-9">
+								<div class="form-control-static"><label>{$ci->site_info[$sid]['SITE_NAME']}</label></div>
+							</div>
+						</div>
+
+
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('生成静态')}：</label>
+							<div class="col-md-9">
+								<div class="radio-list">
+									<label class="radio-inline"><input type="radio" name="data[html]" value="1" {if $data['site'][$sid]['html']}checked{/if} /> {fc_lang('开启')}</label>
+									<label class="radio-inline"><input type="radio" name="data[html]" value="0" {if !$data['site'][$sid]['html']}checked{/if} /> {fc_lang('关闭')}</label>
+								</div>
+							</div>
+						</div>
+						{if !$data.share}
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('URL规则')}：</label>
+							<div class="col-md-9">
+								<label>
+									<select class="form-control" name="data[urlrule]">
+										<option value="0"> -- </option>
+										{list action=cache name=urlrule return=u}
+										{if $u.type==1}<option value="{$u.id}" {if $u.id==$data['site'][$sid]['urlrule']}selected{/if}> {$u.name} </option>{/if}
+										{/list}
+									</select>
+								</label>
+								<label>&nbsp;&nbsp;<a href="{dr_url('urlrule/index')}" style="color:blue !important">{fc_lang('[URL规则管理]')}</a></label>
+							</div>
+						</div>
+						{/if}
+						<div class="form-group ">
+							<label class="col-md-2 control-label">{fc_lang('电脑端域名')}：</label>
+							<div class="col-md-9">
+								<label><input class="form-control" type="text" name="data[domain]" value="{$data['site'][$sid]['domain']}" ></label>
+								{if $data['site'][$sid]['domain']}
+								{if $data['site'][$sid]['domain'] == SITE_DOMAIN}
+								<div class="onError">{fc_lang('此域名【%s】不能与当前站点域名相同', $data['site'][$sid]['domain'])}</div>
+								{else}
+								<script>
+                                    $.get("{dr_url('home/domain', array('domain' => $data['site'][$sid]['domain']))}", function(data){
+                                        if (data) {
+                                            $("#dr_domian_{$sid}").html(data);
+                                        } else {
+                                            $("#dr_domian_{$sid}").hide();
+                                        }
+                                    });
+								</script>
+								<span id="dr_domian_{$sid}" class="help-block"></span>
+								{/if}
+								{else}
+								<span class="help-block">{fc_lang('格式：new.dayrui.com')}</span>
+								{/if}
+							</div>
+						</div>
+						<div class="form-group ">
+							<label class="col-md-2 control-label">{fc_lang('移动端域名')}：</label>
+							<div class="col-md-9">
+								<label><input class="form-control" type="text" name="data[mobile_domain]" value="{$data['site'][$sid]['mobile_domain']}" ></label>
+								{if $data['site'][$sid]['mobile_domain']}
+								{if $data['site'][$sid]['mobile_domain'] == SITE_DOMAIN}
+								<div class="onError">{fc_lang('此域名【%s】不能与当前站点域名相同', $data['site'][$sid]['mobile_domain'])}</div>
+								{else}
+								<script>
+                                    $.get("{dr_url('home/domain', array('domain' => $data['site'][$sid]['mobile_domain']))}", function(data){
+                                        if (data) {
+                                            $("#dr_mobile_domain_{$sid}").html(data);
+                                        } else {
+                                            $("#dr_mobile_domain_{$sid}").hide();
+                                        }
+                                    });
+								</script>
+								<span id="dr_mobile_domain_{$sid}" class="help-block"></span>
+								{/if}
+								{else}
+								<span class="help-block">{fc_lang('格式：mnew.dayrui.com')}</span>
+								{/if}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="tab-pane {if $data.share}active{/if}" id="tab_1">
+					<div class="form-body">
+
+						{if $data.share}
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('URL规则')}：</label>
+							<div class="col-md-9">
+								<label>
+									<select class="form-control" name="data[urlrule]">
+										<option value="0"> -- </option>
+										{list action=cache name=urlrule return=u}
+										{if $u.type==2}<option value="{$u.id}" {if $u.id==$data['site'][$sid]['urlrule']}selected{/if}> {$u.name} </option>{/if}
+										{/list}
+									</select>
+								</label>
+								<label>&nbsp;&nbsp;<a href="{dr_url('urlrule/index')}" style="color:blue !important">{fc_lang('[URL规则管理]')}</a></label>
+							</div>
+						</div>
+						{else}
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('模块标题')}：</label>
+							<div class="col-md-9">
+								<input class="form-control" type="text" name="data[module_title]" value="{$data['site'][$sid]['module_title']}" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('模块关键字')}：</label>
+							<div class="col-md-9">
+								<input class="form-control" type="text" name="data[module_keywords]" value="{$data['site'][$sid]['module_keywords']}" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('模块描述信息')}：</label>
+							<div class="col-md-9">
+								<input class="form-control" type="text" name="data[module_description]" value="{$data['site'][$sid]['module_description']}" >
+							</div>
+						</div>
+						{/if}
+
+						<?php !$data['site'][$sid]['search_title'] && $data['site'][$sid]['search_title'] = '[第{page}页{join}][{keyword}{join}][{param}{join}]{modulename}{join}{'.'SITE_NAME}';?>
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('搜索标题')}：</label>
+							<div class="col-md-9">
+								<input class="form-control" type="text" name="data[search_title]" value="{$data['site'][$sid]['search_title']}" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('搜索关键字')}：</label>
+							<div class="col-md-9">
+								<input class="form-control" type="text" name="data[search_keywords]" value="{$data['site'][$sid]['search_keywords']}" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('搜索描述信息')}：</label>
+							<div class="col-md-9">
+								<input class="form-control" type="text" name="data[search_description]" value="{$data['site'][$sid]['search_description']}" >
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+				{if $mycfg}
+				<div class="tab-pane " id="tab_2">
+					{load $mycfg}
+				</div>
+				{/if}
+			</div>
+		</div>
+	</div>
+
+	<div class="myfooter">
+		<div class="row">
+			<div class="portlet-body form">
+				<div class="form-body">
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<button type="submit" class="btn green"> <i class="fa fa-save"></i> {fc_lang('保存')}</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+{template "nfooter.html"}

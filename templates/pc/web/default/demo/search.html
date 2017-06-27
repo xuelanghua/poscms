@@ -1,0 +1,169 @@
+{template "header.html", "/"}
+
+<div class="page-container">
+    <div class="page-content-wrapper">
+        {template "header.html"}
+        <div class="page-content">
+            <div class="container">
+
+                <ul class="page-breadcrumb breadcrumb">
+                    <li>
+                        <a href="{SITE_URL}">首页</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                        <a href="{MODULE_URL}">{MODULE_NAME}</a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    {dr_catpos($catid, '', true, '<li><a href="{url}">{name}</a><i class="fa fa-circle"></i></li>')}
+                    <li>
+                        <span>搜索：{$keyword}</span>
+                    </li>
+                </ul>
+
+                <div class="page-content-inner">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet light" style="height:60px;color:red;text-align: center;">
+                                <h5>这里是独立模块的内容搜索页</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="search-page search-content-1">
+                        <div class="portlet light ">
+                            <p style="line-height:30px">
+                                <strong>栏目分类：</strong>
+                                <a class="label {if !$catid || $cat.child}label-success{else}label-default{/if}" href="{dr_search_url($params, 'catid', NULL)}">不限</a>
+                                <!--调用栏目分类，这种用法只能用于模块列表与搜索页面-->
+                                {loop $related $t}
+                                <a class="label {if $t.id==$catid}label-success{else}label-default{/if}" href="{dr_search_url($params, 'catid', $t.id)}">{$t.name}</a>
+                                {/loop}
+                            </p>
+
+                            <!--按联动菜单搜索-->
+                            <p style="line-height:30px">
+                                <strong>按联动菜单搜索：</strong>
+                                <a class="label {if !$params.ldcd || dr_linkage('address', $params.ldcd, 0, 'child')}label-success{else}label-default{/if}" href="{dr_search_url($params, 'ldcd', NULL)}">不限</a>
+
+                                <!--调用联动菜单address，pid为动态获取的地区id-->
+                                {list action=linkage code=address pid=$params.ldcd}
+                                <a class="label {if $t.id==$params.ldcd}label-success{else}label-default{/if}" href="{dr_search_url($params, 'ldcd', $t.id)}">{$t.name}</a>
+                                {/list}
+                            </p>
+
+                            <!--按单选按钮搜索-->
+                            <p style="line-height:30px">
+                                <strong>单选按钮：</strong>
+                                {php $field = dr_field_options('danxuananniu');}
+                                <a class="label {if !$params.danxuananniu}label-success{else}label-default{/if}" href="{dr_search_url($params, 'danxuananniu', NULL)}">不限</a>
+                                {loop $field $i $t}
+                                <a class="label {if $i==$params.danxuananniu}label-success{else}label-default{/if}" href="{dr_search_url($params, 'danxuananniu', $i)}">{$t}</a>
+                                {/loop}
+                            </p>
+
+
+                            <!--按下拉选择搜索-->
+                            <p style="line-height:30px">
+                                <strong>下拉选择：</strong>
+                                {php $field = dr_field_options('xialaxuanze');}
+                                <a class="label {if !$params.xialaxuanze}label-success{else}label-default{/if}" href="{dr_search_url($params, 'xialaxuanze', NULL)}">不限</a>
+                                {loop $field $i $t}
+                                <a class="label {if $i==$params.xialaxuanze}label-success{else}label-default{/if}" href="{dr_search_url($params, 'xialaxuanze', $i)}">{$t}</a>
+                                {/loop}
+                            </p>
+
+                            <div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" onkeypress="if(event.keyCode==13) {searchByClass();return false;}" name='keyword' value='{$keyword}' id='dr_search_keyword'>
+                                    <span class="input-group-btn">
+                                        <button class="btn blue" onclick="searchByClass()" type="button">搜索</button>
+                                    </span>
+                                </div>
+                                <script type="text/javascript">
+                                    function searchByClass(){
+                                        var url="{dr_search_url($params, 'keyword', 'dayruicom')}";
+                                        var value=$("#dr_search_keyword").val();
+                                        if (value) {
+                                            location.href=url.replace('dayruicom', value);
+                                        } else {
+                                            dr_tips("输入关键字");
+                                        }
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="btn-group" style="text-align: center; margin-bottom: 20px">
+                                    <a href="{dr_search_url($params, 'order', null)}" class="btn btn-default {if !$params.order || $param.order=='updatetime'}active{/if}"> <i class="fa fa-clock-o"></i> 时间排序 </a>
+                                    <a href="{dr_search_url($params, 'order', 'hits')}" class="btn btn-default {if $params.order=='hits'}active{/if}"> <i class="icon-fire"></i> 点击排序 </a>
+                                    <a href="{dr_search_url($params, 'order', 'comments')}" class="btn btn-default {if $params.order=='comments'}active{/if}"> <i class="fa fa-comments-o"></i> 评论排序 </a>
+                                    <a href="{dr_search_url($params, 'order', 'avgsort')}" class="btn btn-default {if $params.order=='avgsort'}active{/if}"> <i class="fa fa-diamond"></i> 评分排序 </a>
+                                </div>
+                                <div class="search-container ">
+                                    {if $searchid}
+                                    <ul class="search-container">
+                                        {list action=search module=$dirname id=$searchid total=$sototal catid=$catid page=1 pagesize=10 urlrule=$urlrule}
+                                        <li class="search-item clearfix">
+                                            <div class="search-content text-left">
+                                                <h4 class="search-title">
+                                                    <a title="{$t.title}" href="{$t.url}">{$t.title}</a>
+                                                </h4>
+                                                <p class="search-desc">{$t.description}</p>
+                                                <div class="search-post-foot">
+                                                    <ul class="search-post-tags">
+                                                        {php $kw=@explode(',', $t.keywords);}
+                                                        {loop $kw $a}
+                                                        {if $a}
+                                                        <li class="uppercase">
+                                                            <a href="{dr_tag_url(APP_DIR, $a)}" target="_blank">{$a}</a>
+                                                        </li>
+                                                        {/if}
+                                                        {/loop}
+                                                    </ul>
+                                                    <div class="search-post-meta">
+                                                        <i class="icon-calendar font-blue"></i>
+                                                        <a href="javascript:;">{$t.updatetime}</a>
+                                                    </div>
+                                                    <div class="search-post-meta">
+                                                        <i class="icon-fire font-blue"></i>
+                                                        <a href="javascript:;">{$t.hits}次</a>
+                                                    </div>
+                                                    <div class="search-post-meta">
+                                                        <i class="icon-bubble font-blue"></i>
+                                                        <a href="javascript:;">{$t.comments}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {/list}
+                                    </ul>
+                                    {/if}
+                                    {if !$total || !$searchid}
+                                    <div style="clear: both; padding:20px; padding-bottom: 0">
+                                        <div class="alert alert-danger"><strong>对不起!</strong> 没有找到任何记录 </div>
+                                    </div>
+                                    {/if}
+                                    <div class="search-pagination">
+                                        <ul class="pagination">
+                                            {$pages}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{template "footer.html", "/"}

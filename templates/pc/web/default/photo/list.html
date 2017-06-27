@@ -1,0 +1,75 @@
+{template "header.html", "/"}
+
+<div class="page-container">
+	<div class="page-content-wrapper">
+		{template "header.html"}
+		<div class="page-content">
+			<div class="container">
+
+				<ul class="page-breadcrumb breadcrumb">
+					<li>
+						<a href="{SITE_URL}">首页</a>
+						<i class="fa fa-circle"></i>
+					</li>
+					{if !IS_SHARE}
+					<li>
+						<a href="{MODULE_URL}">{MODULE_NAME}</a>
+						<i class="fa fa-circle"></i>
+					</li>
+					{/if}
+					{dr_catpos($catid, '', true, '<li><a href="{url}">{name}</a><i class="fa fa-circle"></i></li>')}
+					<li>
+						<span>列表</span>
+					</li>
+				</ul>
+
+				<div class="page-content-inner">
+					<div class="search-page search-content-2">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="search-container ">
+									<div class="search-container">
+										<div class="portlet light">
+											<div class="portlet-title">
+												<div class="caption">
+													<span class="caption-subject font-dark bold uppercase">{$cat.name}</span>
+												</div>
+											</div>
+										<div class="portlet-body">
+										<!--分页显示列表数据-->
+										{list action=module catid=$catid order=updatetime page=1}
+										<div class="col-sm-3">
+											<div class="tile-container">
+												<div class="tile-thumbnail">
+													<a href="javascript:;">
+														<a href="{$t.url}" ><img src="{dr_thumb($t.thumb, 250, 200)}" width="250" height="200"></a>
+													</a>
+												</div>
+												<div class="tile-title">
+													<h5><a href="{$t.url}" class="title">{dr_strcut($t.title, 28)}</a></h5>
+												</div>
+											</div>
+										</div>
+										{/list}
+									</div>
+									</div>
+										<div class="search-pagination" style="clear: both">
+										<ul class="pagination">
+											{$pages}
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{template "footer.html"}

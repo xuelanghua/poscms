@@ -1,0 +1,142 @@
+{template nheader.html}
+<script type="text/javascript">
+$(function() {
+	{if $result}
+	dr_tips('{$result}', 3);
+	{/if}
+});
+</script>
+<form class="form-horizontal" action="" method="post" id="myform" name="myform">
+	<input name="page" id="page" type="hidden" value="{$page}" />
+	<div class="page-bar">
+		<ul class="page-breadcrumb mylink">
+			{$menu.link}
+			<li><a href="{SYS_HELP_URL}97.html" target="_blank"><i class="fa fa-book"></i> {fc_lang('在线帮助')}</a></li>
+		</ul>
+		<ul class="page-breadcrumb myname">
+			{$menu.name}
+		</ul>
+		<div class="page-toolbar">
+			<div class="btn-group pull-right">
+				<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+					<i class="fa fa-angle-down"></i>
+				</button>
+				<ul class="dropdown-menu pull-right" role="menu">
+					{loop $menu.quick $t}
+					<li>
+						<a href="{$t.url}">{$t.icon} {$t.name}</a>
+					</li>
+					{/loop}
+					<li class="divider"> </li>
+					<li>
+						<a href="javascript:window.location.reload();">
+							<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<h3 class="page-title">
+		<small>{fc_lang('空间模型是空间的内容发布功能，例如空间新闻、日志、产品、下载、简介等等')}</small>
+	</h3>
+
+	<div class="portlet light bordered" style="margin-bottom:70px">
+		<div class="portlet-title tabbable-line">
+			<ul class="nav nav-tabs" style="float:left;">
+				<li class="active">
+					<a href="#tab_0" data-toggle="tab"> <i class="fa fa-cog"></i> {fc_lang('基本设置')} </a>
+				</li>
+				<li class="">
+					<a href="#tab_1" data-toggle="tab"> <i class="fa fa-user"></i> {fc_lang('会员权限')} </a>
+				</li>
+			</ul>
+		</div>
+		<div class="portlet-body">
+			<div class="tab-content">
+
+				<div class="tab-pane active" id="tab_0">
+					<div class="form-body">
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('名称')}：</label>
+							<div class="col-md-9">
+								<label><input class="form-control" type="text" name="data[name]" required id="dr_name" onblur="d_topinyin('tablename','name');" value="{$data.name}" /></label>
+								<span class="help-block">{fc_lang('给它一个描述名称')}</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('表名称')}：</label>
+							<div class="col-md-9">
+								<label><input class="form-control" type="text" name="data[table]" {if $data.table} readonly{/if} required id="dr_tablename" value="{$data.table}" /></label>
+								<span class="help-block">{fc_lang('只能由英文字母、数字组成')}</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('独立模型')}：</label>
+							<div class="col-md-9">
+								<input type="checkbox" name="data[setting][dl]" value="1" {if $data['setting']['dl']}checked{/if} data-on-text="{fc_lang('是')}" data-off-text="{fc_lang('否')}" data-on-color="success" data-off-color="danger" class="make-switch" data-size="small">
+								<span class="help-block">{fc_lang('独立模型将不会依赖于栏目发布')}</span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="tab-pane " id="tab_1">
+					<div class="form-body">
+						{php $groups[0]=array('id'=>0, 'name'=>fc_lang('游客')); $groups+= $ci->get_cache('member', 'group');}
+						<div class="form-group dr_one">
+							<label class="col-md-2 control-label"></label>
+							<div class="col-md-9">
+								<label class="radio-inline">{fc_lang('允许使用')}</label>
+								<label class="radio-inline">{fc_lang('是否审核')}</label>
+								<label class="radio-inline">{fc_lang('发布增减%s', SITE_EXPERIENCE)}</label>
+								<label class="radio-inline">{fc_lang('发布增减%s', SITE_SCORE)}</label>
+								<label class="radio-inline">{fc_lang('每日发布数')}</label>
+								<label class="radio-inline">{fc_lang('发布总数')}</label>
+							</div>
+						</div>
+						{loop $groups $group}
+						{if $group.id>2}
+						<div class="form-group dr_one">
+							<label class="col-md-2 control-label">{$group['name']}：</label>
+							<div class="col-md-9"></div>
+						</div>
+						{loop $group['level'] $level}
+						{php $id=$group['id'].'_'.$level['id'];}
+						<div class="form-group dr_one">
+							<label class="col-md-2 control-label">{$level['name']}：</label>
+							<div class="col-md-9">
+								<label class="radio-inline"><input type="checkbox" {if $data['setting'][$id]['use']}checked="checked"{/if} value="1"  name="data[setting][{$id}][use]" /></label>
+								<label class="radio-inline" style="margin-left: 40px;"><input type="checkbox" {if $data['setting'][$id]['verify']}checked="checked"{/if} value="1"  name="data[setting][{$id}][verify]" /></label>
+								<label class="radio-inline"><input class="input-text" type="text" name="data[setting][{$id}][experience]" value="{$data['setting'][$id]['experience']}" size="11" /></label>
+								<label class="radio-inline"><input class="input-text" type="text" name="data[setting][{$id}][score]" value="{$data['setting'][$id]['score']}" size="11" /></label>
+								<label class="radio-inline"><input class="input-text" type="text" name="data[setting][{$id}][postnum]" value="{$data['setting'][$id]['postnum']}" size="6" /></label>
+								<label class="radio-inline"><input class="input-text" type="text" name="data[setting][{$id}][postcount]" value="{$data['setting'][$id]['postcount']}" size="5" /></label>
+							</div>
+						</div>
+						{/loop}
+						{/if}
+						{/loop}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="myfooter">
+		<div class="row">
+			<div class="portlet-body form">
+				<div class="form-body">
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<button type="submit" class="btn green"> <i class="fa fa-save"></i> {fc_lang('保存')}</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+{template nfooter.html}

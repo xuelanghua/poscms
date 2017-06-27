@@ -1,0 +1,41 @@
+.dr_oauth_style {
+    cursor: pointer;
+    display: block !important;
+    height: 18px !important;
+    line-height: 18px !important;
+    overflow: hidden;
+    margin-left: 10px;
+	margin-top:7px;
+    text-align: left;
+	width:18px;
+	float:left;
+}
+.dr_oauth_more {
+    font-family: sans-serif;
+	color: #565656;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+	width: 54px;
+	text-align:center;
+}
+.dr_oauth_more:hover {
+    background-position: 0 -24px !important;
+    color: #000000;
+}
+.dr_oauth_style:hover {
+    opacity: 0.8;
+}
+.dr_oauth_qq {
+	background:url(qq.png) no-repeat scroll;
+    background-size:cover;
+}
+.dr_oauth_sina {
+	background:url(weibo.png) no-repeat;
+    background-size:cover;
+}
+.dr_oauth_weixin {
+	background:url(weixin.png) no-repeat;
+    background-size:cover;
+}

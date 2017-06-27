@@ -1,0 +1,46 @@
+{template nheader.html}
+<script type="text/javascript">
+    $(function(){
+        {if $result_error}
+        dr_tips('{$result_error}', 3);
+        {/if}
+    });
+</script>
+<div class="alert alert-info">
+二级域名格式为：数字+字母+下划线+破折号。
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <!-- BEGIN FORM-->
+        <form action="" method="post" class="form-horizontal" novalidate="novalidate">
+            <div class="form-body">
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">域名：</label>
+                    <div class="col-md-3">
+                       <input type="text" class="form-control" name="domain" value="{$my_domain}" placeholder="域名">
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-control-static ">
+                        .{$domain}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-3">
+                        <button type="submit" class="mysubmit btn green"><i class="fa fa-save"></i> 保存</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <!-- END FORM-->
+        <!-- END VALIDATION STATES-->
+    </div>
+</div>
+
+{template "nfooter.html"}

@@ -1,0 +1,88 @@
+{template nheader.html}
+<div class="page-bar">
+	<ul class="page-breadcrumb mylink">
+		{$menu.link}
+
+	</ul>
+	<ul class="page-breadcrumb myname">
+		{$menu.name}
+	</ul>
+	<div class="page-toolbar">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+				<i class="fa fa-angle-down"></i>
+			</button>
+			<ul class="dropdown-menu pull-right" role="menu">
+				{loop $menu.quick $t}
+				<li>
+					<a href="{$t.url}">{$t.icon} {$t.name}</a>
+				</li>
+				{/loop}
+				<li class="divider"> </li>
+				<li>
+					<a href="javascript:window.location.reload();">
+						<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<h3 class="page-title">
+	<small>{fc_lang('在会员模型中可以把会员自定义字段划分给指定会员组使用')}</small>
+</h3>
+<form action="" method="post" name="myform" id="myform">
+	<input name="action" id="action" type="hidden" value="" />
+	<div class="portlet mylistbody">
+		<div class="portlet-body">
+			<div class="table-scrollable">
+
+				<table class="mytable table table-striped table-bordered table-hover table-checkable dataTable">
+
+		<thead>
+		<tr>
+			<th width="20"></th>
+			<th width="40">Id</th>
+			<th width="80" style="text-align: center">{fc_lang('排序')}</th>
+			<th>{fc_lang('名称')}</th>
+			<th>{fc_lang('价格要求')}</th>
+			<th style="text-align: center">{fc_lang('允许申请')}</th>
+			{if MEMBER_OPEN_SPACE}<th style="text-align: center">{fc_lang('使用空间')}</th>{/if}
+			<th class="dr_option">{fc_lang('操作')}</th>
+		</tr>
+		</thead>
+		<tbody>
+
+		{loop $list $t}
+		<tr id="dr_row_{$t.id}">
+			<td><input name="ids[]" type="checkbox" value="{$t.id}" class="toggle md-check dr_select" /></td>
+			<td>{$t.id}</td>
+			<td style="text-align: center"><input class="input-text displayorder" type="text" name="data[{$t.id}][displayorder]" value="{$t.displayorder}" /></td>
+			<td>{if $this->ci->is_auth('member/admin/group/edit')}<a href="{dr_url('member/group/edit', array('id' => $t.id))}">{$t.name}</a>{else}{$t.name}{/if}</td>
+			<td>{$t.price}</td>
+			<td style="text-align: center" align="center"><a href="{dr_url('member/group/option', array('op' => 'apply', 'id' => $t.id))}"><img src="{THEME_PATH}admin/images/{$t.allowapply}.gif"></a></td>
+			{if MEMBER_OPEN_SPACE}<td style="text-align: center" align="center"><a href="{dr_url('member/group/option', array('op' => 'space', 'id' => $t.id))}"><img src="{THEME_PATH}admin/images/{$t.allowspace}.gif"></a></td>{/if}
+			<td class="dr_option">
+			{if $t['id']>2 && $this->ci->is_auth('member/admin/level/index')}<a class="alist" href="{dr_url('member/level/index', array('gid' => $t.id))}"> <i class="fa fa-table"></i> {fc_lang('等级管理')}</a>{/if}
+			{if $this->ci->is_auth('member/admin/group/edit')}<a class="aedit" href="{dr_url('member/group/edit',array('id' => $t.id))}"> <i class="fa fa-edit"></i> {fc_lang('修改')}</a>{/if}
+			{if $this->ci->is_auth('member/admin/group/del') &&  $t.id>3}<a class="adel" href="javascript:;" onClick="return dr_dialog_del('{fc_lang('您确定要这样操作吗？')}','{dr_url('member/group/del', array('id' => $t.id))}');"> <i class="fa fa-trash"></i> {fc_lang('删除')}</a>{/if}
+			{if $t.id>2 && !$t.level}<b><font color=red>{fc_lang('会员组无效，请添加会员等级')}</font></b>{/if}
+			</td>
+		</tr>
+		{/loop}
+		<tr class="mtable_bottom">
+			<th width="20" ><input class="toggle md-check" name="dr_select" id="dr_select" type="checkbox" onClick="dr_selected()" /></th>
+			<td colspan="98" >
+			{if $this->ci->is_auth('member/admin/group/del')}
+				<button type="button" class="btn red btn-sm" value="" name="option" onClick="$('#action').val('del');dr_confirm_set_all('{fc_lang('您确定要这样操作吗？')}')"> <i class="fa fa-trash"></i> {fc_lang('删除')}</button>{/if}
+            {if $this->ci->is_auth('member/admin/group/edit')}
+				<button type="button" class="btn green btn-sm" value="" name="option" onClick="$('#action').val('edit');dr_confirm_set_all('{fc_lang('您确定要这样操作吗？')}')"> <i class="fa fa-edit"></i> {fc_lang('排序')}</button>{/if}
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+
+</form>
+{template nfooter.html}

@@ -1,0 +1,38 @@
+{template "nheader.html"}
+
+<div class="alert alert-info">
+    当前会员组：{$member.groupname}{if $member.levelid}，会员等级：{$member.levelname}{/if}{if $member.overdue}，过期时间：{if $member.overdue>2000000000}永久{else}{dr_date($member.overdue)}{/if}{/if}
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="portlet-body">
+
+            <div class="table-toolbar">
+                {loop $category $p $name}
+                <label>
+                <a href="{dr_member_url('account/permission', array('groupid' => $groupid, 'levelid' => $levelid, 'page' => $p))}" class="btn {if $p==$page}blue{else}default{/if}">{$name}</a></label>
+                {/loop}
+            </div>
+            <div class="table-toolbar">
+                {loop $group.level $lid $t}
+                <a href="{dr_member_url('account/permission', array('groupid' => $groupid, 'levelid' => $lid, 'page' => $page))}" class="btn btn-sm {if $lid==$levelid}blue{else}default{/if}">{$t.name}</a>
+                {/loop}
+            </div>
+            <div class="table-responsive">
+                {$content}
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info">
+    左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="zh-cn" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="zh-cn" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zh-cn">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<meta charset="utf-8" />
+	<title>{if $meta_name}{$meta_name} - {/if}会员中心</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<meta content="www.dayrui.com" name="author" />
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+	<link href="{THEME_PATH}admin/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="{THEME_PATH}admin/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+	<link href="{THEME_PATH}admin/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="{THEME_PATH}admin/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+	<link href="{THEME_PATH}admin/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+	<link href="{THEME_PATH}admin/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
+	<link href="{THEME_PATH}admin/global/plugins/bootstrap-colorpicker/css/colorpicker.css" rel="stylesheet" type="text/css" />
+	<link href="{THEME_PATH}admin/global/plugins/jquery-minicolors/jquery.minicolors.css" rel="stylesheet" type="text/css" />
+	<!-- END GLOBAL MANDATORY STYLES -->
+	<!-- BEGIN THEME GLOBAL STYLES -->
+	<link href="{THEME_PATH}admin/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
+	<link href="{THEME_PATH}admin/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+	<!-- END THEME GLOBAL STYLES -->
+	<!-- BEGIN THEME LAYOUT STYLES -->
+	<link href="{MEMBER_THEME_PATH}layouts/layout/css/layout_mobile.css" rel="stylesheet" type="text/css" />
+	<link href="{MEMBER_THEME_PATH}layouts/layout/css/themes/light.min.css" rel="stylesheet" type="text/css" id="style_color">
+	<link href="{MEMBER_THEME_PATH}layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+	<link href="{THEME_PATH}admin/pages/css/error.min.css" rel="stylesheet" type="text/css">
+	<link href="{THEME_PATH}admin/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+	<!-- END THEME LAYOUT STYLES -->
+	<link href="{THEME_PATH}admin/css/table_form.css" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<script src="{THEME_PATH}admin/global/plugins/respond.min.js"></script>
+	<script src="{THEME_PATH}admin/global/plugins/excanvas.min.js"></script>
+	<![endif]-->
+	<script type="text/javascript">var memberpath = "{MEMBER_PATH}";</script>
+	<script type="text/javascript" src="{THEME_PATH}js/{SITE_LANGUAGE}.js"></script>
+	<!-- BEGIN CORE PLUGINS -->
+	<script src="{THEME_PATH}admin/global/plugins/jquery.min.js" type="text/javascript"></script>
+	<script src="{THEME_PATH}admin/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="{THEME_PATH}admin/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+	<script src="{THEME_PATH}admin/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+	<script src="{THEME_PATH}admin/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src="{THEME_PATH}admin/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+	<script src="{THEME_PATH}admin/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+	<script src="{THEME_PATH}admin/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+	<!-- END CORE PLUGINS -->
+	<script src="{THEME_PATH}admin/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+	<script src="{THEME_PATH}admin/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js" type="text/javascript"></script>
+	<script src="{THEME_PATH}admin/global/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js" type="text/javascript"></script>
+	<script src="{THEME_PATH}admin/global/plugins/jquery-minicolors/jquery.minicolors.min.js" type="text/javascript"></script>
+	<script src="{THEME_PATH}admin/global/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js" type="text/javascript"></script>
+	<!-- BEGIN THEME GLOBAL SCRIPTS -->
+	<script src="{THEME_PATH}admin/global/scripts/app.min.js" type="text/javascript"></script>
+	<!-- END THEME GLOBAL SCRIPTS -->
+	<!-- BEGIN THEME LAYOUT SCRIPTS -->
+	<script src="{MEMBER_THEME_PATH}layouts/layout/scripts/layout_mobile.js" type="text/javascript"></script>
+	<script src="{MEMBER_THEME_PATH}layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+	<script src="{MEMBER_THEME_PATH}layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+	<!-- END THEME LAYOUT SCRIPTS -->
+	<link rel="stylesheet" href="{THEME_PATH}js/ui-dialog.css">
+	<script type="text/javascript"t src="{THEME_PATH}js/dialog-plus.js"></script>
+	<script type="text/javascript" src="{THEME_PATH}js/jquery.artDialog.js?skin=default"></script>
+	<script type="text/javascript" src="{THEME_PATH}js/validate.js"></script>
+	<script type="text/javascript" src="{THEME_PATH}js/admin.js"></script>
+	<script type="text/javascript" src="{THEME_PATH}js/dayrui.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.ajax({type: "GET", url:dr_url, dataType:'jsonp', jsonp:"callback", async: false,
+				success: function (data) {
+					if (data.status) {
+						$(".dr_notece_num").html(data.status);
+						dr_flash_title();
+					} else {
+						$(".dr_notece_num").html('0');
+					}
+				},
+				error: function(HttpRequest, ajaxOptions, thrownError) {
+
+				}
+			});
+			$('.mysubmit').click(function(){
+				dr_tips('数据处理中...', 3, 2);
+			});
+		});
+
+		var dr_url = "{dr_member_url('api/notice')}&"+Math.random();
+		var dr_step = 0;
+		var dr_caltitle = "【　　　】"+document.title;
+		var dr_callbacktitle = "【新提醒】"+document.title;
+
+		function dr_flash_title() {
+			dr_step++;
+			if (dr_step==3) {
+				dr_step=1;
+			}
+			if (dr_step==1) {
+				document.title=dr_callbacktitle;
+			}
+			if (dr_step==2) {
+				document.title=dr_caltitle;
+			}
+			setTimeout("dr_flash_title()", 500);
+		}
+
+
+		function dr_selected2() {
+			if ($("#dr_select").attr('ck') == "1") {
+				$(".dr_select").removeAttr("checked");
+				$("#dr_select").prop('ck', 0);
+			} else {
+				$(".dr_select").prop("checked", true);
+				$("#dr_select").attr('ck', 1);
+			}
+		}
+	</script>
+	<style>
+	.input-text-c, .input-text, .measure-input, textarea, input.date, input.endDate, .input-focus {
+		border: 1px solid #c2cad8 !important;
+		background: none;
+	}
+	.edui-default .edui-editor {
+		border: 1px solid #c2cad8 !important;
+	}
+	.picList {
+		padding: 0 10px;
+	}
+	</style>
+</head>
+<!-- END HEAD -->
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-boxed">
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+	<!-- BEGIN HEADER INNER -->
+	<div class="page-header-inner container">
+		<!-- BEGIN LOGO -->
+		<div class="page-logo">
+			<a href="{dr_member_url()}">
+				<img src="{MEMBER_THEME_PATH}layouts/layout/img/logo.png" alt="logo" class="logo-default" />
+			</a>
+			<div class="menu-toggler sidebar-toggler"> </div>
+		</div>
+		<!-- END LOGO -->
+		<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+		<div class="top-menu">
+			<ul class="nav navbar-nav pull-right">
+				<li class="dropdown dropdown-extended dropdown-notification">
+					<a href="{SITE_URL}" target="_blank" title="去首页" class="dropdown-toggle" >
+						<i class="icon-home"></i>
+					</a>
+					<ul class="dropdown-menu">
+					</ul>
+				</li>
+				{if IS_MOBILE}
+				<li class="dropdown dropdown-extended dropdown-notification">
+					<a href="{dr_member_url('notice/go')}"  class="dropdown-toggle" >
+						<i class="icon-bell"></i>
+						<span class="badge badge-default dr_notece_num"> 0 </span>
+					</a>
+					<ul class="dropdown-menu">
+					</ul>
+				</li>
+				<li class="dropdown dropdown-extended dropdown-inbox">
+					<a href="{dr_member_url('pm/index')}" class="dropdown-toggle">
+						<i class="icon-envelope-open"></i>
+						<span class="badge badge-default"> {if $newpm}新{else}0{/if} </span>
+					</a>
+					<ul class="dropdown-menu">
+					</ul>
+				</li>
+				{else}
+				<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+						<i class="icon-bell"></i>
+						<span class="badge badge-default dr_notece_num"> 0 </span>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="external">
+							<h3>您有<span class="bold dr_notece_num">0</span>条未读提醒消息</h3>
+							<a href="{dr_member_url('notice/go')}">点击查看</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+						<i class="icon-envelope-open"></i>
+						<span class="badge badge-default"> {if $newpm}新{else}0{/if} </span>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="external">
+							<h3>{if $newpm}您有新的未读站内短消息{else}您没有未读短消息{/if}</h3>
+							<a href="{dr_member_url('pm/index')}">点击查看</a>
+						</li>
+					</ul>
+				</li>
+				{/if}
+				<li class="dropdown dropdown-user">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+						<img class="img-circle" src="{$member.avatar_url}" />
+						<span class="username username-hide-on-mobile"> {$member.username} </span>
+						<i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-default">
+						<li>
+							<a href="{dr_member_url('account/index')}">
+								<i class="icon-user"></i> 我的资料 </a>
+						</li>
+						<li>
+							<a href="{dr_member_url('account/password')}">
+								<i class="icon-lock"></i> 修改密码 </a>
+						</li>
+						<li>
+							<a href="{dr_member_url('account/avatar')}">
+								<i class="icon-picture"></i> 上传头像
+							</a>
+						</li>
+						<li>
+							<a href="{dr_member_url('notice/go')}">
+								<i class="icon-bell"></i> 提醒消息
+								<span class="badge dr_notece_num"> 0 </span>
+							</a>
+						</li>
+						<li class="divider"> </li>
+						<li><a href="javascript:;" onclick="dr_loginout('退出成功')">
+								<i class="icon-key"></i> 我要退出 </a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!-- END TOP NAVIGATION MENU -->
+	</div>
+	<!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+<!-- BEGIN HEADER & CONTENT DIVIDER -->
+<div class="clearfix"> </div>
+<!-- END HEADER & CONTENT DIVIDER -->
+<div class="container">
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<div class="page-sidebar-wrapper">
+			<!-- BEGIN SIDEBAR -->
+			<div class="page-sidebar navbar-collapse collapse">
+				<!-- BEGIN SIDEBAR MENU -->
+				<ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+					<li class="sidebar-toggler-wrapper hide">
+						<div class="sidebar-toggler"> </div>
+					</li>
+
+					<li class="nav-item start {if $indexu} active{/if}">
+						<a href="{dr_member_url('home/index')}" class="nav-link nav-toggle ">
+							<i class="icon-home"></i>
+							<span class="title">首页</span>
+							{if $indexu}<span class="selected"></span>{/if}
+						</a>
+					</li>
+					{loop $menu $top}
+					<li class="heading">
+						<h3 class="uppercase">{$top.name}</h3>
+					</li>
+					{loop $top.left $left}
+					<li class="nav-item {if $left.id==$menu_pid} active{/if}">
+						<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="{$left.icon}"></i>
+							<span class="title">{$left.name}</span>
+							<span class="arrow"></span>
+							{if $left.id==$menu_pid}<span class="selected"></span>{/if}
+						</a>
+						<ul class="sub-menu">
+							{loop $left.link $t}
+							<li class="nav-item  {if $t.id==$menu_id} active open{/if}">
+
+								<a href="{if $t.url}{$t.url}{else}{dr_member_url($t.uri)}{/if}" {if $t.target}target="_blank"{/if} class="nav-link ">
+								<i class="{$t.icon}"></i>
+								<span class="title">{$t.name}</span>
+								{if isset($notices[$t.uri])}<span class="badge badge-success">{intval($notices[$t.uri])}</span>{/if}
+								</a>
+							</li>
+							{/loop}
+						</ul>
+					</li>
+					{/loop}
+					{/loop}
+				</ul>
+				<!-- END SIDEBAR MENU -->
+				<!-- END SIDEBAR MENU -->
+			</div>
+			<!-- END SIDEBAR -->
+		</div>
+		<!-- END SIDEBAR -->
+		<!-- BEGIN CONTENT -->
+		<div class="page-content-wrapper">
+			<!-- BEGIN CONTENT BODY -->
+			<div class="page-content">
+				<div class="page-bar" style="margin-bottom: 30px;">
+					<ul class="page-breadcrumb">
+						<li>
+							<span>首页</span>
+							<i class="fa fa-circle"></i>
+						</li>
+						{if !IS_MOBILE}
+							{if $menu[$menu_tid]}
+							<li>
+								<span>{$menu[$menu_tid]['name']}</span>
+								<i class="fa fa-circle"></i>
+							</li>
+							{/if}
+							{if $menu[$menu_tid]['left'][$menu_pid]}
+							<li>
+								<span>{$menu[$menu_tid]['left'][$menu_pid]['name']}</span>
+								<i class="fa fa-circle"></i>
+							</li>
+							{/if}
+						{/if}
+						<li>
+							<span>{$meta_name}</span>
+						</li>
+					</ul>
+					{if $menu[$menu_tid]['left'][$menu_pid]}
+					<div class="page-toolbar">
+						<div class="btn-group pull-right">
+							<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"><i class="{$menu[$menu_tid]['left'][$menu_pid]['icon']}"></i> {$menu[$menu_tid]['left'][$menu_pid]['name']}
+								<i class="fa fa-angle-down"></i>
+							</button>
+							<ul class="dropdown-menu pull-right" role="menu">
+								{loop $menu[$menu_tid]['left'][$menu_pid]['link'] $t}
+								<li>
+									<a href="{if $t.url}{$t.url}{else}{dr_member_url($t.uri)}{/if}" {if $t.target}target="_blank"{/if}>
+										<i class="{$t.icon}"></i> {$t.name}</a>
+								</li>
+								{/loop}
+							</ul>
+						</div>
+					</div>
+					{/if}
+				</div>
+

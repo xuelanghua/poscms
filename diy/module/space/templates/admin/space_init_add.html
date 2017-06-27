@@ -1,0 +1,136 @@
+{template nheader.html}
+<script type="text/javascript">
+    $(function(){
+        {if $result}
+            dr_tips('{$result}', 3);
+        {/if}
+         dr_category_select($("#dr_modelid").val());
+         dr_set_type({intval($data.type)});
+    });
+    function dr_category_select(mid) {
+        var type = $("#dr_type_id").val();
+        $.post("{dr_url('space/space/select')}&mid="+mid+"&type="+type+"&pid={$data.pid}&gid={$get.gid}", function(data){
+            $("#dr_category").html(data);
+        });
+    }
+    function dr_set_type(id) {
+        $(".dr_cat_hide").hide();
+        $(".dr_type_"+id).show();
+        $("#dr_type_id").val(id);
+        dr_category_select($("#dr_modelid").val(), id);
+
+    }
+</script>
+<div class="page-bar">
+    <ul class="page-breadcrumb mylink">
+        {$menu.link}
+        <li><a href="{SYS_HELP_URL}160.html" target="_blank"><i class="fa fa-book"></i> {fc_lang('在线帮助')}</a></li>
+    </ul>
+    <ul class="page-breadcrumb myname">
+        {$menu.name}
+    </ul>
+    <div class="page-toolbar">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                {loop $menu.quick $t}
+                <li>
+                    <a href="{$t.url}">{$t.icon} {$t.name}</a>
+                </li>
+                {/loop}
+                <li class="divider"> </li>
+                <li>
+                    <a href="javascript:window.location.reload();">
+                        <i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<h3 class="page-title">
+    <small>{fc_lang('以下红色<font color="red">*</font>部分会员无法修改，其他字段会员可任意修改')}</small>
+</h3>
+<form class="form-horizontal" action="" method="post" id="myform" name="myform">
+<input id="dr_type_id" type="hidden" value="{intval($dat.type)}">
+<div class="portlet light bordered" style="margin-bottom:70px">
+    <div class="portlet-title">
+        <div class="caption">
+            <span class="caption-subject font-green sbold uppercase">{fc_lang('默认栏目')}</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+		<div class="form-body">
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">{fc_lang('类型')}：</label>
+                <div class="col-md-9">
+                    <div class="radio-list">
+                        <label class="radio-inline"><input type="radio" value="0" {if $data.id}disabled{/if} onclick="dr_set_type(0)" name="data[type]" {if !$data.type}checked{/if} /> 外链</label>
+                        <label class="radio-inline"><input type="radio" value="1" {if $data.id}disabled{/if} onclick="dr_set_type(1)" name="data[type]" {if 1==$data.type}checked{/if} /> 模型</label>
+                        <label class="radio-inline"><input type="radio" value="2" {if $data.id}disabled{/if} onclick="dr_set_type(2)" name="data[type]" {if 2==$data.type}checked{/if} /> 单页</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group dr_cat_hide dr_type_1">
+                <label class="col-md-2 control-label">{fc_lang('模型选择')}：</label>
+                <div class="col-md-9">
+                    <label><select class="form-control" name="data[modelid]" {if $data.id || $data.type}disabled{/if} id="dr_modelid" onchange="dr_category_select(this.value)">
+                    <option value="0"> -- </option>
+                    {list action=cache name=SPACE-MODEL}
+                    {if $t['setting'][$markrule]['use']}<option value="{$t.id}" {if $t.id==$data.modelid}selected{/if}> {$t.name} </option>{/if}
+                    {/list}
+                    </select></label>
+                </div>
+            </div>
+            <div class="form-group ">
+                <label class="col-md-2 control-label">{fc_lang('上级栏目')}：</label>
+                <div class="col-md-9">
+                    <label id="dr_category"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">{fc_lang('显示方式')}：</label>
+                <div class="col-md-9">
+                    <div class="radio-list">
+                        <label class="radio-inline"><input type="radio" value="0" name="data[showid]" {if !$data.showid}checked{/if} /> {fc_lang('<font color=red>不显示</font>')}</label>
+                        <label class="radio-inline"><input type="radio" value="1" name="data[showid]" {if $data.showid==1}checked{/if} /> {fc_lang('顶部')}</label>
+                        <label class="radio-inline"><input type="radio" value="2" name="data[showid]" {if $data.showid==2}checked{/if} /> {fc_lang('底部')}</label>
+                        <label class="radio-inline"><input type="radio" value="3" name="data[showid]" {if $data.showid==3}checked{/if} /> {fc_lang('<font color=green>都显示</font>')}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">{fc_lang('栏目名称')}：</label>
+                <div class="col-md-9">
+                    <label><input class="form-control" type="text" name="data[name]" value="{$data.name}"></label>
+                </div>
+            </div>
+            <div class="form-group dr_cat_hide dr_type_0">
+                <label class="col-md-2 control-label">{fc_lang('外链地址')}：</label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" name="data[link]" value="{$data.link}">
+                </div>
+            </div>
+
+		</div>
+	</div>
+</div>
+<div class="myfooter">
+    <div class="row">
+        <div class="portlet-body form">
+            <div class="form-body">
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn green"> <i class="fa fa-save"></i> {fc_lang('保存')}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+{template nfooter.html}

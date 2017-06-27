@@ -1,0 +1,109 @@
+{template nheader.html}
+<div class="page-bar">
+	<ul class="page-breadcrumb mylink">
+		{$menu.link}
+	</ul>
+	<ul class="page-breadcrumb myname">
+		{$menu.name}
+	</ul>
+	<div class="page-toolbar">
+		<div class="btn-group pull-right">
+			<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+				<i class="fa fa-angle-down"></i>
+			</button>
+			<ul class="dropdown-menu pull-right" role="menu">
+				{loop $menu.quick $t}
+				<li>
+					<a href="{$t.url}">{$t.icon} {$t.name}</a>
+				</li>
+				{/loop}
+				<li class="divider"> </li>
+				<li>
+					<a href="javascript:window.location.reload();">
+						<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div class="mytopsearch">
+	<form method="post" action="" name="searchform" id="searchform">
+		<input name="search" id="search" type="hidden" value="1" />
+		<label><select class="form-control" name="data[field]">
+			{loop $field $t}
+			<option value="{$t.fieldname}" {if $param.field==$t.fieldname}selected{/if}>{$t.name}</option>
+			{/loop}
+		</select></label>
+		<label>：</label>
+		<label style="margin-right: 10px"><input type="text" class="form-control" value="{$param.keyword}" name="data[keyword]" /></label>
+		<label>{fc_lang('状态')} ：</label>
+		<label style="margin-right: 10px">
+		<select class="form-control" name="data[status]">
+			<option value="1">{fc_lang('已审核')}</option>
+			<option value="0">{fc_lang('未审核')}</option>
+		</select>
+		</label>
+		<label>{fc_lang('更新时间')} ：</label>
+		<label>{dr_field_input('start', 'Date', array('option'=>array('format'=>'Y-m-d','width'=>100)), (int)$param.start)}</label>
+		<label><i class="fa fa-minus"></i></label>
+		<label>{dr_field_input('end', 'Date', array('option'=>array('format'=>'Y-m-d','width'=>100)), (int)$param.end)}</label>
+		<label><button type="submit" class="btn green btn-sm"> <i class="fa fa-search"></i> {fc_lang('搜索')}</button></label>
+	</form>
+</div>
+
+<div class="portlet light bordered">
+	<div class="portlet-body">
+		<div class="table-scrollable v3table">
+		<form action="" method="post" name="myform" id="myform">
+		<input name="action" id="action" type="hidden" value="" />
+		<table class="table">
+		<thead>
+		<tr>
+			<th width="20"></th>
+			<th >Id</th>
+			<th class="{ns_sorting('title')}" name="title" >{$field.title.name}</th>
+			<th class="{ns_sorting('author')}" name="author">{fc_lang('录入作者')}</th>
+			<th class="{ns_sorting('status')}" name="status">{fc_lang('状态')}</th>
+			<th class="{ns_sorting('updatetime')}" name="updatetime">{fc_lang('更新时间')}</th>
+			<th class="dr_option">{fc_lang('操作')}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{loop $list $t}
+		<tr id="dr_row_{$t.id}">
+			<td><input name="ids[]" type="checkbox" class="toggle md-check dr_select" value="{$t.id}" /></td>
+			<td>{$t.id}</td>
+			<td><a href="{dr_url('space/content/edit',array('mid' => $mid, 'id' => $t.id))}">{dr_keyword_highlight($t.title, $param.keyword)}</a></td>
+			<td><a href="javascript:;" onclick="dr_dialog_member('{$t.uid}')">{dr_strcut($t.author, 10)}</a></td>
+			<td>{if $t.status}<font color="#006600">{fc_lang('已审核')}</font>{else}<font color="#FF0000">{fc_lang('未审核')}</font>{/if}</td>
+			<td>{dr_date($t.updatetime, NULL, 'red')}</td>
+			<td class="dr_option">
+			<a class="ago" href="{dr_space_show_url($t.uid, $mid, $t.id)}" target="_blank"> <i class="fa fa-send"></i> {fc_lang('访问')}</a>
+				{if $this->ci->is_auth('space/admin/content/edit')}<a class="aedit" href="{dr_url('space/content/edit',array('mid' => $mid, 'id' => $t.id))}"> <i class="fa fa-edit"></i> {fc_lang('修改')}</a>{/if}
+
+			</td>
+		</tr>
+		{/loop}
+		<tr class="mtable_bottom">
+			<th width="20" ><input class="toggle md-check" name="dr_select" id="dr_select" type="checkbox" onClick="dr_selected()" />&nbsp;</th>
+			<td colspan="98" >
+			{if $this->ci->is_auth('space/admin/content/del')}<label><button type="button" class="btn red btn-sm" name="option" onClick="$('#action').val('delete');dr_confirm_set_all('{fc_lang('您确定要这样操作吗？')}')"> <i class="fa fa-trash"></i> {fc_lang('删除')}</button></label>{/if}
+            {if $this->ci->is_auth('space/admin/content/edit')}<label><button type="button" class="btn green btn-sm" name="option" onClick="$('#action').val('verify');dr_confirm_set_all('{fc_lang('您确定要这样操作吗？')}')"> <i class="fa fa-edit"></i> {fc_lang('标记为')}</button></label>
+			<label><select class="form-control" name="status">
+			<option value="1">{fc_lang('已审核')}</option>
+			<option value="0">{fc_lang('未审核')}</option>
+			</select>
+			</label>
+			{/if}
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		</form>
+        <div id="pages"><a>{fc_lang('共%s条', $param['total'])}</a>{$pages}</div>
+		</div>
+	</div>
+</div>
+{template nfooter.html}

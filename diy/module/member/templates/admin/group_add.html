@@ -1,0 +1,354 @@
+{template nheader.html}
+<script type="text/javascript">
+$(function() {
+	{if $error}
+	dr_tips('{$error}', 3);
+	{/if}
+	dr_theme({$is_theme});
+});
+function dr_select_all() {
+    $("#dr_synid").find("option").attr("selected", "selected");
+}
+function dr_theme(id) {
+	if (id == 1) {
+		$("#dr_theme_html").html($("#dr_web").html());
+	} else {
+		$("#dr_theme_html").html($("#dr_local").html());
+	}
+}
+</script>
+<div id="dr_local" style="display: none">
+	<label class="col-md-2 control-label">{fc_lang('主题风格')}：</label>
+	<div class="col-md-9">
+		<label><select class="form-control" name="data[theme]">
+			<option value="default"> -- </option>
+			{loop $theme $t}
+			<option{if $t==$data['theme']} selected=""{/if} value="{$t}">{$t}</option>
+			{/loop}
+		</select></label>
+		<span class="help-block">{fc_lang('位于网站主站根目录下：根目录/statics/风格名称/')}</span>
+	</div>
+</div>
+<div id="dr_web" style="display: none">
+	<label class="col-md-2 control-label">{fc_lang('远程资源')}：</label>
+	<div class="col-md-9">
+		<input class="form-control  input-xlarge" type="text" placeholder="http://" name="data[theme]" value="{php echo strpos($data['theme'], 'http') === 0 ? $data['theme'] : '';}">
+		<span class="help-block">{fc_lang('网站将调用此地址的css,js,图片等静态资源')}</span>
+	</div>
+</div>
+<form class="form-horizontal" action="" method="post" id="myform" name="myform">
+	<input name="page" id="page" type="hidden" value="{$page}" />
+	<div class="page-bar">
+		<ul class="page-breadcrumb mylink">
+			{$menu.link}
+
+		</ul>
+		<ul class="page-breadcrumb myname">
+			{$menu.name}
+		</ul>
+		<div class="page-toolbar">
+			<div class="btn-group pull-right">
+				<button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+					<i class="fa fa-angle-down"></i>
+				</button>
+				<ul class="dropdown-menu pull-right" role="menu">
+					{loop $menu.quick $t}
+					<li>
+						<a href="{$t.url}">{$t.icon} {$t.name}</a>
+					</li>
+					{/loop}
+					<li class="divider"> </li>
+					<li>
+						<a href="javascript:window.location.reload();">
+							<i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<h3 class="page-title">
+		<small>{fc_lang('在会员模型中可以把会员自定义字段划分给指定会员组使用')}</small>
+	</h3>
+	<div class="portlet light bordered myfbody">
+		<div class="portlet-title tabbable-line">
+			<ul class="nav nav-tabs" style="float:left;">
+				<li class="active">
+					<a href="#tab_0" data-toggle="tab"> <i class="fa fa-cog"></i> {fc_lang('基本设置')} </a>
+				</li>
+				<li class="">
+					<a href="#tab_5" data-toggle="tab"> <i class="fa fa-arrow-up"></i> {fc_lang('升级与注册')} </a>
+				</li>
+				<li class="">
+					<a href="#tab_1" data-toggle="tab"> <i class="fa fa-user"></i> {fc_lang('会员字段')} </a>
+				</li>
+				{if MEMBER_OPEN_SPACE}
+				<li class="">
+					<a href="#tab_2" data-toggle="tab"> <i class="fa fa-reorder"></i> {fc_lang('空间字段')} </a>
+				</li>
+				<li class="">
+					<a href="#tab_3" data-toggle="tab"> <i class="fa fa-trello"></i> {fc_lang('会员空间')} </a>
+				</li>
+				{/if}
+				{if $data.id}
+				<li class="">
+					<a href="#tab_{php echo MEMBER_OPEN_SPACE ? 4 : 2;}" data-toggle="tab"> <i class="fa fa-refresh"></i> {fc_lang('同步到其他')} </a>
+				</li>
+				{/if}
+			</ul>
+		</div>
+		<div class="portlet-body">
+			<div class="tab-content">
+
+
+				<div class="tab-pane active" id="tab_0">
+					<div class="form-body">
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('名称')}：</label>
+							<div class="col-md-9">
+								<label><input class="form-control" type="text" name="data[name]" value="{$data.name}" id="dr_name" ></label>
+								<span class="help-block">{fc_lang('给它一个描述名称')}</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('价格要求')}：</label>
+							<div class="col-md-9">
+								<label><input class="form-control" type="text" name="data[price]" value="{intval($data.price)}" ></label>
+								<span class="help-block">{fc_lang('0或者留空表示免费组')}</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('价格单位')}：</label>
+							<div class="col-md-9">
+								<div class="radio-list">
+									<label class="radio-inline"><input type="radio" name="data[unit]" value="1" {dr_set_radio('unit', $data.unit, '1', TRUE)} /> {SITE_SCORE}</label>
+									<label class="radio-inline"><input type="radio" name="data[unit]" value="2" {dr_set_radio('unit', $data.unit, '2')} /> {SITE_MONEY}</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('期限单位')}：</label>
+							<div class="col-md-9">
+								<div class="radio-list">
+									<label class="radio-inline"><input type="radio" name="data[limit]" value="1" {dr_set_radio('limit', $data.limit, '1', TRUE)} /> {fc_lang('按月付费')}</label>
+									<label class="radio-inline"><input type="radio" name="data[limit]" value="2" {dr_set_radio('limit', $data.limit, '2', TRUE)} /> {fc_lang('按半年付费')}</label>
+									<label class="radio-inline"><input type="radio" name="data[limit]" value="3" {dr_set_radio('limit', $data.limit, '3', TRUE)} /> {fc_lang('按年付费')}</label>
+									<label class="radio-inline"><input type="radio" name="data[limit]" value="4" {dr_set_radio('limit', $data.limit, '4', TRUE)} /> {fc_lang('永不过期')}</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('过期后变成')}：</label>
+							<div class="col-md-9">
+								<label><select class="form-control" name="data[overdue]">
+										{loop $overdue $t}
+										<option{if $t.id==$data.overdue} selected=""{/if} value="{$t.id}">{$t.name}</option>
+										{/loop}
+									</select></label>
+								<span class="help-block">{fc_lang('当会员组过期且未续费自动变成指定的会员组')}</span>
+							</div>
+						</div>
+
+						<div class="form-group" style="display: none;">
+							<label class="col-md-2 control-label" style="padding-top:10px">{fc_lang('风格模式')}：</label>
+							<div class="col-md-9">
+								<div class="radio-list">
+									<label class="radio-inline"><input type="radio" onclick="dr_theme(1)" name="theme" value="1" {if $is_theme}checked{/if} /> {fc_lang('远程地址')}</label>
+									<label class="radio-inline"><input type="radio" onclick="dr_theme(0)" name="theme" value="0" {if !$is_theme}checked{/if} /> {fc_lang('本站资源')}</label>
+								</div>
+								<span class="help-block">{fc_lang('可以将js,css,图片存储在远程地址或者本地statics目录之中')}</span>
+							</div>
+						</div>
+						<div class="form-group" id="dr_theme_html" style="display: none;">
+
+						</div>
+						<div class="form-group" style="display: none;">
+							<label class="col-md-2 control-label">{fc_lang('模板目录')}：</label>
+							<div class="col-md-9">
+								<label><select class="form-control" name="data[template]">
+									<option value="default"> -- </option>
+									{loop $mtemplate $t}
+									<option{if $t==$data.template} selected=""{/if} value="{$t}">{$t}</option>
+									{/loop}
+								</select></label>
+								<span class="help-block">{fc_lang('用于存储html模板页面')}</span>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+				<div class="tab-pane" id="tab_5">
+					<div class="form-body">
+						{if !$data.id || $data.id >3}
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('允许会员注册')}：</label>
+							<div class="col-md-9">
+								<input type="checkbox" name="data[allowregister]" value="1" {if $data['allowregister']}checked{/if} data-on-text="{fc_lang('是')}" data-off-text="{fc_lang('否')}" data-on-color="success" data-off-color="danger" class="make-switch" data-size="small">
+
+								<span class="help-block">{fc_lang('选择“是”时会员可以直接注册该会员组，“自助升级”功能可能会生效')}</span>
+							</div>
+						</div>
+						{/if}
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('允许自助申请')}：</label>
+							<div class="col-md-9">
+								<input type="checkbox" name="data[allowapply]" value="1" {if $data['allowapply']}checked{/if} data-on-text="{fc_lang('是')}" data-off-text="{fc_lang('否')}" data-on-color="success" data-off-color="danger" class="make-switch" data-size="small">
+
+								<span class="help-block">{fc_lang('选择“是”时会员可以申请升级会员组，并自动扣费')}</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('允许申请其他组')}：</label>
+							<div class="col-md-9">
+								<input type="checkbox" name="data[allowapply_orther]" value="1" {if $data['allowapply_orther']}checked{/if} data-on-text="{fc_lang('是')}" data-off-text="{fc_lang('否')}" data-on-color="success" data-off-color="danger" class="make-switch" data-size="small">
+
+								<span class="help-block">{fc_lang('选择“是”时会员可以申请升级其他会员组, 否则将无法申请选择其他会员组')}</span>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+				<div class="tab-pane " id="tab_1">
+					<div class="form-body">
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('可用')}：</label>
+							<div class="col-md-9">
+								<div class="checkbox-list" style="padding-top: 10px">
+									{list action=cache name=MEMBER.field}
+									<label style="margin-bottom: 10px"><input type="checkbox" {if @in_array($t.fieldname, $data.allowfield)}checked="checked"{/if} value="{$t.fieldname}" name="data[allowfield][]" /> {$t.name}</label>
+									{/list}
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label"></label>
+							<div class="col-md-9">
+								<div class="form-control-static">{fc_lang('选中字段才会在该会员组中使用，您也可以在“自定义字段”中管理这些字段')}</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				{if MEMBER_OPEN_SPACE}
+				<div class="tab-pane " id="tab_2">
+					<div class="form-body">
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('可用')}：</label>
+							<div class="col-md-9">
+								<div class="checkbox-list" style="padding-top: 10px">
+									{list action=cache name=MEMBER.spacefield}
+									<label style="margin-bottom: 10px"><input type="checkbox" {if $t.fieldname == 'name'} disabled="disabled" checked="checked"{else}{if @in_array($t.fieldname, $data.spacefield)}checked="checked"{/if}{/if} value="{$t.fieldname}" name="data[spacefield][]" /> {$t.name}</label>
+									{/list}
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label"></label>
+							<div class="col-md-9">
+								<div class="form-control-static">{fc_lang('选中字段才会在该会员组中使用，您也可以在“自定义字段”中管理这些字段')}</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="tab-pane " id="tab_3">
+					<div class="form-body">
+
+						<div class="form-group dr_image">
+							<label class="col-md-2 control-label">{fc_lang('允许使用空间')}：</label>
+							<div class="col-md-9">
+								<input type="checkbox" name="data[allowspace]" value="1" {if $data['allowspace']}checked{/if} data-on-text="{fc_lang('是')}" data-off-text="{fc_lang('否')}" data-on-color="success" data-off-color="danger" class="make-switch" data-size="small">
+								<span class="help-block">{fc_lang('选择“是”时会员可以使用个人空间')}</span>
+							</div>
+						</div>
+						<div class="form-group dr_image">
+							<label class="col-md-2 control-label">{fc_lang('启用二级域名')}：</label>
+							<div class="col-md-9">
+								<input type="checkbox" name="data[spacedomain]" value="1" {if $data['spacedomain']}checked{/if} data-on-text="{fc_lang('是')}" data-off-text="{fc_lang('否')}" data-on-color="success" data-off-color="danger" class="make-switch" data-size="small">
+								<span class="help-block"><a href="http://help.dayrui.com/193.html" target="_blank">{fc_lang('个人空间二级域名配置教程')}</a></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('默认空间模板')}：</label>
+							<div class="col-md-9">
+								<label><select class="form-control" name="data[spacetemplate]">
+									<option value="default"> -- </option>
+									{loop $space $t}
+									<option{if $t==$data.spacetemplate} selected=""{/if} value="{$t}">{$t}</option>
+									{/loop}
+								</select></label>
+								<span class="help-block">{fc_lang('空间模板目录: 根目录/statics/space/模板名称/*')}</span>
+								<span class="help-block">{fc_lang('该会员组创建空间时的默认空间模板（一定要保证此会员组拥有此空间的使用权限）')}</span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				{/if}
+				{if $data.id}
+				<div class="tab-pane " id="tab_{php echo MEMBER_OPEN_SPACE ? 4 : 2;}">
+					<div class="form-body">
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('同步到会员组')}：</label>
+							<div class="col-md-9">
+								<label><select class="form-control" id="dr_synid" name="synid[]" multiple style="width: 150px; height: 180px;">
+									{loop $group $t}
+									{if $data.id!=$t.id}
+									<option value="{$t.id}">{$t.name}</option>
+									{/if}
+									{/loop}
+								</select></label>
+
+								<label><button type="button" onclick="dr_select_all()" name="button" class="btn blue btn-sm"> <i class="fa fa-arrow-left"></i>  {fc_lang('全选')} </button> </label>
+								<span class="help-block"> {fc_lang('将以下选项值同步到其他会员组中，按“CTRL”实现多选')} </span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">{fc_lang('同步选项')}：</label>
+							<div class="col-md-9">
+								<div class="checkbox-list">
+									<label class="checkbox-inline"><input name="syn[]" type="checkbox" value="1"> {fc_lang('主题风格')}</label>
+									<label class="checkbox-inline"><input name="syn[]" type="checkbox" value="2"> {fc_lang('模板目录')}</label>
+									<label class="checkbox-inline"><input name="syn[]" type="checkbox" value="3"> {fc_lang('会员字段')}</label>
+									{if MEMBER_OPEN_SPACE}
+									<label class="checkbox-inline"><input name="syn[]" type="checkbox" value="4"> {fc_lang('空间字段')}</label>
+									<label class="checkbox-inline"><input name="syn[]" type="checkbox" value="5"> {fc_lang('允许使用空间')}</label>
+									{/if}
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				{/if}
+
+
+			</div>
+		</div>
+	</div>
+
+	<div class="myfooter">
+		<div class="row">
+			<div class="portlet-body form">
+				<div class="form-body">
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<button type="submit" class="btn green"> <i class="fa fa-save"></i> {fc_lang('保存')}</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+{template nfooter.html}

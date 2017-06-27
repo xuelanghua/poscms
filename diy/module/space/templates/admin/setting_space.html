@@ -1,0 +1,264 @@
+{template nheader.html}
+<script type="text/javascript">
+    $(function() {
+        dr_theme({$is_theme});
+    });
+    function dr_theme(id) {
+        if (id == 1) {
+            $("#dr_theme_html").html($("#dr_web").html());
+        } else {
+            $("#dr_theme_html").html($("#dr_local").html());
+        }
+    }
+</script>
+<div id="dr_local" style="display: none">
+    <label class="col-md-2 control-label">{fc_lang('主题风格')}：</label>
+    <div class="col-md-9">
+        <label><select class="form-control" name="data[theme]">
+            <option value="default"> -- </option>
+            {loop $theme $t}
+            <option{if $t==$data['theme']} selected=""{/if} value="{$t}">{$t}</option>
+            {/loop}
+        </select></label>
+        <span class="help-block">{fc_lang('位于网站主站根目录下：根目录/statics/风格名称/')}</span>
+    </div>
+</div>
+<div id="dr_web" style="display: none">
+    <label class="col-md-2 control-label">{fc_lang('远程资源')}：</label>
+    <div class="col-md-9">
+        <input class="form-control  input-xlarge" type="text" placeholder="http://" name="data[theme]" value="{php echo strpos($data['theme'], 'http') === 0 ? $data['theme'] : '';}">
+        <span class="help-block">{fc_lang('网站将调用此地址的css,js,图片等静态资源')}</span>
+    </div>
+</div>
+<form class="form-horizontal" action="" method="post" id="myform" name="myform">
+    <div class="page-bar">
+        <ul class="page-breadcrumb mylink">
+            {$menu.link}
+        </ul>
+        <ul class="page-breadcrumb myname">
+            {$menu.name}
+        </ul>
+        <div class="page-toolbar">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-hover="dropdown"> {fc_lang('操作菜单')}
+                    <i class="fa fa-angle-down"></i>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    {loop $menu.quick $t}
+                    <li>
+                        <a href="{$t.url}">{$t.icon} {$t.name}</a>
+                    </li>
+                    {/loop}
+                    <li class="divider"> </li>
+                    <li>
+                        <a href="javascript:window.location.reload();">
+                            <i class="icon-refresh"></i> {fc_lang('刷新页面')}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <h3 class="page-title">
+        <small></small>
+    </h3>
+
+    <div class="portlet light bordered" style="margin-bottom:70px">
+        <div class="portlet-title tabbable-line">
+            <ul class="nav nav-tabs" style="float:left;">
+                <li class="active">
+                    <a href="#tab_0" data-toggle="tab"> <i class="fa fa-cog"></i> {fc_lang('基本设置')} </a>
+                </li>
+                <li class="">
+                    <a href="#tab_1" data-toggle="tab"> <i class="fa fa-internet-explorer"></i> {fc_lang('SEO设置')} </a>
+                </li>
+                <li class="">
+                    <a href="#tab_2" data-toggle="tab"> <i class="fa fa-flag"></i> {fc_lang('推荐位')} </a>
+                </li>
+                <li class="">
+                    <a href="#tab_3" data-toggle="tab"> <i class="fa fa-vimeo"></i> {fc_lang('二级域名')} </a>
+                </li>
+                <li class="">
+                    <a href="#tab_4" data-toggle="tab"> <i class="fa fa-weibo"></i> {fc_lang('互动设置')} </a>
+                </li>
+            </ul>
+        </div>
+        <div class="portlet-body">
+            <div class="tab-content">
+
+                <div class="tab-pane active" id="tab_0">
+                    <div class="form-body">
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">{fc_lang('频道域名')}：</label>
+                            <div class="col-md-9">
+                                <label><input class="form-control" type="text" name="data[domain]" value="{$data['domain']}" /></label>
+                                {if $data['domain']}
+                                {if $data['domain'] == SITE_DOMAIN}
+                                <span class="help-block">{fc_lang('此域名【%s】不能与当前站点域名相同', $data['domain'])}</span>
+                                {else}
+                                <script>
+                                    $.get("{dr_url('home/domain', array('domain' => $data['domain']))}", function(data){
+                                        if (data) {
+                                            $("#dr_domian").html(data);
+                                        } else {
+                                            $("#dr_domian").hide();
+                                        }
+                                    });
+                                </script>
+                                <span id="dr_domian" class="help-block"></span>
+                                {/if}
+                                {else}
+                                <span class="help-block">{fc_lang('域名格式：i.dayrui.com')}</span>
+                                {/if}
+                            </div>
+                        </div>
+                        <div class="form-group" style="display: none;">
+                            <label class="col-md-2 control-label" style="padding-top:10px">{fc_lang('风格模式')}：</label>
+                            <div class="col-md-9">
+                                <div class="radio-list">
+                                    <label class="radio-inline"><input type="radio" onclick="dr_theme(1)" name="theme" value="1" {if $is_theme}checked{/if} /> {fc_lang('远程地址')}</label>
+                                    <label class="radio-inline"><input type="radio" onclick="dr_theme(0)" name="theme" value="0" {if !$is_theme}checked{/if} /> {fc_lang('本站资源')}</label>
+                                </div>
+                                <span class="help-block">{fc_lang('可以将js,css,图片存储在远程地址或者本地statics目录之中')}</span>
+                            </div>
+                        </div>
+                        <div class="form-group" id="dr_theme_html" style="display: none;">
+
+                        </div>
+                        <div class="form-group " style="display: none;">
+                            <label class="col-md-2 control-label">{fc_lang('模板目录')}：</label>
+                            <div class="col-md-9">
+                                <label><select class="form-control" name="data[template]">
+                                    <option value="default"> -- </option>
+                                    {loop $template_path $t}
+                                    <option{if $t==$data['template']} selected=""{/if} value="{$t}">{$t}</option>
+                                    {/loop}
+                                </select></label>
+                                <span class="help-block">{fc_lang('用于存储html模板页面')}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">{fc_lang('URL规则')}：</label>
+                            <div class="col-md-9">
+                                <label>
+                                    <select class="form-control" name="data[urlrule]">
+                                        <option value="0"> -- </option>
+                                        {list action=cache name=urlrule return=u}
+                                        {if $u.type==5}<option value="{$u.id}" {if $u.id==$data['urlrule']}selected{/if}> {$u.name} </option>{/if}
+                                        {/list}
+                                    </select>
+                                </label>
+                                <label>&nbsp;&nbsp;<a href="{dr_url('urlrule/index')}" style="color:blue !important">{fc_lang('[URL规则管理]')}</a></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">{fc_lang('是否审核空间')}：</label>
+                            <div class="col-md-9">
+                                <input type="checkbox" name="data[verify]" value="1" {if $data['verify']}checked{/if} data-on-text="{fc_lang('开启')}" data-off-text="{fc_lang('关闭')}" data-on-color="success" data-off-color="danger" class="make-switch" data-size="small">
+                                <span class="help-block">{fc_lang('选择“是”时，开通空间之后必须审核之后才能使用')}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">{fc_lang('禁止会员操作栏目')}：</label>
+                            <div class="col-md-9">
+                                <input type="checkbox" name="data[category]" value="1" {if $data['category']}checked{/if} data-on-text="{fc_lang('开启')}" data-off-text="{fc_lang('关闭')}" data-on-color="success" data-off-color="danger" class="make-switch" data-size="small">
+                                <span class="help-block">{fc_lang('开启之后会员将不能增加/删除栏目，只能修改栏目内容')}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane " id="tab_1">
+                    <div class="form-body">
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Title：</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" name="data[title]" value="{$data['title']}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Keywords：</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" name="data[keywords]" value="{$data['keywords']}" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Description：</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" name="data[description]" value="{$data['description']}" >
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane " id="tab_2">
+                    <div class="form-body">
+                        {php for ($i = 1; $i <= 9; $i ++) {}
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">({$i})：</label>
+                            <div class="col-md-9">
+                                <label><input class="form-control" name="data[flag][{$i}][name]" type="text" value="{$data['flag'][$i]['name']}"></label>
+
+                            </div>
+                        </div>
+                        {php }}
+                    </div>
+                </div>
+                <div class="tab-pane " id="tab_3">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">{fc_lang('个人空间主域名')}：</label>
+                            <div class="col-md-9">
+                                <label><input class="form-control" type="text" name="data[spacedomain]" value="{$data['spacedomain']}"></label>
+                                <span class="help-block">{fc_lang('个人空间二级域名配置教程')}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">{fc_lang('系统保留域名')}：</label>
+                            <div class="col-md-9">
+                                <textarea style="height:120px" class="form-control" name="data[notindomain]">{$data.notindomain}</textarea>
+                                <span class="help-block">{fc_lang('这里可以填写系统保留的二级域名前缀，多个前缀以“回车符”分隔')}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane " id="tab_4">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">{fc_lang('发布间隔')}：</label>
+                            <div class="col-md-9">
+                                <label><input class="form-control" type="text" name="data[sns_post_time]" value="{$data['sns_post_time']}"></label>
+                                <span class="help-block">{fc_lang('单位秒，0为不限制')}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">{fc_lang('发布字数限制')}：</label>
+                            <div class="col-md-9">
+                                <label><input class="form-control" type="text" name="data[sns_post_num]" value="{$data['sns_post_num']}"></label>
+                                <span class="help-block">{fc_lang('单位字符（3个字符表示1个汉字），0表示不限制')}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="myfooter">
+        <div class="row">
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn green"> <i class="fa fa-save"></i> {fc_lang('保存')}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{template nfooter.html}

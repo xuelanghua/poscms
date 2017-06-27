@@ -1,0 +1,53 @@
+{template "nheader.html"}
+<script type="text/javascript">
+    $(function(){
+        {if $result_error}dr_tips("{$result_error}", 3);{/if}
+    });
+</script>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <!-- BEGIN FORM-->
+        <form action="" method="post" class="form-horizontal" novalidate target="_blank">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">充值金额：</label>
+                    <div class="col-md-3">
+                        <div class="input-icon ">
+                            <i class="fa fa-rmb"></i>
+                            <input type="text" class="form-control" value="{$money}" name="money" placeholder="充值金额">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <div class="radio-list">
+                            {loop $list $name $t}
+                            <p>
+                            <label>
+                                <input class="dr_pay_select" name="pay" type="radio" {if $name==$pay} checked="checked"{/if} value="{$name}" />
+                                    <img alt="{$t.name}" title="{$t.name}" src="{SITE_URL}api/pay/{$name}/logo.png" width="100" height="35" />
+                                </label>
+                                </p>
+                            {/loop}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-3">
+                        <button type="submit" class="mysubmit btn green"><i class="fa fa-rmb"></i> 充值付款</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <!-- END FORM-->
+        <!-- END VALIDATION STATES-->
+    </div>
+</div>
+
+{template "nfooter.html"}

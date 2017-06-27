@@ -1,0 +1,79 @@
+{template nheader.html}
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="portlet-body">
+			<div class="table-toolbar">
+				<form method="get" action="">
+					<input name="s" type="hidden" value="member" />
+					<input name="c" type="hidden" value="{$get.c}" />
+					<input name="m" type="hidden" value="{$get.m}" />
+					<input id="dr_where" name="where" type="hidden" value="{intval($get.where)}" />
+					<div class="row">
+						<div class="col-md-4 col-sm-4">
+							<label>
+								<div class="input-group">
+									<input type="text" class="form-control" name="kw" placeholder="输入流水id" value="{$get.kw}">
+									<span class="input-group-btn">
+										<button class="btn green mysubmit" type="submit"><i class="fa fa-search"></i> 搜索</button>
+									</span>
+								</div>
+							</label>
+						</div>
+
+					</div>
+				</form>
+			</div>
+
+			<form action="" method="post" name="myform" id="myform">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+						<tr>
+							<th class="">Id</th>
+							<th class="">时间</th>
+							<th class="">金额</th>
+							<th class="">类型</th>
+							<th class="">状态</th>
+							<th class="">备注</th>
+						</tr>
+						</thead>
+						<tbody id="dr_body">
+						{loop $list $t}
+						<tr>
+							<td class="algin_l">{$t.id}</td>
+							<td class="algin_l">{dr_date($t.inputtime, NULL, 'red')}</td>
+							<td class="algin_l"><b>{if $t.value > 0}<font color="#009933">+{$t.value}</font>{else}<font color="#FF0000">{$t.value}</font>{/if}</b></td>
+							<td class="algin_c">{if $t.type}{$type[$t.type]['name']}{else}自助{/if}</td>
+							<td class="algin_c">{if $t.status}<font color="#009933">付款成功</font>{else}<font color="#FF0000">未付款</font>{/if}</td>
+							<td class="algin_l">
+								{if !$t.status && $t.type}<a href="{dr_member_url('pay/go', array('id' => $t.id))}" class="btn green btn-xs"><i class="fa fa-rmb"></i> 付款</a>{/if}
+								{dr_lang_note($t.note)}
+							</td>
+						</tr>
+						{/loop}
+						</tbody>
+					</table>
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<ul class="pagination">
+			{$pages}
+			<li><a href="javascript:;">共{$page_total}条</a></li>
+		</ul>
+	</div>
+</div>
+
+{if IS_MOBILE}
+<div class="alert alert-info" style="margin-top: 15px">
+	左右滑动表格可以查看更多的内容
+</div>
+{/if}
+{template "nfooter.html"}

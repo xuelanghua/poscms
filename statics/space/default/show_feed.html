@@ -1,0 +1,135 @@
+{template "head.html"}
+{template "header.html"}
+<script type="text/javascript">
+    $(function(){
+        $.ajax({type: "GET", url: memberpath+'index.php?s=member&mod=space&c=sns&m=comment_list&id={$data.id}', dataType:'jsonp',jsonp:"callback",async: false,
+            success: function (text) {
+                var data = text.html;
+                if (data != "null") {
+                    $("#commentlist_{$data.id}").html(data);
+                }
+                $("#dr_loading").html("");
+            }
+        });
+        // 加载更多
+        $("#dr_loadmore a").click(function(){
+            var page = $("#dr_page").val();
+            $("#dr_loading").html("<div style='padding:30px;text-align:center;'><img src='{MEMBER_THEME_PATH}images/loading.gif' /></div>");
+            $.ajax({type: "GET", url: memberpath+'index.php?s=member&mod=space&c=sns&m=comment_list&id={$data.id}&page='+page, dataType:'jsonp',jsonp:"callback",async: false,
+                success: function (text) {
+                    var data = text.html;
+                    if (data != "null") {
+                        $("#commentlist_{$data.id}").append(data);
+                        $("#dr_page").val(Number(page) + 1);
+                    }
+                    $("#dr_loading").html("");
+                }
+            });
+        });
+    });
+</script>
+<input name="page" id="dr_page" type="hidden" value="2" />
+<div class="container man">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="space_content" id="J_feed_lists">
+                <div class="box">
+                    <div class="my_article">
+                        <div class="hd">
+                            <h2>{$title}</h2>
+                        </div>
+                    </div>
+                    <div class="space_fans">
+
+
+                        <div id="feed-lists" class="feed_lists clearfix">
+                            <dl class="feed_list" id="dr_row_{$data.id}" style="border-bottom:none">
+                                <dt class="face memberinfo_avatar">
+                                    <a href="javascript:;" event-node="face_card" uid="{$data.uid}"><img src="{dr_avatar($data.uid)}" /></a>
+                                </dt>
+                                <dd class="content">
+                                    <p class="hd">
+                                        <a href="javascript:;" class="name" event-node="face_card" uid="{$data.uid}">{$data.username}</a>
+                                        <span class="remark"></span>
+                                    </p>
+                            <span class="contents">
+                                {dr_sns_content($data.content)}
+                                {if $data.repost_id && $repost = dr_sns_feed($data.repost_id)}
+                                <dl class="comment">
+                                    <dt class="arrow bgcolor_arrow"><em class="arrline">◆</em><span class="downline">◆</span></dt>
+                                    <dd class="name">
+                                        <a event-node="face_card" uid="{$repost.uid}" href="javascript:;" class="name" target="_self">@{$repost.username}</a></dd>
+                                    <dd>{dr_sns_content($repost.content)}</dd>
+                                    <p class="info">
+                                        <span class="right">
+                                        <a href="{dr_sns_feed_url($repost.uid, $repost.id)}">原文转发({$repost.repost})</a><i class="vline">|</i>
+                                        <a href="{dr_sns_feed_url($repost.uid, $repost.id)}">原文评论({$repost.comment})</a>
+                                        </span>
+                                        <span>
+                                            &nbsp;&nbsp;<a href="{dr_sns_feed_url($repost.uid, $repost.id)}" class="date">{dr_fdate($repost.inputtime)}</a>
+                                            <span>{$repost.source}</span>
+                                        </span>
+                                    </p>
+                                </dl>
+                                {/if}
+                            </span>
+                                    <p class="info">
+                                <span class="right">
+                                    <a href="javascript:void(0);" onclick="dr_sns_repost({$data.id})">转发</a>
+                                    <i class="vline">|</i>
+                                    <a href="javascript:;" onclick="dr_sns_favorite({$data.id})" id="dr_favorite_{$data.id}">{if @in_array($data.id, $favorite)}取消收藏{else}收藏{/if}</a>
+                                    <i class="vline">|</i>
+                                    <a href="javascript:;" onclick="dr_sns_digg({$data.id})">赞(<span id="dr_digg_{$data.id}" style="margin:0">{$data.digg}</span>)</a>
+                                    <i class="vline">|</i>
+                                    <a href="javascript:void(0)">评论({$data.comment})</a>
+                                </span>
+                                <span>
+                                    <span class="date">
+                                        &nbsp;&nbsp;{dr_fdate($data.inputtime)}
+                                    </span>
+                                    <span>{$data.source}</span>
+                                    {if $member.adminid || $data.uid==$member.uid}
+                                    <em class="hover">
+                                        &nbsp;&nbsp;<a href="javascript:void(0)" onclick="dr_sns_delete2({$data.id})">删除</a>
+                                    </em>
+                                    {/if}
+                                </span>
+                                    </p>
+                                    <div class="repeat clearfix" id="dr_comment_{$t.id}">
+                                        <div class="input" model-node="comment_textarea">
+                                            <div class="input_before1" model-node="mini_editor">
+                                                <textarea class="input_tips" id="comment_content_{$data.id}" style="width:99%"></textarea>
+                                            </div>
+                                            <div class="action clearfix">
+                                                <div style="text-align:left"><a href="javascript:void(0);" onclick="dr_sns_comment_post({$data.id})" class="btn-green-small right"><span>回复</span></a></div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <div id="commentlist_{$data.id}" class="comment_lists" style="padding-top:20px;">
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="bk10"></div>
+                                        <div id="dr_loading"></div>
+                                        <div id="dr_loadmore" class="load-more" style="text-align:center"><a href="javascript:;">查 看 更 多</a></div>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+
+
+                    </div>
+                </div>
+                
+			</div>
+		</div>
+        <div class="col-md-3">
+            {template "sidebar.html"}
+        </div>
+	</div>
+	{template "footer.html"}
+</div>
+<script type="text/javascript">var memberpath = "{MEMBER_PATH}";</script>
+<script type="text/javascript" src="{$theme}js/sns.js"></script>
+</body>
+</html>
