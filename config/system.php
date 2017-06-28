@@ -12,7 +12,7 @@ return array(
 
 	'SYS_LOG'                       => 0, //后台操作日志开关
 	'SYS_KEY'                       => 'poscms75f0d793ffffdf23b593096e0547bbb6', //安全密钥
-	'SYS_DEBUG'                     => 0, //调试器开关
+	'SYS_DEBUG'                     => 1, //调试器开关
 	'SYS_HTTPS'                     => 0, //HTTPS安全模式
 	'SYS_HELP_URL'                  => '', //系统帮助url前缀部分
 	'SYS_EMAIL'                     => '1045578710@qq.com', //系统收件邮箱，用于接收系统信息
@@ -28,7 +28,7 @@ return array(
 	'SYS_CRON_TIME'                 => 300, //每次执行任务间隔
 	'SYS_ONLINE_NUM'                => 1000, //服务器最大在线人数
 	'SYS_ONLINE_TIME'               => 7200, //会员在线保持时间(秒)
-	'SYS_TEMPLATE'                  => '', //网站风格目录名称
+	'SYS_TEMPLATE'                  => 'templates', //网站风格目录名称
 	'SYS_THUMB_DIR'                 => '', //缩略图目录
 	'SYS_NAME'                      => 'POSCMS', //
 	'SYS_CMS'                       => 'POSCMS', //
@@ -57,7 +57,7 @@ return array(
 	'SYS_CACHE_POSTER'              => 300, //广告内容缓存期
 	'SYS_CACHE_SPACE'               => 300, //会员空间内容缓存期
 	'SYS_CACHE_TAG'                 => 300, //Tag内容缓存期
-	'SYS_CACHE_COMMENT'             => '', //评论统计缓存期
-	'SYS_CACHE_PAGE'                => '', //单页静态化
+	'SYS_CACHE_COMMENT'             => 0, //评论统计缓存期
+	'SYS_CACHE_PAGE'                => 0, //单页静态化
 
 );

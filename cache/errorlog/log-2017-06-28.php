@@ -10,3 +10,5 @@ ERROR - 2017-06-28 16:58:45 --> Severity: Parsing Error --> syntax error, unexpe
 ERROR - 2017-06-28 17:32:04 --> Severity: Parsing Error --> syntax error, unexpected 'echo' (T_ECHO) D:\phpStudy\WWW\diy\module\member\controllers\Api.php 496
 ERROR - 2017-06-28 17:32:04 --> Severity: Parsing Error --> syntax error, unexpected 'echo' (T_ECHO) D:\phpStudy\WWW\diy\module\member\controllers\Api.php 496
 ERROR - 2017-06-28 17:32:06 --> Severity: Parsing Error --> syntax error, unexpected 'echo' (T_ECHO) D:\phpStudy\WWW\diy\module\member\controllers\Api.php 496
+ERROR - 2017-06-28 21:32:00 --> Severity: Parsing Error --> syntax error, unexpected ';', expecting ')' D:\phpStudy\WWW\diy\module\wxproject\config\menu.php 106
+ERROR - 2017-06-28 21:33:23 --> Severity: Parsing Error --> syntax error, unexpected ';', expecting ')' D:\phpStudy\WWW\diy\module\wxproject\config\menu.php 105

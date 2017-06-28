@@ -18,6 +18,7 @@ class WxprojectCategory extends M_Controller {
             'menu' => $this->get_menu_v3(array(
                 fc_lang('产品分类') => array('admin/wxprojectCategory/category_list', 'cubes'),
                 fc_lang('添加分类') => array('admin/wxprojectCategory/category_add', 'plus'),
+                fc_lang('自定义的字段') => array('admin/field/index', 'code'),
                 fc_lang('更新缓存') => array('admin/module/cache/dir/share', 'refresh'),
             )),
             'module' => $this->get_module(SITE_ID),

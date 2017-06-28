@@ -11,5 +11,6 @@
 return array(
 
 	'localhost'                     => 1,
+	''                              => 1,
 
 );
