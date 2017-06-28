@@ -345,6 +345,7 @@ function dr_upload_file(name, url) {
                         },
                         dataType: "json",
                         success: function(text) {
+                            console.log(text);
                             $("#show_" + name).html("");
                             if (text.status == 0) {
                                 dr_tips(text.code);

@@ -440,6 +440,7 @@ class Api extends M_Controller {
     public function upload() {
 
         $site = (int)$this->input->get('siteid');
+        // var_dump($site);exit();
         $site = $site ? $site : SITE_ID;
         $code = str_replace(' ', '+', $this->input->get('code'));
         list($size, $ext, $path) = explode('|', dr_authcode($code, 'DECODE'));
@@ -466,6 +467,33 @@ class Api extends M_Controller {
             'is_admin' => 0,
         ));
         $this->template->display('upload.html', 'admin');
+    }
+
+    public function upload_image()
+    {
+      //载入所需文件上传类库
+      // $this->load->library('upload');
+      // //配置上传参数
+      // $upload_config = array(
+      //   'upload_path' => SYS_UPLOAD_PATH.'/'.date('Ym', SYS_TIME).'/',
+      //   'allowed_types' => 'jpg|png|gif',
+      //   'max_size' => '2018',
+      //   'max_width' => '1024',
+      //   'max_height' => '768',
+      // );
+      // $this->upload->initialize($upload_config);
+      
+      // //处理上传文件
+      //  if ($this->upload->do_upload('name')) {
+      //    $fileInfo = $this->upload->data();
+      //    $return['status'] = 1;
+      //    $return['info'] = $fileInfo;
+      //  }else {
+      //       $return['status']=0;
+      //       $return['info'] = $this->upload->display_errors();
+      //  }
+        $return['code']=1;
+      echo json_encode($return);
     }
 
     /**

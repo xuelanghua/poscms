@@ -111,6 +111,20 @@ class WxprojectCategory extends M_Controller {
 
     //产品分类添加
     public function category_add() {
+        if(IS_POST){
+            // $tsumb= $this->input->post('thumb');
+            // $this->load->library('upload');
+            //     // 上传文件，这里的pic是视图中file控件的name属性
+            //     $result = $this->upload->do_upload('thumb');
+            //     // 如果上传成功，获取上传文件的信息
+            //     if ($result) 
+            //     {
+            //         var_dump($this->upload->data());
+            //     }
+            print_r($_FILES['data']);
+            // $thumb= $this->input->files('thumb');
+            exit();
+        }
         $this->template->display('wxproject/category_add.html');
     }
 
@@ -219,6 +233,13 @@ class WxprojectCategory extends M_Controller {
             echo json_encode(array('status'=>0, 'info'=>$this->upload->display_errors('', ''), 'data'=> ''));exit;
         }
 
+    }
+
+
+    //文件上传
+    public function upload() {
+        $return['status'] = 1;
+        echo json_encode($return);
     }
 
 	// 推送新闻

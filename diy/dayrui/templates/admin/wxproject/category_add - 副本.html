@@ -1,23 +1,37 @@
 {template "nheader.html"}
 <style>
-    .uploadify-button {
-        height: 30px;
-        line-height: 30px;
-        background-color: #3598DC;
-        border: 1px solid #3598DC;
-        border-radius: 5px;
-        padding-top: -15px;
-        text-align: center;
-        /*vertical-align: middle;*/
-        font-size: 15px;
-        color: #FFF;
-    }
-    .uploadify:hover .uploadify-button {
-        background-color: #217EBD;
-    }
-
+	div.uploader {
+		height:30px !important;
+		line-height:30px;
+		width:auto!important;
+		background-image: none !important;
+		cursor: pointer;
+		padding:0px 5px 0 5px;
+	}
+	.my_list .badge {margin-top: 5px;}
+	.my_list {
+		margin-top: 0px;padding-left:5px
+	}
+	.my_upload {
+		width:66px!important;
+		margin-top: 0px;padding-left:0px
+	}
+	
+	.uploader input {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 0;
+		border: solid transparent;
+		border-width: 0 0 100px 200px;
+		opacity: .0;
+		filter: alpha(opacity= 0);
+		-o-transform: translate(250px,-50px) scale(1);
+		-moz-transform: translate(-300px,0) scale(4);
+		direction: ltr;
+		cursor: pointer;
+	}
 </style>
-<link href="{THEME_PATH}js/layer/laydate/need/layerDate.css" rel="stylesheet">
 
 <script type="text/javascript">
 $(function() {
@@ -219,22 +233,20 @@ function delete_draft(did){
                         </div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">{fc_lang('缩略图')}：</label>
-							<div class="col-xs-8">
-                                <input type="hidden" name="thumb" id = "adpath" value="" />
-                                <input type="hidden" name="id"  value="" />
-                                <input name="name" id="upload_image" type="file" value="">
-                            </div>
+							<div class="col-md-10">
+								<div class="row" style="margin:0">
+								    <input value="" name="data[thumb]" id="fileid_thumb" type="hidden">
+										<div class="col-md-3 my_upload">
+											<button type="button" style="cursor:pointer;" class="btn blue btn-sm" onclick="dr_upload_file('thumb', '/index.php?s=member&c=api&m=upload&name=thumb&siteid='+{SITE_ID}+'&count=1&code=729fPAYHqy5MR1+jTijRgiriDaW8Rv1sTD2onWf2zF+3CAOo2Nf1lGMdSfM')"> <i class="fa fa-upload"></i> 上传</button>
+										</div>
+										<div id="drag-and-drop-zone-thumb" class="col-md-3 btn btn-sm blue uploader">
+											<i class="fa fa-cloud-upload"></i> 快传 <input name="thumb" type="file">
+										</div>
+							          	<div id="dr_my_thumb_list" class="col-md-6 my_list"></div>
+						        </div>
+					          	<div id="dr_hide_thumb_list" style="display:none"></div>
+          					</div>
                         </div>
-                         <!-- <div class="form-group" id="preload">
-                            <label class="col-xs-3 control-label">预览照片：</label>
-                            <div class="col-xs-8" id="picture" style="text-align: left;">
-                                {if $infos.cimge}
-                                <img src="{$userHeadimg}" style="width:200px;height:200px" />
-                                <else/>
-                                <img src="{$infos.cimge}" style="width:200px;height:200px" />
-                                {/if}
-                            </div>
-                        </div> -->
                         <div class="form-group">
                             <label class="col-md-2 control-label">{fc_lang('分类描述')}：</label>
                             <div class="col-md-8">
@@ -293,7 +305,15 @@ function delete_draft(did){
             </div>
             {/if}
         </div>
-       
+        <!-- <div class="col-md-3">
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <div class="form-body">
+                        {$sysfield}
+                    </div>
+                </div>
+            </div>
+        </div> -->
     </div>
 
 
@@ -319,68 +339,58 @@ function delete_draft(did){
         </div>
     </div>
 </form>
-<script src="{THEME_PATH}js/layer/laydate/laydate.js"></script>
-<script src="{THEME_PATH}js/uploadify/jquery.uploadify.min.js?v=1.0.0"></script>
-<script>
-$(function(){
-    alert(1233);
-    var headImg = {
-        filePath: null
-    };
-    $('#upload_image').uploadify({
-        "height" : 30,
-        "swf" : "{THEME_PATH}js/uploadify/uploadify.swf",
-        "fileObjName" : "download",
-        "buttonText" : "上传图片",
-        "fileSizeLimit" : '1MB',
-        "uploader" : 'http://localhost/index.php?s=member&c=api&m=upload_image',
-        "width" : 80,
-        "height": 30,
-        'removeTimeout' : 1,
-        'fileTypeExts' : '*.jpg; *.png; *.gif;',
-        "onUploadSuccess" : function(file, data) {
-            //console.log(this);
-            // var data = $.parseJSON(data);
-            console.log(data);
-            console.log(file);
-            console.log('data');
-            // if(data.code == 1){
-            //     var filePath = '<?php echo SYS_UPLOAD_PATH; ?>/'+date('Ym', SYS_TIME)+'/'+data.name;
-            //     alert(filePath);
-            //     headImg.filePath = filePath;
-            //     $('#picture img').attr('src',filePath);
-            //                         $("#adpath").val(filePath);
-            //     $('#preload').css('display','block');
-            // }else {
-            //     // parent.layer.alert(data.name, 0, function() {});
-            //     alert('13216');
-            // }
-        },
-        'onFallback' : function() {
-            // parent.layer.alert('未检测到兼容版本的Flash.', 0, function() {
-            //     parent.layer.closeAll();
-            // });
-            alert('未检测到兼容版本的Flash');
-        }
-                    
-    });
-    function close(){
-        // parent.layer.closeAll();
+
+<script type="text/javascript" src="{THEME_PATH}js/dmuploader.min.js"></script>
+<script type="text/javascript">
+  $("#drag-and-drop-zone-thumb").dmUploader({
+    url: "/index.php?s=member&amp;c=api&amp;m=new_ajax_upload&amp;name=thumb&amp;siteid=1&amp;count=1&amp;code=6ce5/bJLaqMQV3XH0FPu4H2+/T1jzA/4+j/xXGH8hXQGl+Oc3lYfNU1k02M",
+    dataType: "json",
+    allowedTypes: "*",
+    onInit: function(){
+    },
+    onBeforeUpload: function(id){
+        $("#dr_hide_thumb_list").html($("#dr_my_thumb_list").html());
+        $("#dr_my_thumb_list").html("&lt;span class=\"badge badge-danger\"&gt;0%&lt;/span&gt;");
+    },
+    onNewFile: function(id, file){
+      //alert(file);
+    },
+    onComplete: function(){
+      //alert("All pending tranfers completed");
+    },
+    onUploadProgress: function(id, percent){
+        $("#dr_my_thumb_list").html("&lt;span class=\"badge badge-danger\"&gt;"+(percent-1)+"%&lt;/span&gt;");
+    },
+    onUploadSuccess: function(id, data){
+	  if (data.code == 1) {
+	  	dr_tips("上传成功", 3, 1);
+	  	$("#fileid_thumb").val(data.id);
+	  	$("#dr_my_thumb_list").html("&lt;button type=\"button\" style=\"cursor:pointer;\" class=\"btn green btn-sm\" onclick=\"dr_show_file_info('"+data.id+"')\"&gt; &lt;i class=\"fa fa-search\"&gt;&lt;/i&gt; 预览&lt;/button&gt; ");
+		$("#dr_my_thumb_list").append("&lt;button type=\"button\" style=\"cursor:pointer;\" class=\"btn red btn-sm\" onclick=\"dr_delete_file2('thumb')\"&gt; &lt;i class=\"fa fa-trash\"&gt;&lt;/i&gt; "+lang["del_file"]+"&lt;/button&gt; ");
+	  } else {
+	  	dr_tips(data.msg,5);
+        $("#dr_my_thumb_list").html($("#dr_hide_thumb_list").html());
+	  }
+
+    },
+    onUploadError: function(id, message){
+      alert("Failed to Upload file #" + id + ": " + message);
+      $("#dr_my_thumb_list").html("");
+    },
+    onFileTypeError: function(file){
+      alert("File \"" + file.name + "\" cannot be added: must be an image");
+      $("#dr_my_thumb_list").html("");
+    },
+    onFileSizeError: function(file){
+      alert( "File \"" + file.name + "\" cannot be added: size excess limit");
+      $("#dr_my_thumb_list").html("");
+    },
+    onFallbackMode: function(message){
+      alert( "Browser not supported(do something else here!): " + message);
+      $("#dr_my_thumb_list").html("");
     }
-    // var start = {
-    //     elem: "#work_time",
-    //     format: "YYYY/MM/DD hh:mm:ss",
-    //     min: laydate.now(),
-    //     min: '1900-01-01 00:00:00',
-    //             max: "2099-06-16 23:59:59",
-    //     istime: true,
-    //     istoday: false,
-    //     choose: function(datas) {
-    //         end.min = datas;
-    //         end.start = datas
-    //     }
-    // };
-    // laydate(start);
-});
+  });
 </script>
+
+
 {template footer.html}
